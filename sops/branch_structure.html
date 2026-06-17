@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Branch Structure | USIC Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0f2744;
+      --navy-mid:   #1a3a5c;
+      --blue:       #1d6fa4;
+      --blue-light: #e8f3fa;
+      --blue-mid:   #bcd9ee;
+      --accent:     #f5a623;
+      --accent-lt:  #fef3dc;
+      --green:      #16a34a;
+      --green-lt:   #dcfce7;
+      --red:        #dc2626;
+      --red-lt:     #fee2e2;
+      --gray-50:    #f8fafc;
+      --gray-100:   #f1f5f9;
+      --gray-200:   #e2e8f0;
+      --gray-400:   #94a3b8;
+      --gray-600:   #475569;
+      --gray-800:   #1e293b;
+      --white:      #ffffff;
+      --radius:     8px;
+      --radius-lg:  12px;
+      --shadow:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:  0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--gray-50); color: var(--gray-800); line-height: 1.6; font-size: 15px; }
+
+    /* ── Logo Bar ── */
+    .logo-bar {
+      background: var(--navy);
+      padding: 10px 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-bar .logo-mark {
+      width: 32px; height: 32px; border-radius: 6px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: var(--navy); flex-shrink: 0;
+    }
+    .logo-bar .logo-text { color: var(--white); font-size: 15px; font-weight: 600; letter-spacing: .01em; }
+    .logo-bar .logo-sub  { color: rgba(255,255,255,.5); font-size: 13px; margin-left: 4px; font-weight: 400; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 52px 40px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -40px; right: 80px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(255,255,255,.03);
+    }
+    .hero-inner { max-width: 820px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.9); font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+      letter-spacing: .03em; text-transform: uppercase;
+    }
+    .hero-badge svg { width: 14px; height: 14px; opacity: .8; }
+    .hero h1 { font-size: 34px; font-weight: 700; color: var(--white); margin-bottom: 10px; letter-spacing: -.02em; line-height: 1.25; }
+    .hero p  { font-size: 16px; color: rgba(255,255,255,.72); max-width: 560px; line-height: 1.65; }
+    .hero-meta {
+      margin-top: 24px;
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .hero-meta-item { font-size: 12px; color: rgba(255,255,255,.55); display: flex; align-items: center; gap: 5px; }
+    .hero-meta-item strong { color: rgba(255,255,255,.85); font-weight: 500; }
+
+    /* ── Sticky Nav ── */
+    .sticky-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 40px;
+    }
+    .sticky-nav ul {
+      display: flex; gap: 0; list-style: none;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .sticky-nav ul::-webkit-scrollbar { display: none; }
+    .sticky-nav a {
+      display: block; padding: 14px 16px;
+      font-size: 13px; font-weight: 500; color: var(--gray-600);
+      text-decoration: none; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .sticky-nav a:hover { color: var(--blue); }
+    .sticky-nav a.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+    /* ── Page Layout ── */
+    .page-content { max-width: 900px; margin: 0 auto; padding: 40px 40px 80px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 48px; }
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .section-icon {
+      width: 36px; height: 36px; border-radius: var(--radius);
+      background: var(--blue-light); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg { width: 18px; height: 18px; color: var(--blue); }
+    .section-header h2 { font-size: 19px; font-weight: 600; color: var(--gray-800); }
+    .section-header .section-num {
+      font-size: 11px; font-weight: 600; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-left: auto;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 20px 24px;
+      box-shadow: var(--shadow);
+    }
+    .card + .card { margin-top: 12px; }
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 680px) { .card-grid { grid-template-columns: 1fr; } }
+
+    /* ── Callouts ── */
+    .callout {
+      border-radius: var(--radius); padding: 14px 16px;
+      font-size: 14px; line-height: 1.65; margin-bottom: 16px;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .callout-icon { flex-shrink: 0; margin-top: 1px; }
+    .callout-icon svg { width: 16px; height: 16px; }
+    .callout.info    { background: var(--blue-light); color: #1a4f7a; border-left: 3px solid var(--blue); }
+    .callout.tip     { background: var(--green-lt);   color: #145a32; border-left: 3px solid var(--green); }
+    .callout.warning { background: var(--accent-lt);  color: #7c4a00; border-left: 3px solid var(--accent); }
+
+    /* ── Hierarchy Tree ── */
+    .hierarchy-tree { display: flex; flex-direction: column; gap: 0; }
+    .level-row { display: flex; align-items: stretch; }
+    .level-connector {
+      display: flex; flex-direction: column; align-items: center;
+      width: 44px; flex-shrink: 0;
+    }
+    .level-connector .dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--blue); color: var(--white);
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 16px;
+    }
+    .level-connector .line {
+      width: 2px; flex: 1; background: var(--blue-mid); min-height: 16px;
+    }
+    .level-connector .line.top   { margin-bottom: 0; }
+    .level-connector .line.bottom{ margin-top: 0; }
+    .level-row:first-child .line.top    { visibility: hidden; }
+    .level-row:last-child  .line.bottom { visibility: hidden; }
+
+    .level-card {
+      flex: 1; margin: 8px 0 8px 12px;
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow); cursor: pointer;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .level-card:hover   { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+    .level-card.open    { border-color: var(--blue); }
+
+    .level-card-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px;
+    }
+    .level-badge {
+      font-size: 11px; font-weight: 600; color: var(--blue);
+      background: var(--blue-light); padding: 2px 8px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .level-name  { font-size: 15px; font-weight: 600; color: var(--gray-800); flex: 1; }
+    .level-example { font-size: 12px; color: var(--gray-400); }
+    .level-chevron { transition: transform .2s; flex-shrink: 0; }
+    .level-card.open .level-chevron { transform: rotate(180deg); }
+
+    .level-card-body {
+      display: none; padding: 0 18px 16px; border-top: 1px solid var(--gray-100);
+    }
+    .level-card.open .level-card-body { display: block; }
+    .level-desc { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-top: 12px; margin-bottom: 12px; }
+    .level-facts { list-style: none; }
+    .level-facts li {
+      font-size: 13px; color: var(--gray-600); line-height: 1.6;
+      padding: 5px 0; padding-left: 18px; position: relative;
+    }
+    .level-facts li::before {
+      content: '';
+      position: absolute; left: 4px; top: 13px;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--blue);
+    }
+    .level-facts code {
+      font-family: 'Courier New', monospace; font-size: 12px;
+      background: var(--gray-100); padding: 1px 5px; border-radius: 4px;
+      color: var(--gray-800);
+    }
+
+    /* ── Access Table ── */
+    .access-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .access-table th {
+      text-align: left; padding: 10px 14px; font-size: 12px;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+      color: var(--gray-600); background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .access-table th:first-child { border-radius: var(--radius) 0 0 0; }
+    .access-table th:last-child  { border-radius: 0 var(--radius) 0 0; }
+    .access-table td { padding: 11px 14px; border-bottom: 1px solid var(--gray-100); vertical-align: top; color: var(--gray-700); }
+    .access-table tr:last-child td { border-bottom: none; }
+    .access-table tr:hover td { background: var(--gray-50); }
+    .access-table .scope-tag {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 20px; text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .scope-tag.division { background: #ede9fe; color: #5b21b6; }
+    .scope-tag.region   { background: #dcfce7; color: #15803d; }
+    .scope-tag.district { background: #dbeafe; color: #1d4ed8; }
+
+    /* ── Script Reference ── */
+    .script-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 640px) { .script-grid { grid-template-columns: 1fr; } }
+    .script-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius); padding: 14px 16px;
+      border-left: 3px solid var(--blue);
+    }
+    .script-card code { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; color: var(--gray-800); }
+    .script-card p { font-size: 13px; color: var(--gray-600); margin-top: 4px; line-height: 1.5; }
+
+    /* ── AI Assistant ── */
+    .ai-panel {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow);
+    }
+    .ai-panel-header {
+      background: var(--navy); padding: 14px 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .ai-panel-header svg { width: 20px; height: 20px; color: var(--accent); }
+    .ai-panel-header h3 { font-size: 14px; font-weight: 600; color: var(--white); }
+    .ai-panel-header span { font-size: 12px; color: rgba(255,255,255,.5); margin-left: auto; }
+    .ai-panel-header .ai-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+      margin-right: -4px; flex-shrink: 0;
+    }
+
+    .ai-chips { padding: 14px 20px; display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--gray-100); }
+    .ai-chip {
+      font-size: 12px; background: var(--blue-light); color: var(--blue);
+      border: 1px solid var(--blue-mid); padding: 5px 12px; border-radius: 20px;
+      cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500;
+      transition: background .12s;
+    }
+    .ai-chip:hover { background: var(--blue-mid); }
+
+    .ai-messages {
+      min-height: 80px; max-height: 320px; overflow-y: auto;
+      padding: 16px 20px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .ai-messages:empty::after {
+      content: 'Ask a question to get started.';
+      font-size: 13px; color: var(--gray-400); text-align: center;
+      display: block; margin-top: 20px;
+    }
+    .msg { display: flex; flex-direction: column; }
+    .msg.user { align-items: flex-end; }
+    .msg.assistant { align-items: flex-start; }
+    .msg-bubble {
+      max-width: 82%; padding: 9px 14px; border-radius: 10px;
+      font-size: 13px; line-height: 1.65; white-space: pre-wrap; word-break: break-word;
+    }
+    .msg.user .msg-bubble      { background: var(--blue); color: var(--white); border-bottom-right-radius: 3px; }
+    .msg.assistant .msg-bubble { background: var(--gray-100); color: var(--gray-800); border-bottom-left-radius: 3px; }
+    .msg-label { font-size: 11px; color: var(--gray-400); margin-bottom: 4px; }
+
+    .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
+    .typing-indicator span {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--gray-400);
+      animation: bounce 1.2s infinite;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: .2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: .4s; }
+    @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+
+    .ai-input-row {
+      display: flex; gap: 0; border-top: 1px solid var(--gray-200);
+    }
+    .ai-input-row input {
+      flex: 1; border: none; padding: 13px 18px;
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      color: var(--gray-800); background: var(--white); outline: none;
+    }
+    .ai-input-row input::placeholder { color: var(--gray-400); }
+    .ai-send-btn {
+      padding: 0 20px; background: var(--blue); color: var(--white);
+      border: none; font-size: 13px; font-weight: 600;
+      font-family: 'Inter', sans-serif; cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      transition: background .15s;
+    }
+    .ai-send-btn:hover   { background: var(--navy-mid); }
+    .ai-send-btn:disabled { background: var(--gray-400); cursor: not-allowed; }
+    .ai-send-btn svg { width: 14px; height: 14px; }
+
+    /* ── Quick Reference ── */
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .ref-table th { text-align: left; padding: 9px 14px; background: var(--navy); color: rgba(255,255,255,.85); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+    .ref-table th:first-child { border-radius: var(--radius) 0 0 0; }
+    .ref-table th:last-child  { border-radius: 0 var(--radius) 0 0; }
+    .ref-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: top; }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-table tr:hover td { background: var(--gray-50); }
+    .ref-table code { font-family: 'Courier New', monospace; font-size: 12px; background: var(--gray-100); padding: 1px 5px; border-radius: 3px; }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--navy); color: rgba(255,255,255,.5);
+      padding: 24px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; gap: 16px; flex-wrap: wrap;
+    }
+    .page-footer strong { color: rgba(255,255,255,.8); }
+    .page-footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    .page-footer a:hover { color: rgba(255,255,255,.8); }
+
+    /* ── Util ── */
+    .pill {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .pill.blue   { background: var(--blue-light); color: var(--blue); }
+    .pill.green  { background: var(--green-lt);   color: var(--green); }
+    .pill.amber  { background: var(--accent-lt);  color: #92400e; }
+    .pill.gray   { background: var(--gray-100);   color: var(--gray-600); }
+
+    p { margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 600px) {
+      .logo-bar, .hero, .page-content, .sticky-nav { padding-left: 20px; padding-right: 20px; }
+      .hero h1 { font-size: 26px; }
+      .card-grid, .script-grid { grid-template-columns: 1fr; }
+    }
+  
+/* ===== USIC brand re-skin — shared formatting (matches Generating Reports How-To) ===== */
+:root{
+  --navy:#00305B; --navy-mid:#001F3D;
+  --blue:#00305B; --blue-light:#E7EEF5; --blue-mid:#C4D5E6;
+  --accent:#F16621; --accent-lt:#FDEBE0;
+  --green:#94C83D; --green-dk:#5E8A1E; --green-lt:#EEF6E0;
+}
+body{font-family:Arial,Helvetica,sans-serif}
+.hero h1,.section-header h2,.logo-text,.logo-bar .logo-text,h3.sub-heading,.accordion summary{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+.hero h1{text-transform:uppercase;letter-spacing:.01em;font-weight:700}
+.section-header h2{color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+.logo-bar{background:#fff;border-bottom:1px solid var(--gray-200)}
+.logo-bar img{height:40px;width:auto;object-fit:contain;flex-shrink:0}
+.logo-bar .logo-text{color:var(--navy);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.logo-bar .logo-sub{color:var(--gray-400)}
+.can-header,.do-header{background:var(--green-dk)}
+.step-body strong{display:inline}
+.step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--navy)}
+
+</style>
+</head>
+<body>
+
+<!-- ────────── Logo Bar ────────── -->
+<div class="logo-bar">
+  <img src="../usic_academy_logo.png" alt="USIC Academy"/>
+  <span class="logo-text">USIC Academy</span>
+  <span class="logo-sub">/ Learning Analytics & Technology</span>
+</div>
+
+<!-- ────────── Hero ────────── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+      Knowledge Article
+    </div>
+    <h1>Branch Structure</h1>
+    <p>How USIC Academy organizes users, scopes access, and targets learning content through Docebo's 5-level branch hierarchy — and how that hierarchy is maintained.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+        <strong>Last updated:</strong>&nbsp;June 2025
+      </div>
+      <div class="hero-meta-item">
+        <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/></svg>
+        <strong>Applies to:</strong>&nbsp;All Power Users · LAT Team
+      </div>
+      <div class="hero-meta-item">
+        <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+        <strong>Platform:</strong>&nbsp;Docebo (usic.training)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────── Sticky Nav ────────── -->
+<nav class="sticky-nav">
+  <ul>
+    <li><a href="#overview"     class="nav-link active">Overview</a></li>
+    <li><a href="#hierarchy"    class="nav-link">The 5 Levels</a></li>
+    <li><a href="#access"       class="nav-link">Access &amp; Scope</a></li>
+    <li><a href="#targeting"    class="nav-link">Enrollment Targeting</a></li>
+    <li><a href="#maintenance"  class="nav-link">Branch Maintenance</a></li>
+    <li><a href="#reference"    class="nav-link">Quick Reference</a></li>
+    <li><a href="#assistant"    class="nav-link">AI Assistant</a></li>
+  </ul>
+</nav>
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div style="background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="background:#8E44AD;color:white;font-family:'Barlow Condensed',Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;">AI-Assisted</span>
+    <span>This guide was created with the help of generative AI under documented validation practices.</span>
+  </div>
+</div>
+
+<!-- ────────── Page Content ────────── -->
+<div class="page-content">
+
+  <!-- ── Section 1: Overview ── -->
+  <section class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <h2>Overview</h2>
+      <span class="section-num">01</span>
+    </div>
+
+    <p>In Docebo, a <strong>branch</strong> is an organizational grouping that mirrors USIC's real-world operational structure. Every user belongs to exactly one branch. Branches determine how users are grouped, what content they see, and what Power Users can manage.</p>
+
+    <div class="callout info">
+      <div class="callout-icon">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+      </div>
+      <div>
+        The branch hierarchy is sourced from the <strong>SharePoint Learning Reference Table</strong> maintained by the LAT team. Changes to the org structure originate there and flow into Docebo through automated sync scripts. Power Users do not create or delete branches — that is an LAT function.
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">5 levels deep</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Company → Division → Region → District Full → Cost Center ID. Every user sits at the Cost Center level (level 5).</div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Cascading access</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">When a Power User is scoped to a branch, they can see and manage all users and content at that branch <em>and every branch below it</em>.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Enrollment targeting</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Learning plans and courses can be targeted at any branch level. An assignment cascades down to all users within that branch's subtree.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">SharePoint-driven</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Organizational changes (new cost centers, district restructures) are first made in SharePoint and then synced to Docebo using LAT scripts.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 2: Hierarchy ── -->
+  <section class="section" id="hierarchy">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+      </div>
+      <h2>The 5-Level Hierarchy</h2>
+      <span class="section-num">02</span>
+    </div>
+
+    <p>Click any level to expand its details, description, and governance notes.</p>
+
+    <div class="hierarchy-tree" id="tree">
+
+      <!-- Level 1 -->
+      <div class="level-row">
+        <div class="level-connector">
+          <div class="line top"></div>
+          <div class="dot">1</div>
+          <div class="line bottom"></div>
+        </div>
+        <div class="level-card" onclick="toggleLevel(this)">
+          <div class="level-card-header">
+            <span class="level-badge">Level 1</span>
+            <span class="level-name">Company</span>
+            <span class="level-example">USIC (root)</span>
+            <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="level-card-body">
+            <p class="level-desc">The single root node that anchors the entire hierarchy. Every user, learning object, and branch path in USIC Academy ultimately traces back here. This node is never modified by Power Users.</p>
+            <ul class="level-facts">
+              <li>Named <code>USIC</code> — there is only one Company-level node.</li>
+              <li>Managed exclusively by the LAT team; no Power User has write access at this level.</li>
+              <li>Assigning content or enrollment plans here would affect every single USIC employee.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level 2 -->
+      <div class="level-row">
+        <div class="level-connector">
+          <div class="line top"></div>
+          <div class="dot">2</div>
+          <div class="line bottom"></div>
+        </div>
+        <div class="level-card" onclick="toggleLevel(this)">
+          <div class="level-card-header">
+            <span class="level-badge">Level 2</span>
+            <span class="level-name">Division</span>
+            <span class="level-example">e.g., East, West, Central</span>
+            <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="level-card-body">
+            <p class="level-desc">Major operational divisions within USIC. Power Users scoped at Division level have visibility across every region, district, and cost center within that division — a very broad scope that is granted sparingly.</p>
+            <ul class="level-facts">
+              <li>Division names are sourced directly from the SharePoint Learning Reference Table.</li>
+              <li>Division-scoped Power Users are uncommon; most managers are scoped lower.</li>
+              <li>Enrollment plans assigned at Division level cascade to all users below — use with care.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level 3 -->
+      <div class="level-row">
+        <div class="level-connector">
+          <div class="line top"></div>
+          <div class="dot">3</div>
+          <div class="line bottom"></div>
+        </div>
+        <div class="level-card" onclick="toggleLevel(this)">
+          <div class="level-card-header">
+            <span class="level-badge">Level 3</span>
+            <span class="level-name">Region</span>
+            <span class="level-example">e.g., Southeast, Pacific Northwest</span>
+            <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="level-card-body">
+            <p class="level-desc">Geographic or operational groupings within a Division. Senior Training Delivery Managers (TDMs) may be scoped at the Region level when they need oversight across multiple districts.</p>
+            <ul class="level-facts">
+              <li>Regions contain one or more District Full branches beneath them.</li>
+              <li>Region-level enrollment plan assignments cascade to all districts and cost centers.</li>
+              <li>Region names follow the naming convention established in the SharePoint Learning Reference Table.</li>
+              <li>Region-scoped Power Users can view — but not necessarily edit — all users within the region.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level 4 -->
+      <div class="level-row">
+        <div class="level-connector">
+          <div class="line top"></div>
+          <div class="dot">4</div>
+          <div class="line bottom"></div>
+        </div>
+        <div class="level-card" onclick="toggleLevel(this)">
+          <div class="level-card-header">
+            <span class="level-badge">Level 4</span>
+            <span class="level-name">District Full</span>
+            <span class="level-example">e.g., FL-East District</span>
+            <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="level-card-body">
+            <p class="level-desc">Individual districts within a Region. This is the most common scope for Training Delivery Managers and Instructors, giving them management authority over all cost centers (crews) within their district.</p>
+            <ul class="level-facts">
+              <li>District names follow the format: <code>[State Abbr]-[Direction] District</code> (e.g., <code>FL-East District</code>).</li>
+              <li>The primary management unit for front-line supervisors and field TDMs.</li>
+              <li>Most TDMs and Instructors are scoped to one or more District Full branches.</li>
+              <li>The <code>bulk_move_branches.py</code> script can reassign users across districts in bulk.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level 5 -->
+      <div class="level-row">
+        <div class="level-connector">
+          <div class="line top"></div>
+          <div class="dot">5</div>
+          <div class="line bottom"></div>
+        </div>
+        <div class="level-card" onclick="toggleLevel(this)">
+          <div class="level-card-header">
+            <span class="level-badge">Level 5</span>
+            <span class="level-name">Cost Center ID</span>
+            <span class="level-example">e.g., 12345</span>
+            <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="level-card-body">
+            <p class="level-desc">The leaf-level branch — the most granular unit available. All USIC employees are assigned here, with the cost center ID matching USIC's payroll and HR system codes. This is where individual crews live in Docebo.</p>
+            <ul class="level-facts">
+              <li>All employees are placed at this level — never at a parent level.</li>
+              <li>Cost Center IDs match USIC HR/payroll system codes exactly.</li>
+              <li><code>sharepoint_to_branch_moves.py</code> tracks moves at this level when the SharePoint table changes.</li>
+              <li>Terminated users remain at their last Cost Center until processed by <code>archive_terminated.py</code> and <code>cleanup_terminated.py</code>.</li>
+              <li>A Power User scoped here can only see users within that single cost center.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hierarchy-tree -->
+  </section>
+
+  <!-- ── Section 3: Access & Scope ── -->
+  <section class="section" id="access">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h2>Access &amp; Scope</h2>
+      <span class="section-num">03</span>
+    </div>
+
+    <p>USIC Academy has three Power User profiles. Each Power User is assigned a <strong>branch scope</strong> that determines which users and content they can manage. Access always cascades <em>downward</em> — a user scoped to a Region can see all Districts and Cost Centers below it, but nothing above or beside it.</p>
+
+    <div class="callout tip">
+      <div class="callout-icon">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+      </div>
+      <div>
+        <strong>Principle of least privilege:</strong> When setting up a Power User, assign the lowest branch level that still lets them do their job. A district-level TDM does not need Region-level scope.
+      </div>
+    </div>
+
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="access-table">
+        <thead>
+          <tr>
+            <th>Power User Profile</th>
+            <th>Typical Scope</th>
+            <th>Can manage users in…</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Instructor</strong><br><span style="font-size:12px; color:var(--gray-400);">Profile ID 146178</span></td>
+            <td><span class="scope-tag district">District Full</span></td>
+            <td>The assigned district and all cost centers within it. Can create and manage ILT sessions for those users.</td>
+          </tr>
+          <tr>
+            <td><strong>Training Delivery Manager (TDM)</strong><br><span style="font-size:12px; color:var(--gray-400);">Profile ID 146911</span></td>
+            <td><span class="scope-tag district">District Full</span> or <span class="scope-tag region">Region</span></td>
+            <td>All branches at or below the assigned level. Manages enrollments, learning plans, and user data for their scope.</td>
+          </tr>
+          <tr>
+            <td><strong>Content Creator</strong><br><span style="font-size:12px; color:var(--gray-400);">Profile ID 146912</span></td>
+            <td><span class="scope-tag division">Division</span> or Company</td>
+            <td>Content Creators typically have broad scope since they publish content for wide audiences. They do not have course delete permission.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Section 4: Enrollment Targeting ── -->
+  <section class="section" id="targeting">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
+      <h2>Enrollment Targeting</h2>
+      <span class="section-num">04</span>
+    </div>
+
+    <p>Learning plans and courses in USIC Academy can be targeted to any branch in the hierarchy. The assignment cascades automatically to all users within that branch's subtree — you do not need to assign users individually.</p>
+
+    <div class="callout warning">
+      <div class="callout-icon">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+      </div>
+      <div>
+        <strong>Important:</strong> Adding a course to an already-published learning plan auto-enrolls all current members of that plan immediately. Test in a draft plan first when rolling out new content to a large branch.
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Company (Level 1)</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">Every USIC employee is enrolled. Reserved for mandatory compliance content that applies to the full workforce.</div>
+        <div style="margin-top:10px;"><span class="pill amber">Use with caution</span></div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Division (Level 2)</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">Targets an entire division. Good for division-specific policy or role-based content that applies broadly.</div>
+        <div style="margin-top:10px;"><span class="pill amber">Broad reach</span></div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Region / District (Levels 3–4)</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">The most common use case — targets a specific operational area. TDMs manage enrollments at this level most frequently.</div>
+        <div style="margin-top:10px;"><span class="pill green">Recommended scope</span></div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Cost Center (Level 5)</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">Targets a single crew. Useful for crew-specific remediation or onboarding content for a new cost center.</div>
+        <div style="margin-top:10px;"><span class="pill blue">Granular control</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 5: Branch Maintenance ── -->
+  <section class="section" id="maintenance">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h2>Branch Maintenance</h2>
+      <span class="section-num">05</span>
+    </div>
+
+    <p>Branch maintenance is an LAT function. The scripts below automate the most common maintenance tasks. Power Users do not run these directly — they submit requests to the LAT team who execute them.</p>
+
+    <div class="script-grid">
+      <div class="script-card">
+        <code>sync_branches.py</code>
+        <p>Reads the SharePoint Learning Reference Table and creates or updates branches in Docebo to match the current org structure.</p>
+      </div>
+      <div class="script-card">
+        <code>sharepoint_to_branch_moves.py</code>
+        <p>Detects when users have changed cost centers in SharePoint and moves those users to their correct Docebo branch.</p>
+      </div>
+      <div class="script-card">
+        <code>bulk_move_branches.py</code>
+        <p>Batch-moves a list of users from one branch to another. Used for district restructures or large group transfers.</p>
+      </div>
+      <div class="script-card">
+        <code>pull_branches.py</code>
+        <p>Exports the current Docebo branch tree to a local file for auditing, comparison, or troubleshooting.</p>
+      </div>
+      <div class="script-card">
+        <code>archive_terminated.py</code>
+        <p>Identifies terminated users (via <code>field_17</code> Termination Date and <code>field_20</code> Status) and moves them to the archive branch. Runs on a scheduled task.</p>
+      </div>
+      <div class="script-card">
+        <code>cleanup_terminated.py</code>
+        <p>Follows up on archived terminated users — deactivates accounts and removes enrollments as appropriate per retention policy.</p>
+      </div>
+    </div>
+
+    <div class="callout info" style="margin-top:16px;">
+      <div class="callout-icon">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+      </div>
+      <div>
+        To request a branch move for a user or crew, contact the LAT team via <a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" style="color:var(--blue); font-weight:500;">Zendesk</a>. Include the employee's name, current branch, and destination branch.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 6: Quick Reference ── -->
+  <section class="section" id="reference">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      </div>
+      <h2>Quick Reference</h2>
+      <span class="section-num">06</span>
+    </div>
+
+    <div class="card" style="padding:0; overflow:hidden; margin-bottom:14px;">
+      <table class="ref-table">
+        <thead>
+          <tr><th>Term / Field</th><th>What it means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>field_2</code></td><td>Employee ID — the primary key linking a Docebo user to USIC HR records.</td></tr>
+          <tr><td><code>field_17</code></td><td>Termination Date — used by <code>archive_terminated.py</code> to identify leavers.</td></tr>
+          <tr><td><code>field_20</code></td><td>Status — Active / Terminated / Leave of Absence etc. Drives archival logic.</td></tr>
+          <tr><td><code>field_40</code></td><td>ULE Version — tracks which version of the Utility Locator Evaluation a user is on.</td></tr>
+          <tr><td>Learning Reference Table</td><td>SharePoint spreadsheet maintained by LAT that is the source of truth for all branch names and the org hierarchy.</td></tr>
+          <tr><td>Power User scope</td><td>The branch (and all branches below it) a Power User is authorized to manage in Docebo.</td></tr>
+          <tr><td>Cost Center ID</td><td>The leaf-level branch, corresponding to an individual USIC crew. Matches payroll system codes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="ref-table">
+        <thead>
+          <tr><th>Power User Profile</th><th>Profile ID</th><th>Typical Branch Level</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Instructor</td><td><code>146178</code></td><td>District Full (Level 4)</td></tr>
+          <tr><td>Training Delivery Manager (TDM)</td><td><code>146911</code></td><td>District Full or Region (Levels 3–4)</td></tr>
+          <tr><td>Content Creator</td><td><code>146912</code></td><td>Division or Company (Levels 1–2)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Section 7: AI Assistant ── -->
+  <section class="section" id="assistant">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <h2>AI Assistant</h2>
+      <span class="section-num">07</span>
+    </div>
+
+    <p>Have a branch-related question not covered above? The assistant below is pre-loaded with full knowledge of the USIC Academy branch structure, Power User profiles, and maintenance scripts.</p>
+
+    <div class="ai-panel">
+      <div class="ai-panel-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <h3>Branch Structure Assistant</h3>
+        <div class="ai-dot"></div>
+        <span>Powered by Claude</span>
+      </div>
+
+      <div class="ai-chips" id="chip-row">
+        <button class="ai-chip" onclick="prefill('How are users assigned to branches?')">How are users assigned to branches?</button>
+        <button class="ai-chip" onclick="prefill('What does scoping a TDM to a Region mean?')">What does scoping a TDM to a Region mean?</button>
+        <button class="ai-chip" onclick="prefill('Which script handles terminated users?')">Which script handles terminated users?</button>
+        <button class="ai-chip" onclick="prefill('Can a Content Creator delete courses?')">Can a Content Creator delete courses?</button>
+      </div>
+
+      <div class="ai-messages" id="ai-messages"></div>
+
+      <div id="typing-row" style="display:none; padding:4px 20px 8px;">
+        <div class="typing-indicator">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="ai-input-row">
+        <input id="ai-input" type="text" placeholder="Ask about branches, scope, scripts, enrollment targeting…" onkeydown="if(event.key==='Enter') sendMessage();" />
+        <button class="ai-send-btn" id="ai-send" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-content -->
+
+<!-- ────────── Footer ────────── -->
+<footer class="page-footer">
+  <div>
+    <strong>USIC Academy</strong> — Branch Structure Knowledge Article<br>
+    Learning Analytics &amp; Technology (LAT) · Last updated June 2025
+  </div>
+  <div style="text-align:right;">
+    <a href="https://mckamw99.github.io/usic-sops/">← Back to all guides</a><br>
+    <a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank">Submit a support request</a>
+  </div>
+</footer>
+
+<script>
+  /* ── Nav active highlighting ── */
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  function updateNav() {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY + 80 >= s.offsetTop) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  /* ── Hierarchy toggle ── */
+  function toggleLevel(card) {
+    card.classList.toggle('open');
+  }
+
+  /* ── AI Assistant ── */
+  const SYSTEM_PROMPT = `You are a helpful knowledge assistant for USIC Academy's Docebo LMS branch structure.
+Answer questions clearly and concisely (2-4 sentences unless more is truly needed).
+
+Branch hierarchy (5 levels, top to bottom):
+1. Company — Root node "USIC". LAT team only.
+2. Division — Major operational divisions (East, West, etc.)
+3. Region — Geographic/operational groupings within a Division
+4. District Full — Individual districts (format: [State]-[Direction] District, e.g., FL-East District)
+5. Cost Center ID — Leaf level; individual employees assigned here matching payroll cost center codes.
+
+Key facts:
+- Sourced from SharePoint "Learning Reference Table" (LAT team maintains it)
+- Scripts (LAT-run, not Power User-run):
+  * sync_branches.py — syncs branch structure from SharePoint to Docebo
+  * sharepoint_to_branch_moves.py — moves users when their cost center changes in SharePoint
+  * bulk_move_branches.py — bulk user branch reassignment
+  * pull_branches.py — exports current Docebo branch tree for auditing
+  * archive_terminated.py — identifies and archives terminated users (uses field_17, field_20)
+  * cleanup_terminated.py — deactivates and cleans up archived terminated users
+- Three Power User profiles:
+  * Instructor (ID 146178) — typically scoped to District Full
+  * Training Delivery Manager/TDM (ID 146911) — typically District Full or Region
+  * Content Creator (ID 146912) — typically Division or Company; cannot delete courses
+- Power User access cascades DOWN from assigned branch — they see all branches below theirs
+- Enrollment plans assigned to a branch cascade to ALL users in that branch and below
+- Adding a course to a published learning plan auto-enrolls all current plan members immediately
+- User fields: field_2 = Employee ID, field_17 = Termination Date, field_20 = Status, field_40 = ULE Version
+- Docebo instance: usic.training / usic.docebosaas.com`;
+
+  let chatHistory = [];
+
+  function prefill(text) {
+    document.getElementById('ai-input').value = text;
+    document.getElementById('ai-input').focus();
+  }
+
+  function appendMessage(role, text) {
+    const container = document.getElementById('ai-messages');
+    const chipRow = document.getElementById('chip-row');
+    if (chipRow) chipRow.style.display = 'none';
+
+    const msg = document.createElement('div');
+    msg.className = 'msg ' + role;
+
+    const label = document.createElement('div');
+    label.className = 'msg-label';
+    label.textContent = role === 'user' ? 'You' : 'Assistant';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    bubble.textContent = text;
+
+    msg.appendChild(label);
+    msg.appendChild(bubble);
+    container.appendChild(msg);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('ai-input');
+    const sendBtn = document.getElementById('ai-send');
+    const typingRow = document.getElementById('typing-row');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    sendBtn.disabled = true;
+    appendMessage('user', text);
+    chatHistory.push({ role: 'user', content: text });
+    typingRow.style.display = 'block';
+    document.getElementById('ai-messages').scrollTop = document.getElementById('ai-messages').scrollHeight;
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: SYSTEM_PROMPT,
+          messages: chatHistory
+        })
+      });
+      const data = await res.json();
+      const reply = data.content?.[0]?.text || 'No response received.';
+      chatHistory.push({ role: 'assistant', content: reply });
+      appendMessage('assistant', reply);
+    } catch (err) {
+      appendMessage('assistant', 'Unable to reach the API. Please check your connection and try again.');
+    }
+
+    typingRow.style.display = 'none';
+    sendBtn.disabled = false;
+    input.focus();
+  }
+</script>
+
+</body>
+</html>

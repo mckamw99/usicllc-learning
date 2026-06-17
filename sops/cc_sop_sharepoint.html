@@ -1,0 +1,750 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Content Creator SOP — USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0f2744;
+      --navy-mid:   #1a3a5c;
+      --blue:       #1d6fa4;
+      --blue-light: #e8f3fa;
+      --blue-mid:   #bcd9ee;
+      --accent:     #f5a623;
+      --accent-lt:  #fef3dc;
+      --green:      #16a34a;
+      --green-lt:   #dcfce7;
+      --red:        #dc2626;
+      --red-lt:     #fee2e2;
+      --gray-50:    #f8fafc;
+      --gray-100:   #f1f5f9;
+      --gray-200:   #e2e8f0;
+      --gray-400:   #94a3b8;
+      --gray-600:   #475569;
+      --gray-800:   #1e293b;
+      --white:      #ffffff;
+      --radius:     8px;
+      --radius-lg:  12px;
+      --shadow:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:  0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--gray-50); color: var(--gray-800); line-height: 1.6; font-size: 15px; }
+
+    /* ── Logo Bar ── */
+    .logo-bar {
+      background: var(--navy);
+      padding: 10px 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-bar .logo-mark {
+      width: 32px; height: 32px; border-radius: 6px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: var(--navy); flex-shrink: 0;
+    }
+    .logo-bar .logo-text { color: var(--white); font-size: 15px; font-weight: 600; letter-spacing: .01em; }
+    .logo-bar .logo-sub  { color: rgba(255,255,255,.5); font-size: 13px; margin-left: 4px; font-weight: 400; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 52px 40px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -40px; right: 80px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(255,255,255,.03);
+    }
+    .hero-inner { max-width: 820px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.9); font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+      letter-spacing: .03em; text-transform: uppercase;
+    }
+    .hero-badge svg { width: 14px; height: 14px; opacity: .8; }
+    .hero h1 { font-size: 34px; font-weight: 700; color: var(--white); margin-bottom: 10px; letter-spacing: -.02em; line-height: 1.25; }
+    .hero p  { font-size: 16px; color: rgba(255,255,255,.72); max-width: 560px; line-height: 1.65; }
+    .hero-meta {
+      margin-top: 24px;
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .hero-meta-item { font-size: 12px; color: rgba(255,255,255,.55); display: flex; align-items: center; gap: 5px; }
+    .hero-meta-item strong { color: rgba(255,255,255,.85); font-weight: 500; }
+
+    /* ── Sticky Nav ── */
+    .sticky-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 40px;
+    }
+    .sticky-nav ul {
+      display: flex; gap: 0; list-style: none;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .sticky-nav ul::-webkit-scrollbar { display: none; }
+    .sticky-nav a {
+      display: block; padding: 14px 16px;
+      font-size: 13px; font-weight: 500; color: var(--gray-600);
+      text-decoration: none; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .sticky-nav a:hover { color: var(--blue); }
+    .sticky-nav a.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+    /* ── Page Layout ── */
+    .page-content { max-width: 900px; margin: 0 auto; padding: 40px 40px 80px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 48px; }
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .section-icon {
+      width: 36px; height: 36px; border-radius: var(--radius);
+      background: var(--blue-light); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg { width: 18px; height: 18px; color: var(--blue); }
+    .section-header h2 { font-size: 19px; font-weight: 600; color: var(--gray-800); }
+    .section-header .section-num {
+      font-size: 11px; font-weight: 600; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-left: auto;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 20px 24px;
+      box-shadow: var(--shadow);
+    }
+    .card + .card { margin-top: 12px; }
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 680px) { .card-grid { grid-template-columns: 1fr; } }
+
+    /* ── Callouts ── */
+    .callout {
+      border-radius: var(--radius); padding: 14px 16px;
+      font-size: 14px; line-height: 1.65; margin-bottom: 16px;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .callout-icon { flex-shrink: 0; margin-top: 1px; }
+    .callout-icon svg { width: 16px; height: 16px; }
+    .callout.info    { background: var(--blue-light); color: #1a4f7a; border-left: 3px solid var(--blue); }
+    .callout.tip     { background: var(--green-lt);   color: #145a32; border-left: 3px solid var(--green); }
+    .callout.warning { background: var(--accent-lt);  color: #7c4a00; border-left: 3px solid var(--accent); }
+
+    /* ── Hierarchy Tree ── */
+    .hierarchy-tree { display: flex; flex-direction: column; gap: 0; }
+    .level-row { display: flex; align-items: stretch; }
+    .level-connector {
+      display: flex; flex-direction: column; align-items: center;
+      width: 44px; flex-shrink: 0;
+    }
+    .level-connector .dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--blue); color: var(--white);
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 16px;
+    }
+    .level-connector .line {
+      width: 2px; flex: 1; background: var(--blue-mid); min-height: 16px;
+    }
+    .level-connector .line.top   { margin-bottom: 0; }
+    .level-connector .line.bottom{ margin-top: 0; }
+    .level-row:first-child .line.top    { visibility: hidden; }
+    .level-row:last-child  .line.bottom { visibility: hidden; }
+
+    .level-card {
+      flex: 1; margin: 8px 0 8px 12px;
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow); cursor: pointer;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .level-card:hover   { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+    .level-card.open    { border-color: var(--blue); }
+
+    .level-card-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px;
+    }
+    .level-badge {
+      font-size: 11px; font-weight: 600; color: var(--blue);
+      background: var(--blue-light); padding: 2px 8px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .level-name  { font-size: 15px; font-weight: 600; color: var(--gray-800); flex: 1; }
+    .level-example { font-size: 12px; color: var(--gray-400); }
+    .level-chevron { transition: transform .2s; flex-shrink: 0; }
+    .level-card.open .level-chevron { transform: rotate(180deg); }
+
+    .level-card-body {
+      display: none; padding: 0 18px 16px; border-top: 1px solid var(--gray-100);
+    }
+    .level-card.open .level-card-body { display: block; }
+    .level-desc { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-top: 12px; margin-bottom: 12px; }
+    .level-facts { list-style: none; }
+    .level-facts li {
+      font-size: 13px; color: var(--gray-600); line-height: 1.6;
+      padding: 5px 0; padding-left: 18px; position: relative;
+    }
+    .level-facts li::before {
+      content: '';
+      position: absolute; left: 4px; top: 13px;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--blue);
+    }
+    .level-facts code {
+      font-family: 'Courier New', monospace; font-size: 12px;
+      background: var(--gray-100); padding: 1px 5px; border-radius: 4px;
+      color: var(--gray-800);
+    }
+
+    /* ── Access Table ── */
+    .access-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .access-table th {
+      text-align: left; padding: 10px 14px; font-size: 12px;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+      color: var(--gray-600); background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .access-table th:first-child { border-radius: var(--radius) 0 0 0; }
+    .access-table th:last-child  { border-radius: 0 var(--radius) 0 0; }
+    .access-table td { padding: 11px 14px; border-bottom: 1px solid var(--gray-100); vertical-align: top; color: var(--gray-700); }
+    .access-table tr:last-child td { border-bottom: none; }
+    .access-table tr:hover td { background: var(--gray-50); }
+    .access-table .scope-tag {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 20px; text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .scope-tag.division { background: #ede9fe; color: #5b21b6; }
+    .scope-tag.region   { background: #dcfce7; color: #15803d; }
+    .scope-tag.district { background: #dbeafe; color: #1d4ed8; }
+
+    /* ── Script Reference ── */
+    .script-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 640px) { .script-grid { grid-template-columns: 1fr; } }
+    .script-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius); padding: 14px 16px;
+      border-left: 3px solid var(--blue);
+    }
+    .script-card code { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; color: var(--gray-800); }
+    .script-card p { font-size: 13px; color: var(--gray-600); margin-top: 4px; line-height: 1.5; }
+
+    /* ── AI Assistant ── */
+    .ai-panel {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow);
+    }
+    .ai-panel-header {
+      background: var(--navy); padding: 14px 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .ai-panel-header svg { width: 20px; height: 20px; color: var(--accent); }
+    .ai-panel-header h3 { font-size: 14px; font-weight: 600; color: var(--white); }
+    .ai-panel-header span { font-size: 12px; color: rgba(255,255,255,.5); margin-left: auto; }
+    .ai-panel-header .ai-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+      margin-right: -4px; flex-shrink: 0;
+    }
+
+    .ai-chips { padding: 14px 20px; display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--gray-100); }
+    .ai-chip {
+      font-size: 12px; background: var(--blue-light); color: var(--blue);
+      border: 1px solid var(--blue-mid); padding: 5px 12px; border-radius: 20px;
+      cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500;
+      transition: background .12s;
+    }
+    .ai-chip:hover { background: var(--blue-mid); }
+
+    .ai-messages {
+      min-height: 80px; max-height: 320px; overflow-y: auto;
+      padding: 16px 20px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .ai-messages:empty::after {
+      content: 'Ask a question to get started.';
+      font-size: 13px; color: var(--gray-400); text-align: center;
+      display: block; margin-top: 20px;
+    }
+    .msg { display: flex; flex-direction: column; }
+    .msg.user { align-items: flex-end; }
+    .msg.assistant { align-items: flex-start; }
+    .msg-bubble {
+      max-width: 82%; padding: 9px 14px; border-radius: 10px;
+      font-size: 13px; line-height: 1.65; white-space: pre-wrap; word-break: break-word;
+    }
+    .msg.user .msg-bubble      { background: var(--blue); color: var(--white); border-bottom-right-radius: 3px; }
+    .msg.assistant .msg-bubble { background: var(--gray-100); color: var(--gray-800); border-bottom-left-radius: 3px; }
+    .msg-label { font-size: 11px; color: var(--gray-400); margin-bottom: 4px; }
+
+    .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
+    .typing-indicator span {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--gray-400);
+      animation: bounce 1.2s infinite;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: .2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: .4s; }
+    @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+
+    .ai-input-row {
+      display: flex; gap: 0; border-top: 1px solid var(--gray-200);
+    }
+    .ai-input-row input {
+      flex: 1; border: none; padding: 13px 18px;
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      color: var(--gray-800); background: var(--white); outline: none;
+    }
+    .ai-input-row input::placeholder { color: var(--gray-400); }
+    .ai-send-btn {
+      padding: 0 20px; background: var(--blue); color: var(--white);
+      border: none; font-size: 13px; font-weight: 600;
+      font-family: 'Inter', sans-serif; cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      transition: background .15s;
+    }
+    .ai-send-btn:hover   { background: var(--navy-mid); }
+    .ai-send-btn:disabled { background: var(--gray-400); cursor: not-allowed; }
+    .ai-send-btn svg { width: 14px; height: 14px; }
+
+    /* ── Quick Reference ── */
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .ref-table th { text-align: left; padding: 9px 14px; background: var(--navy); color: rgba(255,255,255,.85); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+    .ref-table th:first-child { border-radius: var(--radius) 0 0 0; }
+    .ref-table th:last-child  { border-radius: 0 var(--radius) 0 0; }
+    .ref-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: top; }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-table tr:hover td { background: var(--gray-50); }
+    .ref-table code { font-family: 'Courier New', monospace; font-size: 12px; background: var(--gray-100); padding: 1px 5px; border-radius: 3px; }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--navy); color: rgba(255,255,255,.5);
+      padding: 24px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; gap: 16px; flex-wrap: wrap;
+    }
+    .page-footer strong { color: rgba(255,255,255,.8); }
+    .page-footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    .page-footer a:hover { color: rgba(255,255,255,.8); }
+
+    /* ── Util ── */
+    .pill {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: .04em;
+    }
+    .pill.blue   { background: var(--blue-light); color: var(--blue); }
+    .pill.green  { background: var(--green-lt);   color: var(--green); }
+    .pill.amber  { background: var(--accent-lt);  color: #92400e; }
+    .pill.gray   { background: var(--gray-100);   color: var(--gray-600); }
+
+    p { margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 600px) {
+      .logo-bar, .hero, .page-content, .sticky-nav { padding-left: 20px; padding-right: 20px; }
+      .hero h1 { font-size: 26px; }
+      .card-grid, .script-grid { grid-template-columns: 1fr; }
+    }
+  
+
+.hero-meta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.meta-pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.9);white-space:nowrap}
+.steps{list-style:none}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:14px;margin-bottom:12px;align-items:start}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--blue);color:var(--white);font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-body strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gray-800)}
+.step-body span{font-size:13px;color:var(--gray-600);line-height:1.6}
+.step-body a{color:var(--blue)}
+.accordion{border:1px solid var(--gray-200);border-radius:var(--radius-lg);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow)}
+.accordion summary{padding:14px 18px;font-weight:600;font-size:14px;background:var(--white);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--navy)}
+.accordion summary::-webkit-details-marker{display:none}
+.accordion summary::after{content:"▾";font-size:16px;color:var(--gray-400)}
+details[open] summary::after{content:"▴"}
+.accordion-body{padding:16px 18px;background:var(--gray-50);border-top:1px solid var(--gray-200)}
+.can-cannot{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.can-col,.cannot-col{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+.can-header{padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--green);color:var(--white)}
+.cannot-header{padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--red);color:var(--white)}
+.can-col ul,.cannot-col ul{list-style:none;padding:12px 16px}
+.can-col li,.cannot-col li{font-size:13px;padding:5px 0 5px 18px;border-bottom:1px solid var(--gray-100);color:var(--gray-600);position:relative}
+.can-col li:last-child,.cannot-col li:last-child{border-bottom:none}
+.can-col li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+.cannot-col li::before{content:"✗";position:absolute;left:0;color:var(--red);font-weight:700}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.do-col,.dont-col{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-200);overflow:hidden;box-shadow:var(--shadow)}
+.do-header{padding:10px 16px;font-size:13px;font-weight:700;color:var(--white);background:var(--green)}
+.dont-header{padding:10px 16px;font-size:13px;font-weight:700;color:var(--white);background:var(--red)}
+.do-col ul,.dont-col ul{list-style:none;padding:12px 16px}
+.do-col li,.dont-col li{font-size:13px;padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)}
+.do-col li:last-child,.dont-col li:last-child{border-bottom:none}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contact-card{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--blue);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.contact-card .name{font-weight:600;font-size:14px;margin-bottom:2px;color:var(--gray-800)}
+.contact-card .role{font-size:12px;color:var(--gray-400);margin-bottom:6px}
+.contact-card a{font-size:13px;color:var(--blue);text-decoration:none}
+.contact-card a:hover{text-decoration:underline}
+.nav-item{padding:10px 14px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);font-size:13px;color:var(--gray-600);margin-bottom:8px}
+.nav-item strong{color:var(--gray-800)}
+.escalate-item{padding:10px 14px;background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;font-size:13px;color:var(--gray-600);margin-bottom:8px}
+h3.sub-heading{font-size:15px;font-weight:600;color:var(--navy);margin:20px 0 12px;padding-left:12px;border-left:3px solid var(--blue)}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.report-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow)}
+.report-card .rtype{font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:4px}
+.report-card .ruse{font-size:12px;color:var(--gray-600);line-height:1.5}
+.req-table,.scorm-table,.qr-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px}
+.req-table th,.scorm-table th,.qr-table th{background:var(--navy);color:rgba(255,255,255,.85);padding:9px 12px;text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.req-table td,.scorm-table td,.qr-table td{padding:9px 12px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top;font-size:13px}
+.req-table tr:last-child td,.scorm-table tr:last-child td,.qr-table tr:last-child td{border-bottom:none}
+.req-table tr:hover td,.scorm-table tr:hover td,.qr-table tr:hover td{background:var(--gray-50)}
+.badge-y{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;background:var(--green-lt);color:var(--green)}
+.badge-n{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;background:var(--gray-100);color:var(--gray-600)}
+.gov-item{padding:10px 14px;background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-size:13px;color:var(--gray-600);margin-bottom:8px}
+.gov-item strong{color:var(--gray-800);display:block;margin-bottom:2px}
+.code-badge{font-family:'Courier New',monospace;font-size:15px;font-weight:600;background:var(--navy);color:var(--white);padding:10px 16px;border-radius:var(--radius);display:inline-block;margin-bottom:12px}
+.checklist{list-style:none}
+.checklist li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--gray-100);font-size:13px;color:var(--gray-600)}
+.checklist li:last-child{border-bottom:none}
+.checklist .num{width:24px;height:24px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.info-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px}
+.info-card .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);margin-bottom:4px}
+.info-card .value{font-size:14px;font-weight:500;color:var(--gray-800)}
+.video-block{background:var(--gray-800);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:16px}
+.video-block video{width:100%;display:block}
+.video-caption{padding:10px 16px;font-size:12px;color:var(--gray-400)}
+.notice{background:var(--blue-light);border-left:3px solid var(--blue);color:#1a4f7a;border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.6}
+.notice strong{color:#0c447c}
+.warning-box{background:var(--red-lt);border-left:3px solid var(--red);color:#7f1d1d;border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.6}
+.warning-box strong{color:var(--red)}
+code{font-family:'Courier New',monospace;font-size:12px;background:var(--gray-100);padding:1px 5px;border-radius:3px}
+@media(max-width:700px){
+  .logo-bar,.hero,.page-content,.sticky-nav{padding-left:20px;padding-right:20px}
+  .hero h1{font-size:26px}
+  .can-cannot,.do-dont,.contact-grid,.report-grid,.info-grid{grid-template-columns:1fr}
+}
+
+/* ===== USIC brand re-skin — shared formatting (matches Generating Reports How-To) ===== */
+:root{
+  --navy:#00305B; --navy-mid:#001F3D;
+  --blue:#00305B; --blue-light:#E7EEF5; --blue-mid:#C4D5E6;
+  --accent:#F16621; --accent-lt:#FDEBE0;
+  --green:#94C83D; --green-dk:#5E8A1E; --green-lt:#EEF6E0;
+}
+body{font-family:Arial,Helvetica,sans-serif}
+.hero h1,.section-header h2,.logo-text,.logo-bar .logo-text,h3.sub-heading,.accordion summary{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+.hero h1{text-transform:uppercase;letter-spacing:.01em;font-weight:700}
+.section-header h2{color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+.logo-bar{background:#fff;border-bottom:1px solid var(--gray-200)}
+.logo-bar img{height:40px;width:auto;object-fit:contain;flex-shrink:0}
+.logo-bar .logo-text{color:var(--navy);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.logo-bar .logo-sub{color:var(--gray-400)}
+.can-header,.do-header{background:var(--green-dk)}
+.step-body strong{display:inline}
+.step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--navy)}
+
+</style></head><body>
+<div class="logo-bar"><img src="../usic_academy_logo.png" alt="USIC Academy"/><span class="logo-text">USIC Academy</span><span class="logo-sub">/ LMS &middot; Power User SOP</span></div>
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">Power User SOP</div>
+  <h1>Content Creator</h1><p>Standard Operating Procedure for Content Creators building, publishing, and managing training content in Docebo</p>
+  <div class="hero-meta"><span class="meta-pill">Profile ID: 146912</span><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Last Updated: June 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+</div></div>
+<nav class="sticky-nav"><ul><li><a href="#overview" class="nav-link">Role Overview</a></li><li><a href="#login" class="nav-link">Logging In</a></li><li><a href="#navigate" class="nav-link">Navigation</a></li><li><a href="#governance" class="nav-link">Course Governance</a></li><li><a href="#courses" class="nav-link">Managing Courses</a></li><li><a href="#lps" class="nav-link">Learning Plans</a></li><li><a href="#catalogs" class="nav-link">Catalogs</a></li><li><a href="#repo" class="nav-link">Central Repository</a></li><li><a href="#notifcerts" class="nav-link">Notifications &amp; Certs</a></li><li><a href="#scorm" class="nav-link">SCORM &amp; xAPI</a></li><li><a href="#qr" class="nav-link">QR Codes</a></li><li><a href="#quickref" class="nav-link">Quick Reference</a></li><li><a href="#escalate" class="nav-link">Escalate</a></li><li><a href="#dosdonts" class="nav-link">Do's &amp; Don'ts</a></li></ul></nav>
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div style="background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="background:#8E44AD;color:white;font-family:'Barlow Condensed',Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;">AI-Assisted</span>
+    <span>This SOP was created with the help of generative AI under documented validation practices.</span>
+  </div>
+</div>
+<div class="page-content">
+<section class="section" id="overview">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h2>Role Overview</h2><span class="section-num">01</span></div>
+<p style="color:var(--gray-600)">The Content Creator is a Power User role assigned to L&amp;D team members responsible for building, uploading, organizing, and publishing training content. This is the highest-access content management role &mdash; Content Creators have ALL access across courses, learning plans, categories, and catalogs.</p>
+<p style="color:var(--gray-600)">Content Creators are the architects of the USIC learning content library. They own the full content lifecycle from initial upload through publication and ongoing maintenance.</p>
+<h3 class="sub-heading">Permissions</h3>
+<div class="can-cannot">
+  <div class="can-col"><div class="can-header">&#10003; You CAN</div><ul>
+    <li>Create and edit courses</li><li>Upload and manage SCORM, video, and content files</li>
+    <li>Organize courses into categories and catalogs</li><li>Create, edit, and publish learning plans</li>
+    <li>Manage course settings (passing score, completion rules)</li>
+    <li>Manage the Central Repository (your assigned folder)</li>
+    <li>Create, edit, and manage notifications</li>
+    <li>View and edit certificates for assigned courses</li>
+    <li>Manage platform menus and pages</li>
+  </ul></div>
+  <div class="cannot-col"><div class="cannot-header">&#10007; You CANNOT</div><ul>
+    <li>Delete courses (you do not have this permission)</li>
+    <li>Enroll or unenroll learners</li><li>Create or manage ILT sessions</li>
+    <li>Mark attendance for any sessions</li>
+    <li>Access or modify individual learner profiles</li>
+    <li>Reset learner progress or completion records</li>
+    <li>Modify system-level integrations or SSO settings</li>
+    <li>Create or modify Power User profiles</li>
+    <li>Access user management or reporting tools</li>
+  </ul></div>
+</div>
+</section>
+
+<section class="section" id="login">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg></div><h2>Logging In to Docebo</h2><span class="section-num">02</span></div>
+<p style="color:var(--gray-600)">Access the USIC LMS at <a href="https://www.usic.training" style="color:var(--blue)">https://www.usic.training</a></p>
+<ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Navigate to usic.training</strong><span>Open any web browser and go to https://www.usic.training.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Single Sign-On (SSO)</strong><span>USIC uses SSO. If you are already logged into your USIC device or Microsoft account, you will be signed in automatically.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Access Content Creator features</strong><span>After login, click the left sidebar icons. As a Content Creator you will have full access to course management, catalog administration, and content tools.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Troubleshooting</strong><span>If you cannot log in or see your Content Creator features, contact Matthew McKay at 218462@usicllc.com or <a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" style="color:var(--blue)" target="_blank" rel="noopener noreferrer">submit a Zendesk ticket</a>.</span></div></li></ol>
+</section>
+
+<section class="section" id="navigate">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><h2>Navigating the Docebo Interface</h2><span class="section-num">03</span></div>
+<p style="color:var(--gray-600)">The Content Creator left sidebar is focused on content management. Your primary tools are in the Content &amp; Delivery section.</p>
+<div class="nav-item"><strong>Content &amp; Delivery &rsaquo; Courses</strong> &mdash; Create, edit, upload, organize, and publish courses</div>
+<div class="nav-item"><strong>Content &amp; Delivery &rsaquo; Learning Plans</strong> &mdash; Build and manage learning plan structures</div>
+<div class="nav-item"><strong>Content &amp; Delivery &rsaquo; Catalogs</strong> &mdash; Assign courses and learning plans to catalogs</div>
+<div class="nav-item"><strong>Content &amp; Delivery &rsaquo; Categories</strong> &mdash; Organize content into the USIC category taxonomy</div>
+<div class="nav-item"><strong>Content &amp; Delivery &rsaquo; Content Center &rsaquo; Central Repository</strong> &mdash; Store and manage reusable training assets in your assigned folder</div>
+<div class="nav-item"><strong>Customization &rsaquo; Pages &amp; Menus</strong> &mdash; Manage platform pages and navigation menus</div>
+<div class="notice"><strong>Note:</strong> You will not see Users, Reports, or ILT management options &mdash; those are outside the Content Creator scope. Coordinate with your TDM for enrollment or reporting needs.</div>
+</section>
+
+<section class="section" id="governance">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h2>Course Governance Standards</h2><span class="section-num">04</span></div>
+<p style="color:var(--gray-600)">As a Content Creator you are responsible for course standardization, content quality, accessibility, and structure per the USIC LMS Course Governance framework. Every course must meet the following standards before publishing.</p>
+<h3 class="sub-heading">4.1 Required Course Fields</h3>
+<div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+<table class="req-table">
+  <thead><tr><th>Field</th><th>Required</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Code</td><td><span class="badge-y">Y</span></td><td>Format: [DEPT]-[PROGRAM]-[TOPIC]-[SEQ]-[VER], max 50 chars</td></tr>
+    <tr><td>Title</td><td><span class="badge-y">Y</span></td><td>Must be simple and clear. No jargon or special characters without L&amp;D approval.</td></tr>
+    <tr><td>Short Description</td><td><span class="badge-y">Y</span></td><td>Brief text shown on the course card &mdash; add context beyond the title</td></tr>
+    <tr><td>Description</td><td><span class="badge-y">Y</span></td><td>Detailed information about what learners will learn. Must be thorough.</td></tr>
+    <tr><td>Category</td><td><span class="badge-y">Y</span></td><td>Assign to the correct USIC category (LOC, EHS, LDR, ULE, RCN, etc.)</td></tr>
+    <tr><td>Thumbnail</td><td><span class="badge-y">Y</span></td><td>Upload a course thumbnail image. Required for all courses.</td></tr>
+    <tr><td>Average Time</td><td><span class="badge-y">Y</span></td><td>Set the estimated completion time. Used in reporting and displayed to learners.</td></tr>
+    <tr><td>Assigned Skills</td><td><span class="badge-y">Y*</span></td><td>Up to 15 skills per course. *Confirm with LMS Admin &mdash; pending career path confirmation.</td></tr>
+    <tr><td>Certification (Addl. Field)</td><td><span class="badge-y">Y</span></td><td>Indicate if the course results in a certification</td></tr>
+    <tr><td>Content Owner (Addl. Field)</td><td><span class="badge-y">Y</span></td><td>Maps to the responsible department</td></tr>
+    <tr><td>Course Type (Addl. Field)</td><td><span class="badge-y">Y if applicable</span></td><td>Mandatory (requires L&amp;D OPS Approval) / Required / Optional</td></tr>
+    <tr><td>Course Owner (Addl. Field)</td><td><span class="badge-y">Y</span></td><td>The individual accountable for this course's content</td></tr>
+    <tr><td>Launch Date (Addl. Field)</td><td><span class="badge-n">Addl.</span></td><td>Record the date the course was published.</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="notice"><strong>Note:</strong> Course Additional Fields are found in the course Properties tab under the Additional Fields sub-tab.</div>
+<h3 class="sub-heading">4.2 Course Code Naming Convention</h3>
+<p style="color:var(--gray-600);margin-bottom:8px">All USIC course codes must follow this structure (max 50 characters):</p>
+<div class="code-badge">[DEPT]-[PROGRAM]-[TOPIC]-[SEQ]-[VER]</div>
+<div class="card" style="padding:0;overflow:hidden;margin-top:12px">
+<table class="req-table">
+  <thead><tr><th>Segment</th><th>Purpose</th><th>Example</th><th>Max</th></tr></thead>
+  <tbody>
+    <tr><td>DEPT</td><td>Owner/Audience &mdash; responsible department</td><td>HR, EHS, ULE</td><td>5 chars</td></tr>
+    <tr><td>PROGRAM</td><td>Curriculum &mdash; specific program or initiative</td><td>AMP, ULE, ONB</td><td>5 chars</td></tr>
+    <tr><td>TOPIC</td><td>Content &mdash; subject matter</td><td>LEAD, SEC, LOC</td><td>5 chars</td></tr>
+    <tr><td>SEQ</td><td>Sequence &mdash; position in the learning path</td><td>101, 205, 3-A</td><td>4 chars</td></tr>
+    <tr><td>VER</td><td>Version &mdash; tracks major content revisions</td><td>V3, V4</td><td>3 chars</td></tr>
+  </tbody>
+</table>
+</div>
+<h3 class="sub-heading">4.3 Course Type Values</h3>
+<div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+<table class="req-table">
+  <thead><tr><th>Value</th><th>Implied Obligation</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Mandatory</strong></td><td>Command from authority &mdash; law, official rule, or management mandate</td><td>Requires L&amp;D OPS Approval before publishing. Non-negotiable.</td></tr>
+    <tr><td><strong>Required</strong></td><td>Necessary condition &mdash; prerequisite or general policy</td><td>No OPS approval needed. Consequences for non-completion.</td></tr>
+    <tr><td><strong>Optional</strong></td><td>Learner choice &mdash; enrichment or supplemental content</td><td>No negative consequence for skipping.</td></tr>
+  </tbody>
+</table>
+</div>
+<h3 class="sub-heading">4.4 Additional Governance Requirements</h3>
+<div class="gov-item"><strong>Accessibility</strong>All images in course content must include alternative text (alt text) for screen reader compatibility. This is a USIC governance mandate.</div>
+<div class="gov-item"><strong>Security</strong>Course titles must comply with OWASP guidelines. Embedded media must use the pre-approved iFrame allow list &mdash; do not embed external content from unlisted sources.</div>
+<div class="gov-item"><strong>Course Lifecycle</strong>Courses must be set to <em>Under Maintenance</em> before major edits on a live course. Move to Published only when the course is ready for learners.</div>
+<div class="gov-item"><strong>Skills</strong>Assign up to 15 relevant skills to each course. Skills link courses to USIC's career path framework. Confirm the correct skills with the LMS Administrator if unsure.</div>
+<div class="gov-item"><strong>Content Quality</strong>Titles must be simple and clear. Descriptions must be detailed and informative. Avoid jargon or ambiguous abbreviations in titles.</div>
+</section>
+
+<section class="section" id="courses">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><h2>Managing Courses</h2><span class="section-num">05</span></div>
+<p style="color:var(--gray-600)">Course management is the core function of the Content Creator role. USIC currently has 3,000+ courses across 16 categories.</p>
+<details class="accordion" open><summary>5.1 — Creating a New Course</summary><div class="accordion-body"><ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Go to Content &amp; Delivery &rsaquo; Courses</strong><span>Navigate to the Courses section of the left sidebar.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Click New Course</strong><span>Select the course type: E-Learning (SCORM/xAPI), Classroom (ILT), Webinar, or other.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Complete the course details</strong><span>Enter the course name, code (follow the naming convention), description, category, and language. Upload a thumbnail image.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Configure course settings</strong><span>Set passing score, maximum attempts, completion rules, enrollment policy, and any due date or expiration rules.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Upload content</strong><span>For e-learning courses, upload your SCORM or xAPI package, video file, or other content. Verify the content loads and tracks correctly.</span></div></li><li><div class="step-num">6</div><div class="step-body"><strong>Assign to catalogs</strong><span>Assign the course to the appropriate catalog(s) so the right learners and TDMs can access it.</span></div></li><li><div class="step-num">7</div><div class="step-body"><strong>Test before publishing</strong><span>Preview the course and verify tracking works correctly. Have a test user complete it if possible before publishing broadly.</span></div></li><li><div class="step-num">8</div><div class="step-body"><strong>Publish the course</strong><span>Set the course status to Published. The course is now visible to learners and available for enrollment.</span></div></li></ol><div class="notice"><strong>Note:</strong> Always confirm the course code and category with your L&amp;D Manager before publishing. Avoid duplicating existing courses &mdash; search first.</div></div></details>
+<details class="accordion"><summary>5.2 — Editing an Existing Course</summary><div class="accordion-body"><ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Find the course</strong><span>Go to Content &amp; Delivery &rsaquo; Courses and search by name or course code.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Set to Under Maintenance</strong><span>Before making edits to a live published course, set the status to Under Maintenance first to prevent learners from accessing it mid-edit.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Click Edit</strong><span>Open the course and click Edit.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Make your changes</strong><span>Update content, settings, descriptions, catalog assignments, or category as needed.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Replace content if needed</strong><span>To update the SCORM or video file, navigate to the course content tab and upload the new file. Remove the old version once confirmed working.</span></div></li><li><div class="step-num">6</div><div class="step-body"><strong>Save, test, and re-publish</strong><span>Save your changes, verify everything works correctly, then set the status back to Published.</span></div></li></ol></div></details>
+<details class="accordion"><summary>5.3 — Archiving a Course</summary><div class="accordion-body"><div class="warning-box"><strong>&#9888; Important:</strong> Once a course is archived in Docebo, it is automatically removed from your Power User resources. You will no longer be able to see, track, or manage it. Complete all necessary tasks before archiving.</div><ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Complete pre-archive tasks first</strong><span>Remove the course from any active learning plans and catalogs. Notify your TDM so they can update any affected enrollments or reporting.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Open the course</strong><span>Go to Content &amp; Delivery &rsaquo; Courses and open the course to be archived.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Change the category to Archive (ARC)</strong><span>Edit the course and change the category to Archive. Update the course code prefix to ARC if not already done.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Unpublish the course</strong><span>Set the course status to Unpublished so it is no longer visible to learners.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Document the change</strong><span>Note the archival in your team's content tracking documentation and inform your TDM. Learner completion history is preserved even after archiving.</span></div></li></ol><div class="notice"><strong>Note:</strong> Do not delete courses &mdash; always archive them. Deletion permanently removes completion history and cannot be undone.</div></div></details>
+</section>
+
+<section class="section" id="lps">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><h2>Managing Learning Plans</h2><span class="section-num">06</span></div>
+<p style="color:var(--gray-600)">Content Creators have full access to create, edit, and publish learning plans. Learning plans bundle courses into structured programs and are the primary way USIC delivers training to specific learner populations.</p>
+<details class="accordion" open><summary>6.1 — Creating a New Learning Plan</summary><div class="accordion-body"><ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Go to Content &amp; Delivery &rsaquo; Learning Plans</strong><span>Navigate to the Learning Plans section.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Click New Learning Plan</strong><span>Click the button to create a new plan.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Complete the details</strong><span>Enter the title, code (use the established convention), description, and thumbnail. Set plan type and any completion rules or due dates.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Add courses</strong><span>Click Add Content to add courses to the plan. Set ordering, mandatory vs. optional status, and any completion dependencies.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Assign to catalogs</strong><span>Assign the learning plan to the appropriate catalog(s) to control visibility.</span></div></li><li><div class="step-num">6</div><div class="step-body"><strong>Publish</strong><span>When ready, set the plan to Published. Coordinate with your TDM before publishing plans that will trigger auto-enrollments.</span></div></li></ol></div></details>
+<details class="accordion"><summary>6.2 — Editing an Existing Learning Plan</summary><div class="accordion-body"><ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Find the learning plan</strong><span>Go to Content &amp; Delivery &rsaquo; Learning Plans and search by name or code.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Click Edit</strong><span>Open the plan and click Edit.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Make your changes</strong><span>Add or remove courses, reorder content, update descriptions, or change catalog assignments.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Save</strong><span>Save the plan. Always communicate changes to your TDM before saving.</span></div></li></ol><div class="warning-box"><strong>&#9888; Critical:</strong> Adding a course to a published learning plan immediately auto-enrolls ALL current plan members into that new course. Confirm with your TDM before adding courses to any active plan with large enrollments. Removing a course does not unenroll current learners &mdash; it only affects future enrollments.</div></div></details>
+</section>
+
+<section class="section" id="catalogs">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div><h2>Managing Catalogs</h2><span class="section-num">07</span></div>
+<p style="color:var(--gray-600)">Catalogs control which courses and learning plans are visible to which learners and Power Users. Content Creators have access to all 49 USIC catalogs.</p>
+<details class="accordion" open><summary>7.1 — Assigning Content to a Catalog</summary><div class="accordion-body"><ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Go to Content &amp; Delivery &rsaquo; Catalogs</strong><span>Navigate to the Catalogs section.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Find the appropriate catalog</strong><span>Search by name. USIC has 49 catalogs organized by line of business, region, and program type.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Add content</strong><span>Click Add Content and search for the course or learning plan to add. Select it and confirm.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Verify visibility</strong><span>Confirm the content is now visible to the intended audience by checking the catalog's learner visibility settings.</span></div></li></ol></div></details>
+<details class="accordion"><summary>7.2 — Removing Content from a Catalog</summary><div class="accordion-body"><ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Open the catalog</strong><span>Go to Content &amp; Delivery &rsaquo; Catalogs and open the relevant catalog.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Find the content</strong><span>Locate the course or learning plan to remove.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Remove it</strong><span>Click the remove option. This does not unenroll learners who are already enrolled &mdash; it only prevents new enrollments from this catalog.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Communicate the change</strong><span>Notify your TDM of catalog changes that may affect active learner populations.</span></div></li></ol></div></details>
+</section>
+
+<section class="section" id="repo">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><h2>Central Repository</h2><span class="section-num">08</span></div>
+<p style="color:var(--gray-600)">The Central Repository is the shared USIC content library in Docebo. Content Creators have access to 1 assigned repository folder for storing and managing reusable training assets.</p>
+<div class="info-grid" style="margin-bottom:16px">
+  <div class="info-card"><div class="label">Best for</div><div class="value" style="font-size:13px;font-weight:400">Reusable media assets shared across multiple courses</div></div>
+  <div class="info-card"><div class="label">Supported types</div><div class="value" style="font-size:13px;font-weight:400">MP4, PDF, Word, images, SCORM packages</div></div>
+</div>
+<ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Go to Content &amp; Delivery &rsaquo; Content Center &rsaquo; Central Repository</strong><span>Navigate to the Central Repository section of the left sidebar.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Navigate to your assigned folder</strong><span>Open your assigned USIC repository folder. You can only create, edit, and delete training materials within your assigned folders.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Upload your file</strong><span>Click Upload and select your file. Give it a clear, descriptive name and add relevant tags.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Use in courses</strong><span>Once uploaded, add the asset to any course via the course Training Material tab &rsaquo; Add training material &rsaquo; Central repository. No need to re-upload the same file to multiple courses.</span></div></li></ol>
+<div class="notice"><strong>Note:</strong> Unpublished Creator lessons will not appear in the Central Repository list.</div>
+</section>
+
+<section class="section" id="notifcerts">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div><h2>Notifications &amp; Certificates</h2><span class="section-num">09</span></div>
+<p style="color:var(--gray-600)">Content Creators have permissions to create, edit, and manage notifications and certificates &mdash; capabilities not available to TDMs or Instructors.</p>
+<h3 class="sub-heading">9.1 Managing Notifications</h3>
+<div class="nav-item">Go to <strong>Configuration &rsaquo; Automation &rsaquo; Notifications</strong> to view and manage notifications for your assigned courses and learning plans</div>
+<div class="nav-item">Create new notifications triggered by: course enrollment, completion, due date approaching, or certificate issuance</div>
+<div class="nav-item">Edit existing notifications to update messaging, timing, or recipient rules</div>
+<div class="notice"><strong>&#9888; Important:</strong> Always test a notification before activating it on a high-enrollment course &mdash; coordinate with your TDM to avoid unintended mass emails.</div>
+<h3 class="sub-heading">9.2 Managing Certificates</h3>
+<div class="nav-item">Navigate to <strong>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Properties &rsaquo; Certifications &amp; Retraining</strong> to associate a certificate template with a course</div>
+<div class="nav-item">Content Creators can view and edit certificate templates for their assigned courses</div>
+<div class="nav-item">Certificates are automatically issued to learners upon course completion based on the template settings</div>
+<div class="nav-item">Contact the LMS Administrator if a new certificate template needs to be created from scratch</div>
+<div class="notice"><strong>Note:</strong> If a course requires a certification with a retraining period, configure the recertification rules in the Certifications &amp; Retraining tab of the course properties.</div>
+</section>
+
+<section class="section" id="scorm">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h2>SCORM &amp; xAPI Tracking</h2><span class="section-num">10</span></div>
+<p style="color:var(--gray-600)">One of the most common causes of learners getting stuck In Progress is a mismatch between what the SCORM or xAPI package is reporting and what Docebo is configured to look for.</p>
+<h3 class="sub-heading">10.1 How Docebo Tracks SCORM Completion</h3>
+<p style="color:var(--gray-600);margin-bottom:12px">Docebo marks a SCORM course complete when the package sends a completion signal AND the learner presses the Close/Exit/Submit button. Closing the browser tab without pressing this button will not save completion.</p>
+<div class="card" style="padding:0;overflow:hidden;margin-bottom:12px">
+<table class="scorm-table">
+  <thead><tr><th>SCORM Version</th><th>Completion Field</th><th>Valid Values</th></tr></thead>
+  <tbody>
+    <tr><td>SCORM 1.2</td><td><code>cmi.core.lesson_status</code></td><td>completed, passed</td></tr>
+    <tr><td>SCORM 2004 3rd Ed.</td><td><code>cmi.completion_status</code></td><td>completed</td></tr>
+    <tr><td>SCORM 2004 3rd Ed.</td><td><code>cmi.success_status</code></td><td>passed (for pass/fail tracking)</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="notice"><strong>Note:</strong> Use SCORM 2004 3rd Edition for new content. SCORM 2004 4th Edition has stability issues with Docebo's completion triggers.</div>
+<h3 class="sub-heading">10.2 Authoring Tool Export Settings</h3>
+<div class="card" style="padding:0;overflow:hidden;margin-bottom:12px">
+<table class="scorm-table">
+  <thead><tr><th>Tool</th><th>Setting</th><th>Recommended for Docebo</th></tr></thead>
+  <tbody>
+    <tr><td>Articulate Storyline</td><td>Publish &rsaquo; LMS &rsaquo; Reporting tab</td><td>Track using: Passed/Incomplete. Sends cmi.core.lesson_status = passed.</td></tr>
+    <tr><td>Articulate Rise</td><td>Export &rsaquo; LMS &rsaquo; Tracking &rsaquo; Report completion</td><td>Set to: Course is complete when learner completes all content. Use SCORM 2004 3rd Edition output.</td></tr>
+    <tr><td>Both tools</td><td>Exit/Close button</td><td>Always include a final completion slide with a visible Close or Exit button. Docebo requires this to commit tracking data.</td></tr>
+  </tbody>
+</table>
+</div>
+<h3 class="sub-heading">10.3 Docebo Completion Rule Settings</h3>
+<ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Go to the course Training Material tab</strong><span>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Training Material tab. Find the SCORM item and click hamburger menu &rsaquo; Settings.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Check the End Object Marker</strong><span>Ensure 'The course is completed when this training material is completed' is checked if this is the only or primary training material.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Check the Score calculation method</strong><span>If your SCORM includes a test, verify the method matches your intent. If your SCORM sends a score of 0, it will be included in average/sum calculations.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Verify Completion Rules</strong><span>Go to Course Properties &rsaquo; Completion Rules. If set to All training materials, every item in the course must be completed &mdash; including supplemental PDFs or videos.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Check View mode for mobile</strong><span>Confirm whether the package is set as playable on the mobile app. SCORM packages must be fully self-contained to work in Go.Learn offline mode.</span></div></li></ol>
+<h3 class="sub-heading">10.4 Troubleshooting In Progress &mdash; Diagnostic Checklist</h3>
+<ul class="checklist">
+  <li><div class="num">1</div>Did the learner press the Close/Exit/Submit button inside the content when finished? If not, ask them to retake and close properly.</li>
+  <li><div class="num">2</div>Does the SCORM send the correct completion value? Use Docebo's SCORM Debug tool: Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Training Material &rsaquo; [SCORM] hamburger menu &rsaquo; SCORM Debug.</li>
+  <li><div class="num">3</div>Is the course completion rule set to All training materials? Check whether the learner completed every item &mdash; including PDFs, videos, or supplemental files.</li>
+  <li><div class="num">4</div>For xAPI: Is Track all activities toggled correctly for your package structure?</li>
+  <li><div class="num">5</div>Did the learner complete the course on the mobile app while offline? Ask them to open Go.Learn while connected to sync.</li>
+  <li><div class="num">6</div>Did the learner's session time out mid-course? Ask them to retake in a single session.</li>
+  <li><div class="num">7</div>Are third-party cookies blocked in the learner's browser? SCORM tracking requires cookies. Check Settings &rsaquo; Site Settings &rsaquo; Cookies in Chrome.</li>
+  <li><div class="num">8</div>If none of the above resolve it: escalate to the LMS Administrator to manually mark the enrollment as Completed.</li>
+</ul>
+</section>
+
+<section class="section" id="qr">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><h2>Creating Course QR Codes for the Mobile App</h2><span class="section-num">11</span></div>
+<p style="color:var(--gray-600)">USIC uses Docebo's Go.Learn mobile app for field-based learners. You can create a QR code that, when scanned, opens a specific course directly in Go.Learn using Docebo's deep linking feature.</p>
+<div class="notice"><strong>Note:</strong> The learner must have Go.Learn installed and be logged in to usic.training for the deep link to work. Always test before deploying.</div>
+<h3 class="sub-heading">Deep Link URL Format</h3>
+<div class="card" style="padding:0;overflow:hidden;margin-bottom:12px">
+<table class="qr-table">
+  <thead><tr><th>Destination</th><th>Deep Link Format</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Specific course</td><td><code>golearn://course/&#123;course_id&#125;</code></td><td><code>golearn://course/1234</code></td></tr>
+    <tr><td>Specific channel</td><td><code>golearn://channels/&#123;channel_id&#125;</code></td><td><code>golearn://channels/56</code></td></tr>
+    <tr><td>App Store (iOS)</td><td colspan="2">https://apps.apple.com/app/go-learn/id1362542319</td></tr>
+    <tr><td>Google Play (Android)</td><td colspan="2">https://play.google.com/store/apps/details?id=com.docebo.eolo.staging</td></tr>
+  </tbody>
+</table>
+</div>
+<h3 class="sub-heading">Step-by-Step: Creating a QR Code</h3>
+<ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Find the Course ID in Docebo</strong><span>Open the course in Content &amp; Delivery &rsaquo; Courses and look at the URL in your browser. The course ID is the number in the URL &mdash; e.g., in .../learn/course/1234/course-name the ID is 1234.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Build the deep link URL</strong><span>Use the format: <code>golearn://course/&#123;course_id&#125;</code> &mdash; replacing &#123;course_id&#125; with the number from Step 1.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Open a QR code generator</strong><span>Go to QR Code Monkey (qrcode-monkey.com) or QR Code Generator (qr-code-generator.com).</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Enter the deep link as the QR content</strong><span>Select URL or Text as the input type. Paste your golearn:// deep link into the input field.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Customize (optional)</strong><span>Add the USIC logo, adjust colors to match USIC branding, and choose high-resolution PNG or SVG output.</span></div></li><li><div class="step-num">6</div><div class="step-body"><strong>Download and name the file</strong><span>Save with a descriptive filename &mdash; e.g., QR_LocatingElectric_Course1234.png</span></div></li><li><div class="step-num">7</div><div class="step-body"><strong>Test before deploying</strong><span>Using a device with Go.Learn installed and logged in to usic.training, scan the QR code. Verify it opens the correct course in the app &mdash; not a browser. Test on both iOS and Android if possible.</span></div></li><li><div class="step-num">8</div><div class="step-body"><strong>Embed in materials</strong><span>Add the QR code to printed training materials, onboarding documents, SharePoint pages, or course content. Include instructions: "Scan with your phone camera or Go.Learn app to open this course."</span></div></li></ol>
+<div class="notice"><strong>Note:</strong> Course deep links only work for courses the learner is enrolled in. If not enrolled, they will see an access error in the app.</div>
+</section>
+
+<section class="section" id="quickref">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div><h2>Common Tasks Quick Reference</h2><span class="section-num">12</span></div>
+<div class="card" style="padding:0;overflow:hidden"><table class="ref-table"><thead><tr><th>Task</th><th>Path in Docebo</th></tr></thead><tbody><tr><td>Create a new course</td><td>Content &amp; Delivery &rsaquo; Courses &rsaquo; New Course</td></tr><tr><td>Edit an existing course</td><td>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Edit</td></tr><tr><td>Complete course additional fields</td><td>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Properties &rsaquo; Additional Fields tab</td></tr><tr><td>Upload course content (SCORM/video)</td><td>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Content tab &rsaquo; Upload</td></tr><tr><td>Archive a course</td><td>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Edit &rsaquo; Change category to ARC &rsaquo; Unpublish</td></tr><tr><td>Create a new learning plan</td><td>Content &amp; Delivery &rsaquo; Learning Plans &rsaquo; New Learning Plan</td></tr><tr><td>Edit a learning plan</td><td>Content &amp; Delivery &rsaquo; Learning Plans &rsaquo; [Plan] &rsaquo; Edit</td></tr><tr><td>Assign content to a catalog</td><td>Content &amp; Delivery &rsaquo; Catalogs &rsaquo; [Catalog] &rsaquo; Add Content</td></tr><tr><td>Upload to the Central Repository</td><td>Content &amp; Delivery &rsaquo; Content Center &rsaquo; Central Repository &rsaquo; [Your Folder] &rsaquo; Upload</td></tr><tr><td>Manage notifications</td><td>Configuration &rsaquo; Automation &rsaquo; Notifications &rsaquo; [Select Resource]</td></tr><tr><td>Manage certificates</td><td>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Properties &rsaquo; Certifications &amp; Retraining</td></tr><tr><td>Run SCORM Debug tool</td><td>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Training Material &rsaquo; [SCORM] hamburger &rsaquo; SCORM Debug</td></tr><tr><td>Manage platform pages</td><td>Customization &rsaquo; Pages</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="escalate">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h2>When to Escalate to the LMS Administrator</h2><span class="section-num">13</span></div>
+<div class="escalate-item">A new course category needs to be created or an existing one renamed</div>
+<div class="escalate-item">A new catalog needs to be created or the catalog structure significantly changed</div>
+<div class="escalate-item">System-level course settings or defaults need to be changed</div>
+<div class="escalate-item">A completion record needs to be manually overridden or reset</div>
+<div class="escalate-item">SCORM content is failing to track correctly and the issue is not with the file itself</div>
+<div class="escalate-item">A Power User profile needs to be created or modified</div>
+<div class="escalate-item">Bulk content operations need to be performed (mass category changes, bulk archiving)</div>
+<div class="escalate-item">You are experiencing platform errors that affect multiple courses or users</div>
+<h3 class="sub-heading">L&amp;D Team Contacts</h3>
+<div class="contact-grid"><div class="contact-card"><div class="name">Jack Mason</div><div class="role">ULE Program Manager</div><a href="mailto:127792@usicllc.com">127792@usicllc.com</a></div><div class="contact-card"><div class="name">Amber Higginbotham</div><div class="role">L&amp;D Manager &ndash; Design</div><a href="mailto:210263@usicllc.com">210263@usicllc.com</a></div><div class="contact-card"><div class="name">Anthony Deardorff</div><div class="role">L&amp;D Manager &ndash; Design</div><a href="mailto:163379@usicllc.com">163379@usicllc.com</a></div><div class="contact-card"><div class="name">Matthew McKay</div><div class="role">LMS Administrator</div><a href="mailto:218462@usicllc.com">218462@usicllc.com</a></div></div>
+</section>
+
+<section class="section" id="dosdonts">
+<div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><h2>Content Creator Do's and Don'ts</h2><span class="section-num">14</span></div>
+<div class="do-dont">
+  <div class="do-col"><div class="do-header">&#10003; DO</div><ul>
+    <li>Complete all required fields before publishing &mdash; code, description, thumbnail, average time, additional fields</li>
+    <li>Follow the [DEPT]-[PROGRAM]-[TOPIC]-[SEQ]-[VER] course code convention</li>
+    <li>Add alt text to all images in course content</li>
+    <li>Set course status to Under Maintenance before major edits on a live course</li>
+    <li>Assign up to 15 skills per course aligned to the USIC career path framework</li>
+    <li>Search for existing content before creating anything new</li>
+    <li>Test content thoroughly before publishing &mdash; preview and verify SCORM tracking</li>
+    <li>Archive retired courses &mdash; set to Under Maintenance, then unpublish, then change category to ARC</li>
+    <li>Get L&amp;D OPS Approval before publishing any course with Course Type = Mandatory</li>
+  </ul></div>
+  <div class="dont-col"><div class="dont-header">&#10007; DON'T</div><ul>
+    <li>Publish a course with missing required fields</li>
+    <li>Create a course without a correctly formatted code</li>
+    <li>Upload image-based content without accessibility alt text</li>
+    <li>Edit a live published course without first setting it to Under Maintenance</li>
+    <li>Publish a course without assigned skills (confirm with LMS Admin if unsure)</li>
+    <li>Create duplicate courses &mdash; always search first</li>
+    <li>Publish untested content &mdash; always preview first</li>
+    <li>Attempt to delete courses &mdash; you do not have delete permission</li>
+    <li>Publish Mandatory courses without L&amp;D OPS approval</li>
+  </ul></div>
+</div>
+</section>
+</div>
+<footer class="page-footer"><div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div><div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div></footer>
+<script>const navLinks=document.querySelectorAll('.nav-link');const sections=document.querySelectorAll('section[id]');function updateNav(){let c='';sections.forEach(s=>{if(window.scrollY+80>=s.offsetTop)c=s.id;});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c);});}window.addEventListener('scroll',updateNav,{passive:true});updateNav();</script>
+</body></html>

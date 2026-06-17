@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.0 -->
+<title>Generating Reports in Docebo &mdash; USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#00305B; --navy-deep:#001F3D; --green:#94C83D; --green-dk:#5E8A1E;
+    --orange:#F16621; --gray:#7F7C7F; --ink:#191616;
+    --navy-tint:#E7EEF5; --green-tint:#EEF6E0; --orange-tint:#FDEBE0;
+    --gray-50:#F7F8FA; --gray-100:#EFF1F4; --gray-200:#E2E6EB; --gray-400:#9AA1AB;
+    --gray-600:#5B626C; --gray-800:#2A2F36; --white:#fff;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,.08);
+    --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+    --body:Arial,Helvetica,sans-serif;
+  }
+  body{font-family:var(--body);background:var(--gray-50);color:var(--gray-800);line-height:1.6;font-size:15px}
+
+  /* Logo bar (light) */
+  .logo-bar{background:var(--white);border-bottom:1px solid var(--gray-200);padding:12px 40px;display:flex;align-items:center;gap:14px}
+  .logo-bar img{height:40px;width:auto;display:block}
+  .logo-bar .logo-text{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.02em;color:var(--navy);text-transform:uppercase}
+  .logo-bar .logo-sub{font-size:13px;color:var(--gray);margin-left:2px;font-weight:400;font-family:var(--body)}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);padding:48px 40px 44px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-70px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(148,200,61,.10)}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:90px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.04)}
+  .hero-inner{max-width:860px;position:relative;z-index:1}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(148,200,61,.18);border:1px solid rgba(148,200,61,.4);color:#D7EBAE;font-size:12px;font-weight:600;padding:4px 13px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--display)}
+  .hero h1{font-family:var(--display);font-size:46px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.05;text-transform:uppercase}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:620px;line-height:1.6}
+  .hero-meta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.9);white-space:nowrap}
+
+  /* Sticky nav */
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px}
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+  .sticky-nav ul::-webkit-scrollbar{display:none}
+  .sticky-nav a{display:block;padding:13px 16px;font-size:13px;font-weight:600;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+  .sticky-nav a:hover{color:var(--navy)}
+
+  /* AI banner */
+  .ai-banner{background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .ai-banner .pill{background:#8E44AD;color:#fff;font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 9px;border-radius:3px}
+
+  /* Layout */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px}
+  .section{margin-bottom:46px;scroll-margin-top:64px}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid var(--gray-200)}
+  .section-num{font-family:var(--display);font-size:13px;font-weight:700;color:var(--green-dk);background:var(--green-tint);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
+  .section-header h2{font-family:var(--display);font-size:27px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+  p{margin-bottom:14px}p:last-child{margin-bottom:0}
+  .lead{font-size:15px;color:var(--gray-600);line-height:1.7}
+  h3.sub{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.02em;margin:24px 0 12px;padding-left:11px;border-left:3px solid var(--green)}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:13px 16px;font-size:14px;line-height:1.6;margin:14px 0;border-left:3px solid}
+  .callout strong{font-weight:700}
+  .callout.info{background:var(--navy-tint);color:#103A60;border-left-color:var(--navy)}
+  .callout.tip{background:var(--green-tint);color:#3F5E16;border-left-color:var(--green)}
+  .callout.warn{background:var(--orange-tint);color:#9A3A0E;border-left-color:var(--orange)}
+  .callout.key{background:var(--navy);color:#fff;border-left-color:var(--green);box-shadow:var(--shadow-md)}
+  .callout.key strong{color:var(--green)}
+
+  /* Steps */
+  .steps{list-style:none}
+  .steps li{display:grid;grid-template-columns:34px 1fr;gap:14px;margin-bottom:12px;align-items:start}
+  .step-num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--white);font-family:var(--display);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .step-body{padding-top:3px}
+  .step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--ink)}   /* direct-child: keeps inline <strong> inline */
+  .step-body span{font-size:13.5px;color:var(--gray-600);line-height:1.6;display:block}
+  .step-body span strong{color:var(--navy)}
+
+  /* Tables */
+  table.rt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}
+  table.rt th{background:var(--navy);color:rgba(255,255,255,.92);text-align:left;padding:9px 13px;font-family:var(--display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  table.rt td{padding:10px 13px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top}
+  table.rt tr:last-child td{border-bottom:none}
+  table.rt tr:hover td{background:var(--gray-50)}
+  table.rt td .rtname{font-weight:700;color:var(--ink);white-space:nowrap}
+  .grp{background:var(--green-tint)!important;color:var(--green-dk);font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:12px}
+
+  /* Visibility option cards */
+  .vis-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+  .vis-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:13px 16px;box-shadow:var(--shadow);border-left:3px solid var(--gray-400)}
+  .vis-card.pick{border-left-color:var(--green);background:var(--green-tint)}
+  .vis-card .vt{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:3px}
+  .vis-card.pick .vt::after{content:" \2190 use this";font-family:var(--display);font-size:12px;font-weight:700;color:var(--green-dk);letter-spacing:.03em;text-transform:uppercase}
+  .vis-card .vd{font-size:13px;color:var(--gray-600);line-height:1.55}
+
+  /* Tip list */
+  ul.bp{list-style:none;margin:8px 0}
+  ul.bp li{position:relative;padding:7px 0 7px 24px;font-size:14px;color:var(--gray-700);border-bottom:1px solid var(--gray-100);line-height:1.55}
+  ul.bp li:last-child{border-bottom:none}
+  ul.bp li::before{content:'';position:absolute;left:5px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--green)}
+  ul.bp li strong{color:var(--ink)}
+
+  code{font-family:'Courier New',monospace;font-size:12.5px;background:var(--gray-100);padding:1px 5px;border-radius:3px;color:var(--navy)}
+
+  /* Footer */
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.7);padding:22px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;line-height:1.6}
+  .page-footer strong{color:#fff}
+  .page-footer a{color:var(--green);text-decoration:none}
+  .page-footer a:hover{text-decoration:underline}
+
+  @media(max-width:700px){
+    .logo-bar,.hero,.page-content,.sticky-nav,.page-footer{padding-left:20px;padding-right:20px}
+    .hero h1{font-size:34px}
+    .page-footer>div:last-child{text-align:left!important}
+  }
+</style></head><body>
+
+<div class="logo-bar"><img src="../usic_academy_logo.png" alt="USIC Academy"/><span class="logo-text">USIC Academy</span><span class="logo-sub">/ LMS &middot; How-To Guide</span></div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">How-To Guide</div>
+  <h1>Generating Reports in Docebo</h1>
+  <p>A complete walkthrough for Superadmins and Power Users &mdash; how to build a custom report, choose the right report type for the question you&rsquo;re answering, and set visibility so the right people can see it.</p>
+  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Last Updated: June 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#choose">Choosing the Right Type</a></li>
+  <li><a href="#create">Creating a Report</a></li>
+  <li><a href="#visibility">Setting Visibility</a></li>
+  <li><a href="#legacy">Legacy Reports</a></li>
+  <li><a href="#tips">Best Practices</a></li>
+</ul></nav>
+
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div class="ai-banner">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span class="pill">AI-Assisted</span>
+    <span>This guide was created with the help of generative AI under documented validation practices.</span>
+  </div>
+</div>
+
+<div class="page-content">
+
+<!-- OVERVIEW -->
+<section class="section" id="overview">
+  <div class="section-header"><span class="section-num">01</span><h2>Overview</h2></div>
+  <p class="lead">Reports in Docebo let you extract and analyze platform data &mdash; user progress, course completions, learning-plan status, ILT attendance, certifications, and more. Both <strong>Superadmins</strong> and <strong>Power Users</strong> (with the appropriate Reports permission) can build them.</p>
+
+  <h3 class="sub">Two report areas</h3>
+  <table class="rt">
+    <tr><th style="width:30%">Area</th><th>What it is &amp; when to use it</th></tr>
+    <tr><td><span class="rtname">Reports</span><br><span style="font-size:12px;color:var(--gray-400)">Custom reports builder &mdash; recommended</span></td><td>The modern report builder (named <strong>Reports</strong> since Feb&nbsp;4,&nbsp;2026; formerly &ldquo;New reports&rdquo;). Create, configure, schedule, and preview a report from tabs on a single page. Covers the vast majority of report types. <strong>Use this by default.</strong></td></tr>
+    <tr><td><span class="rtname">Legacy reports</span><br><span style="font-size:12px;color:var(--gray-400)">formerly &ldquo;Reports&rdquo;</span></td><td>The older module (renamed <strong>Legacy reports</strong> on Feb&nbsp;4,&nbsp;2026). Use only for a report type not yet available in the <strong>Reports</strong> builder. See <a href="#legacy" style="color:var(--navy)">Legacy Reports</a> below.</td></tr>
+  </table>
+
+  <p class="lead" style="margin-top:14px">Both areas live in the <strong>left sidebar</strong> under <strong>Data &amp; analytics</strong> (the chart icon) &mdash; there is no longer a top-right gear / Admin menu.</p>
+
+  <div class="callout info"><strong>Data is not real-time.</strong> The data in any report is refreshed automatically on a periodic schedule, not the instant you open it. Recent activity (last few hours) may not yet appear.</div>
+</section>
+
+<!-- CHOOSING THE RIGHT TYPE -->
+<section class="section" id="choose">
+  <div class="section-header"><span class="section-num">02</span><h2>Choosing the Right Report Type</h2></div>
+  <p class="lead">Every report is built around a <strong>data pairing</strong> &mdash; for example <em>Users&nbsp;&ndash;&nbsp;Courses</em> pairs people with their course progress. The fastest way to pick a type is to start from the <strong>question you&rsquo;re answering</strong>, not the columns you want.</p>
+
+  <h3 class="sub">Start from the question</h3>
+  <table class="rt">
+    <tr><th style="width:52%">If you need to know&hellip;</th><th>Choose this report type</th></tr>
+    <tr><td>A roster of users with their profile / org-chart details</td><td><span class="rtname">Users</span></td></tr>
+    <tr><td>Course progress &amp; completion for specific people</td><td><span class="rtname">Users &ndash; Courses</span></td></tr>
+    <tr><td>Who is <strong>overdue</strong> / hasn&rsquo;t completed by the deadline</td><td><span class="rtname">Users &ndash; Course Enrollment Time</span></td></tr>
+    <tr><td>Completion rolled up by branch, district, or group</td><td><span class="rtname">Groups/Branches &ndash; Courses</span></td></tr>
+    <tr><td>Progress across assigned learning plans</td><td><span class="rtname">Users &ndash; Learning Plans</span></td></tr>
+    <tr><td>Classroom / virtual (ILT) session attendance &amp; status</td><td><span class="rtname">Users &ndash; ILT Sessions</span></td></tr>
+    <tr><td>Certification status, achievement, and expirations</td><td><span class="rtname">Certifications &ndash; Users</span></td></tr>
+    <tr><td>Training completed outside Docebo</td><td><span class="rtname">Users &ndash; External Training</span></td></tr>
+  </table>
+
+  <h3 class="sub">Full type reference</h3>
+  <p class="lead">Available types are grouped into <strong>User reports</strong>, <strong>App reports</strong>, and <strong>Discover, Coach &amp; Share reports</strong>. Some types require an app to be active (noted below).</p>
+  <table class="rt">
+    <tr><th style="width:34%">Report type</th><th>Description</th></tr>
+    <tr><td colspan="2" class="grp">User reports</td></tr>
+    <tr><td><span class="rtname">Users</span></td><td>Details of the selected users; extract user / org-chart data.</td></tr>
+    <tr><td><span class="rtname">Users &ndash; Courses</span></td><td>Progress details for each selected user, per course (the most common report).</td></tr>
+    <tr><td><span class="rtname">Users &ndash; Course Enrollment Time</span></td><td>Delay analysis &mdash; users who have not completed within the required deadline.</td></tr>
+    <tr><td><span class="rtname">Groups/Branches &ndash; Courses</span></td><td>Progress details for selected groups or branches, per course.</td></tr>
+    <tr><td><span class="rtname">Users &ndash; Learning Plans</span></td><td>Progress for each user across their assigned learning plans.</td></tr>
+    <tr><td><span class="rtname">Users &ndash; Learning Objects</span></td><td>Score and completion status per learning object, per user.</td></tr>
+    <tr><td><span class="rtname">Users &ndash; ILT Sessions</span></td><td>Progress per user for each ILT session; events can be included.</td></tr>
+    <tr><td><span class="rtname">Certifications &ndash; Users</span></td><td>Certifications obtained per user. <em>Requires the Certification &amp; Retraining app.</em></td></tr>
+    <tr><td><span class="rtname">Users &ndash; Badges</span></td><td>Badges and user-badge associations. <em>Requires the Gamification app.</em></td></tr>
+    <tr><td><span class="rtname">Users &ndash; External Training</span></td><td>Users associated with an external activity. <em>Requires the External Training app.</em></td></tr>
+    <tr><td colspan="2" class="grp">App &amp; Discover, Coach &amp; Share reports</td></tr>
+    <tr><td><span class="rtname">E-commerce &ndash; Transactions</span></td><td>Information on each e-commerce transaction on the platform.</td></tr>
+    <tr><td><span class="rtname">Assets &ndash; Statistics</span></td><td>Statistics for assets shared in channels.</td></tr>
+    <tr><td><span class="rtname">User &ndash; Assets / Viewer &ndash; Asset Details</span></td><td>Assets uploaded by a user, or asset details per viewer.</td></tr>
+  </table>
+  <div class="callout tip"><strong>Tip:</strong> If two types could work, pick the one whose <em>first</em> entity matches your audience. Reporting on <em>people</em>? Start with a <em>Users&nbsp;&ndash;&nbsp;&hellip;</em> type. Rolling up by <em>org structure</em>? Start with <em>Groups/Branches&nbsp;&ndash;&nbsp;&hellip;</em>.</div>
+</section>
+
+<!-- CREATING -->
+<section class="section" id="create">
+  <div class="section-header"><span class="section-num">03</span><h2>Creating a Custom Report</h2></div>
+  <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><strong>Open the Reports area</strong><span>In the <strong>left sidebar</strong>, hover over the <strong>Data &amp; analytics</strong> (chart) icon and select <strong>Reports</strong>.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><strong>Start a new report</strong><span>On the <strong>Custom reports builder</strong> tab, click the <strong>+</strong> (plus) icon in the top-right corner. The <strong>Create a new custom report</strong> panel opens.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><strong>Select the report Type</strong><span>In the first step (<strong>Type</strong>), choose the report type using the <a href="#choose" style="color:var(--navy)">decision guide above</a>. Confirm to open the report&rsquo;s configuration page.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><strong>Set Properties</strong><span>On the <strong>Properties</strong> tab, enter a clear <strong>Title</strong> and <strong>Description</strong>, then set the <strong>Visibility</strong> &mdash; see <a href="#visibility" style="color:var(--navy)">Setting Visibility</a> next. This is where you make the report viewable to Power Users.</span></div></li>
+    <li><div class="step-num">5</div><div class="step-body"><strong>Choose Filters</strong><span>On the <strong>Filters</strong> tab, select the <strong>users, groups, or branches</strong> and the <strong>items</strong> (courses, learning plans, sessions, etc.) the report should cover.</span></div></li>
+    <li><div class="step-num">6</div><div class="step-body"><strong>Pick Report Fields (columns)</strong><span>On the <strong>Report fields</strong> tab, select the data columns to display. Use <strong>View options</strong> for additional or sensitive fields, and <strong>Sorting options</strong> to order the output.</span></div></li>
+    <li><div class="step-num">7</div><div class="step-body"><strong>(Optional) Schedule it</strong><span>On the <strong>Scheduling</strong> tab, send the report on a recurring basis &mdash; daily, weekly, monthly, quarterly, bi-annually, or annually &mdash; to chosen recipients.</span></div></li>
+    <li><div class="step-num">8</div><div class="step-body"><strong>Preview, save, and export</strong><span>Use <strong>Preview</strong> to verify the output, then save. To export, use the report&rsquo;s <strong>ellipsis</strong> (&hellip;) menu and choose <strong>CSV</strong> or <strong>XLS</strong>. Exports run as a background job; you&rsquo;re notified by email and in-platform when ready.</span></div></li>
+  </ol>
+  <div class="callout warn"><strong>Heads-up:</strong> Export requires the <strong>Notifications</strong> app to be active. A Power User running a report only sees data for the courses, users, and branches they have visibility over &mdash; Superadmins see everything.</div>
+</section>
+
+<!-- VISIBILITY -->
+<section class="section" id="visibility">
+  <div class="section-header"><span class="section-num">04</span><h2>Setting Visibility &mdash; Superadmins &amp; Power Users</h2></div>
+
+  <div class="callout key"><strong>Standard for USIC Academy:</strong> so that the right people can find a report, set its <strong>Visibility</strong> (on the <strong>Properties</strong> tab) to <strong>&ldquo;All Superadmins and Power Users.&rdquo;</strong> Reports left at the default may be visible only to Superadmins and the creator.</div>
+
+  <p class="lead">In the <strong>Visibility</strong> area of the <strong>Properties</strong> tab, choose one of three rules. These control who sees the report listed on the <strong>Reports</strong> page:</p>
+  <div class="vis-grid">
+    <div class="vis-card"><div class="vt">All Superadmins</div><div class="vd">Visible to every Superadmin (and the creator) only. <strong>Power Users cannot see it</strong>, apart from the one who created it.</div></div>
+    <div class="vis-card pick"><div class="vt">All Superadmins and Power Users</div><div class="vd">Visible to every Superadmin and to all Power Users who have report permissions. This is the setting that lets your team find and run the report.</div></div>
+    <div class="vis-card"><div class="vt">All Superadmins and the selected Power Users</div><div class="vd">Visible to Superadmins, the creator, and only the Power Users you choose &mdash; named individually, or by group / branch. Use when a report should reach a limited audience.</div></div>
+  </div>
+
+  <div class="callout info"><strong>Permission still required.</strong> Visibility alone isn&rsquo;t enough &mdash; a Power User also needs the <strong>Reports &rsaquo; View</strong> permission (in their Power User profile) to open the <strong>Reports</strong> page at all. Adding <strong>Reports &rsaquo; Edit</strong> lets them create and duplicate reports. The creator of a report always keeps visibility on it, regardless of the rule.</div>
+</section>
+
+<!-- LEGACY -->
+<section class="section" id="legacy">
+  <div class="section-header"><span class="section-num">05</span><h2>Legacy Reports (When Needed)</h2></div>
+  <p class="lead">Use <strong>Legacy reports</strong> only for a report type that isn&rsquo;t yet available in the <strong>Reports</strong> builder. The area was renamed from &ldquo;Reports&rdquo; to <strong>Legacy reports</strong> on Feb&nbsp;4,&nbsp;2026.</p>
+  <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><strong>Open Legacy reports</strong><span>In the <strong>left sidebar</strong>, hover over the <strong>Data &amp; analytics</strong> (chart) icon and select <strong>Legacy reports</strong>.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><strong>Create the report</strong><span>Click <strong>Create custom report</strong>, enter a <strong>Title</strong>, choose the report type, then select the <strong>Users, Group, or Branch</strong> to run it on.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><strong>Set visibility</strong><span>Click the entry in the report&rsquo;s <strong>Filter</strong> column and choose <strong>All Superadmins and Power Users</strong> (or <em>All Superadmins</em>, or <em>Select Superadmins and Power Users</em>), then <strong>Confirm</strong>.</span></div></li>
+  </ol>
+  <div class="callout tip"><strong>Migrating:</strong> Existing legacy reports can be moved to the <strong>Reports</strong> menu &mdash; properties, visibility, filters, and fields carry over (schedules do not). Run the migration from the <strong>Reports</strong> page.</div>
+</section>
+
+<!-- TIPS -->
+<section class="section" id="tips">
+  <div class="section-header"><span class="section-num">06</span><h2>Best Practices &amp; Tips</h2></div>
+  <ul class="bp">
+    <li><strong>Name reports for discovery.</strong> Use a consistent prefix so the team can scan the list &mdash; e.g. <code>[ULE] Course Completion &mdash; Monthly</code>.</li>
+    <li><strong>Default visibility to &ldquo;All Superadmins and Power Users&rdquo;</strong> unless the report contains a limited audience&rsquo;s data &mdash; then use the selected-Power-Users option.</li>
+    <li><strong>Separate branch and group reports.</strong> It&rsquo;s recommended to build distinct reports for branches vs. groups to make membership easier to identify.</li>
+    <li><strong>Remember data isn&rsquo;t live.</strong> If today&rsquo;s activity is missing, it likely hasn&rsquo;t hit the periodic refresh yet &mdash; re-run later rather than rebuilding.</li>
+    <li><strong>Protect sensitive fields.</strong> Invisible / additional fields can be included for Superadmins and Power Users with the <em>Can see invisible fields</em> permission.</li>
+    <li><strong>Schedule recurring needs</strong> instead of re-running manually &mdash; the report is delivered to recipients on the cadence you set.</li>
+  </ul>
+</section>
+
+</div>
+
+<footer class="page-footer">
+  <div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div>
+  <div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div>
+</footer>
+
+</body></html>
