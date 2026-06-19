@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<!-- SOP-VERSION: 1.0 -->
+<!-- SOP-VERSION: 1.1 -->
 <title>Generating Reports in Docebo &mdash; USIC Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -120,7 +120,7 @@
   <div class="hero-badge">How-To Guide</div>
   <h1>Generating Reports in Docebo</h1>
   <p>A complete walkthrough for Superadmins and Power Users &mdash; how to build a custom report, choose the right report type for the question you&rsquo;re answering, and set visibility so the right people can see it.</p>
-  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Last Updated: June 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Last Updated: June 2026</span><span class="meta-pill">Version: 1.1</span><span class="meta-pill">Owner: Matthew McKay</span></div>
 </div></div>
 
 <nav class="sticky-nav"><ul>
@@ -150,8 +150,8 @@
   <h3 class="sub">Two report areas</h3>
   <table class="rt">
     <tr><th style="width:30%">Area</th><th>What it is &amp; when to use it</th></tr>
-    <tr><td><span class="rtname">Reports</span><br><span style="font-size:12px;color:var(--gray-400)">Custom reports builder &mdash; recommended</span></td><td>The modern report builder (named <strong>Reports</strong> since Feb&nbsp;4,&nbsp;2026; formerly &ldquo;New reports&rdquo;). Create, configure, schedule, and preview a report from tabs on a single page. Covers the vast majority of report types. <strong>Use this by default.</strong></td></tr>
-    <tr><td><span class="rtname">Legacy reports</span><br><span style="font-size:12px;color:var(--gray-400)">formerly &ldquo;Reports&rdquo;</span></td><td>The older module (renamed <strong>Legacy reports</strong> on Feb&nbsp;4,&nbsp;2026). Use only for a report type not yet available in the <strong>Reports</strong> builder. See <a href="#legacy" style="color:var(--navy)">Legacy Reports</a> below.</td></tr>
+    <tr><td><span class="rtname">Reports</span><br><span style="font-size:12px;color:var(--gray-400)">Custom reports builder &mdash; recommended</span></td><td>The modern report builder (named <strong>Reports</strong> since Jan&nbsp;26,&nbsp;2026; formerly &ldquo;New reports&rdquo;). Create, configure, schedule, and preview a report from tabs on a single page. Covers the vast majority of report types. <strong>Use this by default.</strong></td></tr>
+    <tr><td><span class="rtname">Legacy reports</span><br><span style="font-size:12px;color:var(--gray-400)">formerly &ldquo;Reports&rdquo;</span></td><td>The older module (renamed <strong>Legacy reports</strong> on Jan&nbsp;26,&nbsp;2026). Use only for a report type not yet available in the <strong>Reports</strong> builder. See <a href="#legacy" style="color:var(--navy)">Legacy Reports</a> below.</td></tr>
   </table>
 
   <p class="lead" style="margin-top:14px">Both areas live in the <strong>left sidebar</strong> under <strong>Data &amp; analytics</strong> (the chart icon) &mdash; there is no longer a top-right gear / Admin menu.</p>
@@ -178,7 +178,7 @@
   </table>
 
   <h3 class="sub">Full type reference</h3>
-  <p class="lead">Available types are grouped into <strong>User reports</strong>, <strong>App reports</strong>, and <strong>Discover, Coach &amp; Share reports</strong>. Some types require an app to be active (noted below).</p>
+  <p class="lead">Available types are grouped into <strong>User reports</strong>, <strong>Content reports</strong>, <strong>App reports</strong>, and <strong>Discover, Coach &amp; Share reports</strong>. Some types require an app or module to be active (noted below).</p>
   <table class="rt">
     <tr><th style="width:34%">Report type</th><th>Description</th></tr>
     <tr><td colspan="2" class="grp">User reports</td></tr>
@@ -186,16 +186,24 @@
     <tr><td><span class="rtname">Users &ndash; Courses</span></td><td>Progress details for each selected user, per course (the most common report).</td></tr>
     <tr><td><span class="rtname">Users &ndash; Course Enrollment Time</span></td><td>Delay analysis &mdash; users who have not completed within the required deadline.</td></tr>
     <tr><td><span class="rtname">Groups/Branches &ndash; Courses</span></td><td>Progress details for selected groups or branches, per course.</td></tr>
+    <tr><td><span class="rtname">Courses &ndash; Users</span></td><td>Progress details for the selected courses.</td></tr>
     <tr><td><span class="rtname">Users &ndash; Learning Plans</span></td><td>Progress for each user across their assigned learning plans.</td></tr>
-    <tr><td><span class="rtname">Users &ndash; Learning Objects</span></td><td>Score and completion status per learning object, per user.</td></tr>
+    <tr><td><span class="rtname">Users &ndash; Training Material</span></td><td>Relates users to training material &mdash; monitoring scores and completion status per learning object, for every user.</td></tr>
     <tr><td><span class="rtname">Users &ndash; ILT Sessions</span></td><td>Progress per user for each ILT session; events can be included.</td></tr>
-    <tr><td><span class="rtname">Certifications &ndash; Users</span></td><td>Certifications obtained per user. <em>Requires the Certification &amp; Retraining app.</em></td></tr>
+    <tr><td><span class="rtname">Sessions &ndash; Users Statistics</span></td><td>Session statistics &mdash; instructors, maximum enrollments, and session completions.</td></tr>
+    <tr><td colspan="2" class="grp">Content reports</td></tr>
+    <tr><td><span class="rtname">Surveys &ndash; Individual Answers</span></td><td>Individual answers to every question of completed surveys, across all courses (answers carry a unique ID).</td></tr>
+    <tr><td><span class="rtname">Learning Plans &ndash; User Statistics</span></td><td>User statistics for the selected learning plans.</td></tr>
+    <tr><td colspan="2" class="grp">App reports</td></tr>
+    <tr><td><span class="rtname">Users &ndash; Certifications</span></td><td>Certifications obtained, per user. <em>Requires the Certification &amp; Retraining app.</em></td></tr>
+    <tr><td><span class="rtname">Certifications &ndash; Users</span></td><td>Users who obtained each certification. <em>Requires the Certification &amp; Retraining app.</em></td></tr>
     <tr><td><span class="rtname">Users &ndash; Badges</span></td><td>Badges and user-badge associations. <em>Requires the Gamification app.</em></td></tr>
     <tr><td><span class="rtname">Users &ndash; External Training</span></td><td>Users associated with an external activity. <em>Requires the External Training app.</em></td></tr>
-    <tr><td colspan="2" class="grp">App &amp; Discover, Coach &amp; Share reports</td></tr>
     <tr><td><span class="rtname">E-commerce &ndash; Transactions</span></td><td>Information on each e-commerce transaction on the platform.</td></tr>
-    <tr><td><span class="rtname">Assets &ndash; Statistics</span></td><td>Statistics for assets shared in channels.</td></tr>
-    <tr><td><span class="rtname">User &ndash; Assets / Viewer &ndash; Asset Details</span></td><td>Assets uploaded by a user, or asset details per viewer.</td></tr>
+    <tr><td colspan="2" class="grp">Discover, Coach &amp; Share reports</td></tr>
+    <tr><td><span class="rtname">Assets &ndash; Statistics</span></td><td>Statistics for assets shared in channels. <em>Requires the Discover, Coach &amp; Share module.</em></td></tr>
+    <tr><td><span class="rtname">User &ndash; Assets</span></td><td>Assets uploaded by a specific user. <em>Requires the Discover, Coach &amp; Share module.</em></td></tr>
+    <tr><td><span class="rtname">Viewer &ndash; Asset Details</span></td><td>Asset details for a specific viewer. <em>Requires the Discover, Coach &amp; Share module.</em></td></tr>
   </table>
   <div class="callout tip"><strong>Tip:</strong> If two types could work, pick the one whose <em>first</em> entity matches your audience. Reporting on <em>people</em>? Start with a <em>Users&nbsp;&ndash;&nbsp;&hellip;</em> type. Rolling up by <em>org structure</em>? Start with <em>Groups/Branches&nbsp;&ndash;&nbsp;&hellip;</em>.</div>
 </section>
@@ -210,7 +218,7 @@
     <li><div class="step-num">4</div><div class="step-body"><strong>Set Properties</strong><span>On the <strong>Properties</strong> tab, enter a clear <strong>Title</strong> and <strong>Description</strong>, then set the <strong>Visibility</strong> &mdash; see <a href="#visibility" style="color:var(--navy)">Setting Visibility</a> next. This is where you make the report viewable to Power Users.</span></div></li>
     <li><div class="step-num">5</div><div class="step-body"><strong>Choose Filters</strong><span>On the <strong>Filters</strong> tab, select the <strong>users, groups, or branches</strong> and the <strong>items</strong> (courses, learning plans, sessions, etc.) the report should cover.</span></div></li>
     <li><div class="step-num">6</div><div class="step-body"><strong>Pick Report Fields (columns)</strong><span>On the <strong>Report fields</strong> tab, select the data columns to display. Use <strong>View options</strong> for additional or sensitive fields, and <strong>Sorting options</strong> to order the output.</span></div></li>
-    <li><div class="step-num">7</div><div class="step-body"><strong>(Optional) Schedule it</strong><span>On the <strong>Scheduling</strong> tab, send the report on a recurring basis &mdash; daily, weekly, monthly, quarterly, bi-annually, or annually &mdash; to chosen recipients.</span></div></li>
+    <li><div class="step-num">7</div><div class="step-body"><strong>(Optional) Schedule it</strong><span>On the <strong>Scheduling</strong> tab, send the report on a recurring basis &mdash; daily, weekly, monthly, quarterly, bi-annually, or annually &mdash; to chosen recipients (up to ten addresses; delivered as a CSV email attachment). <strong>Watch the visibility gotcha:</strong> scheduled reports do <em>not</em> apply federated results, so a Power User recipient receives <em>all</em> rows in the report unless their visibility is constrained by filter assignment. Scope Power Users via filters if a scheduled report should show only their own users/courses.</span></div></li>
     <li><div class="step-num">8</div><div class="step-body"><strong>Preview, save, and export</strong><span>Use <strong>Preview</strong> to verify the output, then save. To export, use the report&rsquo;s <strong>ellipsis</strong> (&hellip;) menu and choose <strong>CSV</strong> or <strong>XLS</strong>. Exports run as a background job; you&rsquo;re notified by email and in-platform when ready.</span></div></li>
   </ol>
   <div class="callout warn"><strong>Heads-up:</strong> Export requires the <strong>Notifications</strong> app to be active. A Power User running a report only sees data for the courses, users, and branches they have visibility over &mdash; Superadmins see everything.</div>
@@ -235,7 +243,7 @@
 <!-- LEGACY -->
 <section class="section" id="legacy">
   <div class="section-header"><span class="section-num">05</span><h2>Legacy Reports (When Needed)</h2></div>
-  <p class="lead">Use <strong>Legacy reports</strong> only for a report type that isn&rsquo;t yet available in the <strong>Reports</strong> builder. The area was renamed from &ldquo;Reports&rdquo; to <strong>Legacy reports</strong> on Feb&nbsp;4,&nbsp;2026.</p>
+  <p class="lead">Use <strong>Legacy reports</strong> only for a report type that isn&rsquo;t yet available in the <strong>Reports</strong> builder. The area was renamed from &ldquo;Reports&rdquo; to <strong>Legacy reports</strong> on Jan&nbsp;26,&nbsp;2026.</p>
   <ol class="steps">
     <li><div class="step-num">1</div><div class="step-body"><strong>Open Legacy reports</strong><span>In the <strong>left sidebar</strong>, hover over the <strong>Data &amp; analytics</strong> (chart) icon and select <strong>Legacy reports</strong>.</span></div></li>
     <li><div class="step-num">2</div><div class="step-body"><strong>Create the report</strong><span>Click <strong>Create custom report</strong>, enter a <strong>Title</strong>, choose the report type, then select the <strong>Users, Group, or Branch</strong> to run it on.</span></div></li>
@@ -265,3 +273,4 @@
 </footer>
 
 </body></html>
+
