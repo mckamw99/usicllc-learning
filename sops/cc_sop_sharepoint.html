@@ -470,7 +470,7 @@ body{font-family:Arial,Helvetica,sans-serif}
 <div class="hero"><div class="hero-inner">
   <div class="hero-badge">Power User SOP</div>
   <h1>Content Creator</h1><p>Standard Operating Procedure for Content Creators building, publishing, and managing training content in Docebo</p>
-  <div class="hero-meta"><span class="meta-pill">Profile ID: 146912</span><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Last Updated: June 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+  <div class="hero-meta"><span class="meta-pill">Profile ID: 146912</span><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Last Updated: June 2026</span><span class="meta-pill">Version: 1.1</span><span class="meta-pill">Owner: Matthew McKay</span></div>
 </div></div>
 <nav class="sticky-nav"><ul><li><a href="#overview" class="nav-link">Role Overview</a></li><li><a href="#login" class="nav-link">Logging In</a></li><li><a href="#navigate" class="nav-link">Navigation</a></li><li><a href="#governance" class="nav-link">Course Governance</a></li><li><a href="#courses" class="nav-link">Managing Courses</a></li><li><a href="#lps" class="nav-link">Learning Plans</a></li><li><a href="#catalogs" class="nav-link">Catalogs</a></li><li><a href="#repo" class="nav-link">Central Repository</a></li><li><a href="#notifcerts" class="nav-link">Notifications &amp; Certs</a></li><li><a href="#scorm" class="nav-link">SCORM &amp; xAPI</a></li><li><a href="#qr" class="nav-link">QR Codes</a></li><li><a href="#quickref" class="nav-link">Quick Reference</a></li><li><a href="#escalate" class="nav-link">Escalate</a></li><li><a href="#dosdonts" class="nav-link">Do's &amp; Don'ts</a></li></ul></nav>
 <!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
@@ -638,6 +638,7 @@ body{font-family:Arial,Helvetica,sans-serif}
 <section class="section" id="scorm">
 <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h2>SCORM &amp; xAPI Tracking</h2><span class="section-num">10</span></div>
 <p style="color:var(--gray-600)">One of the most common causes of learners getting stuck In Progress is a mismatch between what the SCORM or xAPI package is reporting and what Docebo is configured to look for.</p>
+<div class="notice"><strong>Related guides:</strong> For the full step-by-step on diagnosing and resolving stuck <em>In Progress</em> enrollments &mdash; including how each training material type triggers completion, End Object Markers, hidden material, and admin fixes &mdash; see the <a href="course_stuck_in_progress_faq.html" style="color:#0c447c;font-weight:600;text-decoration:underline">Course Stuck In Progress &mdash; Training Material FAQ</a>. For authoring-tool publish settings and known-good recipes, see the <a href="scorm_tincan_rise_storyline_troubleshooting.html" style="color:#0c447c;font-weight:600;text-decoration:underline">SCORM &amp; Tin Can Troubleshooting &mdash; Rise &amp; Storyline</a> guide.</div>
 <h3 class="sub-heading">10.1 How Docebo Tracks SCORM Completion</h3>
 <p style="color:var(--gray-600);margin-bottom:12px">Docebo marks a SCORM course complete when the package sends a completion signal AND the learner presses the Close/Exit/Submit button. Closing the browser tab without pressing this button will not save completion.</p>
 <div class="card" style="padding:0;overflow:hidden;margin-bottom:12px">
@@ -656,24 +657,28 @@ body{font-family:Arial,Helvetica,sans-serif}
 <table class="scorm-table">
   <thead><tr><th>Tool</th><th>Setting</th><th>Recommended for Docebo</th></tr></thead>
   <tbody>
-    <tr><td>Articulate Storyline</td><td>Publish &rsaquo; LMS &rsaquo; Reporting tab</td><td>Track using: Passed/Incomplete. Sends cmi.core.lesson_status = passed.</td></tr>
-    <tr><td>Articulate Rise</td><td>Export &rsaquo; LMS &rsaquo; Tracking &rsaquo; Report completion</td><td>Set to: Course is complete when learner completes all content. Use SCORM 2004 3rd Edition output.</td></tr>
+    <tr><td>Articulate Storyline</td><td>Publish &rsaquo; LMS &rsaquo; Reporting &amp; Tracking</td><td>Reporting: Passed/Incomplete (completion) or Passed/Failed (graded). Track a Results slide / quiz result; never set &ldquo;complete course&rdquo; on slide&nbsp;1 timeline start.</td></tr>
+    <tr><td>Articulate Rise</td><td>Export &rsaquo; LMS &rsaquo; Tracking</td><td>Choose <strong>one</strong> method &mdash; completion percentage <em>or</em> quiz result (a single Rise package can&rsquo;t do both). Use SCORM 2004 3rd Edition; Passed/Incomplete for completion, Passed/Failed for graded.</td></tr>
     <tr><td>Both tools</td><td>Exit/Close button</td><td>Always include a final completion slide with a visible Close or Exit button. Docebo requires this to commit tracking data.</td></tr>
   </tbody>
 </table>
 </div>
+<div class="callout warning"><div class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><strong>Mastery-score trap (SCORM 1.2 + quiz):</strong> When a Rise or Storyline lesson that contains a quiz is published as SCORM 1.2, Articulate auto-inserts a mastery score, and the SCORM spec forces the LMS to report pass/fail instead of &ldquo;completed.&rdquo; The course may then never show <em>Completed</em>. Publish quiz courses as SCORM 2004 3rd Edition with Passed/Failed, or treat <em>Passed</em> (not Completed) as your success indicator.</div></div>
 <h3 class="sub-heading">10.3 Docebo Completion Rule Settings</h3>
 <ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Go to the course Training Material tab</strong><span>Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Training Material tab. Find the SCORM item and click hamburger menu &rsaquo; Settings.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Check the End Object Marker</strong><span>Ensure 'The course is completed when this training material is completed' is checked if this is the only or primary training material.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Check the Score calculation method</strong><span>If your SCORM includes a test, verify the method matches your intent. If your SCORM sends a score of 0, it will be included in average/sum calculations.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Verify Completion Rules</strong><span>Go to Course Properties &rsaquo; Completion Rules. If set to All training materials, every item in the course must be completed &mdash; including supplemental PDFs or videos.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Check View mode for mobile</strong><span>Confirm whether the package is set as playable on the mobile app. SCORM packages must be fully self-contained to work in Go.Learn offline mode.</span></div></li></ol>
 <h3 class="sub-heading">10.4 Troubleshooting In Progress &mdash; Diagnostic Checklist</h3>
+<p style="color:var(--gray-600);margin-bottom:10px">Work top to bottom. For the full version with fixes for every material type and admin remediation steps, see the <a href="course_stuck_in_progress_faq.html" style="color:#0c447c;font-weight:600;text-decoration:underline">Course Stuck In Progress FAQ</a>.</p>
 <ul class="checklist">
   <li><div class="num">1</div>Did the learner press the Close/Exit/Submit button inside the content when finished? If not, ask them to retake and close properly.</li>
-  <li><div class="num">2</div>Does the SCORM send the correct completion value? Use Docebo's SCORM Debug tool: Content &amp; Delivery &rsaquo; Courses &rsaquo; [Course] &rsaquo; Training Material &rsaquo; [SCORM] hamburger menu &rsaquo; SCORM Debug.</li>
-  <li><div class="num">3</div>Is the course completion rule set to All training materials? Check whether the learner completed every item &mdash; including PDFs, videos, or supplemental files.</li>
-  <li><div class="num">4</div>For xAPI: Is Track all activities toggled correctly for your package structure?</li>
-  <li><div class="num">5</div>Did the learner complete the course on the mobile app while offline? Ask them to open Go.Learn while connected to sync.</li>
-  <li><div class="num">6</div>Did the learner's session time out mid-course? Ask them to retake in a single session.</li>
-  <li><div class="num">7</div>Are third-party cookies blocked in the learner's browser? SCORM tracking requires cookies. Check Settings &rsaquo; Site Settings &rsaquo; Cookies in Chrome.</li>
-  <li><div class="num">8</div>If none of the above resolve it: escalate to the LMS Administrator to manually mark the enrollment as Completed.</li>
+  <li><div class="num">2</div>Is this a SCORM 1.2 package that contains a quiz? If so, the mastery-score trap means it will never report &ldquo;Completed&rdquo; &mdash; republish as SCORM 2004 3rd Edition with Passed/Failed.</li>
+  <li><div class="num">3</div>Does the package complete too early or not at all (Storyline)? Check that the &ldquo;complete course&rdquo; trigger sits on a Results slide / final slide &mdash; not on slide&nbsp;1 timeline start &mdash; and that a Submit Interaction trigger is present.</li>
+  <li><div class="num">4</div>Does the SCORM send the correct completion value? Inspect the package&rsquo;s reported status (test in SCORM Cloud, then a Docebo sandbox course, for comparison).</li>
+  <li><div class="num">5</div>Is the course completion rule set to All training materials? Check whether the learner completed every item &mdash; including PDFs, videos, or supplemental files &mdash; or set an End Object Marker on the primary package.</li>
+  <li><div class="num">6</div>For xAPI: Is Track all activities toggled correctly for your package structure?</li>
+  <li><div class="num">7</div>Did the learner complete the course on the mobile app while offline? Ask them to open Go.Learn while connected to sync.</li>
+  <li><div class="num">8</div>Did the learner's session time out mid-course? Ask them to retake in a single session on desktop Chrome.</li>
+  <li><div class="num">9</div>Are third-party cookies blocked in the learner's browser? SCORM tracking requires cookies. Check Settings &rsaquo; Site Settings &rsaquo; Cookies in Chrome.</li>
+  <li><div class="num">10</div>If none of the above resolve it: escalate to the LMS Administrator to manually mark the enrollment as Completed.</li>
 </ul>
 </section>
 
