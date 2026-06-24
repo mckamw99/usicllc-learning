@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Configuring Course Notifications — USIC Academy</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    /* USIC brand palette */
+    --navy:       #00305B;   /* USIC navy  */
+    --navy-deep:  #00264a;
+    --navy-mid:   #1a4775;
+    --green:      #94C83D;   /* USIC green */
+    --green-deep: #6f9e26;
+    --green-lt:   #eef6dd;
+    --orange:     #F16621;   /* USIC orange */
+    --orange-lt:  #fde7da;
+    --gray-900:   #191616;
+    --gray-700:   #3f4448;
+    --gray-600:   #5b6066;
+    --gray-400:   #9aa0a6;
+    --gray-300:   #c7cbd0;
+    --gray-200:   #e3e6e9;
+    --gray-100:   #eef1f4;
+    --gray-50:    #f6f8fa;
+    --white:      #ffffff;
+    --navy-tint:  #e9eff5;
+    --radius:     8px;
+    --radius-lg:  12px;
+    --shadow:     0 1px 3px rgba(0,48,91,.08), 0 1px 2px rgba(0,48,91,.05);
+    --shadow-md:  0 6px 18px rgba(0,48,91,.10);
+  }
+
+  body{
+    font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;
+    background:var(--gray-50);color:var(--gray-900);
+    line-height:1.6;font-size:15px;
+  }
+  .display{font-family:"Arial Narrow",Arial,sans-serif;}
+
+  /* ── Logo Bar ── */
+  .logo-bar{
+    background:var(--navy);padding:10px 40px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .logo-bar img{height:30px;width:auto;display:block;}
+  .logo-bar .logo-text{color:var(--white);font-size:15px;font-weight:700;letter-spacing:.01em;}
+  .logo-bar .logo-sub{color:rgba(255,255,255,.55);font-size:13px;margin-left:2px;font-weight:400;}
+
+  /* ── Hero ── */
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);
+    padding:52px 40px 46px;position:relative;overflow:hidden;
+  }
+  .hero::before{content:'';position:absolute;top:-70px;right:-50px;width:280px;height:280px;border-radius:50%;background:rgba(148,200,61,.08);}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:120px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.04);}
+  .hero-inner{max-width:840px;position:relative;z-index:1;}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(148,200,61,.18);border:1px solid rgba(148,200,61,.45);
+    color:#e2f3c4;font-size:12px;font-weight:700;
+    padding:4px 12px;border-radius:20px;margin-bottom:16px;
+    letter-spacing:.06em;text-transform:uppercase;
+  }
+  .hero h1{font-family:"Arial Narrow",Arial,sans-serif;font-size:38px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.18;}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:620px;line-height:1.6;}
+  .hero-meta{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap;}
+  .meta-pill{
+    font-size:12px;color:rgba(255,255,255,.85);
+    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
+    padding:4px 11px;border-radius:20px;
+  }
+
+  /* ── Sticky Nav ── */
+  .sticky-nav{
+    background:var(--white);border-bottom:1px solid var(--gray-200);
+    position:sticky;top:0;z-index:100;padding:0 40px;
+  }
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none;}
+  .sticky-nav ul::-webkit-scrollbar{display:none;}
+  .sticky-nav a{
+    display:block;padding:14px 16px;font-size:13px;font-weight:700;color:var(--gray-600);
+    text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;
+    transition:color .15s,border-color .15s;
+  }
+  .sticky-nav a:hover{color:var(--navy);}
+  .sticky-nav a.active{color:var(--navy);border-bottom-color:var(--green);}
+
+  /* ── Layout ── */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px;}
+  .section{margin-bottom:48px;scroll-margin-top:64px;}
+  .section-header{
+    display:flex;align-items:center;gap:12px;margin-bottom:20px;
+    padding-bottom:12px;border-bottom:1px solid var(--gray-200);
+  }
+  .section-icon{
+    width:38px;height:38px;border-radius:var(--radius);background:var(--navy);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .section-icon svg{width:19px;height:19px;color:var(--white);}
+  .section-header h2{font-family:"Arial Narrow",Arial,sans-serif;font-size:23px;font-weight:700;color:var(--navy);letter-spacing:.01em;}
+  .section-header .section-num{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.08em;margin-left:auto;}
+
+  p.lead{color:var(--gray-700);margin-bottom:16px;}
+  .section p{margin-bottom:12px;color:var(--gray-700);}
+  .section p:last-child{margin-bottom:0;}
+
+  /* ── Cards ── */
+  .card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:20px 24px;box-shadow:var(--shadow);}
+  .card+.card{margin-top:12px;}
+  .card h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+
+  /* ── Anatomy grid ── */
+  .anatomy{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:680px){.anatomy{grid-template-columns:1fr;}}
+  .anatomy-item{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--green);border-radius:var(--radius);padding:14px 16px;}
+  .anatomy-item h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+  .anatomy-item p{font-size:13px;color:var(--gray-600);line-height:1.55;margin:0;}
+
+  /* ── Callouts ── */
+  .callout{border-radius:var(--radius);padding:14px 16px;font-size:14px;line-height:1.6;margin:16px 0;display:flex;gap:11px;align-items:flex-start;}
+  .callout-icon{flex-shrink:0;margin-top:1px;}
+  .callout-icon svg{width:17px;height:17px;}
+  .callout strong{font-weight:700;}
+  .callout.info{background:var(--navy-tint);color:#143a5e;border-left:3px solid var(--navy);}
+  .callout.tip{background:var(--green-lt);color:#3d5314;border-left:3px solid var(--green-deep);}
+  .callout.warning{background:var(--orange-lt);color:#8a3309;border-left:3px solid var(--orange);}
+
+  /* ── Steps ── */
+  .steps{list-style:none;counter-reset:s;}
+  .steps>li{display:grid;grid-template-columns:38px 1fr;gap:14px;margin-bottom:14px;align-items:start;}
+  .step-num{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--white);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .step-body strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gray-900);}
+  .step-body span{font-size:13.5px;color:var(--gray-700);line-height:1.62;}
+  .step-body em{color:var(--navy);font-style:normal;font-weight:700;}
+  code{font-family:"Courier New",monospace;font-size:12.5px;background:var(--gray-100);padding:1px 6px;border-radius:4px;color:var(--navy);}
+
+  /* ── Tables ── */
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;}
+  .tbl th{text-align:left;padding:10px 14px;background:var(--navy);color:rgba(255,255,255,.92);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .tbl td{padding:11px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl tr:hover td{background:var(--gray-50);}
+  .tbl td strong{color:var(--navy);}
+  .tbl code{background:var(--gray-100);}
+
+  /* ── Pills ── */
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+  .pill.navy{background:var(--navy-tint);color:var(--navy);}
+  .pill.green{background:var(--green-lt);color:var(--green-deep);}
+  .pill.orange{background:var(--orange-lt);color:#a83e0e;}
+
+  /* ── Two-col do/don't ── */
+  .dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:680px){.dd-grid{grid-template-columns:1fr;}}
+  .dd-col{border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);}
+  .dd-head{padding:11px 16px;font-size:13px;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;}
+  .dd-head.do{background:var(--green-deep);}
+  .dd-head.dont{background:var(--orange);}
+  .dd-col ul{list-style:none;padding:10px 16px 14px;}
+  .dd-col li{font-size:13.5px;color:var(--gray-700);line-height:1.5;padding:6px 0 6px 20px;position:relative;}
+  .dd-col li::before{position:absolute;left:0;top:6px;font-weight:700;}
+  .dd-col.do li::before{content:'\2713';color:var(--green-deep);}
+  .dd-col.dont li::before{content:'\2715';color:var(--orange);}
+
+  /* ── Footer ── */
+  .page-footer{
+    background:var(--navy);color:rgba(255,255,255,.6);padding:24px 40px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:12px;gap:16px;flex-wrap:wrap;
+  }
+  .page-footer strong{color:rgba(255,255,255,.9);}
+  .page-footer .foot-star{color:var(--green);font-weight:700;}
+  .page-footer a{color:rgba(255,255,255,.6);text-decoration:none;}
+  .page-footer a:hover{color:var(--white);}
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <img src="https://raw.githubusercontent.com/mckamw99/usicllc-learning/main/usic_academy_logo.png" alt="USIC Academy"/>
+  <span class="logo-text">USIC Academy</span>
+  <span class="logo-sub">/ LMS &middot; How-To Guide</span>
+</div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">How-To Guide</div>
+  <h1>Configuring Course Notifications</h1>
+  <p>How to create, target, schedule, and verify automated notifications for a course in Docebo &mdash; so the right learners and managers hear about enrollments, deadlines, completions, and sessions at the right time.</p>
+  <div class="hero-meta">
+    <span class="meta-pill">Platform: usic.training</span>
+    <span class="meta-pill">Last Updated: June 2026</span>
+    <span class="meta-pill">Version: 1.0</span>
+    <span class="meta-pill">Owner: Matthew McKay</span>
+  </div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#overview" class="nav-link">Overview</a></li>
+  <li><a href="#before" class="nav-link">Before You Start</a></li>
+  <li><a href="#anatomy" class="nav-link">Anatomy</a></li>
+  <li><a href="#events" class="nav-link">Course Events</a></li>
+  <li><a href="#create" class="nav-link">Create a Notification</a></li>
+  <li><a href="#shortcodes" class="nav-link">Shortcodes</a></li>
+  <li><a href="#scope" class="nav-link">Scope &amp; Power Users</a></li>
+  <li><a href="#practices" class="nav-link">Best Practices</a></li>
+  <li><a href="#verify" class="nav-link">Verify &amp; Troubleshoot</a></li>
+  <li><a href="#reference" class="nav-link">Quick Reference</a></li>
+</ul></nav>
+
+<div class="page-content">
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+      <h2>Overview</h2>
+      <span class="section-num">Section 1</span>
+    </div>
+    <p class="lead">A <strong>notification</strong> is an automated message that Docebo sends when a specific event happens in the platform &mdash; for example, a learner is enrolled in a course, a deadline is approaching, or a course is completed. Notifications keep learners on schedule and keep instructors and managers informed without anyone watching the platform manually.</p>
+    <p>Each notification is tied to a single <strong>event</strong> and is delivered through one or more channels (in-platform, email, mobile push, or Slack). Notifications are managed centrally from the <strong>Notifications</strong> area &mdash; you do not build them from inside an individual course. Instead, you create one notification and then use <strong>trigger filters</strong> to scope it to the specific course(s) you care about.</p>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span>This guide reflects Docebo&rsquo;s current notification service. If your screens differ, you may still be on the legacy notification experience &mdash; raise a ticket with the LAT team (<code>learningalerts@usicllc.com</code>) before proceeding.</span>
+    </div>
+  </section>
+
+  <!-- BEFORE YOU START -->
+  <section class="section" id="before">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h2>Before You Start</h2>
+      <span class="section-num">Section 2</span>
+    </div>
+    <div class="card">
+      <h3>Prerequisites</h3>
+      <ul class="steps" style="margin-top:6px">
+        <li><div class="step-num">1</div><div class="step-body"><strong>The Notifications app is active</strong><span>The Notifications app must be turned on for the platform (managed under <em>Add-ons and integrations &rsaquo; Docebo additional features</em>). On USIC Academy this is already active &mdash; no action needed.</span></div></li>
+        <li><div class="step-num">2</div><div class="step-body"><strong>You have the right permissions</strong><span>You need to be a Superadmin, or a Power User whose profile includes the notification permissions. At USIC, <strong>Content Creators</strong> can create and edit notifications for their assigned resources.</span></div></li>
+        <li><div class="step-num">3</div><div class="step-body"><strong>The <code>*.docebosuite.com</code> domains are reachable</strong><span>The notification management page will not load if your network blocks <code>*.docebosuite.com</code>. If the page is blank, contact IT to add these domains to the allow list.</span></div></li>
+      </ul>
+    </div>
+    <div class="callout tip">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+      <span><strong>Power Users see a filtered list.</strong> As a Power User you only see and manage notifications whose trigger resources (courses, branches, groups) are also assigned to you. If a notification you expect is missing, it is almost always a resource-assignment gap &mdash; see <a href="#scope" style="color:inherit;font-weight:700">Scope &amp; Power Users</a>.</span>
+    </div>
+  </section>
+
+  <!-- ANATOMY -->
+  <section class="section" id="anatomy">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+      <h2>Anatomy of a Notification</h2>
+      <span class="section-num">Section 3</span>
+    </div>
+    <p class="lead">Every notification is built from six parts. Knowing these up front makes the build steps fast.</p>
+    <div class="anatomy">
+      <div class="anatomy-item"><h4>Event type</h4><p>The platform event that triggers the message &mdash; e.g. <em>User enrolled in a course</em>. Chosen at creation and <strong>read-only afterward</strong>.</p></div>
+      <div class="anatomy-item"><h4>Recipients</h4><p>Who receives it, defined by relationship to the event: Users, Power Users, Managers, Instructors, or Superadmins. One role per notification.</p></div>
+      <div class="anatomy-item"><h4>Delivery channel</h4><p>How it&rsquo;s sent: in-platform (bell icon), email, mobile push, or Slack. At least one is required to activate.</p></div>
+      <div class="anatomy-item"><h4>Message</h4><p>The subject and body, personalized with shortcodes such as <code>{{first_name}}</code> and <code>{{course_name}}</code>.</p></div>
+      <div class="anatomy-item"><h4>Timing</h4><p>When it goes out: at the time of the event, a set period before/after, manually, or on a digest schedule.</p></div>
+      <div class="anatomy-item"><h4>Trigger filters</h4><p>Which courses and which user groups/branches the notification applies to. This is how you scope it to one course instead of all of them.</p></div>
+    </div>
+  </section>
+
+  <!-- COURSE EVENTS -->
+  <section class="section" id="events">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+      <h2>Course Events You&rsquo;ll Use Most</h2>
+      <span class="section-num">Section 4</span>
+    </div>
+    <p class="lead">These are the event types under the <strong>Courses</strong> category that matter most for course-level communication. Available recipients and timing vary by event &mdash; the platform shows you valid options once the event is selected.</p>
+    <table class="tbl">
+      <thead><tr><th style="width:26%">Event</th><th style="width:38%">Triggers when&hellip;</th><th style="width:20%">Common recipients</th><th style="width:16%">Typical timing</th></tr></thead>
+      <tbody>
+        <tr><td><strong>User enrolled in a course</strong></td><td>A learner is enrolled in the course (manually, by rule, by CSV, or via API).</td><td>Users; Managers</td><td>At the time of the event</td></tr>
+        <tr><td><strong>Learner completed a course</strong></td><td>A learner&rsquo;s status flips to Completed.</td><td>Users; Managers</td><td>At time / after the event</td></tr>
+        <tr><td><strong>Learner has yet to complete a course</strong></td><td>A learner still hasn&rsquo;t completed. <span class="pill navy">Note</span> counts from the <strong>enrollment date</strong>, not a deadline.</td><td>Users; Managers</td><td>Days/weeks after enrollment</td></tr>
+        <tr><td><strong>New ILT session created</strong></td><td>A new session is added. By default goes to everyone enrolled in the course; you can exclude those who already completed it.</td><td>Users</td><td>At the time of the event</td></tr>
+        <tr><td><strong>User enrolled in ILT session</strong></td><td>A learner is enrolled into a specific session (not pending approval).</td><td>Users; Instructors</td><td>At the time of the event</td></tr>
+        <tr><td><strong>ILT session starting</strong></td><td>A session is about to begin.</td><td>Users; Instructors</td><td>Before the event</td></tr>
+        <tr><td><strong>ILT event starting</strong></td><td>An individual event within a session is about to begin.</td><td>Users</td><td>Before the event</td></tr>
+        <tr><td><strong>User approval</strong></td><td>A Superadmin/Power User approves a user from a course waiting list.</td><td>Users</td><td>At the time of the event</td></tr>
+        <tr><td><strong>Assignment has been evaluated</strong></td><td>An instructor evaluates a learner&rsquo;s submitted assignment.</td><td>Users</td><td>At the time of the event</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span>For the full, authoritative list of events, their allowed recipients, timing options, and available shortcodes, see Docebo&rsquo;s <strong>Notification events and conditions</strong> reference in the Help Center.</span>
+    </div>
+  </section>
+
+  <!-- CREATE -->
+  <section class="section" id="create">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <h2>Create a Course Notification</h2>
+      <span class="section-num">Section 5</span>
+    </div>
+    <p class="lead">Worked example: send an email <em>and</em> in-platform message to a learner the moment they are enrolled in a specific course.</p>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Open the Notifications area</strong><span>From the Navigation menu, go to <em>Configuration (spanner icon) &rsaquo; Automation &rsaquo; Notifications</em>. The <strong>Notifications</strong> tab lists every notification you can see, with its event, channels, and status.</span></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Start a new notification</strong><span>Click the <strong>+</strong> icon in the top-right corner. In the <em>Create notification</em> panel, choose the <strong>Event category</strong> (<code>Courses</code>) and then the <strong>Event type</strong> (e.g. <code>User enrolled in a course</code>).</span></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Name it distinctively</strong><span>The Name pre-fills with the event type, but you&rsquo;ll likely have several notifications per event. Use a clear name such as <code>Enrolled &mdash; Decisive Driving (Email + In-app)</code>. Click <strong>Create and edit</strong>. <span class="pill orange">Heads up</span> the event is now <strong>read-only</strong> &mdash; to change it you must create a new notification.</span></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Set the recipients</strong><span>On the <strong>Recipients</strong> tab, choose the audience &mdash; for an enrollment confirmation, select <strong>Users</strong> (the enrolled learner). You can only choose <strong>one role</strong> per notification; to also notify Managers, duplicate this notification and set Managers there.</span></div></li>
+      <li><div class="step-num">5</div><div class="step-body"><strong>Compose the message and pick channels</strong><span>Go to <strong>Properties &rsaquo; Composition</strong>. Tick <strong>Enable email as delivery channel</strong>, set the <em>Sender</em> name and a sender address already configured in Domain management, then write the <strong>Subject</strong> and <strong>Body</strong>. Repeat for <strong>Platform notification</strong> if you want the in-app bell message too. Insert shortcodes (next section) to personalize.</span></div></li>
+      <li><div class="step-num">6</div><div class="step-body"><strong>Set the timing</strong><span>Open <strong>Properties &rsaquo; Details and timing</strong> and use the <strong>Scheduler</strong>. For an enrollment confirmation, choose <strong>At the time of the event</strong>. Other events let you send <em>Before</em> or <em>After</em> by a set number of hours, days, weeks, or months &mdash; with a send time and time zone.</span></div></li>
+      <li><div class="step-num">7</div><div class="step-body"><strong>Scope it with trigger filters</strong><span>On the <strong>Triggers and filters</strong> tab, click <strong>+</strong> and add a <em>Courses and learning plans</em> filter, selecting <strong>only the specific course</strong>. Optionally add a <em>Users</em> filter to limit it to certain branches or groups. Without a content filter this notification will never fire; with the wrong filter it fires for every course.</span></div></li>
+      <li><div class="step-num">8</div><div class="step-body"><strong>Activate</strong><span>Use the status toggle at the bottom-right to switch from <strong>Inactive</strong> to <strong>Active</strong>. Only active notifications send, and a notification needs at least one delivery channel before it can be activated.</span></div></li>
+    </ol>
+    <div class="callout tip">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+      <span><strong>Reuse instead of rebuild.</strong> From the notification list, use the <strong>ellipsis &rsaquo; Duplicate</strong> to clone an existing notification. You choose which parts to copy (timing, filters, recipients, channels) &mdash; ideal for sending the same message to a different audience or a different course.</span>
+    </div>
+  </section>
+
+  <!-- SHORTCODES -->
+  <section class="section" id="shortcodes">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <h2>Personalizing with Shortcodes</h2>
+      <span class="section-num">Section 6</span>
+    </div>
+    <p class="lead">Shortcodes are double-brace tags such as <code>{{course_name}}</code> that are swapped for live data when the message sends. The set available depends on the event type. Common course-related ones:</p>
+    <table class="tbl">
+      <thead><tr><th style="width:32%">Shortcode</th><th>Inserts</th></tr></thead>
+      <tbody>
+        <tr><td><code>{{first_name}}</code> / <code>{{last_name}}</code></td><td>The recipient&rsquo;s first / last name.</td></tr>
+        <tr><td><code>{{username}}</code></td><td>The recipient&rsquo;s username (at USIC, the <code>employeeID@usicllc.com</code> format).</td></tr>
+        <tr><td><code>{{course_name}}</code></td><td>The title of the course that triggered the notification.</td></tr>
+        <tr><td><code>{{course_link}}</code></td><td>A link to the course. See the link caveat below.</td></tr>
+        <tr><td><code>{{event_date}}</code></td><td>(ILT) Name, date, start/end time, and location of a single event &mdash; in both the learner&rsquo;s and the event&rsquo;s time zone.</td></tr>
+        <tr><td><code>{{session_dates}}</code></td><td>(ILT) The full set of event dates for the session.</td></tr>
+        <tr><td><code>{{expire_at}}</code></td><td>An expiration date/time, shown in the recipient&rsquo;s time zone.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warning">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <span><strong>Link shortcodes insert plain text, not a clickable link.</strong> Most email clients auto-link a bare URL, but to guarantee a clickable link, use the toolbar <em>Insert/edit link</em> button and paste the shortcode in the URL field, or use <em>Source code</em> and wrap it: <code>&lt;a href="{{course_link}}"&gt;Open the course&lt;/a&gt;</code>. Note that a course link sends the user to an error if they aren&rsquo;t enrolled &mdash; it is not a self-enroll deep link.</span>
+    </div>
+  </section>
+
+  <!-- SCOPE & POWER USERS -->
+  <section class="section" id="scope">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h2>Scope &amp; Power User Rules</h2>
+      <span class="section-num">Section 7</span>
+    </div>
+    <p class="lead">Trigger filters are the single most important &mdash; and most error-prone &mdash; part of a course notification. Get them wrong and you either blast every course or send nothing at all.</p>
+    <div class="card">
+      <h3>Scoping logic</h3>
+      <p style="margin-bottom:8px"><strong>No content filter = never sends.</strong> A notification with no course or learning-plan filter targets no content and will never fire, even when Active.</p>
+      <p style="margin-bottom:8px"><strong>Multiple branches/groups use OR logic.</strong> If you list several user branches or groups, a learner only needs to belong to one of them to qualify.</p>
+      <p><strong>&ldquo;All courses&rdquo; / &ldquo;All users&rdquo; is Superadmin-only.</strong> Power Users cannot set the All option &mdash; they must pick from a custom selection of their assigned resources.</p>
+    </div>
+    <div class="callout info" style="margin-top:16px">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span><strong>For USIC Content Creators (Power Users):</strong> you only see a notification if <em>every</em> resource set as its trigger filter is also assigned to you. The <strong>Power Users</strong> recipient role can only be set by a Superadmin &mdash; you cannot select or change it. If you need an all-courses notification or a Power-User-targeted one, route it to the LAT team.</span>
+    </div>
+  </section>
+
+  <!-- BEST PRACTICES -->
+  <section class="section" id="practices">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <h2>Best Practices</h2>
+      <span class="section-num">Section 8</span>
+    </div>
+    <div class="dd-grid">
+      <div class="dd-col do">
+        <div class="dd-head do">Do</div>
+        <ul>
+          <li>Deactivate a notification before editing it &mdash; editing recreates the scheduled job.</li>
+          <li>Give every notification a distinctive name so it&rsquo;s findable in the list and the logs.</li>
+          <li>Test on yourself first: enroll a test account and confirm the message, links, and shortcodes render correctly.</li>
+          <li>Scope to the exact course (and branch/group) every time before activating.</li>
+          <li>Use a sender address already verified in Domain management.</li>
+        </ul>
+      </div>
+      <div class="dd-col dont">
+        <div class="dd-head dont">Don&rsquo;t</div>
+        <ul>
+          <li>Don&rsquo;t leave the content filter empty &mdash; it will silently send to no one.</li>
+          <li>Don&rsquo;t try to target multiple recipient roles in one notification &mdash; duplicate it instead.</li>
+          <li>Don&rsquo;t exceed the 65,535-character limit (HTML and expanded shortcodes count toward it).</li>
+          <li>Don&rsquo;t rely on a bare link shortcode for a guaranteed clickable link.</li>
+          <li>Don&rsquo;t change a notification&rsquo;s event after creation &mdash; it&rsquo;s locked; build a new one.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warning">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <span><strong>Bulk enrollment &amp; backfills (USIC).</strong> Before a large enrollment or completion backfill &mdash; including script-driven runs such as <code>bulk_complete.py</code> &mdash; temporarily <strong>deactivate</strong> the relevant enrollment/completion notifications so you don&rsquo;t flood hundreds of learners or their managers. Re-activate them once the run is finished. This is also the standard approach when enrolling users into not-yet-published courses to preserve enrollment history.</span>
+    </div>
+  </section>
+
+  <!-- VERIFY -->
+  <section class="section" id="verify">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <h2>Verify &amp; Troubleshoot</h2>
+      <span class="section-num">Section 9</span>
+    </div>
+    <p class="lead">After a notification goes live, confirm it&rsquo;s actually being delivered using the per-notification <strong>Logs</strong> tab.</p>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Open the logs</strong><span>From <em>Configuration &rsaquo; Automation &rsaquo; Notifications</em>, click the notification name, then the <strong>Logs</strong> tab. You&rsquo;ll see recipient, status, sent date, message ID, and any error detail.</span></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Read the status</strong><span><span class="pill navy">Queued</span> awaiting dispatch &nbsp; <span class="pill green">Delivered</span> handed off to the mail server &nbsp; <span class="pill orange">Failed</span> not sent &mdash; check the <em>More information</em> column for the reason.</span></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Filter and export</strong><span>Filter by <strong>Failed</strong> to isolate problems. A Superadmin can <strong>export</strong> the log (date range up to 14 days, within the last 3 months) for auditing.</span></div></li>
+    </ol>
+    <table class="tbl" style="margin-top:16px">
+      <thead><tr><th style="width:34%">Symptom</th><th>Likely cause &amp; fix</th></tr></thead>
+      <tbody>
+        <tr><td>Nothing is sending</td><td>Notification is Inactive, has no delivery channel, or has no content/user trigger filter. Confirm all three.</td></tr>
+        <tr><td>Notification page is blank</td><td><code>*.docebosuite.com</code> is blocked on the network. Ask IT to allow-list it.</td></tr>
+        <tr><td>A Power User can&rsquo;t see a notification</td><td>The trigger resources aren&rsquo;t all assigned to that Power User. Align resource assignments.</td></tr>
+        <tr><td>Status shows Failed</td><td>Bad recipient address, or custom SMTP timeout / auth issue. Review the <em>More information</em> column.</td></tr>
+        <tr><td>It fired for the wrong courses</td><td>Content filter too broad. Edit the Triggers and filters tab and narrow the selection.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span>In-platform (bell) notifications are retained for about <strong>90 days</strong>, after which they&rsquo;re removed automatically. A <strong>Delivered</strong> status confirms hand-off to the mail service only &mdash; not final inbox delivery.</span>
+    </div>
+  </section>
+
+  <!-- QUICK REFERENCE -->
+  <section class="section" id="reference">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <h2>Quick Reference</h2>
+      <span class="section-num">Section 10</span>
+    </div>
+    <table class="tbl">
+      <thead><tr><th style="width:34%">Task</th><th>Where / How</th></tr></thead>
+      <tbody>
+        <tr><td>Open notifications</td><td>Navigation menu &rsaquo; <strong>Configuration (spanner) &rsaquo; Automation &rsaquo; Notifications</strong></td></tr>
+        <tr><td>Create new</td><td><strong>+</strong> icon &rsaquo; pick Event category &amp; type &rsaquo; name &rsaquo; <strong>Create and edit</strong></td></tr>
+        <tr><td>Set audience</td><td><strong>Recipients</strong> tab (one role per notification)</td></tr>
+        <tr><td>Write message / channels</td><td><strong>Properties &rsaquo; Composition</strong> (Email, Platform, Push, Slack)</td></tr>
+        <tr><td>Set timing</td><td><strong>Properties &rsaquo; Details and timing &rsaquo; Scheduler</strong></td></tr>
+        <tr><td>Limit to a course</td><td><strong>Triggers and filters</strong> tab &rsaquo; add Courses filter</td></tr>
+        <tr><td>Turn on/off</td><td>Status toggle, bottom-right of the configuration page</td></tr>
+        <tr><td>Clone an existing one</td><td>List view &rsaquo; <strong>ellipsis &rsaquo; Duplicate</strong></td></tr>
+        <tr><td>Check delivery</td><td>Open the notification &rsaquo; <strong>Logs</strong> tab</td></tr>
+        <tr><td>Send manually (where supported)</td><td><strong>Play (triangle)</strong> icon in the notification list</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<div class="page-footer">
+  <span>USIC Academy &nbsp;<span class="foot-star">&#9733;</span>&nbsp; Learning Analytics &amp; Technology</span>
+  <span><strong>Configuring Course Notifications</strong> &middot; v1.0 &middot; June 2026</span>
+  <span>Owner: Matthew McKay &middot; <a href="mailto:learningalerts@usicllc.com">learningalerts@usicllc.com</a></span>
+</div>
+
+<script>
+  // Smooth scroll + active section highlighting in the sticky nav
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sticky-nav a'));
+    var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); });
+
+    links.forEach(function(l){
+      l.addEventListener('click', function(e){
+        var t = document.querySelector(l.getAttribute('href'));
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+
+    function onScroll(){
+      var pos = window.scrollY + 90;
+      var current = sections[0];
+      for(var i=0;i<sections.length;i++){
+        if(sections[i] && sections[i].offsetTop <= pos){ current = sections[i]; }
+      }
+      links.forEach(function(l){
+        l.classList.toggle('active', current && l.getAttribute('href') === '#'+current.id);
+      });
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
