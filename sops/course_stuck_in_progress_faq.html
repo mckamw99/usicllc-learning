@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Course Stuck &ldquo;In Progress&rdquo; — Training Material FAQ — USIC Academy</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --navy:#00305B; --navy-deep:#00264a; --navy-mid:#1a4775;
+    --green:#94C83D; --green-deep:#6f9e26; --green-lt:#eef6dd;
+    --orange:#F16621; --orange-lt:#fde7da;
+    --gray-900:#191616; --gray-700:#3f4448; --gray-600:#5b6066;
+    --gray-400:#9aa0a6; --gray-300:#c7cbd0; --gray-200:#e3e6e9;
+    --gray-100:#eef1f4; --gray-50:#f6f8fa; --white:#ffffff; --navy-tint:#e9eff5;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,48,91,.08),0 1px 2px rgba(0,48,91,.05);
+    --shadow-md:0 6px 18px rgba(0,48,91,.10);
+  }
+  body{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;font-size:15px;}
+
+  /* Logo bar */
+  .logo-bar{background:var(--navy);padding:10px 40px;display:flex;align-items:center;gap:12px;}
+  .logo-bar img{height:30px;width:auto;display:block;}
+  .logo-bar .logo-text{color:var(--white);font-size:15px;font-weight:700;letter-spacing:.01em;}
+  .logo-bar .logo-sub{color:rgba(255,255,255,.55);font-size:13px;margin-left:2px;font-weight:400;}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:52px 40px 46px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-70px;right:-50px;width:280px;height:280px;border-radius:50%;background:rgba(148,200,61,.08);}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:120px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.04);}
+  .hero-inner{max-width:840px;position:relative;z-index:1;}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(241,102,33,.20);border:1px solid rgba(241,102,33,.5);color:#ffd2bb;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;}
+  .hero h1{font-family:"Arial Narrow",Arial,sans-serif;font-size:38px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.18;}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:640px;line-height:1.6;}
+  .hero-meta{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap;}
+  .meta-pill{font-size:12px;color:rgba(255,255,255,.85);background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);padding:4px 11px;border-radius:20px;}
+
+  /* Sticky nav */
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px;}
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none;}
+  .sticky-nav ul::-webkit-scrollbar{display:none;}
+  .sticky-nav a{display:block;padding:14px 16px;font-size:13px;font-weight:700;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+  .sticky-nav a:hover{color:var(--navy);}
+  .sticky-nav a.active{color:var(--navy);border-bottom-color:var(--green);}
+
+  /* Layout */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px;}
+  .section{margin-bottom:48px;scroll-margin-top:64px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--gray-200);}
+  .section-icon{width:38px;height:38px;border-radius:var(--radius);background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-icon svg{width:19px;height:19px;color:var(--white);}
+  .section-header h2{font-family:"Arial Narrow",Arial,sans-serif;font-size:23px;font-weight:700;color:var(--navy);letter-spacing:.01em;}
+  .section-header .section-num{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.08em;margin-left:auto;}
+  p.lead{color:var(--gray-700);margin-bottom:16px;}
+  .section p{margin-bottom:12px;color:var(--gray-700);}
+  .section p:last-child{margin-bottom:0;}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:14px 16px;font-size:14px;line-height:1.6;margin:16px 0;display:flex;gap:11px;align-items:flex-start;}
+  .callout-icon{flex-shrink:0;margin-top:1px;}
+  .callout-icon svg{width:17px;height:17px;}
+  .callout strong{font-weight:700;}
+  .callout.info{background:var(--navy-tint);color:#143a5e;border-left:3px solid var(--navy);}
+  .callout.tip{background:var(--green-lt);color:#3d5314;border-left:3px solid var(--green-deep);}
+  .callout.warning{background:var(--orange-lt);color:#8a3309;border-left:3px solid var(--orange);}
+
+  /* Tables */
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;}
+  .tbl th{text-align:left;padding:10px 14px;background:var(--navy);color:rgba(255,255,255,.92);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .tbl td{padding:11px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl tr:hover td{background:var(--gray-50);}
+  .tbl td strong{color:var(--navy);}
+  code{font-family:"Courier New",monospace;font-size:12.5px;background:var(--gray-100);padding:1px 6px;border-radius:4px;color:var(--navy);}
+  .tbl code{background:var(--gray-100);}
+
+  /* Cause cards */
+  .cause{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--orange);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;}
+  .cause h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+  .cause p{font-size:13.5px;color:var(--gray-600);line-height:1.55;margin:0;}
+
+  /* FAQ accordion */
+  .faq-item{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s;}
+  .faq-item.open{border-color:var(--navy);box-shadow:var(--shadow-md);}
+  .faq-q{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;user-select:none;}
+  .faq-q .qmark{width:26px;height:26px;border-radius:6px;background:var(--green-lt);color:var(--green-deep);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .faq-item.open .qmark{background:var(--navy);color:var(--white);}
+  .faq-q h3{font-size:14.5px;font-weight:700;color:var(--gray-900);flex:1;line-height:1.4;}
+  .faq-chevron{transition:transform .2s;flex-shrink:0;color:var(--gray-400);}
+  .faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--navy);}
+  .faq-a{display:none;padding:0 18px 16px 56px;}
+  .faq-item.open .faq-a{display:block;}
+  .faq-a p{font-size:13.5px;color:var(--gray-700);line-height:1.65;margin-bottom:8px;}
+  .faq-a p:last-child{margin-bottom:0;}
+  .faq-a ol,.faq-a ul{margin:6px 0 8px 4px;padding-left:18px;}
+  .faq-a li{font-size:13.5px;color:var(--gray-700);line-height:1.55;margin-bottom:4px;}
+  .faq-a strong{color:var(--navy);}
+
+  /* Steps */
+  .steps{list-style:none;}
+  .steps>li{display:grid;grid-template-columns:38px 1fr;gap:14px;margin-bottom:14px;align-items:start;}
+  .step-num{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--white);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .step-body strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gray-900);}
+  .step-body span{font-size:13.5px;color:var(--gray-700);line-height:1.62;}
+  .step-body em{color:var(--navy);font-style:normal;font-weight:700;}
+
+  /* Pills */
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+  .pill.navy{background:var(--navy-tint);color:var(--navy);}
+  .pill.green{background:var(--green-lt);color:var(--green-deep);}
+  .pill.orange{background:var(--orange-lt);color:#a83e0e;}
+
+  /* Footer */
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.6);padding:24px 40px;display:flex;align-items:center;justify-content:space-between;font-size:12px;gap:16px;flex-wrap:wrap;}
+  .page-footer strong{color:rgba(255,255,255,.9);}
+  .page-footer .foot-star{color:var(--green);font-weight:700;}
+  .page-footer a{color:rgba(255,255,255,.6);text-decoration:none;}
+  .page-footer a:hover{color:var(--white);}
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <img src="https://raw.githubusercontent.com/mckamw99/usicllc-learning/main/usic_academy_logo.png" alt="USIC Academy"/>
+  <span class="logo-text">USIC Academy</span>
+  <span class="logo-sub">/ LMS &middot; Troubleshooting FAQ</span>
+</div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">Troubleshooting FAQ</div>
+  <h1>Course Stuck in &ldquo;In Progress&rdquo;</h1>
+  <p>Why a learner&rsquo;s course refuses to flip to Completed &mdash; how training material settings drive course completion, what breaks it, and exactly how to fix each case in Docebo.</p>
+  <div class="hero-meta">
+    <span class="meta-pill">Platform: usic.training</span>
+    <span class="meta-pill">Last Updated: June 2026</span>
+    <span class="meta-pill">Version: 1.0</span>
+    <span class="meta-pill">Owner: Matthew McKay</span>
+  </div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#how" class="nav-link">How Completion Works</a></li>
+  <li><a href="#triggers" class="nav-link">Completion Triggers</a></li>
+  <li><a href="#causes" class="nav-link">Why It Gets Stuck</a></li>
+  <li><a href="#faq" class="nav-link">FAQ &amp; Fixes</a></li>
+  <li><a href="#admin" class="nav-link">Admin Actions</a></li>
+  <li><a href="#prevent" class="nav-link">Prevention</a></li>
+  <li><a href="#reference" class="nav-link">Quick Reference</a></li>
+</ul></nav>
+
+<div class="page-content">
+
+  <!-- HOW COMPLETION WORKS -->
+  <section class="section" id="how">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div>
+      <h2>How Course Completion Works</h2>
+      <span class="section-num">Section 1</span>
+    </div>
+    <p class="lead">The single rule that explains almost every &ldquo;stuck&rdquo; course: <strong>a course is marked Completed only when <em>every</em> training material that counts toward it is individually marked complete.</strong> Course status is calculated <em>up</em> from the material level &mdash; so if even one required material never registers as complete, the course stays In Progress, no matter what the learner saw on screen.</p>
+    <p>There are two important modifiers to that rule:</p>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span><strong>End Object Marker.</strong> If a material is set as an <em>end object marker</em>, completing that one material marks the <em>whole course</em> complete &mdash; even if optional materials remain unfinished. A course can have more than one. This is the cleanest way to control completion when a course mixes required and optional content.</span>
+    </div>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span><strong>Hidden material.</strong> Hidden training material is <em>not</em> counted toward completion for learners who never viewed it &mdash; but if a learner already completed it before it was hidden, it still counts for them. This is why the same course can behave differently for two learners.</span>
+    </div>
+    <div class="callout tip">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span><strong>Where to look first.</strong> Open the course&rsquo;s <em>Reports &rsaquo; User statistics</em>, click the learner, and scroll to the material list. The material status icons tell you instantly which one is blocking: <span class="pill green">green</span> complete &middot; <span class="pill orange">yellow</span> started, not complete &middot; <span class="pill navy">grey</span> not started &middot; <span class="pill navy">padlock</span> locked by a prerequisite.</span>
+    </div>
+  </section>
+
+  <!-- COMPLETION TRIGGERS -->
+  <section class="section" id="triggers">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <h2>What Marks Each Material Complete</h2>
+      <span class="section-num">Section 2</span>
+    </div>
+    <p class="lead">Each material type completes on a different event. If that event never fires, the material &mdash; and therefore the course &mdash; stays open.</p>
+    <table class="tbl">
+      <thead><tr><th style="width:26%">Material type</th><th>Marked complete when&hellip;</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SCORM</strong></td><td>The package sends a completion/passed status. The learner <strong>must press Close / Exit / Submit</strong> inside the content so the status is recorded. Completion rules live <em>inside the package</em> (e.g. all slides viewed, or quiz passed).</td></tr>
+        <tr><td><strong>xAPI (Tin Can)</strong></td><td>Depends on the <strong>Track all activities</strong> setting. <em>On</em> (default): completing the first module completes the whole package. <em>Off</em>: every module must be completed.</td></tr>
+        <tr><td><strong>Video</strong></td><td>Reaching 15 seconds before the end (if longer than 150s), or 90% of the way through (if shorter than 150s).</td></tr>
+        <tr><td><strong>Test / Quiz</strong></td><td>The learner presses <strong>Submit (Test completed)</strong>. A minimum passing score, if set, must also be met.</td></tr>
+        <tr><td><strong>Survey</strong></td><td>The learner clicks <strong>Submit</strong>.</td></tr>
+        <tr><td><strong>Slides</strong></td><td>The <strong>last slide</strong> is viewed.</td></tr>
+        <tr><td><strong>HTML page</strong></td><td>The learner opens the page.</td></tr>
+        <tr><td><strong>File</strong></td><td>The file is actually <strong>downloaded</strong> from the platform.</td></tr>
+        <tr><td><strong>LTI</strong></td><td>Either when opened, <em>or</em> after the external tool returns feedback &mdash; per the LTI Completion setting. If the tool can&rsquo;t send feedback, it can <strong>never</strong> complete.</td></tr>
+        <tr><td><strong>Observation checklist</strong></td><td><em>Upon Conclusion</em>: when the checklist is sent (and approved, if approval is required). <em>Upon Sending</em>: when the checklist is sent to the observer.</td></tr>
+        <tr><td><strong>Assignment</strong></td><td>The instructor evaluates it and marks it complete.</td></tr>
+        <tr><td><strong>Google Drive</strong></td><td>The Google Drive file loads (requires the integration).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- WHY IT GETS STUCK -->
+  <section class="section" id="causes">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h2>Why a Course Gets Stuck &mdash; Training Material Causes</h2>
+      <span class="section-num">Section 3</span>
+    </div>
+    <p class="lead">When the on-screen content says &ldquo;done&rdquo; but Docebo says In Progress, it&rsquo;s almost always one of these material-setting causes.</p>
+    <div class="cause"><h4>The package never sent completion</h4><p>The most common case: the learner closed the browser/tab instead of pressing the package&rsquo;s Close / Exit / Submit button, so SCORM/xAPI never reported back. Session timeouts, dropped connectivity, pop-up blockers, disabled cookies, and Safari are frequent culprits.</p></div>
+    <div class="cause"><h4>The package&rsquo;s internal completion rule wasn&rsquo;t met</h4><p>Completion criteria are set <em>inside</em> the SCORM/Rise/Storyline file (e.g. &ldquo;all slides viewed&rdquo; while a free-navigation menu let the learner skip to the end, or &ldquo;quiz passed&rdquo; that wasn&rsquo;t actually passed). Docebo only reflects what the package reports.</p></div>
+    <div class="cause"><h4>xAPI &ldquo;Track all activities&rdquo; mismatch</h4><p>For multi-module / stacked xAPI content, if <em>Track all activities</em> is off, the learner must finish <strong>every</strong> sub-module. If your sequencing assumes one completion statement, the course hangs after a single module.</p></div>
+    <div class="cause"><h4>No End Object Marker on a mixed course</h4><p>If the course has optional materials and no end object marker, the course can only complete when <strong>all</strong> materials are done &mdash; including ones you intended as optional.</p></div>
+    <div class="cause"><h4>A required material can never complete by design</h4><p>An LTI set to require external feedback from a tool that doesn&rsquo;t send it; a test never submitted; a video the learner scrubbed but didn&rsquo;t watch to threshold; a file never downloaded. The material type&rsquo;s trigger simply never fires.</p></div>
+    <div class="cause"><h4>A prerequisite / navigation policy is locking a material</h4><p>A padlock icon means another material must be completed first. If the prerequisite is itself stuck (or the order is wrong), later materials stay locked and the course can&rsquo;t finish.</p></div>
+    <div class="cause"><h4>Hidden material that some learners needed</h4><p>You hid a material to retire it, but learners who had <em>started but not completed</em> it before it was hidden may still be calculated against the old requirement set differently than brand-new learners &mdash; producing inconsistent stuck states.</p></div>
+    <div class="cause"><h4>A material was edited after learners started</h4><p>Modifying any material while a learner is In Progress or Not Started forces them to restart <em>that</em> material from the beginning, which can silently reset progress and re-open the course.</p></div>
+    <div class="cause"><h4>Central Repository shared-tracking surprise</h4><p>A material reused from the Central Repository shares tracking across every course it appears in. A reset (or incomplete) in one place ripples to others, which can leave a course unexpectedly open.</p></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg></div>
+      <h2>FAQ &amp; Fixes</h2>
+      <span class="section-num">Section 4</span>
+    </div>
+    <p class="lead">Click any question to expand. These are ordered roughly from &ldquo;check this first&rdquo; to deeper fixes.</p>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>A learner says they finished, but the course still shows In Progress. What do I check first?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Find out <strong>which material</strong> is blocking before changing anything:</p>
+        <ol>
+          <li>Open <strong>Course management</strong> &rsaquo; the course &rsaquo; <strong>Reports</strong> tab.</li>
+          <li>Go to <strong>User statistics</strong> and click the learner&rsquo;s name.</li>
+          <li>Scroll to the material list and find the one that is <span class="pill orange">yellow</span> (started, not complete) or <span class="pill navy">grey</span> (not started).</li>
+        </ol>
+        <p>That material&rsquo;s type and status tells you which fix below applies. If <em>all</em> materials are green but the course is still open, suspect an End Object Marker / hidden-material edge case or a shared-tracking reset.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>The SCORM/Rise content showed a completion screen, but Docebo never registered it. Why?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>The package finished but never <strong>sent its status back to the LMS</strong>. This is a communication break, not usually a config error. Common triggers:</p>
+        <ul>
+          <li>The learner closed the tab/window instead of pressing the package&rsquo;s <strong>Close / Exit / Submit</strong> button.</li>
+          <li>The browser session timed out mid-course, or connectivity dropped.</li>
+          <li>Pop-up blocker, disabled third-party cookies, or Safari blocking the SCORM calls.</li>
+          <li>Taken on a phone&rsquo;s mobile browser instead of the Go.learn app.</li>
+        </ul>
+        <p><strong>Fix:</strong> have the learner redo it on a desktop/laptop in Chrome with cookies enabled, in a single sitting, pressing Exit at the end &mdash; or, if redoing isn&rsquo;t practical and you&rsquo;ve verified the package is sound, <strong>manually mark them complete</strong> (see Admin Actions).</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>The course has optional materials and I only want one to count. How do I make that work?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Set the material that should finish the course as an <strong>End Object Marker</strong> in its training material settings. Completing it marks the whole course complete, regardless of the optional materials.</p>
+        <p><strong>Important:</strong> the End Object Marker is <em>not retroactive</em> &mdash; it only affects learners going forward. Learners already stuck will need a manual completion or a redo after you set it.</p>
+        <p><strong>Tip:</strong> you can set two markers to build a &ldquo;test-out&rdquo; path &mdash; pass the first test and you&rsquo;re done; fail it and you must complete more material and pass a second.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>A multi-module xAPI course hangs after the learner finishes a module. What setting causes that?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Check the <strong>Track all activities</strong> toggle on the xAPI material&rsquo;s settings (Course management &rsaquo; course &rsaquo; Training material &rsaquo; the xAPI object &rsaquo; Settings).</p>
+        <ul>
+          <li><strong>On</strong> (default): completing the first module completes the whole package &mdash; good for single-statement content.</li>
+          <li><strong>Off</strong>: the learner must complete <em>every</em> sub-activity. If they stop after one, the material stays open.</li>
+        </ul>
+        <p>Match the toggle to how the package was authored. Intermittent hangs for only some users usually point to network latency or browser session conflicts rather than the toggle itself.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>One material can never be checked off &mdash; it stays yellow no matter what. Why?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>The material&rsquo;s completion event isn&rsquo;t reachable. Match the type to its trigger:</p>
+        <ul>
+          <li><strong>LTI</strong> set to &ldquo;after external feedback&rdquo; but the tool doesn&rsquo;t send feedback &mdash; switch it to complete &ldquo;when opened,&rdquo; or fix the tool.</li>
+          <li><strong>Test</strong> never <em>submitted</em>, or a minimum passing score not met.</li>
+          <li><strong>Video</strong> scrubbed to the end rather than watched to the 90% / last-15-seconds threshold.</li>
+          <li><strong>File</strong> opened in preview but never <em>downloaded</em>.</li>
+        </ul>
+        <p>Adjust the material&rsquo;s completion setting to a reachable trigger, then have the learner redo just that material.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>A material shows a padlock and the learner can&rsquo;t open it. Is that the blocker?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Yes &mdash; a padlock means a <strong>prerequisite / navigation policy</strong> requires an earlier material to be completed first. If the prerequisite is itself stuck, everything after it stays locked and the course can&rsquo;t finish.</p>
+        <p><strong>Fix:</strong> resolve the prerequisite material first (complete or reset it), or review the course&rsquo;s navigation policy / prerequisites to confirm the order is what you intend.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>I hid a material and now some learners can&rsquo;t complete. What happened?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Hidden material is <strong>not counted</strong> toward completion for learners who never viewed it &mdash; but it <em>still counts</em> for anyone who completed it before you hid it. That split can leave a subset of learners measured against a different requirement set.</p>
+        <p><strong>Fix:</strong> prefer hiding over deleting (deleting wipes tracking data), and after hiding a material, spot-check stuck learners in User statistics. Use an End Object Marker on a stable material to make completion independent of retired content.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>After I edited a material, learners dropped back to In Progress. Is that expected?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Yes. If a learner is <strong>In Progress or Not Started</strong> and you modify any material in the course, they must restart <em>that</em> material from the beginning. Learners who had already <strong>completed</strong> the material keep their Completed status.</p>
+        <p><strong>Fix:</strong> make content edits during a maintenance window, communicate to in-flight learners, and avoid editing materials mid-rollout.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>How do I just mark the learner complete, and does it fix the material status too?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Manually set the enrollment to Completed: <strong>Course management &rsaquo; course &rsaquo; Enrollment tab &rsaquo;</strong> change the learner&rsquo;s status to <strong>Completed</strong>.</p>
+        <p><strong>Caveat:</strong> this completes the <em>course</em> only. Any material the learner didn&rsquo;t finish <strong>stays marked incomplete</strong> in the material-level report. That&rsquo;s usually fine for a one-off, but it means your material-level analytics won&rsquo;t reflect a clean finish.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>How do I reset a material so the learner can redo it cleanly?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <ol>
+          <li>Course <strong>Reports &rsaquo; User statistics &rsaquo;</strong> click the learner.</li>
+          <li>Find the material and click the <strong>X</strong> in the <strong>Reset</strong> column, then confirm.</li>
+        </ol>
+        <p><strong>Caution:</strong> if that material is shared via the <strong>Central Repository</strong>, the reset applies to <em>every</em> course where it&rsquo;s used for that learner &mdash; check before resetting. (Instructors can always reset tracking for courses they manage.)</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Dozens of learners are stuck on the same course. Is there a bulk fix?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>First decide whether the root cause is fixable (package rule, Track-all-activities, missing End Object Marker) &mdash; fixing the setting and asking learners to redo is cleaner than mass-completing over a real gap.</p>
+        <p>If a bulk completion is warranted (e.g. a confirmed reporting break on sound content), the LAT toolkit&rsquo;s <code>bulk_complete.py</code> pattern enrolls and marks a CSV of learners complete with a set date via the Docebo enrollment API &mdash; the same approach used to complete 215 users in course 2483 with zero failures. Always confirm the underlying content is sound before bulk-completing, and keep an audit file of who was changed.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ADMIN ACTIONS -->
+  <section class="section" id="admin">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+      <h2>Admin Actions at a Glance</h2>
+      <span class="section-num">Section 5</span>
+    </div>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Diagnose</strong><span>Course &rsaquo; <em>Reports &rsaquo; User statistics &rsaquo;</em> learner &rsaquo; material list. Identify the non-green material and its type.</span></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Fix the setting (preferred)</strong><span>Adjust the blocking material&rsquo;s completion setting, Track-all-activities toggle, prerequisite, or add an <em>End Object Marker</em> &mdash; then have the learner redo just that material.</span></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Reset a material</strong><span>Course &rsaquo; <em>Reports &rsaquo; User statistics &rsaquo;</em> learner &rsaquo; <strong>X</strong> in the Reset column. Watch for Central Repository shared tracking.</span></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Manually complete (last resort)</strong><span>Course &rsaquo; <em>Enrollment</em> tab &rsaquo; set status to <strong>Completed</strong>. Remember unfinished materials remain incomplete at the material level.</span></div></li>
+      <li><div class="step-num">5</div><div class="step-body"><strong>Bulk remediate</strong><span>For confirmed reporting breaks on sound content, use the <code>bulk_complete.py</code> toolkit pattern with an audit file.</span></div></li>
+    </ol>
+  </section>
+
+  <!-- PREVENTION -->
+  <section class="section" id="prevent">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h2>Prevention &amp; Best Practices</h2>
+      <span class="section-num">Section 6</span>
+    </div>
+    <div class="callout tip">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span><strong>Use one &ldquo;key&rdquo; learning object as the End Object Marker.</strong> Let it be the single thing that completes the course; track everything else for progress. This makes completion predictable and trivial to troubleshoot.</span>
+    </div>
+    <ul style="list-style:none;padding-left:0;margin-top:4px">
+      <li class="cause" style="border-left-color:var(--green-deep)"><h4>Author USIC content as SCORM 1.2 or SCORM 2004 3rd Edition</h4><p>These are the supported, stable standards on USIC Academy. Test the exact package in a sandbox course before publishing, end to end, to confirm it reports completion.</p></li>
+      <li class="cause" style="border-left-color:var(--green-deep)"><h4>Set the package&rsquo;s internal completion rule deliberately</h4><p>In Storyline/Rise, confirm the tracking trigger (e.g. complete when course-complete, not &ldquo;all slides viewed&rdquo; on a free-navigation menu). Docebo can only reflect what the package reports.</p></li>
+      <li class="cause" style="border-left-color:var(--green-deep)"><h4>Tell learners how to finish cleanly</h4><p>Always press <strong>Exit / Close / Submit</strong>; use Chrome on a desktop; enable cookies; allow pop-ups; complete in one sitting; on mobile use the Go.learn app. Add a short note to enrollment emails.</p></li>
+      <li class="cause" style="border-left-color:var(--green-deep)"><h4>Break long content into chunks</h4><p>Large 1&ndash;2 hour packages are more prone to session timeouts and bookmark loss. Smaller modules reduce stuck-completion risk.</p></li>
+      <li class="cause" style="border-left-color:var(--green-deep)"><h4>Freeze content during rollout</h4><p>Avoid editing materials while learners are in progress &mdash; edits restart that material for anyone not yet complete.</p></li>
+    </ul>
+  </section>
+
+  <!-- QUICK REFERENCE -->
+  <section class="section" id="reference">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <h2>Quick Reference</h2>
+      <span class="section-num">Section 7</span>
+    </div>
+    <table class="tbl">
+      <thead><tr><th style="width:40%">Symptom</th><th>First move</th></tr></thead>
+      <tbody>
+        <tr><td>Course In Progress, content showed complete</td><td>User statistics &rarr; find the non-green material; likely SCORM didn&rsquo;t send (redo + press Exit, or manual complete).</td></tr>
+        <tr><td>One material never checks off</td><td>Match material type to its completion trigger; fix the setting to a reachable one.</td></tr>
+        <tr><td>Optional materials block completion</td><td>Set an <strong>End Object Marker</strong> on the key material (not retroactive).</td></tr>
+        <tr><td>xAPI hangs after one module</td><td>Check <strong>Track all activities</strong> on the xAPI object.</td></tr>
+        <tr><td>Material shows a padlock</td><td>Resolve the prerequisite / fix the navigation policy order.</td></tr>
+        <tr><td>Stuck after an edit</td><td>Expected &mdash; editing restarts that material for in-progress learners.</td></tr>
+        <tr><td>Need a clean redo</td><td>Reset the material in User statistics (mind Central Repository sharing).</td></tr>
+        <tr><td>Just need it closed</td><td>Enrollment tab &rarr; status Completed (materials stay incomplete).</td></tr>
+        <tr><td>Many learners stuck</td><td>Fix the root setting, or bulk-complete via <code>bulk_complete.py</code> with an audit file.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span>Still stuck after checking the material settings? It&rsquo;s likely a learner-side communication break (browser, cookies, connectivity). Capture a short screen recording of the completion not registering and raise it with the LAT team at <code>learningalerts@usicllc.com</code>.</span>
+    </div>
+  </section>
+
+</div>
+
+<div class="page-footer">
+  <span>USIC Academy &nbsp;<span class="foot-star">&#9733;</span>&nbsp; Learning Analytics &amp; Technology</span>
+  <span><strong>Course Stuck In Progress &mdash; Training Material FAQ</strong> &middot; v1.0 &middot; June 2026</span>
+  <span>Owner: Matthew McKay &middot; <a href="mailto:learningalerts@usicllc.com">learningalerts@usicllc.com</a></span>
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){ q.parentElement.classList.toggle('open'); });
+  });
+
+  // Smooth scroll + active nav
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sticky-nav a'));
+    var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); });
+    links.forEach(function(l){
+      l.addEventListener('click', function(e){
+        var t = document.querySelector(l.getAttribute('href'));
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+    function onScroll(){
+      var pos = window.scrollY + 90, current = sections[0];
+      for(var i=0;i<sections.length;i++){ if(sections[i] && sections[i].offsetTop <= pos){ current = sections[i]; } }
+      links.forEach(function(l){ l.classList.toggle('active', current && l.getAttribute('href') === '#'+current.id); });
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
