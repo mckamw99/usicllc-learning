@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SCORM &amp; Tin Can Troubleshooting — Rise &amp; Storyline — USIC Academy</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#00305B; --navy-deep:#00264a; --navy-mid:#1a4775;
+    --green:#94C83D; --green-deep:#6f9e26; --green-lt:#eef6dd;
+    --orange:#F16621; --orange-lt:#fde7da;
+    --gray-900:#191616; --gray-700:#3f4448; --gray-600:#5b6066;
+    --gray-400:#9aa0a6; --gray-300:#c7cbd0; --gray-200:#e3e6e9;
+    --gray-100:#eef1f4; --gray-50:#f6f8fa; --white:#ffffff; --navy-tint:#e9eff5;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,48,91,.08),0 1px 2px rgba(0,48,91,.05);
+    --shadow-md:0 6px 18px rgba(0,48,91,.10);
+  }
+  body{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;font-size:15px;}
+
+  .logo-bar{background:var(--navy);padding:10px 40px;display:flex;align-items:center;gap:12px;}
+  .logo-bar img{height:30px;width:auto;display:block;}
+  .logo-bar .logo-text{color:var(--white);font-size:15px;font-weight:700;}
+  .logo-bar .logo-sub{color:rgba(255,255,255,.55);font-size:13px;margin-left:2px;}
+
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:52px 40px 46px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-70px;right:-50px;width:280px;height:280px;border-radius:50%;background:rgba(148,200,61,.08);}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:120px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.04);}
+  .hero-inner{max-width:860px;position:relative;z-index:1;}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(148,200,61,.18);border:1px solid rgba(148,200,61,.45);color:#e2f3c4;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;}
+  .hero h1{font-family:"Arial Narrow",Arial,sans-serif;font-size:38px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.18;}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:660px;line-height:1.6;}
+  .hero-meta{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap;}
+  .meta-pill{font-size:12px;color:rgba(255,255,255,.85);background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);padding:4px 11px;border-radius:20px;}
+
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px;}
+  .sticky-nav ul{display:flex;list-style:none;overflow-x:auto;scrollbar-width:none;}
+  .sticky-nav ul::-webkit-scrollbar{display:none;}
+  .sticky-nav a{display:block;padding:14px 15px;font-size:13px;font-weight:700;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+  .sticky-nav a:hover{color:var(--navy);}
+  .sticky-nav a.active{color:var(--navy);border-bottom-color:var(--green);}
+
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px;}
+  .section{margin-bottom:48px;scroll-margin-top:64px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--gray-200);}
+  .section-icon{width:38px;height:38px;border-radius:var(--radius);background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-icon svg{width:19px;height:19px;color:var(--white);}
+  .section-header h2{font-family:"Arial Narrow",Arial,sans-serif;font-size:23px;font-weight:700;color:var(--navy);}
+  .section-header .section-num{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.08em;margin-left:auto;}
+  p.lead{color:var(--gray-700);margin-bottom:16px;}
+  .section p{margin-bottom:12px;color:var(--gray-700);}
+  .section p:last-child{margin-bottom:0;}
+
+  .callout{border-radius:var(--radius);padding:14px 16px;font-size:14px;line-height:1.6;margin:16px 0;display:flex;gap:11px;align-items:flex-start;}
+  .callout-icon{flex-shrink:0;margin-top:1px;}
+  .callout-icon svg{width:17px;height:17px;}
+  .callout strong{font-weight:700;}
+  .callout.info{background:var(--navy-tint);color:#143a5e;border-left:3px solid var(--navy);}
+  .callout.tip{background:var(--green-lt);color:#3d5314;border-left:3px solid var(--green-deep);}
+  .callout.warning{background:var(--orange-lt);color:#8a3309;border-left:3px solid var(--orange);}
+
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;}
+  .tbl th{text-align:left;padding:10px 14px;background:var(--navy);color:rgba(255,255,255,.92);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .tbl td{padding:11px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl tr:hover td{background:var(--gray-50);}
+  .tbl td strong{color:var(--navy);}
+  code{font-family:"Courier New",monospace;font-size:12.5px;background:var(--gray-100);padding:1px 6px;border-radius:4px;color:var(--navy);}
+  .tbl code{background:var(--gray-100);}
+
+  .cause{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--orange);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;}
+  .cause.good{border-left-color:var(--green-deep);}
+  .cause h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+  .cause p{font-size:13.5px;color:var(--gray-600);line-height:1.55;margin:0;}
+  .cause p+p{margin-top:6px;}
+
+  .recipe{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;margin-bottom:14px;}
+  .recipe-head{background:var(--navy);color:var(--white);padding:11px 16px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:9px;}
+  .recipe-head .tool{margin-left:auto;font-size:11px;font-weight:700;background:rgba(148,200,61,.25);color:#cfe9a3;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;}
+  .recipe-body{padding:6px 0;}
+  .recipe-row{display:flex;gap:12px;padding:9px 16px;border-bottom:1px solid var(--gray-100);font-size:13.5px;}
+  .recipe-row:last-child{border-bottom:none;}
+  .recipe-row .k{flex:0 0 150px;color:var(--gray-500);font-weight:700;color:var(--gray-600);}
+  .recipe-row .v{color:var(--gray-800);}
+  .recipe-row .v strong{color:var(--navy);}
+
+  .steps{list-style:none;}
+  .steps>li{display:grid;grid-template-columns:34px 1fr;gap:13px;margin-bottom:12px;align-items:start;}
+  .step-check{width:34px;height:34px;border-radius:8px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .step-check svg{width:17px;height:17px;color:var(--green-deep);}
+  .step-body strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gray-900);}
+  .step-body span{font-size:13.5px;color:var(--gray-700);line-height:1.6;}
+  .step-body em{color:var(--navy);font-style:normal;font-weight:700;}
+
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+  .pill.navy{background:var(--navy-tint);color:var(--navy);}
+  .pill.green{background:var(--green-lt);color:var(--green-deep);}
+  .pill.orange{background:var(--orange-lt);color:#a83e0e;}
+
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.6);padding:24px 40px;display:flex;align-items:center;justify-content:space-between;font-size:12px;gap:16px;flex-wrap:wrap;}
+  .page-footer strong{color:rgba(255,255,255,.9);}
+  .page-footer .foot-star{color:var(--green);font-weight:700;}
+  .page-footer a{color:rgba(255,255,255,.6);text-decoration:none;}
+  .page-footer a:hover{color:var(--white);}
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <img src="https://raw.githubusercontent.com/mckamw99/usicllc-learning/main/usic_academy_logo.png" alt="USIC Academy"/>
+  <span class="logo-text">USIC Academy</span>
+  <span class="logo-sub">/ LMS &middot; Authoring &amp; Tracking Guide</span>
+</div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">SCORM &amp; Tin Can Deep Dive</div>
+  <h1>Completion Tracking for Rise &amp; Storyline</h1>
+  <p>Why SCORM and Tin Can (xAPI) packages built in Articulate Rise and Storyline get stuck in Docebo &mdash; and how to publish them so completion reports cleanly every time. The fix is almost always made at <em>publish</em> time, not in the LMS.</p>
+  <div class="hero-meta">
+    <span class="meta-pill">Platform: usic.training</span>
+    <span class="meta-pill">Last Updated: June 2026</span>
+    <span class="meta-pill">Version: 1.0</span>
+    <span class="meta-pill">Owner: Matthew McKay</span>
+  </div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#handshake" class="nav-link">The Handshake</a></li>
+  <li><a href="#standard" class="nav-link">Pick a Standard</a></li>
+  <li><a href="#reporting" class="nav-link">Reporting Options</a></li>
+  <li><a href="#mastery" class="nav-link">Mastery-Score Trap</a></li>
+  <li><a href="#storyline" class="nav-link">Storyline Settings</a></li>
+  <li><a href="#rise" class="nav-link">Rise Settings</a></li>
+  <li><a href="#failures" class="nav-link">Failure Modes</a></li>
+  <li><a href="#docebo" class="nav-link">Docebo-Side</a></li>
+  <li><a href="#recipes" class="nav-link">Publish Recipes</a></li>
+  <li><a href="#qc" class="nav-link">Pre-Publish QC</a></li>
+</ul></nav>
+
+<div class="page-content">
+
+  <!-- THE HANDSHAKE -->
+  <section class="section" id="handshake">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12l3 3 5-6"/><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div>
+      <h2>The Handshake: Who Decides &ldquo;Complete&rdquo;</h2>
+      <span class="section-num">Section 1</span>
+    </div>
+    <p class="lead">A SCORM or xAPI package is a self-contained program that reports its own status to the LMS. <strong>Docebo only displays what the package tells it.</strong> The rule that decides completion &mdash; view 90% of slides, pass a quiz, reach a trigger &mdash; is baked into the package when you publish from Rise or Storyline. So when a course won&rsquo;t flip to Completed, the cause is usually one of three things, in this order of likelihood:</p>
+    <div class="cause"><h4>1. The package never sent its status</h4><p>The learner closed the tab instead of pressing <strong>Exit / Close / Submit</strong>, a session timed out, or connectivity/cookies/Safari blocked the call. The completion exists on screen but never reached Docebo.</p></div>
+    <div class="cause"><h4>2. The package&rsquo;s internal completion rule wasn&rsquo;t actually met</h4><p>Tracking is set to &ldquo;slides viewed&rdquo; but a free-navigation menu let the learner skip the threshold; or it&rsquo;s set to &ldquo;quiz passed&rdquo; and they didn&rsquo;t pass; or a completion trigger sits on the wrong slide.</p></div>
+    <div class="cause"><h4>3. The reported status doesn&rsquo;t map to what Docebo expects</h4><p>The wrong reporting option or SCORM version is sending a status (e.g. <em>passed</em> vs <em>completed</em>) that the platform reads differently than intended &mdash; the mastery-score trap below is the classic example.</p></div>
+    <div class="callout tip">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span><strong>Golden rule:</strong> test every package in <strong>SCORM Cloud</strong> first (it&rsquo;s the industry-standard reference engine), then in a Docebo <strong>sandbox course</strong>, before publishing to learners. If it reports correctly in SCORM Cloud but not Docebo, the issue is platform-side; if it fails in both, it&rsquo;s the package.</span>
+    </div>
+  </section>
+
+  <!-- PICK A STANDARD -->
+  <section class="section" id="standard">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+      <h2>Pick the Right Standard for USIC Academy</h2>
+      <span class="section-num">Section 2</span>
+    </div>
+    <p class="lead">Both Rise and Storyline can publish to AICC, SCORM 1.2, SCORM 2004, xAPI (Tin Can), and cmi5. For USIC Academy the practical choices are SCORM 1.2, SCORM 2004 3rd Edition, or xAPI.</p>
+    <table class="tbl">
+      <thead><tr><th style="width:20%">Standard</th><th>Strengths</th><th>Weaknesses</th><th style="width:16%">USIC fit</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SCORM 1.2</strong></td><td>Lightweight, low bandwidth, widely compatible.</td><td>Single status value (LMS must interpret); limited suspend/bookmark data, so long courses lose progress; inconsistent completion vs success.</td><td><span class="pill orange">Short courses only</span></td></tr>
+        <tr><td><strong>SCORM 2004 3rd Ed.</strong></td><td>Separate completion &amp; success statuses; large suspend-data limit for reliable bookmarking on long packages.</td><td>More bandwidth; still subject to constant-communication fragility.</td><td><span class="pill green">Default for SCORM</span></td></tr>
+        <tr><td><strong>xAPI (Tin Can)</strong></td><td>Most robust completion/bookmarking; Docebo handles it natively (no separate LRS needed), keeping calls separate per user/course.</td><td>Multi-module packages need the right Docebo tracking toggle (see Section 8).</td><td><span class="pill green">Best for reliability</span></td></tr>
+      </tbody>
+    </table>
+    <div class="callout warning">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <span><strong>SCORM 2004 edition matters at USIC.</strong> USIC Academy supports <strong>SCORM 1.2 and SCORM 2004 3rd Edition</strong>. Although Articulate generally recommends 2004 <em>4th</em> Edition, publish USIC SCORM 2004 content as <strong>3rd Edition</strong> &mdash; 4th Edition has known stability issues on the platform. Avoid SCORM 1.2 for any course longer than a few minutes because of its bookmarking limits.</span>
+    </div>
+  </section>
+
+  <!-- REPORTING OPTIONS -->
+  <section class="section" id="reporting">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 4 3 5-7"/></svg></div>
+      <h2>Reporting Options &mdash; Completion vs Success</h2>
+      <span class="section-num">Section 3</span>
+    </div>
+    <p class="lead">In Rise (the <em>Reporting</em> dropdown) and Storyline (the <em>Reporting and Tracking</em> button) you choose one of four status pairs. <strong>Completion status</strong> answers &ldquo;did they finish?&rdquo;; <strong>success status</strong> answers &ldquo;did they pass?&rdquo;</p>
+    <table class="tbl">
+      <thead><tr><th style="width:28%">Reporting option</th><th>Behavior</th><th style="width:18%">Use when&hellip;</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Passed / Incomplete</strong> <span class="pill green">Recommended</span></td><td>Reports Passed on success, Incomplete until then. Most likely to record both statuses cleanly.</td><td>Completion-based courses</td></tr>
+        <tr><td><strong>Passed / Failed</strong> <span class="pill green">Recommended</span></td><td>Reports a pass/fail outcome. May show <em>Unknown</em> success until the learner finishes, then resolves.</td><td>Graded / quiz courses</td></tr>
+        <tr><td><strong>Completed / Incomplete</strong></td><td>Reports Completed/Incomplete only &mdash; no pass/fail. Beware the mastery-score trap on SCORM 1.2 with a quiz.</td><td>Ungraded completion</td></tr>
+        <tr><td><strong>Completed / Failed</strong></td><td>Less common; mixes completion with a fail outcome.</td><td>Rare</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span><strong>Why 1.2 is inconsistent:</strong> SCORM 1.2 carries a single status, so the LMS has to guess whether a value means &ldquo;completed&rdquo; or &ldquo;passed.&rdquo; SCORM 2004 carries completion and success separately, removing the guesswork &mdash; another reason to prefer 2004 3rd Edition or xAPI for anything graded.</span>
+    </div>
+  </section>
+
+  <!-- MASTERY SCORE TRAP -->
+  <section class="section" id="mastery">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h2>The Mastery-Score Trap (SCORM 1.2 + Quiz)</h2>
+      <span class="section-num">Section 4</span>
+    </div>
+    <p class="lead">This one catches everyone. When you publish a Rise or Storyline lesson <strong>that contains a quiz as SCORM 1.2</strong>, Articulate automatically inserts a <strong>mastery score</strong> into the package manifest. The SCORM spec then <em>requires</em> the LMS to override the status with pass/fail &mdash; so the course will <strong>never display &ldquo;Completed,&rdquo;</strong> even if you set the reporting option to Completed/Incomplete.</p>
+    <div class="callout warning">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      <span><strong>Symptom:</strong> a learner passes the quiz, but Docebo shows the course as still In Progress or only ever as Passed (never Completed), and your &ldquo;Completed&rdquo; reporting filter misses them.</span>
+    </div>
+    <div class="cause good"><h4>Fix</h4><p>Publish the quiz course as <strong>SCORM 2004 3rd Edition</strong> (separate completion &amp; success means the mastery score no longer forces an override of completion), and report as <strong>Passed/Failed</strong>. If you must stay on SCORM 1.2, treat <em>Passed</em> &mdash; not <em>Completed</em> &mdash; as your indicator of success, and set the Docebo course&rsquo;s expectations and reports accordingly.</p></div>
+  </section>
+
+  <!-- STORYLINE SETTINGS -->
+  <section class="section" id="storyline">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h2>Storyline: Reporting &amp; Tracking Settings</h2>
+      <span class="section-num">Section 5</span>
+    </div>
+    <p class="lead">In Storyline&rsquo;s publish dialog, the <strong>Reporting and Tracking</strong> button is where completion is decided. You can track by:</p>
+    <table class="tbl">
+      <thead><tr><th style="width:30%">Tracking method</th><th>What it means &amp; the catch</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Number of slides viewed (%)</strong></td><td>Completes when the learner views N slides. <span class="pill orange">Catch</span> if the menu allows free navigation, learners can skip to the end and either never hit the threshold or hit it without engaging.</td></tr>
+        <tr><td><strong>A quiz result</strong></td><td>Completes based on a Results slide score. The most reliable for graded content &mdash; sends real score/interaction data.</td></tr>
+        <tr><td><strong>A completion trigger (&ldquo;Using triggers&rdquo;)</strong></td><td>Completes when a <em>Complete course</em> trigger fires. <span class="pill orange">Catch</span> a single trigger sends no quiz/interaction data, and a recent SL360 behavior can cause it to fail to report if it&rsquo;s on the wrong slide.</td></tr>
+        <tr><td><strong>Multiple tracking methods</strong></td><td>SL360 can combine methods (e.g. complete when quiz passed <em>or</em> trigger fired). Useful but test carefully.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout tip">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span><strong>If a &ldquo;Complete course&rdquo; trigger isn&rsquo;t reporting:</strong> put the trigger on a <strong>Results slide</strong>, add a <strong>Submit Interaction</strong> trigger to that slide, and switch tracking to <strong>&ldquo;When the learner completes a quiz&rdquo;</strong> rather than &ldquo;Using triggers.&rdquo; This restores reliable reporting and sends interaction data.</span>
+    </div>
+    <div class="callout warning">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <span><strong>Don&rsquo;t complete on <code>timeline starts</code>.</strong> A &ldquo;complete course when timeline starts on slide 1&rdquo; trigger marks the course complete the instant it opens &mdash; learners get credit for doing nothing. Trigger completion at a genuine end point (Results slide / final slide timeline ends).</span>
+    </div>
+  </section>
+
+  <!-- RISE SETTINGS -->
+  <section class="section" id="rise">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+      <h2>Rise: Export &amp; Tracking Settings</h2>
+      <span class="section-num">Section 6</span>
+    </div>
+    <p class="lead">In Rise, <em>Publish &rsaquo; LMS</em> lets you choose the standard and a <strong>Tracking option</strong>. All content can be tracked by <strong>completion percentage</strong> or <strong>Storyline block</strong>; courses can also be tracked by <strong>quiz result</strong>.</p>
+    <div class="callout warning">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <span><strong>Rise makes you choose one or the other.</strong> A single Rise package can track <em>either</em> completion percentage <em>or</em> quiz result &mdash; not both. The LMS reads the whole Rise course as one object, so you can&rsquo;t capture per-lesson quiz scores from a single SCORM package. If you need a graded score, track by <strong>quiz result</strong>; if you only need a finish, track by <strong>completion percentage</strong>.</span>
+    </div>
+    <p>Three options in Rise&rsquo;s <strong>More settings</strong> menu solve less-common stuck states:</p>
+    <div class="cause"><h4>Reset Learner Progress</h4><p>If you delete a lesson and re-upload the course, some learners may see a blank page. Toggle this on so their progress resets cleanly on next launch (quiz data is retained).</p></div>
+    <div class="cause"><h4>Hide LMS Interface</h4><p>SCORM 2004 exports can show duplicate Suspend/Continue/Close buttons. Toggle this to hide the extras.</p></div>
+    <div class="cause"><h4>Only Load in LMS</h4><p>Allows extra windows outside the training &mdash; but note that quiz and completion tracking <strong>won&rsquo;t work</strong> in those additional windows, which can look like a stuck completion.</p></div>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span>Rise SCORM 1.2 packages with <em>Restrict Navigation</em> have been reported to occasionally skip lessons and lose progress on long courses. Prefer SCORM 2004 3rd Edition or xAPI for multi-lesson Rise courses.</span>
+    </div>
+  </section>
+
+  <!-- FAILURE MODES -->
+  <section class="section" id="failures">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+      <h2>Failure Modes &rarr; Fixes</h2>
+      <span class="section-num">Section 7</span>
+    </div>
+    <table class="tbl">
+      <thead><tr><th style="width:34%">Symptom in Docebo</th><th>Most likely cause &amp; fix</th></tr></thead>
+      <tbody>
+        <tr><td>Finished on screen, still In Progress</td><td>Status never sent. Learner must press <strong>Exit/Close/Submit</strong>; redo on desktop Chrome with cookies on; or manually complete if content is verified sound.</td></tr>
+        <tr><td>Completes the instant it opens</td><td>Storyline completion trigger on <code>timeline starts</code> of an early slide. Move completion to a genuine end point / Results slide.</td></tr>
+        <tr><td>Quiz passed but never &ldquo;Completed&rdquo;</td><td>SCORM 1.2 mastery-score trap. Republish as SCORM 2004 3rd Ed, Passed/Failed.</td></tr>
+        <tr><td>Resume sends learner back to the start</td><td>Suspend/bookmark data not saved &mdash; SCORM 1.2 limits on long courses, or connectivity. Move to SCORM 2004 3rd Ed / xAPI; chunk long courses.</td></tr>
+        <tr><td>Some lessons skipped / progress lost</td><td>Rise SCORM 1.2 + Restrict Navigation, or session timeout. Switch standard; break into smaller modules.</td></tr>
+        <tr><td>Score not recorded, only complete/incomplete</td><td>Rise tracked by completion %, not quiz result &mdash; or LMS reads the package as one object. Re-export tracking by quiz result.</td></tr>
+        <tr><td>xAPI hangs after one module</td><td>Docebo <em>Track all activities</em> is off for a multi-module package. See Section 8.</td></tr>
+        <tr><td>Works for some learners, not others</td><td>Learner-side: Safari, disabled cookies, pop-up blocker, VPN dropping tracking cookies, mobile browser instead of Go.learn. Standardize on desktop Chrome.</td></tr>
+        <tr><td>Was completing, broke after a content update</td><td>A SCO was edited &ldquo;in flight.&rdquo; Avoid editing published packages mid-rollout; republish and reset progress in a maintenance window.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- DOCEBO SIDE -->
+  <section class="section" id="docebo">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+      <h2>The Docebo-Side Settings That Interact</h2>
+      <span class="section-num">Section 8</span>
+    </div>
+    <div class="cause good"><h4>xAPI &ldquo;Track all activities&rdquo; toggle</h4><p>On the xAPI training material&rsquo;s settings (Course management &rsaquo; course &rsaquo; Training material &rsaquo; the xAPI object &rsaquo; Settings). <strong>On</strong> (default): completing the first activity completes the whole package &mdash; right for a single Rise/Storyline export with one completion statement. <strong>Off</strong>: every sub-activity must be completed. Match it to how the package was authored.</p></div>
+    <div class="cause good"><h4>End Object Marker</h4><p>Set the Rise/Storyline package as the course&rsquo;s end object marker so completing it marks the whole Docebo course complete, independent of any optional materials. Not retroactive.</p></div>
+    <div class="cause good"><h4>Reset tracking / Manual completion</h4><p>For a clean redo, reset the material in <em>Reports &rsaquo; User statistics</em> (watch Central Repository sharing). For a confirmed reporting break on sound content, manually set the enrollment to Completed, or bulk-remediate via the <code>bulk_complete.py</code> toolkit pattern with an audit file.</p></div>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span>Remember the SCORM learner instruction: the package only records when the learner presses its own <strong>Close / Exit / Submit</strong> button. Build that button into the final slide/lesson and call it out in enrollment communications.</span>
+    </div>
+  </section>
+
+  <!-- PUBLISH RECIPES -->
+  <section class="section" id="recipes">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+      <h2>USIC Publish Recipes</h2>
+      <span class="section-num">Section 9</span>
+    </div>
+    <p class="lead">Known-good starting configurations. Always confirm against a sandbox course.</p>
+
+    <div class="recipe">
+      <div class="recipe-head">Rise course &mdash; completion only (no grade)<span class="tool">Rise</span></div>
+      <div class="recipe-body">
+        <div class="recipe-row"><span class="k">Standard</span><span class="v"><strong>SCORM 2004 3rd Edition</strong> (or xAPI for max reliability)</span></div>
+        <div class="recipe-row"><span class="k">Tracking</span><span class="v">Completion percentage (set the % you require)</span></div>
+        <div class="recipe-row"><span class="k">Reporting</span><span class="v">Passed / Incomplete</span></div>
+        <div class="recipe-row"><span class="k">Docebo</span><span class="v">Set as end object marker if optional content exists</span></div>
+      </div>
+    </div>
+
+    <div class="recipe">
+      <div class="recipe-head">Rise course &mdash; graded quiz drives completion<span class="tool">Rise</span></div>
+      <div class="recipe-body">
+        <div class="recipe-row"><span class="k">Standard</span><span class="v"><strong>SCORM 2004 3rd Edition</strong> (or xAPI)</span></div>
+        <div class="recipe-row"><span class="k">Tracking</span><span class="v">Quiz result (note: can&rsquo;t also track completion %)</span></div>
+        <div class="recipe-row"><span class="k">Reporting</span><span class="v">Passed / Failed</span></div>
+        <div class="recipe-row"><span class="k">Docebo</span><span class="v">Set minimum score expectations to match the quiz pass mark</span></div>
+      </div>
+    </div>
+
+    <div class="recipe">
+      <div class="recipe-head">Storyline &mdash; graded assessment<span class="tool">Storyline</span></div>
+      <div class="recipe-body">
+        <div class="recipe-row"><span class="k">Standard</span><span class="v"><strong>SCORM 2004 3rd Edition</strong> (or xAPI)</span></div>
+        <div class="recipe-row"><span class="k">Tracking</span><span class="v">When the learner completes a quiz (a Results slide)</span></div>
+        <div class="recipe-row"><span class="k">Reporting</span><span class="v">Passed / Failed</span></div>
+        <div class="recipe-row"><span class="k">Build</span><span class="v">Completion + Submit Interaction triggers on the Results slide; never complete on <code>timeline starts</code></span></div>
+      </div>
+    </div>
+
+    <div class="recipe">
+      <div class="recipe-head">Storyline &mdash; informational, no quiz<span class="tool">Storyline</span></div>
+      <div class="recipe-body">
+        <div class="recipe-row"><span class="k">Standard</span><span class="v"><strong>SCORM 2004 3rd Edition</strong></span></div>
+        <div class="recipe-row"><span class="k">Tracking</span><span class="v">Number of slides viewed (set the count), or a completion trigger on the final slide&rsquo;s <code>timeline ends</code></span></div>
+        <div class="recipe-row"><span class="k">Reporting</span><span class="v">Passed / Incomplete</span></div>
+        <div class="recipe-row"><span class="k">Build</span><span class="v">Disable free-skip navigation, or require the final slide before completion</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRE-PUBLISH QC -->
+  <section class="section" id="qc">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h2>Pre-Publish QC Checklist</h2>
+      <span class="section-num">Section 10</span>
+    </div>
+    <ol class="steps">
+      <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Confirm the standard &amp; edition</strong><span>SCORM 2004 <em>3rd</em> Edition (not 4th) for USIC, or xAPI. Avoid SCORM 1.2 for anything beyond a few minutes.</span></div></li>
+      <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Pick a deliberate tracking method</strong><span>Quiz result for graded; completion % / slide count for informational. Make sure the completion point is a real end of the content.</span></div></li>
+      <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Set reporting to Passed/Incomplete or Passed/Failed</strong><span>And remember the SCORM 1.2 + quiz mastery-score trap if you ever must use 1.2.</span></div></li>
+      <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Include a clear Exit/Submit step</strong><span>Build the final action that fires completion, and tell learners to use it.</span></div></li>
+      <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Test in SCORM Cloud</strong><span>Verify the status resolves to the expected completion/success before touching Docebo.</span></div></li>
+      <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Test in a Docebo sandbox course</strong><span>Confirm the Track-all-activities toggle (xAPI), end object marker, and that completion lands &mdash; on desktop Chrome.</span></div></li>
+      <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Freeze the package once live</strong><span>Don&rsquo;t edit a published SCO mid-rollout; schedule updates and reset progress in a maintenance window.</span></div></li>
+    </ol>
+    <div class="callout info">
+      <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+      <span>Package reports correctly in SCORM Cloud but not in Docebo? Capture a short screen recording and the SCORM Cloud comparison, then raise it with the LAT team at <code>learningalerts@usicllc.com</code>.</span>
+    </div>
+  </section>
+
+</div>
+
+<div class="page-footer">
+  <span>USIC Academy &nbsp;<span class="foot-star">&#9733;</span>&nbsp; Learning Analytics &amp; Technology</span>
+  <span><strong>SCORM &amp; Tin Can Troubleshooting &mdash; Rise &amp; Storyline</strong> &middot; v1.0 &middot; June 2026</span>
+  <span>Owner: Matthew McKay &middot; <a href="mailto:learningalerts@usicllc.com">learningalerts@usicllc.com</a></span>
+</div>
+
+<script>
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sticky-nav a'));
+    var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); });
+    links.forEach(function(l){
+      l.addEventListener('click', function(e){
+        var t = document.querySelector(l.getAttribute('href'));
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+    function onScroll(){
+      var pos = window.scrollY + 90, current = sections[0];
+      for(var i=0;i<sections.length;i++){ if(sections[i] && sections[i].offsetTop <= pos){ current = sections[i]; } }
+      links.forEach(function(l){ l.classList.toggle('active', current && l.getAttribute('href') === '#'+current.id); });
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
