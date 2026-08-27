@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power User Permissions — USIC Academy</title>
+<style>
+  :root{--navy:#00305B;--green:#94C83D;--orange:#F16621;--gray:#7F7C7F;--dark:#191616;--light:#F4F6F9;--border:#DDE3EA;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:#fff;line-height:1.55;}
+  .hero{background:var(--navy);color:#fff;padding:44px 32px 36px;}
+  .hero .inner{max-width:1180px;margin:0 auto;}
+  .hero h1{font-family:'Acumin Pro ExtraCondensed','Arial Narrow',Arial,sans-serif;font-size:2.3rem;letter-spacing:.5px;text-transform:uppercase;}
+  .hero .sub{color:var(--green);font-size:1.05rem;margin-top:6px;font-weight:bold;}
+  .hero .meta{color:#B9C6D6;font-size:.85rem;margin-top:14px;}
+  .layout{max-width:1180px;margin:0 auto;display:flex;gap:36px;padding:32px;}
+  nav.side{width:230px;flex-shrink:0;}
+  nav.side .box{position:sticky;top:24px;border:1px solid var(--border);border-radius:8px;padding:18px;}
+  nav.side h2{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:10px;}
+  nav.side a{display:block;padding:6px 8px;font-size:.86rem;color:var(--navy);text-decoration:none;border-radius:5px;}
+  nav.side a:hover{background:var(--light);}
+  nav.side a.active{background:var(--navy);color:#fff;}
+  main{flex:1;min-width:0;}
+  section{margin-bottom:44px;}
+  h2.sec{font-family:'Acumin Pro ExtraCondensed','Arial Narrow',Arial,sans-serif;color:var(--navy);font-size:1.55rem;text-transform:uppercase;letter-spacing:.5px;padding-bottom:8px;border-bottom:3px solid var(--green);margin-bottom:18px;}
+  h2.sec .num{color:var(--green);margin-right:8px;}
+  .banner{background:var(--light);border-left:5px solid var(--green);padding:16px 18px;border-radius:0 8px 8px 0;font-size:.92rem;margin-bottom:18px;}
+  .banner b{color:var(--navy);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+  .card{border:1px solid var(--border);border-radius:8px;padding:16px 18px;}
+  .card h3{color:var(--navy);font-size:1.02rem;margin-bottom:2px;}
+  .card .pid{color:var(--gray);font-size:.78rem;margin-bottom:8px;}
+  .card p{font-size:.86rem;color:#3a3a3a;}
+  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;}
+  table{border-collapse:collapse;width:100%;font-size:.82rem;}
+  th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;position:sticky;top:0;white-space:nowrap;}
+  td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;}
+  tbody tr:nth-child(even){background:var(--light);}
+  td:first-child{font-weight:bold;color:var(--navy);white-space:nowrap;}
+  .dash{color:#c4cbd3;}
+  .note{font-size:.82rem;color:var(--gray);font-style:italic;margin-top:12px;}
+  ul.findings{list-style:none;}
+  ul.findings li{padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:12px;align-items:flex-start;}
+  .badge{flex-shrink:0;display:inline-block;font-size:.68rem;font-weight:bold;letter-spacing:.5px;padding:3px 10px;border-radius:12px;color:#fff;margin-top:2px;}
+  .b-resolved{background:var(--green);color:var(--navy);}
+  .b-confirmed{background:var(--navy);}
+  .b-open{background:var(--orange);}
+  .b-tbv{background:var(--gray);}
+  footer{background:var(--navy);color:#B9C6D6;font-size:.8rem;padding:22px 32px;margin-top:20px;}
+  footer .inner{max-width:1180px;margin:0 auto;}
+  footer b{color:#fff;}
+  @media(max-width:860px){.layout{flex-direction:column;}nav.side{width:100%;}nav.side .box{position:static;}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="inner">
+    <h1>Power User Permissions</h1>
+    <div class="sub">USIC Academy &middot; Tenant-Verified Reference &middot; RACI Matrix v1.4 Companion</div>
+    <div class="meta">Learning Analytics &amp; Technology &nbsp;|&nbsp; Verified against usic.training and Docebo official documentation &mdash; August 13, 2026</div>
+  </div>
+</div>
+
+<div class="layout">
+<nav class="side">
+  <div class="box">
+    <h2>On this page</h2>
+    <a href="#about">01 &middot; About This Reference</a>
+    <a href="#profiles">02 &middot; Profile Summaries</a>
+    <a href="#grid">03 &middot; Permission Grid</a>
+    <a href="#findings">04 &middot; Findings &amp; Open Items</a>
+    <a href="#modules">05 &middot; Module Descriptions</a>
+  </div>
+</nav>
+<main>
+
+<section id="about">
+  <h2 class="sec"><span class="num">01</span>About This Reference</h2>
+  <div class="banner"><b>Tenant- and documentation-verified — August 13, 2026.</b> This reference was regenerated from the live permission screens of all six active Power User profiles in usic.training, then cross-checked against the official Docebo article <i>Power User permissions</i> (article 6463399445394, updated Aug 12, 2026). It supersedes the previous documentation-derived matrix, which diverged from tenant state for four of six profiles.</div>
+  <p style="font-size:.9rem;">Grid cells show the permissions granted as displayed on each profile's summary screen. Nested sub-permissions not visible on summary screens are marked <b>[TBV]</b> (to be verified). Companion documents: <i>USIC Academy Power User RACI Matrix v1.4</i> (includes the Docebo documentation cross-reference and action register A1&ndash;A13) and the <i>SOP Amendment Specification</i>. Action IDs referenced below (A1&ndash;A13) refer to the Action Register in RACI Matrix v1.4.</p>
+</section>
+
+<section id="profiles">
+  <h2 class="sec"><span class="num">02</span>Profile Summaries</h2>
+  <div class="cards">
+    <div class="card"><h3>Learning Management</h3><div class="pid">Profile ID 146911</div><p>Regional delivery operations. The enrollment powerhouse — create, edit, archive, activate, learner-only restriction, and learning-plan enrollment management. Full ILT session set including enrollment edits. Reports edit. Sole holder of Insights custom dashboard creation. View-only elsewhere. Sees invisible user fields. Per Docebo docs, Reports/Edit + Courses/View also allows editing training-material progress and evaluating assignments from the Training material statistics area.</p></div>
+    <div class="card"><h3>Program Manager</h3><div class="pid">Profile ID 146910</div><p>Broad edit-level management — course edit and evaluation, learning plan create/edit, enrollment create/edit/activate, manual groups, certificate edit, notification edit, checklists, reports edit, external training edit, training material library edit. Sole holder of Locations edit. View-only on catalogs, Channels, Insights, and menus. No image management, no Pages, no invisible-field access. Full assignment evaluation (Evaluation + Reports/Edit).</p></div>
+    <div class="card"><h3>Content Creator</h3><div class="pid">Profile ID 146912</div><p>The sole creator role — courses, catalogs, channels, notifications, pages, menus, and training materials (including folder management), plus image management and gamification badge management. Learning plan create/edit (shared with PM). Enrollment is create-only. Reports view-only: CC can set final course scores but cannot evaluate assignments (requires Reports/Edit). Sees invisible user fields.</p></div>
+    <div class="card"><h3>Compliance / Auditing</h3><div class="pid">Profile ID 127639</div><p>Read-only oversight across catalogs, certificates, sessions, courses, enrollments, Insights, and learning plans, plus Reports edit and invisible-field access for audit purposes. No create, edit, or activate rights anywhere else. Cannot assign users to learning plans (LP View grants no enrollment management per Docebo docs).</p></div>
+    <div class="card"><h3>Instructor</h3><div class="pid">Profile ID 146178</div><p>Own-session ILT delivery — create/edit sessions, enroll learners, edit session enrollments. Enrollment create/archive/activate (learner-only), no enrollment edit. Course Edit on assigned courses (see Open Items). Sole holder of Admin Dashboard view. Sees invisible user fields.</p></div>
+    <div class="card"><h3>Insights Viewer</h3><div class="pid">Profile ID 136239</div><p>Analytics-only — three permissions total: Courses View, Insights View, Users View.</p></div>
+  </div>
+</section>
+
+<section id="grid">
+  <h2 class="sec"><span class="num">03</span>Tenant-Verified Permission Grid</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Module</th><th>Learning Manager</th><th>Program Manager</th><th>Content Creator</th><th>Compliance</th><th>Instructor</th><th>Insights Viewer</th></tr></thead>
+    <tbody>
+      <tr><td>Course catalogs</td><td>View</td><td>View</td><td>Create, Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Certificates</td><td>View</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Channels</td><td class="dash">—</td><td>View</td><td>Create and manage, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Courses</td><td>View</td><td>Edit, View, Evaluation</td><td>Create, Edit, View, Evaluation</td><td>View</td><td>Edit, View</td><td>View</td></tr>
+      <tr><td>Dashboard</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Enrollment</td><td>Create, Edit, Archive, Can activate enrollments, Can only enroll learners, Manage LP enrollments, View</td><td>Create, Edit, Can activate enrollments, Manage LP enrollments, View</td><td>Create, Manage LP enrollments, View</td><td>View</td><td>Create, Archive, Can activate enrollments, Can only enroll learners, Manage LP enrollments, View</td><td class="dash">—</td></tr>
+      <tr><td>External training</td><td>View</td><td>Edit, View</td><td>Edit, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Gamification</td><td class="dash">—</td><td class="dash">—</td><td>Manage badges assigned to users</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Groups</td><td>View</td><td>Create manual groups, Edit manual groups, View</td><td class="dash">—</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>ILT sessions</td><td>Enroll users, Create, Edit, View, Edit enrollments</td><td>Enroll users, Create, Edit, View</td><td>Create, Edit, View</td><td>View</td><td>Enroll users, Create, Edit, View, Edit enrollments</td><td class="dash">—</td></tr>
+      <tr><td>Image management</td><td class="dash">—</td><td class="dash">—</td><td>Manage images, View and select images</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Insights</td><td>Create, View</td><td>View</td><td>View</td><td>View</td><td>View</td><td>View</td></tr>
+      <tr><td>Learning impact</td><td class="dash">—</td><td>Consolidated report</td><td>Consolidated report</td><td class="dash">—</td><td>Consolidated report</td><td class="dash">—</td></tr>
+      <tr><td>Learning plans</td><td>View</td><td>Create, Edit, View</td><td>Create, Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Locations</td><td>View</td><td>Edit, View</td><td>View</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Menus</td><td class="dash">—</td><td>View</td><td>Create and manage, Edit, Manage published menus, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Newsletter</td><td class="dash">—</td><td>View (= can send)</td><td>View (= can send)</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Notifications</td><td>View</td><td>Edit, View</td><td>Create, Edit, View</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Checklists</td><td class="dash">—</td><td>Manage checklists</td><td>Manage checklists</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Pages</td><td class="dash">—</td><td class="dash">—</td><td>Create and manage, Edit, Manage published pages, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Reports</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>Edit, View</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Training material library</td><td class="dash">—</td><td>Edit, View</td><td>Manage folders, Create, Edit, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Users</td><td>Can see fields invisible to the user, View</td><td>View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>View</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Modules present on no tenant profile: Webinar Sessions, Manager Power Users (the latter only exists when enabled in platform Advanced settings — the toggle is off). No profile holds any Delete permission on any module. Per Docebo documentation, two narrow exceptions are bundled into Create permissions: ILT Create includes deleting one's own created sessions, and Pages/Menus "Create and manage" includes deleting self-created unpublished items — both self-created content only, both [TBV] in tenant (Actions A7, A11). All other deletion is Superadmin-only by design.</p>
+</section>
+
+<section id="findings">
+  <h2 class="sec"><span class="num">04</span>Key Findings &amp; Open Items</h2>
+  <ul class="findings">
+    <li><span class="badge b-resolved">RESOLVED</span><span>Compliance is fully read-only on enrollment (previous matrix showed Create/Activate in error).</span></li>
+    <li><span class="badge b-resolved">RESOLVED</span><span>No profile holds Manager Power Users — Power User administration is Superadmin-only. Docebo docs confirm the module only exists when enabled in Advanced settings; the toggle is off (deliberate hardening).</span></li>
+    <li><span class="badge b-resolved">RESOLVED</span><span>CC evaluation scope: Courses/Evaluation alone permits setting final course scores and read-only assignment viewing; evaluating assignments requires Reports/Edit, which CC lacks. CC = final scores only; escalate to PM (full evaluation) or LM (material-progress edits via Reports/Edit + Courses/View).</span></li>
+    <li><span class="badge b-resolved">RESOLVED</span><span>LP View grants no enrollment management: it shows only the course list; managing enrolled users requires Enrollment/Manage LP enrollments. Compliance cannot assign users to learning plans.</span></li>
+    <li><span class="badge b-confirmed">CONFIRMED</span><span>All deletion is Superadmin-only, with the two documented self-created-content Create bundles noted above [TBV]. Treat as standing platform policy in any future profile change.</span></li>
+    <li><span class="badge b-confirmed">CONFIRMED</span><span>Manage LP enrollments (PM/LM/CC/Instructor) includes enroll, unenroll, validity, marking complete, and recalculation at LP level — broader than course-level enrollment Edit (LM/PM only). LP enrollment auto-enrolls users into member courses.</span></li>
+    <li><span class="badge b-open">OPEN</span><span>Instructor holds Courses Edit on assigned courses, including training materials — decide whether to bless (document in Instructor SOP) or revoke (Action A2).</span></li>
+    <li><span class="badge b-open">OPEN</span><span>Invisible-field visibility on CC, LM, Instructor, and Compliance (not PM/Insights). The exposure surface is reports and the User Personal Summary. Document the decision or revoke (Action A3).</span></li>
+    <li><span class="badge b-open">OPEN</span><span>Enrollment model: course-level Edit is LM/PM only; Archive sits on LM and Instructor; CC is create-only. LM and Instructor SOP enrollment sections require updates (Action A4).</span></li>
+    <li><span class="badge b-open">OPEN</span><span>Newsletter/View is defined by Docebo as "Can send newsletters" — PM and CC can send. Confirm intended (Action A10).</span></li>
+    <li><span class="badge b-tbv">TBV</span><span>Courses/Waiting subscription and issued-certificate-only scoping are nested sub-permissions not visible on summary screens (Action A8).</span></li>
+    <li><span class="badge b-tbv">TBV</span><span>Own-session delete bundle (Instructor test session, Action A7) and CC self-created unpublished page/menu delete (Action A11).</span></li>
+  </ul>
+</section>
+
+<section id="modules">
+  <h2 class="sec"><span class="num">05</span>Module Descriptions</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th style="width:220px;">Module</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Users</td><td>Manages user accounts: viewing, creating, editing, deleting users, user fields, activation, impersonation, and exporting user lists. Tenant profiles hold View only (plus invisible-field visibility on four profiles). View includes CSV/XLS export and the User Personal Summary.</td></tr>
+      <tr><td>Groups</td><td>Organizes users into groups for management and assignment. Manual vs. automatic group distinctions apply; only manual groups can be created/edited by Power Users. Groups/View is required to select groups when enrolling.</td></tr>
+      <tr><td>Courses</td><td>Course creation, viewing, editing, deletion, learner evaluation, waiting lists, training materials, and Question Bank access (via create/edit). Evaluation = set final course scores; assignment evaluation additionally requires Reports/Edit.</td></tr>
+      <tr><td>Learning Plans</td><td>Structured learning paths grouping courses. View shows the course list only; enrollment management requires Enrollment/Manage LP enrollments. Note: adding a course to a published learning plan auto-enrolls all current members immediately.</td></tr>
+      <tr><td>Enrollment</td><td>Enrolling users into courses and learning plans: view, create, edit, archive, activation, and learner-only restriction. Enrollment permissions also apply to the Power User's own account.</td></tr>
+      <tr><td>Course Catalogs</td><td>Organizes courses into catalogs for browsing and assignment: view, create, edit, delete.</td></tr>
+      <tr><td>Certificates</td><td>Certificates for course and learning plan completion: viewing, editing templates, and assignment, with optional issued-only scoping.</td></tr>
+      <tr><td>Notifications</td><td>System notifications for assigned resources: view, create, edit, delete. Power Users see only notifications whose trigger filters match their resource assignments.</td></tr>
+      <tr><td>ILT Sessions</td><td>Instructor-led training sessions: view, create, edit, session enrollment, and enrollment edits. Create bundles edit/enroll/delete for own-created sessions [TBV in tenant]; no profile holds the separate session Delete permission. Enroll users requires Enrollment View + Edit to work fully.</td></tr>
+      <tr><td>Locations</td><td>Physical and virtual training locations: viewing and editing assigned locations.</td></tr>
+      <tr><td>Observation Checklists</td><td>Creation and management of checklists; requires Users/View to create. Does not include checklist notifications.</td></tr>
+      <tr><td>Reports</td><td>Analytics and reporting: viewing and editing custom reports scoped to visibility rules. Edit + Courses/View also permits editing training-material progress and evaluating assignments from Training material statistics.</td></tr>
+      <tr><td>Newsletter</td><td>Newsletter/View is a send right: "Can send newsletters."</td></tr>
+      <tr><td>External Training</td><td>Tracking training completed outside the platform: viewing and editing records for assigned users, including CSV import and (if enabled) approval of user-reported activities.</td></tr>
+      <tr><td>Dashboard</td><td>Administrative overview dashboard scoped to assigned users and courses.</td></tr>
+      <tr><td>Learning Impact</td><td>Consolidated reports and results comparison on learning program effectiveness, scoped to visible users.</td></tr>
+      <tr><td>Image Management</td><td>Course thumbnails and images: managing and selecting images.</td></tr>
+      <tr><td>Gamification</td><td>Badges: manually assign/unassign to managed users; cannot edit badge details or automatic rules.</td></tr>
+      <tr><td>Training Material Library (Central Repository)</td><td>Stores and manages training materials including documents, images, and AI lessons: view, create, edit, delete, folder management. Material permissions include access to the Creator tool.</td></tr>
+      <tr><td>Insights</td><td>Analytics dashboards: viewing ready-to-use and shared dashboards and creating custom dashboards. Featured dashboards cannot be edited or deleted.</td></tr>
+      <tr><td>Channels</td><td>Content channels (custom channels only can be assigned as resource): viewing and creating/managing channels; content management limited to courses and learning plans, not informal assets.</td></tr>
+      <tr><td>Pages</td><td>Content pages: view, create, edit, publish/unpublish, and management of widgets and page assignments. Create and manage includes edit/delete of self-created unpublished pages.</td></tr>
+      <tr><td>Menus</td><td>Navigation menus: view, create, edit, publish/unpublish, and management of menu assignments and visibility. Create and manage includes edit/delete of self-created unpublished menus.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <div class="inner">
+    <b>USIC Academy — Power User Permissions Reference</b> &nbsp;|&nbsp; Companion to RACI Matrix v1.4 &nbsp;|&nbsp; Source: live tenant profile screens (usic.training, Aug 13, 2026) and Docebo "Power User permissions" article 6463399445394 (updated Aug 12, 2026). Confluence source page v7. Maintained by Learning Analytics &amp; Technology.
+  </div>
+</footer>
+
+<script>
+  const links=[...document.querySelectorAll('nav.side a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  const spy=()=>{let i=secs.length-1;for(let j=0;j<secs.length;j++){if(secs[j].getBoundingClientRect().top>90){i=Math.max(0,j-1);break;}}links.forEach((a,j)=>a.classList.toggle('active',j===i));};
+  document.addEventListener('scroll',spy,{passive:true});spy();
+</script>
+
+</body>
+</html>
