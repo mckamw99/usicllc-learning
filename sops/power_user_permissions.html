@@ -1,88 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Power User Permissions — USIC Academy</title>
-<style>
-  :root{--navy:#00305B;--green:#94C83D;--orange:#F16621;--gray:#7F7C7F;--dark:#191616;--light:#F4F6F9;--border:#DDE3EA;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:#fff;line-height:1.55;}
-  .hero{background:var(--navy);color:#fff;padding:44px 32px 36px;}
-  .hero .inner{max-width:1180px;margin:0 auto;}
-  .hero h1{font-family:'Acumin Pro ExtraCondensed','Arial Narrow',Arial,sans-serif;font-size:2.3rem;letter-spacing:.5px;text-transform:uppercase;}
-  .hero .sub{color:var(--green);font-size:1.05rem;margin-top:6px;font-weight:bold;}
-  .hero .meta{color:#B9C6D6;font-size:.85rem;margin-top:14px;}
-  .layout{max-width:1180px;margin:0 auto;display:flex;gap:36px;padding:32px;}
-  nav.side{width:230px;flex-shrink:0;}
-  nav.side .box{position:sticky;top:24px;border:1px solid var(--border);border-radius:8px;padding:18px;}
-  nav.side h2{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:10px;}
-  nav.side a{display:block;padding:6px 8px;font-size:.86rem;color:var(--navy);text-decoration:none;border-radius:5px;}
-  nav.side a:hover{background:var(--light);}
-  nav.side a.active{background:var(--navy);color:#fff;}
-  main{flex:1;min-width:0;}
-  section{margin-bottom:44px;}
-  h2.sec{font-family:'Acumin Pro ExtraCondensed','Arial Narrow',Arial,sans-serif;color:var(--navy);font-size:1.55rem;text-transform:uppercase;letter-spacing:.5px;padding-bottom:8px;border-bottom:3px solid var(--green);margin-bottom:18px;}
-  h2.sec .num{color:var(--green);margin-right:8px;}
-  .banner{background:var(--light);border-left:5px solid var(--green);padding:16px 18px;border-radius:0 8px 8px 0;font-size:.92rem;margin-bottom:18px;}
-  .banner b{color:var(--navy);}
-  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
-  .card{border:1px solid var(--border);border-radius:8px;padding:16px 18px;}
-  .card h3{color:var(--navy);font-size:1.02rem;margin-bottom:2px;}
-  .card .pid{color:var(--gray);font-size:.78rem;margin-bottom:8px;}
-  .card p{font-size:.86rem;color:#3a3a3a;}
-  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;}
-  table{border-collapse:collapse;width:100%;font-size:.82rem;}
-  th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;position:sticky;top:0;white-space:nowrap;}
-  td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;}
-  tbody tr:nth-child(even){background:var(--light);}
-  td:first-child{font-weight:bold;color:var(--navy);white-space:nowrap;}
-  .dash{color:#c4cbd3;}
-  .note{font-size:.82rem;color:var(--gray);font-style:italic;margin-top:12px;}
-  ul.findings{list-style:none;}
-  ul.findings li{padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:12px;align-items:flex-start;}
-  .badge{flex-shrink:0;display:inline-block;font-size:.68rem;font-weight:bold;letter-spacing:.5px;padding:3px 10px;border-radius:12px;color:#fff;margin-top:2px;}
-  .b-resolved{background:var(--green);color:var(--navy);}
-  .b-confirmed{background:var(--navy);}
-  .b-open{background:var(--orange);}
-  .b-tbv{background:var(--gray);}
-  footer{background:var(--navy);color:#B9C6D6;font-size:.8rem;padding:22px 32px;margin-top:20px;}
-  footer .inner{max-width:1180px;margin:0 auto;}
-  footer b{color:#fff;}
-  @media(max-width:860px){.layout{flex-direction:column;}nav.side{width:100%;}nav.side .box{position:static;}}
-</style>
-</head>
-<body>
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.1 -->
+<title>Power User Permissions &mdash; USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 
-<div class="hero">
-  <div class="inner">
-    <h1>Power User Permissions</h1>
-    <div class="sub">USIC Academy &middot; Tenant-Verified Reference &middot; RACI Matrix v1.4 Companion</div>
-    <div class="meta">Learning Analytics &amp; Technology &nbsp;|&nbsp; Verified against usic.training and Docebo official documentation &mdash; August 13, 2026</div>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#00305B; --navy-deep:#001F3D; --green:#94C83D; --green-dk:#5E8A1E;
+    --orange:#F16621; --gray:#7F7C7F; --ink:#191616;
+    --navy-tint:#E7EEF5; --green-tint:#EEF6E0; --orange-tint:#FDEBE0;
+    --gray-50:#F7F8FA; --gray-100:#EFF1F4; --gray-200:#E2E6EB; --gray-400:#9AA1AB;
+    --gray-600:#5B626C; --gray-800:#2A2F36; --white:#fff;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,.08);
+    --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+    --body:Arial,Helvetica,sans-serif;
+  }
+  body{font-family:var(--body);background:var(--gray-50);color:var(--gray-800);line-height:1.6;font-size:15px}
+
+  /* Logo bar (light) */
+  .logo-bar{background:var(--white);border-bottom:1px solid var(--gray-200);padding:12px 40px;display:flex;align-items:center;gap:14px}
+  .logo-bar img{height:40px;width:auto;display:block}
+  .logo-bar .logo-text{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.02em;color:var(--navy);text-transform:uppercase}
+  .logo-bar .logo-sub{font-size:13px;color:var(--gray);margin-left:2px;font-weight:400;font-family:var(--body)}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);padding:48px 40px 44px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-70px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(148,200,61,.10)}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:90px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.04)}
+  .hero-inner{max-width:860px;position:relative;z-index:1}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(148,200,61,.18);border:1px solid rgba(148,200,61,.4);color:#D7EBAE;font-size:12px;font-weight:600;padding:4px 13px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--display)}
+  .hero h1{font-family:var(--display);font-size:46px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.05;text-transform:uppercase}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:620px;line-height:1.6}
+  .hero-meta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.9);white-space:nowrap}
+
+  /* Sticky nav */
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px}
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+  .sticky-nav ul::-webkit-scrollbar{display:none}
+  .sticky-nav a{display:block;padding:13px 16px;font-size:13px;font-weight:600;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+  .sticky-nav a:hover{color:var(--navy)}
+
+  /* AI banner */
+  .ai-banner{background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .ai-banner .pill{background:#8E44AD;color:#fff;font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 9px;border-radius:3px}
+
+  /* Layout */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px}
+  .section{margin-bottom:46px;scroll-margin-top:64px}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid var(--gray-200)}
+  .section-num{font-family:var(--display);font-size:13px;font-weight:700;color:var(--green-dk);background:var(--green-tint);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
+  .section-header h2{font-family:var(--display);font-size:27px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+  p{margin-bottom:14px}p:last-child{margin-bottom:0}
+  .lead{font-size:15px;color:var(--gray-600);line-height:1.7}
+  h3.sub{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.02em;margin:24px 0 12px;padding-left:11px;border-left:3px solid var(--green)}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:13px 16px;font-size:14px;line-height:1.6;margin:14px 0;border-left:3px solid}
+  .callout strong{font-weight:700}
+  .callout.info{background:var(--navy-tint);color:#103A60;border-left-color:var(--navy)}
+  .callout.tip{background:var(--green-tint);color:#3F5E16;border-left-color:var(--green)}
+  .callout.warn{background:var(--orange-tint);color:#9A3A0E;border-left-color:var(--orange)}
+  .callout.key{background:var(--navy);color:#fff;border-left-color:var(--green);box-shadow:var(--shadow-md)}
+  .callout.key strong{color:var(--green)}
+
+  /* Steps */
+  .steps{list-style:none}
+  .steps li{display:grid;grid-template-columns:34px 1fr;gap:14px;margin-bottom:12px;align-items:start}
+  .step-num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--white);font-family:var(--display);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .step-body{padding-top:3px}
+  .step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--ink)}   /* direct-child: keeps inline <strong> inline */
+  .step-body span{font-size:13.5px;color:var(--gray-600);line-height:1.6;display:block}
+  .step-body span strong{color:var(--navy)}
+
+  /* Tables */
+  table.rt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}
+  table.rt th{background:var(--navy);color:rgba(255,255,255,.92);text-align:left;padding:9px 13px;font-family:var(--display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  table.rt td{padding:10px 13px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top}
+  table.rt tr:last-child td{border-bottom:none}
+  table.rt tr:hover td{background:var(--gray-50)}
+  table.rt td .rtname{font-weight:700;color:var(--ink);white-space:nowrap}
+  .grp{background:var(--green-tint)!important;color:var(--green-dk);font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:12px}
+
+  /* Visibility option cards */
+  .vis-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+  .vis-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:13px 16px;box-shadow:var(--shadow);border-left:3px solid var(--gray-400)}
+  .vis-card.pick{border-left-color:var(--green);background:var(--green-tint)}
+  .vis-card .vt{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:3px}
+  .vis-card.pick .vt::after{content:" \2190 use this";font-family:var(--display);font-size:12px;font-weight:700;color:var(--green-dk);letter-spacing:.03em;text-transform:uppercase}
+  .vis-card .vd{font-size:13px;color:var(--gray-600);line-height:1.55}
+
+  /* Tip list */
+  ul.bp{list-style:none;margin:8px 0}
+  ul.bp li{position:relative;padding:7px 0 7px 24px;font-size:14px;color:var(--gray-700);border-bottom:1px solid var(--gray-100);line-height:1.55}
+  ul.bp li:last-child{border-bottom:none}
+  ul.bp li::before{content:'';position:absolute;left:5px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--green)}
+  ul.bp li strong{color:var(--ink)}
+
+  code{font-family:'Courier New',monospace;font-size:12.5px;background:var(--gray-100);padding:1px 5px;border-radius:3px;color:var(--navy)}
+
+  /* Footer */
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.7);padding:22px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;line-height:1.6}
+  .page-footer strong{color:#fff}
+  .page-footer a{color:var(--green);text-decoration:none}
+  .page-footer a:hover{text-decoration:underline}
+
+  @media(max-width:700px){
+    .logo-bar,.hero,.page-content,.sticky-nav,.page-footer{padding-left:20px;padding-right:20px}
+    .hero h1{font-size:34px}
+    .page-footer>div:last-child{text-align:left!important}
+  }
+
+  /* Additions for this page (house tokens only) */
+  table.rt.lbl td:first-child{font-weight:700;color:var(--ink)}
+  ul.check{list-style:none;margin:8px 0}
+  ul.check li{border-bottom:1px solid var(--gray-100);font-size:14px;color:var(--gray-700)}
+  ul.check li:last-child{border-bottom:none}
+  ul.check label{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:8px 0;cursor:pointer;line-height:1.55}
+  ul.check input{width:16px;height:16px;margin-top:3px;accent-color:var(--green-dk)}
+  .tbv{display:inline-block;font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.06em;color:#9A3A0E;background:var(--orange-tint);border:1px solid var(--orange);border-radius:3px;padding:0 5px;margin-left:4px;vertical-align:1px}
+  .btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;padding:10px 16px;border-radius:6px;font-family:var(--display);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .btn:hover{background:var(--navy-deep)}
+  .muted{color:var(--gray-600);font-size:13px}
+  a{color:var(--navy)}
+
+  /* Permissions-page components (house tokens) */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0}
+  .card{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--navy);border-radius:var(--radius);padding:13px 16px;box-shadow:var(--shadow)}
+  .card h3{font-family:var(--display);font-size:18px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.02em}
+  .card .pid{font-size:12px;color:var(--gray-400);margin-bottom:6px}
+  .card p{font-size:13.5px;color:var(--gray-600);margin:0}
+  .tablewrap{overflow-x:auto;margin:10px 0 4px}
+  .tablewrap table.rt{margin:0}
+  table.rt th{white-space:nowrap}
+  table.rt td:first-child{font-weight:700;color:var(--ink)}
+  .dash{color:var(--gray-400)}
+  .note{font-size:13px;color:var(--gray-600);font-style:italic;margin-top:12px}
+  ul.findings{list-style:none;margin:8px 0}
+  ul.findings li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--gray-100);font-size:14px;color:var(--gray-700);line-height:1.55}
+  ul.findings li:last-child{border-bottom:none}
+  .badge{flex-shrink:0;display:inline-block;font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.06em;padding:2px 10px;border-radius:20px;color:#fff;margin-top:1px;min-width:92px;text-align:center}
+  .b-resolved{background:var(--green);color:var(--navy)}
+  .b-confirmed{background:var(--navy)}
+  .b-open{background:var(--orange)}
+  .b-tbv{background:var(--gray)}
+</style></head><body>
+
+<div class="logo-bar"><img src="../usic_academy_logo.png" alt="USIC Academy"/><span class="logo-text">USIC Academy</span><span class="logo-sub">/ LMS &middot; Power User Reference</span></div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">Tenant-Verified Reference</div>
+  <h1>Power User Permissions</h1>
+  <p>What each of the six active Power User profiles in usic.training can do, module by module &mdash; verified against the live tenant and Docebo&rsquo;s official documentation on August 13, 2026.</p>
+  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Companion: RACI Matrix v1.4</span><span class="meta-pill">Last Updated: October 2026</span><span class="meta-pill">Version: 1.1</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#about">About This Reference</a></li>
+  <li><a href="#profiles">Profile Summaries</a></li>
+  <li><a href="#grid">Permission Grid</a></li>
+  <li><a href="#findings">Findings &amp; Open Items</a></li>
+  <li><a href="#modules">Module Descriptions</a></li>
+</ul></nav>
+
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div class="ai-banner">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span class="pill">AI-Assisted</span>
+    <span>This reference was created with the help of generative AI under documented validation practices.</span>
   </div>
 </div>
 
-<div class="layout">
-<nav class="side">
-  <div class="box">
-    <h2>On this page</h2>
-    <a href="#about">01 &middot; About This Reference</a>
-    <a href="#profiles">02 &middot; Profile Summaries</a>
-    <a href="#grid">03 &middot; Permission Grid</a>
-    <a href="#findings">04 &middot; Findings &amp; Open Items</a>
-    <a href="#modules">05 &middot; Module Descriptions</a>
-  </div>
-</nav>
-<main>
+<div class="page-content">
 
-<section id="about">
-  <h2 class="sec"><span class="num">01</span>About This Reference</h2>
-  <div class="banner"><b>Tenant- and documentation-verified — August 13, 2026.</b> This reference was regenerated from the live permission screens of all six active Power User profiles in usic.training, then cross-checked against the official Docebo article <i>Power User permissions</i> (article 6463399445394, updated Aug 12, 2026). It supersedes the previous documentation-derived matrix, which diverged from tenant state for four of six profiles.</div>
-  <p style="font-size:.9rem;">Grid cells show the permissions granted as displayed on each profile's summary screen. Nested sub-permissions not visible on summary screens are marked <b>[TBV]</b> (to be verified). Companion documents: <i>USIC Academy Power User RACI Matrix v1.4</i> (includes the Docebo documentation cross-reference and action register A1&ndash;A13) and the <i>SOP Amendment Specification</i>. Action IDs referenced below (A1&ndash;A13) refer to the Action Register in RACI Matrix v1.4.</p>
+<section class="section" id="about">
+  <div class="section-header"><span class="section-num">01</span><h2>About This Reference</h2></div>
+
+  <div class="callout tip"><strong>Tenant- and documentation-verified — August 13, 2026.</strong> This reference was regenerated from the live permission screens of all six active Power User profiles in usic.training, then cross-checked against the official Docebo article <i>Power User permissions</i> (article 6463399445394, updated Aug 12, 2026). It supersedes the previous documentation-derived matrix, which diverged from tenant state for four of six profiles.</div>
+  <p>Grid cells show the permissions granted as displayed on each profile's summary screen. Nested sub-permissions not visible on summary screens are marked <strong>[TBV]</strong> (to be verified). Companion documents: <i>USIC Academy Power User RACI Matrix v1.4</i> (includes the Docebo documentation cross-reference and action register A1&ndash;A13) and the <i>SOP Amendment Specification</i>. Action IDs referenced below (A1&ndash;A13) refer to the Action Register in RACI Matrix v1.4.</p>
 </section>
 
-<section id="profiles">
-  <h2 class="sec"><span class="num">02</span>Profile Summaries</h2>
+<section class="section" id="profiles">
+  <div class="section-header"><span class="section-num">02</span><h2>Profile Summaries</h2></div>
+
   <div class="cards">
     <div class="card"><h3>Learning Management</h3><div class="pid">Profile ID 146911</div><p>Regional delivery operations. The enrollment powerhouse — create, edit, archive, activate, learner-only restriction, and learning-plan enrollment management. Full ILT session set including enrollment edits. Reports edit. Sole holder of Insights custom dashboard creation. View-only elsewhere. Sees invisible user fields. Per Docebo docs, Reports/Edit + Courses/View also allows editing training-material progress and evaluating assignments from the Training material statistics area.</p></div>
     <div class="card"><h3>Program Manager</h3><div class="pid">Profile ID 146910</div><p>Broad edit-level management — course edit and evaluation, learning plan create/edit, enrollment create/edit/activate, manual groups, certificate edit, notification edit, checklists, reports edit, external training edit, training material library edit. Sole holder of Locations edit. View-only on catalogs, Channels, Insights, and menus. No image management, no Pages, no invisible-field access. Full assignment evaluation (Evaluation + Reports/Edit).</p></div>
@@ -93,12 +196,13 @@
   </div>
 </section>
 
-<section id="grid">
-  <h2 class="sec"><span class="num">03</span>Tenant-Verified Permission Grid</h2>
+<section class="section" id="grid">
+  <div class="section-header"><span class="section-num">03</span><h2>Tenant-Verified Permission Grid</h2></div>
+
   <div class="tablewrap">
-  <table>
-    <thead><tr><th>Module</th><th>Learning Manager</th><th>Program Manager</th><th>Content Creator</th><th>Compliance</th><th>Instructor</th><th>Insights Viewer</th></tr></thead>
-    <tbody>
+  <table class="rt">
+    <tr><th>Module</th><th>Learning Manager</th><th>Program Manager</th><th>Content Creator</th><th>Compliance</th><th>Instructor</th><th>Insights Viewer</th></tr>
+    
       <tr><td>Course catalogs</td><td>View</td><td>View</td><td>Create, Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
       <tr><td>Certificates</td><td>View</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
       <tr><td>Channels</td><td class="dash">—</td><td>View</td><td>Create and manage, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
@@ -122,14 +226,15 @@
       <tr><td>Reports</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>Edit, View</td><td>View</td><td class="dash">—</td></tr>
       <tr><td>Training material library</td><td class="dash">—</td><td>Edit, View</td><td>Manage folders, Create, Edit, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
       <tr><td>Users</td><td>Can see fields invisible to the user, View</td><td>View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>View</td></tr>
-    </tbody>
+    
   </table>
   </div>
   <p class="note">Modules present on no tenant profile: Webinar Sessions, Manager Power Users (the latter only exists when enabled in platform Advanced settings — the toggle is off). No profile holds any Delete permission on any module. Per Docebo documentation, two narrow exceptions are bundled into Create permissions: ILT Create includes deleting one's own created sessions, and Pages/Menus "Create and manage" includes deleting self-created unpublished items — both self-created content only, both [TBV] in tenant (Actions A7, A11). All other deletion is Superadmin-only by design.</p>
 </section>
 
-<section id="findings">
-  <h2 class="sec"><span class="num">04</span>Key Findings &amp; Open Items</h2>
+<section class="section" id="findings">
+  <div class="section-header"><span class="section-num">04</span><h2>Key Findings &amp; Open Items</h2></div>
+
   <ul class="findings">
     <li><span class="badge b-resolved">RESOLVED</span><span>Compliance is fully read-only on enrollment (previous matrix showed Create/Activate in error).</span></li>
     <li><span class="badge b-resolved">RESOLVED</span><span>No profile holds Manager Power Users — Power User administration is Superadmin-only. Docebo docs confirm the module only exists when enabled in Advanced settings; the toggle is off (deliberate hardening).</span></li>
@@ -146,12 +251,13 @@
   </ul>
 </section>
 
-<section id="modules">
-  <h2 class="sec"><span class="num">05</span>Module Descriptions</h2>
+<section class="section" id="modules">
+  <div class="section-header"><span class="section-num">05</span><h2>Module Descriptions</h2></div>
+
   <div class="tablewrap">
-  <table>
-    <thead><tr><th style="width:220px;">Module</th><th>Description</th></tr></thead>
-    <tbody>
+  <table class="rt">
+    <tr><th style="width:220px;">Module</th><th>Description</th></tr>
+    
       <tr><td>Users</td><td>Manages user accounts: viewing, creating, editing, deleting users, user fields, activation, impersonation, and exporting user lists. Tenant profiles hold View only (plus invisible-field visibility on four profiles). View includes CSV/XLS export and the User Personal Summary.</td></tr>
       <tr><td>Groups</td><td>Organizes users into groups for management and assignment. Manual vs. automatic group distinctions apply; only manual groups can be created/edited by Power Users. Groups/View is required to select groups when enrolling.</td></tr>
       <tr><td>Courses</td><td>Course creation, viewing, editing, deletion, learner evaluation, waiting lists, training materials, and Question Bank access (via create/edit). Evaluation = set final course scores; assignment evaluation additionally requires Reports/Edit.</td></tr>
@@ -175,26 +281,18 @@
       <tr><td>Channels</td><td>Content channels (custom channels only can be assigned as resource): viewing and creating/managing channels; content management limited to courses and learning plans, not informal assets.</td></tr>
       <tr><td>Pages</td><td>Content pages: view, create, edit, publish/unpublish, and management of widgets and page assignments. Create and manage includes edit/delete of self-created unpublished pages.</td></tr>
       <tr><td>Menus</td><td>Navigation menus: view, create, edit, publish/unpublish, and management of menu assignments and visibility. Create and manage includes edit/delete of self-created unpublished menus.</td></tr>
-    </tbody>
+    
   </table>
   </div>
 </section>
 
-</main>
+<p class="muted" style="margin-top:8px"><strong>USIC Academy — Power User Permissions Reference</strong> &nbsp;|&nbsp; Companion to RACI Matrix v1.4 &nbsp;|&nbsp; Source: live tenant profile screens (usic.training, Aug 13, 2026) and Docebo "Power User permissions" article 6463399445394 (updated Aug 12, 2026). Confluence source page v7. Maintained by Learning Analytics &amp; Technology.</p>
+
 </div>
 
-<footer>
-  <div class="inner">
-    <b>USIC Academy — Power User Permissions Reference</b> &nbsp;|&nbsp; Companion to RACI Matrix v1.4 &nbsp;|&nbsp; Source: live tenant profile screens (usic.training, Aug 13, 2026) and Docebo "Power User permissions" article 6463399445394 (updated Aug 12, 2026). Confluence source page v7. Maintained by Learning Analytics &amp; Technology.
-  </div>
+<footer class="page-footer">
+  <div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div>
+  <div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div>
 </footer>
 
-<script>
-  const links=[...document.querySelectorAll('nav.side a')];
-  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
-  const spy=()=>{let i=secs.length-1;for(let j=0;j<secs.length;j++){if(secs[j].getBoundingClientRect().top>90){i=Math.max(0,j-1);break;}}links.forEach((a,j)=>a.classList.toggle('active',j===i));};
-  document.addEventListener('scroll',spy,{passive:true});spy();
-</script>
-
-</body>
-</html>
+</body></html>

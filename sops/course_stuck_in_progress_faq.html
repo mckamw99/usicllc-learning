@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.1 -->
 <title>Course Stuck &ldquo;In Progress&rdquo; — Training Material FAQ — USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -118,12 +120,32 @@
   .page-footer .foot-star{color:var(--green);font-weight:700;}
   .page-footer a{color:rgba(255,255,255,.6);text-decoration:none;}
   .page-footer a:hover{color:var(--white);}
+
+/* ===== USIC brand re-skin — shared formatting (matches Generating Reports How-To) ===== */
+:root{
+  --navy:#00305B; --navy-mid:#001F3D;
+  --blue:#00305B; --blue-light:#E7EEF5; --blue-mid:#C4D5E6;
+  --accent:#F16621; --accent-lt:#FDEBE0;
+  --green:#94C83D; --green-dk:#5E8A1E; --green-lt:#EEF6E0;
+}
+body{font-family:Arial,Helvetica,sans-serif}
+.hero h1,.section-header h2,.logo-text,.logo-bar .logo-text,h3.sub-heading,.accordion summary{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+.hero h1{text-transform:uppercase;letter-spacing:.01em;font-weight:700}
+.section-header h2{color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+.logo-bar{background:#fff;border-bottom:1px solid var(--gray-200)}
+.logo-bar img{height:40px;width:auto;object-fit:contain;flex-shrink:0}
+.logo-bar .logo-text{color:var(--navy);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.logo-bar .logo-sub{color:var(--gray-400)}
+.can-header,.do-header{background:var(--green-dk)}
+.step-body strong{display:inline}
+.step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--navy)}
+
 </style>
 </head>
 <body>
 
 <div class="logo-bar">
-  <img src="https://raw.githubusercontent.com/mckamw99/usicllc-learning/main/usic_academy_logo.png" alt="USIC Academy"/>
+  <img src="../usic_academy_logo.png" alt="USIC Academy"/>
   <span class="logo-text">USIC Academy</span>
   <span class="logo-sub">/ LMS &middot; Troubleshooting FAQ</span>
 </div>
@@ -134,8 +156,8 @@
   <p>Why a learner&rsquo;s course refuses to flip to Completed &mdash; how training material settings drive course completion, what breaks it, and exactly how to fix each case in Docebo.</p>
   <div class="hero-meta">
     <span class="meta-pill">Platform: usic.training</span>
-    <span class="meta-pill">Last Updated: June 2026</span>
-    <span class="meta-pill">Version: 1.0</span>
+    <span class="meta-pill">Last Updated: October 2026</span>
+    <span class="meta-pill">Version: 1.1</span>
     <span class="meta-pill">Owner: Matthew McKay</span>
   </div>
 </div></div>
@@ -149,6 +171,13 @@
   <li><a href="#prevent" class="nav-link">Prevention</a></li>
   <li><a href="#reference" class="nav-link">Quick Reference</a></li>
 </ul></nav>
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div style="background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="background:#8E44AD;color:white;font-family:'Barlow Condensed',Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;">AI-Assisted</span>
+    <span>This guide was created with the help of generative AI under documented validation practices.</span>
+  </div>
+</div>
 
 <div class="page-content">
 
@@ -157,7 +186,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div>
       <h2>How Course Completion Works</h2>
-      <span class="section-num">Section 1</span>
+      <span class="section-num">01</span>
     </div>
     <p class="lead">The single rule that explains almost every &ldquo;stuck&rdquo; course: <strong>a course is marked Completed only when <em>every</em> training material that counts toward it is individually marked complete.</strong> Course status is calculated <em>up</em> from the material level &mdash; so if even one required material never registers as complete, the course stays In Progress, no matter what the learner saw on screen.</p>
     <p>There are two important modifiers to that rule:</p>
@@ -180,7 +209,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
       <h2>What Marks Each Material Complete</h2>
-      <span class="section-num">Section 2</span>
+      <span class="section-num">02</span>
     </div>
     <p class="lead">Each material type completes on a different event. If that event never fires, the material &mdash; and therefore the course &mdash; stays open.</p>
     <table class="tbl">
@@ -207,7 +236,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
       <h2>Why a Course Gets Stuck &mdash; Training Material Causes</h2>
-      <span class="section-num">Section 3</span>
+      <span class="section-num">03</span>
     </div>
     <p class="lead">When the on-screen content says &ldquo;done&rdquo; but Docebo says In Progress, it&rsquo;s almost always one of these material-setting causes.</p>
     <div class="cause"><h4>The package never sent completion</h4><p>The most common case: the learner closed the browser/tab instead of pressing the package&rsquo;s Close / Exit / Submit button, so SCORM/xAPI never reported back. Session timeouts, dropped connectivity, pop-up blockers, disabled cookies, and Safari are frequent culprits.</p></div>
@@ -226,7 +255,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg></div>
       <h2>FAQ &amp; Fixes</h2>
-      <span class="section-num">Section 4</span>
+      <span class="section-num">04</span>
     </div>
     <p class="lead">Click any question to expand. These are ordered roughly from &ldquo;check this first&rdquo; to deeper fixes.</p>
 
@@ -350,7 +379,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
       <h2>Admin Actions at a Glance</h2>
-      <span class="section-num">Section 5</span>
+      <span class="section-num">05</span>
     </div>
     <ol class="steps">
       <li><div class="step-num">1</div><div class="step-body"><strong>Diagnose</strong><span>Course &rsaquo; <em>Reports &rsaquo; User statistics &rsaquo;</em> learner &rsaquo; material list. Identify the non-green material and its type.</span></div></li>
@@ -366,7 +395,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <h2>Prevention &amp; Best Practices</h2>
-      <span class="section-num">Section 6</span>
+      <span class="section-num">06</span>
     </div>
     <div class="callout tip">
       <span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
@@ -386,7 +415,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
       <h2>Quick Reference</h2>
-      <span class="section-num">Section 7</span>
+      <span class="section-num">07</span>
     </div>
     <table class="tbl">
       <thead><tr><th style="width:40%">Symptom</th><th>First move</th></tr></thead>
@@ -410,11 +439,7 @@
 
 </div>
 
-<div class="page-footer">
-  <span>USIC Academy &nbsp;<span class="foot-star">&#9733;</span>&nbsp; Learning Analytics &amp; Technology</span>
-  <span><strong>Course Stuck In Progress &mdash; Training Material FAQ</strong> &middot; v1.0 &middot; June 2026</span>
-  <span>Owner: Matthew McKay &middot; <a href="mailto:learningalerts@usicllc.com">learningalerts@usicllc.com</a></span>
-</div>
+<footer class="page-footer"><div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div><div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div></footer>
 
 <script>
   // FAQ accordion

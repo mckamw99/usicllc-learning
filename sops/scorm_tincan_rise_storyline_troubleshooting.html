@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.1 -->
 <title>SCORM &amp; Tin Can Troubleshooting — Rise &amp; Storyline — USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -103,12 +105,32 @@
   .page-footer .foot-star{color:var(--green);font-weight:700;}
   .page-footer a{color:rgba(255,255,255,.6);text-decoration:none;}
   .page-footer a:hover{color:var(--white);}
+
+/* ===== USIC brand re-skin — shared formatting (matches Generating Reports How-To) ===== */
+:root{
+  --navy:#00305B; --navy-mid:#001F3D;
+  --blue:#00305B; --blue-light:#E7EEF5; --blue-mid:#C4D5E6;
+  --accent:#F16621; --accent-lt:#FDEBE0;
+  --green:#94C83D; --green-dk:#5E8A1E; --green-lt:#EEF6E0;
+}
+body{font-family:Arial,Helvetica,sans-serif}
+.hero h1,.section-header h2,.logo-text,.logo-bar .logo-text,h3.sub-heading,.accordion summary{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+.hero h1{text-transform:uppercase;letter-spacing:.01em;font-weight:700}
+.section-header h2{color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+.logo-bar{background:#fff;border-bottom:1px solid var(--gray-200)}
+.logo-bar img{height:40px;width:auto;object-fit:contain;flex-shrink:0}
+.logo-bar .logo-text{color:var(--navy);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.logo-bar .logo-sub{color:var(--gray-400)}
+.can-header,.do-header{background:var(--green-dk)}
+.step-body strong{display:inline}
+.step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--navy)}
+
 </style>
 </head>
 <body>
 
 <div class="logo-bar">
-  <img src="https://raw.githubusercontent.com/mckamw99/usicllc-learning/main/usic_academy_logo.png" alt="USIC Academy"/>
+  <img src="../usic_academy_logo.png" alt="USIC Academy"/>
   <span class="logo-text">USIC Academy</span>
   <span class="logo-sub">/ LMS &middot; Authoring &amp; Tracking Guide</span>
 </div>
@@ -119,8 +141,8 @@
   <p>Why SCORM and Tin Can (xAPI) packages built in Articulate Rise and Storyline get stuck in Docebo &mdash; and how to publish them so completion reports cleanly every time. The fix is almost always made at <em>publish</em> time, not in the LMS.</p>
   <div class="hero-meta">
     <span class="meta-pill">Platform: usic.training</span>
-    <span class="meta-pill">Last Updated: June 2026</span>
-    <span class="meta-pill">Version: 1.0</span>
+    <span class="meta-pill">Last Updated: October 2026</span>
+    <span class="meta-pill">Version: 1.1</span>
     <span class="meta-pill">Owner: Matthew McKay</span>
   </div>
 </div></div>
@@ -137,6 +159,13 @@
   <li><a href="#recipes" class="nav-link">Publish Recipes</a></li>
   <li><a href="#qc" class="nav-link">Pre-Publish QC</a></li>
 </ul></nav>
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div style="background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="background:#8E44AD;color:white;font-family:'Barlow Condensed',Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;">AI-Assisted</span>
+    <span>This guide was created with the help of generative AI under documented validation practices.</span>
+  </div>
+</div>
 
 <div class="page-content">
 
@@ -145,7 +174,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12l3 3 5-6"/><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div>
       <h2>The Handshake: Who Decides &ldquo;Complete&rdquo;</h2>
-      <span class="section-num">Section 1</span>
+      <span class="section-num">01</span>
     </div>
     <p class="lead">A SCORM or xAPI package is a self-contained program that reports its own status to the LMS. <strong>Docebo only displays what the package tells it.</strong> The rule that decides completion &mdash; view 90% of slides, pass a quiz, reach a trigger &mdash; is baked into the package when you publish from Rise or Storyline. So when a course won&rsquo;t flip to Completed, the cause is usually one of three things, in this order of likelihood:</p>
     <div class="cause"><h4>1. The package never sent its status</h4><p>The learner closed the tab instead of pressing <strong>Exit / Close / Submit</strong>, a session timed out, or connectivity/cookies/Safari blocked the call. The completion exists on screen but never reached Docebo.</p></div>
@@ -162,7 +191,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
       <h2>Pick the Right Standard for USIC Academy</h2>
-      <span class="section-num">Section 2</span>
+      <span class="section-num">02</span>
     </div>
     <p class="lead">Both Rise and Storyline can publish to AICC, SCORM 1.2, SCORM 2004, xAPI (Tin Can), and cmi5. For USIC Academy the practical choices are SCORM 1.2, SCORM 2004 3rd Edition, or xAPI.</p>
     <table class="tbl">
@@ -184,7 +213,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 4 3 5-7"/></svg></div>
       <h2>Reporting Options &mdash; Completion vs Success</h2>
-      <span class="section-num">Section 3</span>
+      <span class="section-num">03</span>
     </div>
     <p class="lead">In Rise (the <em>Reporting</em> dropdown) and Storyline (the <em>Reporting and Tracking</em> button) you choose one of four status pairs. <strong>Completion status</strong> answers &ldquo;did they finish?&rdquo;; <strong>success status</strong> answers &ldquo;did they pass?&rdquo;</p>
     <table class="tbl">
@@ -207,7 +236,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
       <h2>The Mastery-Score Trap (SCORM 1.2 + Quiz)</h2>
-      <span class="section-num">Section 4</span>
+      <span class="section-num">04</span>
     </div>
     <p class="lead">This one catches everyone. When you publish a Rise or Storyline lesson <strong>that contains a quiz as SCORM 1.2</strong>, Articulate automatically inserts a <strong>mastery score</strong> into the package manifest. The SCORM spec then <em>requires</em> the LMS to override the status with pass/fail &mdash; so the course will <strong>never display &ldquo;Completed,&rdquo;</strong> even if you set the reporting option to Completed/Incomplete.</p>
     <div class="callout warning">
@@ -222,7 +251,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
       <h2>Storyline: Reporting &amp; Tracking Settings</h2>
-      <span class="section-num">Section 5</span>
+      <span class="section-num">05</span>
     </div>
     <p class="lead">In Storyline&rsquo;s publish dialog, the <strong>Reporting and Tracking</strong> button is where completion is decided. You can track by:</p>
     <table class="tbl">
@@ -249,7 +278,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
       <h2>Rise: Export &amp; Tracking Settings</h2>
-      <span class="section-num">Section 6</span>
+      <span class="section-num">06</span>
     </div>
     <p class="lead">In Rise, <em>Publish &rsaquo; LMS</em> lets you choose the standard and a <strong>Tracking option</strong>. All content can be tracked by <strong>completion percentage</strong> or <strong>Storyline block</strong>; courses can also be tracked by <strong>quiz result</strong>.</p>
     <div class="callout warning">
@@ -271,7 +300,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
       <h2>Failure Modes &rarr; Fixes</h2>
-      <span class="section-num">Section 7</span>
+      <span class="section-num">07</span>
     </div>
     <table class="tbl">
       <thead><tr><th style="width:34%">Symptom in Docebo</th><th>Most likely cause &amp; fix</th></tr></thead>
@@ -294,7 +323,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
       <h2>The Docebo-Side Settings That Interact</h2>
-      <span class="section-num">Section 8</span>
+      <span class="section-num">08</span>
     </div>
     <div class="cause good"><h4>xAPI &ldquo;Track all activities&rdquo; toggle</h4><p>On the xAPI training material&rsquo;s settings (Course management &rsaquo; course &rsaquo; Training material &rsaquo; the xAPI object &rsaquo; Settings). <strong>On</strong> (default): completing the first activity completes the whole package &mdash; right for a single Rise/Storyline export with one completion statement. <strong>Off</strong>: every sub-activity must be completed. Match it to how the package was authored.</p></div>
     <div class="cause good"><h4>End Object Marker</h4><p>Set the Rise/Storyline package as the course&rsquo;s end object marker so completing it marks the whole Docebo course complete, independent of any optional materials. Not retroactive.</p></div>
@@ -310,7 +339,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
       <h2>USIC Publish Recipes</h2>
-      <span class="section-num">Section 9</span>
+      <span class="section-num">09</span>
     </div>
     <p class="lead">Known-good starting configurations. Always confirm against a sandbox course.</p>
 
@@ -360,7 +389,7 @@
     <div class="section-header">
       <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
       <h2>Pre-Publish QC Checklist</h2>
-      <span class="section-num">Section 10</span>
+      <span class="section-num">10</span>
     </div>
     <ol class="steps">
       <li><div class="step-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg></div><div class="step-body"><strong>Confirm the standard &amp; edition</strong><span>SCORM 2004 <em>3rd</em> Edition (not 4th) for USIC, or xAPI. Avoid SCORM 1.2 for anything beyond a few minutes.</span></div></li>
@@ -379,11 +408,7 @@
 
 </div>
 
-<div class="page-footer">
-  <span>USIC Academy &nbsp;<span class="foot-star">&#9733;</span>&nbsp; Learning Analytics &amp; Technology</span>
-  <span><strong>SCORM &amp; Tin Can Troubleshooting &mdash; Rise &amp; Storyline</strong> &middot; v1.0 &middot; June 2026</span>
-  <span>Owner: Matthew McKay &middot; <a href="mailto:learningalerts@usicllc.com">learningalerts@usicllc.com</a></span>
-</div>
+<footer class="page-footer"><div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div><div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div></footer>
 
 <script>
   (function(){
