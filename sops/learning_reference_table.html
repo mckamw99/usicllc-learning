@@ -1,64 +1,185 @@
-<!DOCTYPE html>
-<!-- USIC Academy SOP | Learning Reference Table | v1.0 | 2026-10-02 -->
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SOP: How to Fill Out the Learning Reference Table | USIC Academy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.0 -->
+<title>How to Fill Out the Learning Reference Table &mdash; USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+
 <style>
-:root{--usic-navy:#00305B;--usic-green:#94C83D;--usic-gray:#7F7C7F;--usic-black:#191616;--usic-orange:#F16621;--bg:#F5F7FA;--line:#DDE3EA;--font-display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;--font-body:Arial,Helvetica,sans-serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:16px}
-body{margin:0;font-family:var(--font-body);color:var(--usic-black);background:var(--bg);line-height:1.55;font-size:15px}
-a{color:var(--usic-navy)}a:focus-visible,input:focus-visible{outline:3px solid var(--usic-green);outline-offset:2px}
-.logo-bar{background:#fff;border-bottom:1px solid var(--line);padding:12px 32px}.logo-bar img{height:58px;display:block}
-.hero{background:var(--usic-navy);color:#fff;padding:36px 32px 32px}
-.hero h1{font-family:var(--font-display);font-weight:800;font-size:40px;line-height:1.05;margin:0 0 10px;max-width:900px}
-.hero p{margin:0;max-width:760px;color:#E6ECF2}
-.pills{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}.pill{font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}.pill.v{background:var(--usic-green);color:var(--usic-navy);border:0;font-weight:700}
-.ai-banner{background:#EEF4E3;border-bottom:1px solid #D6E6BC;color:#3C5414;font-size:13px;padding:8px 32px}
-.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;max-width:1240px;margin:0 auto;padding:28px 32px 64px}
-main{min-width:0}nav.side{position:sticky;top:16px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}
-.nav-link{display:block;padding:7px 10px;border-radius:6px;text-decoration:none;color:var(--usic-black);font-size:14px;border-left:3px solid transparent}
-.nav-link:hover{background:var(--bg)}.nav-link.active{border-left-color:var(--usic-green);background:#F2F7EA;color:var(--usic-navy);font-weight:700}
-.section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px 28px;margin-bottom:20px}
-.section h2{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--usic-navy);margin:0 0 12px;padding-bottom:8px;border-bottom:3px solid var(--usic-green);display:inline-block}
-.section h3{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--usic-navy);margin:22px 0 8px}
-.lede{font-size:17px}.muted{color:var(--usic-gray);font-size:13px}
-.tbl-wrap{overflow-x:auto;margin:10px 0}table.ref{border-collapse:collapse;width:100%;font-size:14px}
-table.ref th{background:var(--usic-navy);color:#fff;text-align:left;padding:9px 10px;font-weight:700}table.ref td{border-bottom:1px solid var(--line);padding:9px 10px;vertical-align:top}
-table.ref tbody tr:nth-child(even) td{background:#FAFBFC}table.ref td:first-child{font-weight:700;color:var(--usic-navy);min-width:160px}
-.callout{border-radius:8px;padding:14px 16px;margin:12px 0;display:grid;gap:4px}.callout.green{background:#F2F7EA;border-left:5px solid var(--usic-green)}
-.notice{background:#FFF4EC;border-left:5px solid var(--usic-orange);border-radius:6px;padding:12px 16px;margin:14px 0}
-ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
-ol.steps{list-style:none;padding:0;margin:8px 0;counter-reset:none}
-.step{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
-.step-num{width:32px;height:32px;border-radius:50%;background:var(--usic-navy);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:18px}
-.step-body > strong{display:block;color:var(--usic-navy);margin-bottom:2px}
-ul.checklist{list-style:none;padding:0}ul.checklist li{padding:8px 0;border-bottom:1px solid var(--line)}ul.checklist label{display:grid;grid-template-columns:22px 1fr;gap:10px;cursor:pointer}ul.checklist input{width:18px;height:18px;margin-top:2px;accent-color:var(--usic-green)}
-.btn{display:inline-block;background:var(--usic-navy);color:#fff;text-decoration:none;padding:10px 16px;border-radius:6px;font-weight:700}.btn:hover{background:#002448}
-footer{text-align:center;color:var(--usic-gray);font-size:12px;padding:0 20px 32px}
-@media (max-width:900px){.layout{grid-template-columns:1fr;padding:20px 16px}nav.side{position:static}.hero,.logo-bar,.ai-banner{padding-left:16px;padding-right:16px}.hero h1{font-size:32px}.section{padding:20px 16px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{nav.side,.ai-banner{display:none}.layout{display:block}.section{break-inside:avoid-page}}
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1A26;--line:#2A3A4A;--usic-black:#E8EDF2}:root:not([data-theme="light"]) .section,:root:not([data-theme="light"]) nav.side,:root:not([data-theme="light"]) .logo-bar{background:#13212F}:root:not([data-theme="light"]) .section h2,:root:not([data-theme="light"]) .section h3,:root:not([data-theme="light"]) table.ref td:first-child,:root:not([data-theme="light"]) .step-body > strong,:root:not([data-theme="light"]) a{color:#9CC4E8}:root:not([data-theme="light"]) table.ref tbody tr:nth-child(even) td{background:#162636}:root:not([data-theme="light"]) .callout.green{background:#1C2A14}:root:not([data-theme="light"]) .notice{background:#2E1D12}:root:not([data-theme="light"]) .nav-link{color:#E8EDF2}:root:not([data-theme="light"]) .nav-link.active{background:#1C2A14;color:#9CC4E8}:root:not([data-theme="light"]) .ai-banner{background:#1C2A14;color:#CFE3AE;border-color:#2A3A1E}}
-:root[data-theme="dark"]{--bg:#0E1A26;--line:#2A3A4A;--usic-black:#E8EDF2}
-body{background:var(--bg)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#00305B; --navy-deep:#001F3D; --green:#94C83D; --green-dk:#5E8A1E;
+    --orange:#F16621; --gray:#7F7C7F; --ink:#191616;
+    --navy-tint:#E7EEF5; --green-tint:#EEF6E0; --orange-tint:#FDEBE0;
+    --gray-50:#F7F8FA; --gray-100:#EFF1F4; --gray-200:#E2E6EB; --gray-400:#9AA1AB;
+    --gray-600:#5B626C; --gray-800:#2A2F36; --white:#fff;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,.08);
+    --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+    --body:Arial,Helvetica,sans-serif;
+  }
+  body{font-family:var(--body);background:var(--gray-50);color:var(--gray-800);line-height:1.6;font-size:15px}
+
+  /* Logo bar (light) */
+  .logo-bar{background:var(--white);border-bottom:1px solid var(--gray-200);padding:12px 40px;display:flex;align-items:center;gap:14px}
+  .logo-bar img{height:40px;width:auto;display:block}
+  .logo-bar .logo-text{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.02em;color:var(--navy);text-transform:uppercase}
+  .logo-bar .logo-sub{font-size:13px;color:var(--gray);margin-left:2px;font-weight:400;font-family:var(--body)}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);padding:48px 40px 44px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-70px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(148,200,61,.10)}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:90px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.04)}
+  .hero-inner{max-width:860px;position:relative;z-index:1}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(148,200,61,.18);border:1px solid rgba(148,200,61,.4);color:#D7EBAE;font-size:12px;font-weight:600;padding:4px 13px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--display)}
+  .hero h1{font-family:var(--display);font-size:46px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.05;text-transform:uppercase}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:620px;line-height:1.6}
+  .hero-meta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.9);white-space:nowrap}
+
+  /* Sticky nav */
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px}
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+  .sticky-nav ul::-webkit-scrollbar{display:none}
+  .sticky-nav a{display:block;padding:13px 16px;font-size:13px;font-weight:600;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+  .sticky-nav a:hover{color:var(--navy)}
+
+  /* AI banner */
+  .ai-banner{background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .ai-banner .pill{background:#8E44AD;color:#fff;font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 9px;border-radius:3px}
+
+  /* Layout */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px}
+  .section{margin-bottom:46px;scroll-margin-top:64px}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid var(--gray-200)}
+  .section-num{font-family:var(--display);font-size:13px;font-weight:700;color:var(--green-dk);background:var(--green-tint);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
+  .section-header h2{font-family:var(--display);font-size:27px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+  p{margin-bottom:14px}p:last-child{margin-bottom:0}
+  .lead{font-size:15px;color:var(--gray-600);line-height:1.7}
+  h3.sub{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.02em;margin:24px 0 12px;padding-left:11px;border-left:3px solid var(--green)}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:13px 16px;font-size:14px;line-height:1.6;margin:14px 0;border-left:3px solid}
+  .callout strong{font-weight:700}
+  .callout.info{background:var(--navy-tint);color:#103A60;border-left-color:var(--navy)}
+  .callout.tip{background:var(--green-tint);color:#3F5E16;border-left-color:var(--green)}
+  .callout.warn{background:var(--orange-tint);color:#9A3A0E;border-left-color:var(--orange)}
+  .callout.key{background:var(--navy);color:#fff;border-left-color:var(--green);box-shadow:var(--shadow-md)}
+  .callout.key strong{color:var(--green)}
+
+  /* Steps */
+  .steps{list-style:none}
+  .steps li{display:grid;grid-template-columns:34px 1fr;gap:14px;margin-bottom:12px;align-items:start}
+  .step-num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--white);font-family:var(--display);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .step-body{padding-top:3px}
+  .step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--ink)}   /* direct-child: keeps inline <strong> inline */
+  .step-body span{font-size:13.5px;color:var(--gray-600);line-height:1.6;display:block}
+  .step-body span strong{color:var(--navy)}
+
+  /* Tables */
+  table.rt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}
+  table.rt th{background:var(--navy);color:rgba(255,255,255,.92);text-align:left;padding:9px 13px;font-family:var(--display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  table.rt td{padding:10px 13px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top}
+  table.rt tr:last-child td{border-bottom:none}
+  table.rt tr:hover td{background:var(--gray-50)}
+  table.rt td .rtname{font-weight:700;color:var(--ink);white-space:nowrap}
+  .grp{background:var(--green-tint)!important;color:var(--green-dk);font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:12px}
+
+  /* Visibility option cards */
+  .vis-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+  .vis-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:13px 16px;box-shadow:var(--shadow);border-left:3px solid var(--gray-400)}
+  .vis-card.pick{border-left-color:var(--green);background:var(--green-tint)}
+  .vis-card .vt{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:3px}
+  .vis-card.pick .vt::after{content:" \2190 use this";font-family:var(--display);font-size:12px;font-weight:700;color:var(--green-dk);letter-spacing:.03em;text-transform:uppercase}
+  .vis-card .vd{font-size:13px;color:var(--gray-600);line-height:1.55}
+
+  /* Tip list */
+  ul.bp{list-style:none;margin:8px 0}
+  ul.bp li{position:relative;padding:7px 0 7px 24px;font-size:14px;color:var(--gray-700);border-bottom:1px solid var(--gray-100);line-height:1.55}
+  ul.bp li:last-child{border-bottom:none}
+  ul.bp li::before{content:'';position:absolute;left:5px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--green)}
+  ul.bp li strong{color:var(--ink)}
+
+  code{font-family:'Courier New',monospace;font-size:12.5px;background:var(--gray-100);padding:1px 5px;border-radius:3px;color:var(--navy)}
+
+  /* Footer */
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.7);padding:22px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;line-height:1.6}
+  .page-footer strong{color:#fff}
+  .page-footer a{color:var(--green);text-decoration:none}
+  .page-footer a:hover{text-decoration:underline}
+
+  @media(max-width:700px){
+    .logo-bar,.hero,.page-content,.sticky-nav,.page-footer{padding-left:20px;padding-right:20px}
+    .hero h1{font-size:34px}
+    .page-footer>div:last-child{text-align:left!important}
+  }
+
+  /* Additions for this page (house tokens only) */
+  table.rt.lbl td:first-child{font-weight:700;color:var(--ink)}
+  ul.check{list-style:none;margin:8px 0}
+  ul.check li{border-bottom:1px solid var(--gray-100);font-size:14px;color:var(--gray-700)}
+  ul.check li:last-child{border-bottom:none}
+  ul.check label{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:8px 0;cursor:pointer;line-height:1.55}
+  ul.check input{width:16px;height:16px;margin-top:3px;accent-color:var(--green-dk)}
+  .tbv{display:inline-block;font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.06em;color:#9A3A0E;background:var(--orange-tint);border:1px solid var(--orange);border-radius:3px;padding:0 5px;margin-left:4px;vertical-align:1px}
+  .btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;padding:10px 16px;border-radius:6px;font-family:var(--display);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .btn:hover{background:var(--navy-deep)}
+  .muted{color:var(--gray-600);font-size:13px}
+  a{color:var(--navy)}
 </style></head><body>
-<div class="logo-bar"><img src="../usic_academy_logo.png" alt="USIC Academy"></div>
-<header class="hero"><h1>SOP: How to Fill Out the Learning Reference Table</h1>
-<p>Step-by-step instructions and field definitions for TDMs updating their districts&rsquo; rows in the Learning Reference Table.</p>
-<div class="pills"><span class="pill v">v1.0</span><span class="pill">Audience: TDMs and L&amp;D Managers</span><span class="pill">Updated October 2, 2026</span></div></header>
-<div class="ai-banner">AI-assisted: drafted with generative AI and reviewed by Learning Analytics &amp; Technology.</div>
-<div class="layout"><nav class="side" aria-label="Sections"><a href="#overview" class="nav-link">Overview</a><a href="#why" class="nav-link">Why it matters</a><a href="#before" class="nav-link">Before you start</a><a href="#procedure" class="nav-link">Procedure</a><a href="#fields" class="nav-link">Field guide</a><a href="#rules" class="nav-link">Rules that tie fields together</a><a href="#checklist" class="nav-link">Quality checklist</a><a href="#mistakes" class="nav-link">Common mistakes in the current table</a><a href="#help" class="nav-link">Questions and escalation</a></nav><main><section id="overview" class="section"><h2>Overview</h2>
-<p class="lede">TDMs review and update every row for the districts they support, so that enrollment, reporting and 2027 instructor planning use correct values. Each row takes about 5 minutes.</p>
-<div class="callout green"><strong>This review round</strong><span>Open the list, update every field for each of your districts using the Field guide, run the Quality checklist, set Last Reviewed to today, and save. Complete it by the date in the request from L&amp;D Operations.</span></div>
-<div class="tbl-wrap"><table class="ref"><thead><tr><th>Item</th><th>Detail</th></tr></thead><tbody><tr><td>Who updates</td><td>The district&rsquo;s Training Delivery Manager (TDM), with the L&amp;D Manager</td></tr><tr><td>Who supports</td><td>L&amp;D Operations (Docebo changes); Learning Analytics &amp; Technology (list and reporting)</td></tr><tr><td>When</td><td>Every quarter when asked, and within 5 business days of any program change</td></tr><tr><td>System of record</td><td>SharePoint list <b>Learning Reference Table</b>, Learning Analytics and Technology site (<a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener">open the list</a>)</td></tr><tr><td>Also called</td><td>LRT; formerly the ULE Reference Table</td></tr></tbody></table></div></section><section id="why" class="section"><h2>Why it matters</h2>
+
+<div class="logo-bar"><img src="../usic_academy_logo.png" alt="USIC Academy"/><span class="logo-text">USIC Academy</span><span class="logo-sub">/ Learning Analytics &amp; Technology</span></div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">TDM SOP</div>
+  <h1>How to Fill Out the Learning Reference Table</h1>
+  <p>Step-by-step instructions and field definitions for TDMs updating their districts&rsquo; rows in the Learning Reference Table.</p>
+  <div class="hero-meta"><span class="meta-pill">Audience: TDMs &amp; L&amp;D Managers</span><span class="meta-pill">System: SharePoint list</span><span class="meta-pill">Last Updated: October 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#why">Why It Matters</a></li>
+  <li><a href="#before">Before You Start</a></li>
+  <li><a href="#procedure">Procedure</a></li>
+  <li><a href="#fields">Field Guide</a></li>
+  <li><a href="#rules">Rules that Tie Fields Together</a></li>
+  <li><a href="#checklist">Quality Checklist</a></li>
+  <li><a href="#mistakes">Common Mistakes</a></li>
+  <li><a href="#help">Escalation</a></li>
+</ul></nav>
+
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div class="ai-banner">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span class="pill">AI-Assisted</span>
+    <span>Drafted with generative AI and reviewed by Learning Analytics &amp; Technology.</span>
+  </div>
+</div>
+
+<div class="page-content">
+
+<section class="section" id="overview">
+  <div class="section-header"><span class="section-num">01</span><h2>Overview</h2></div>
+
+<p class="lead">TDMs review and update every row for the districts they support, so that enrollment, reporting and 2027 instructor planning use correct values. Each row takes about 5 minutes.</p>
+<div class="callout tip"><strong>This review round:</strong> Open the list, update every field for each of your districts using the Field guide, run the Quality checklist, set Last Reviewed to today, and save. Complete it by the date in the request from L&amp;D Operations.</div>
+<table class="rt lbl"><tr><th>Item</th><th>Detail</th></tr><tr><td>Who updates</td><td>The district&rsquo;s Training Delivery Manager (TDM), with the L&amp;D Manager</td></tr><tr><td>Who supports</td><td>L&amp;D Operations (Docebo changes); Learning Analytics &amp; Technology (list and reporting)</td></tr><tr><td>When</td><td>Every quarter when asked, and within 5 business days of any program change</td></tr><tr><td>System of record</td><td>SharePoint list <b>Learning Reference Table</b>, Learning Analytics and Technology site (<a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener">open the list</a>)</td></tr><tr><td>Also called</td><td>LRT; formerly the ULE Reference Table</td></tr></table>
+</section>
+
+<section class="section" id="why">
+  <div class="section-header"><span class="section-num">02</span><h2>Why It Matters</h2></div>
+
 <p>One wrong number in a row flows into enrollment, dashboards and headcount planning without anyone noticing.</p>
-<div class="tbl-wrap"><table class="ref"><thead><tr><th>What reads the table</th><th>Fields it uses</th><th>What goes wrong if a value is off</th></tr></thead><tbody><tr><td>ULE enrollment automation and communications</td><td>Utilities, district names, managers, HR contact</td><td>Learners get the wrong utility courses; messages go to the wrong people</td></tr><tr><td>ULE completion dashboard</td><td>District, region, Utility Day Duration, OJT Length, Nesting Starting Workday</td><td>Learners show late or early on completion and certification</td></tr><tr><td>Instructor capacity and headcount forecasts</td><td>Start to Cert, Standard Weekly ULE Cadence, Utility Day Duration, OJT Length, instructors and sharing</td><td>Instructor need is over- or under-stated; a 1-day error in a busy district changes the forecast by hundreds of instructor-days a year</td></tr><tr><td>HP &amp; Commercial and Telecom Vault (TCV) scheduling</td><td>Nesting Starting Workday, HPC and TCV Eligibility Periods, District Percent Needing TCV</td><td>Sessions are planned too early, too late, or for the wrong number of learners</td></tr><tr><td>Gas OQ planning</td><td>Gas OQ Required, OQ Length</td><td>OQ is missed or over-planned</td></tr></tbody></table></div>
-<div class="notice"><strong>The table is not connected to Docebo.</strong> Changing a district&rsquo;s utilities here does not change Docebo enrollments. L&amp;D Operations makes that change by hand, and it does not undo past enrollments.</div></section><section id="before" class="section"><h2>Before you start</h2>
+<table class="rt lbl"><tr><th>What reads the table</th><th>Fields it uses</th><th>What goes wrong if a value is off</th></tr><tr><td>ULE enrollment automation and communications</td><td>Utilities, district names, managers, HR contact</td><td>Learners get the wrong utility courses; messages go to the wrong people</td></tr><tr><td>ULE completion dashboard</td><td>District, region, Utility Day Duration, OJT Length, Nesting Starting Workday</td><td>Learners show late or early on completion and certification</td></tr><tr><td>Instructor capacity and headcount forecasts</td><td>Start to Cert, Standard Weekly ULE Cadence, Utility Day Duration, OJT Length, instructors and sharing</td><td>Instructor need is over- or under-stated; a 1-day error in a busy district changes the forecast by hundreds of instructor-days a year</td></tr><tr><td>HP &amp; Commercial and Telecom Vault (TCV) scheduling</td><td>Nesting Starting Workday, HPC and TCV Eligibility Periods, District Percent Needing TCV</td><td>Sessions are planned too early, too late, or for the wrong number of learners</td></tr><tr><td>Gas OQ planning</td><td>Gas OQ Required, OQ Length</td><td>OQ is missed or over-planned</td></tr></table>
+<div class="callout warn"><strong>The table is not connected to Docebo.</strong> Changing a district&rsquo;s utilities here does not change Docebo enrollments. L&amp;D Operations makes that change by hand, and it does not undo past enrollments.</div>
+</section>
+
+<section class="section" id="before">
+  <div class="section-header"><span class="section-num">03</span><h2>Before You Start</h2></div>
+
 <p>Have these on hand so every row is filled from facts, not memory.</p>
-<ul class="plain">
+<ul class="bp">
 <li><b>Access:</b> edit rights to the Learning Reference Table list. If the row opens read-only, ask Learning Analytics &amp; Technology.</li>
 <li><b>Your district list:</b> every cost center you support, including districts you share instructors with.</li>
 <li><b>Current class plan:</b> your district&rsquo;s cadence (weeks between class starts) and the date the current cadence started.</li>
@@ -66,25 +187,59 @@ body{background:var(--bg)}
 <li><b>Utility mix:</b> which utilities your learners locate (confirm with the Area Manager if unsure).</li>
 <li><b>People:</b> current Area Manager, Assistant Area Managers, HR partner, and TDM.</li>
 <li><b>Certification rules:</b> when learners become eligible for HP &amp; Commercial and Telecom Vault, the share who need TCV, and whether Gas OQ applies.</li>
-</ul></section><section id="procedure" class="section"><h2>Procedure</h2><ol class="steps"><li class="step"><span class="step-num">1</span><div class="step-body"><strong>Open the list.</strong><span>Go to the Learning Analytics and Technology site and open <a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener"><b>Learning Reference Table</b></a>.</span></div></li><li class="step"><span class="step-num">2</span><div class="step-body"><strong>Filter to your rows.</strong><span>Use the filter on <b>Region</b>, <b>Division</b> or <b>L&amp;D Manager</b>, or search for your district abbreviation. Confirm every district you support appears; tell Learning Analytics &amp; Technology if one is missing or listed under the wrong region or manager.</span></div></li><li class="step"><span class="step-num">3</span><div class="step-body"><strong>Open a row.</strong><span>Double-click the row. A panel opens with every field for that district.</span></div></li><li class="step"><span class="step-num">4</span><div class="step-body"><strong>Work top to bottom through the panel.</strong><span>Use the Field guide below. Identity and people fields: confirm or correct. Program fields: enter numbers only, in workdays. Certification fields: fill every one, entering 0 rather than leaving a number blank. Utilities: tick each utility learners must be trained on.</span></div></li><li class="step"><span class="step-num">5</span><div class="step-body"><strong>Run the quality checklist</strong><span>(below) on the row before saving.</span></div></li><li class="step"><span class="step-num">6</span><div class="step-body"><strong>Set Last Reviewed</strong><span>to today&rsquo;s date, even if nothing changed.</span></div></li><li class="step"><span class="step-num">7</span><div class="step-body"><strong>Click Save</strong><span>at the bottom of the panel.</span></div></li><li class="step"><span class="step-num">8</span><div class="step-body"><strong>Check the list view.</strong><span>Confirm the new values show in the row.</span></div></li><li class="step"><span class="step-num">9</span><div class="step-body"><strong>Repeat</strong><span>for each district you support.</span></div></li><li class="step"><span class="step-num">10</span><div class="step-body"><strong>Tell L&amp;D Operations</strong><span>if you changed utilities, so Docebo can be updated by hand.</span></div></li></ol></section><section id="fields" class="section"><h2>Field guide</h2>
+</ul>
+</section>
+
+<section class="section" id="procedure">
+  <div class="section-header"><span class="section-num">04</span><h2>Procedure</h2></div>
+<ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Open the list.</strong><span>Go to the Learning Analytics and Technology site and open <a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener"><b>Learning Reference Table</b></a>.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Filter to your rows.</strong><span>Use the filter on <b>Region</b>, <b>Division</b> or <b>L&amp;D Manager</b>, or search for your district abbreviation. Confirm every district you support appears; tell Learning Analytics &amp; Technology if one is missing or listed under the wrong region or manager.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Open a row.</strong><span>Double-click the row. A panel opens with every field for that district.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Work top to bottom through the panel.</strong><span>Use the Field guide below. Identity and people fields: confirm or correct. Program fields: enter numbers only, in workdays. Certification fields: fill every one, entering 0 rather than leaving a number blank. Utilities: tick each utility learners must be trained on.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Run the quality checklist</strong><span>(below) on the row before saving.</span></div></li><li><div class="step-num">6</div><div class="step-body"><strong>Set Last Reviewed</strong><span>to today&rsquo;s date, even if nothing changed.</span></div></li><li><div class="step-num">7</div><div class="step-body"><strong>Click Save</strong><span>at the bottom of the panel.</span></div></li><li><div class="step-num">8</div><div class="step-body"><strong>Check the list view.</strong><span>Confirm the new values show in the row.</span></div></li><li><div class="step-num">9</div><div class="step-body"><strong>Repeat</strong><span>for each district you support.</span></div></li><li><div class="step-num">10</div><div class="step-body"><strong>Tell L&amp;D Operations</strong><span>if you changed utilities, so Docebo can be updated by hand.</span></div></li></ol>
+</section>
+
+<section class="section" id="fields">
+  <div class="section-header"><span class="section-num">05</span><h2>Field Guide</h2></div>
+
 <p>Enter every count in <b>workdays</b> (Monday&ndash;Friday, holidays excluded) unless the field says calendar days. &ldquo;Common values&rdquo; are what most districts use today.</p>
-<h3>Identity and people</h3><div class="tbl-wrap"><table class="ref"><thead><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr></thead><tbody><tr><td>Division</td><td>Division over the region</td><td>Pick from list</td><td>East Division, West Division</td></tr><tr><td>Region</td><td>Region the district reports to</td><td>Pick from list; must match org chart</td><td>NorthEast, Mid South, South</td></tr><tr><td>Cost Center ID</td><td>4-digit cost center number</td><td>4 digits, no spaces</td><td>1501</td></tr><tr><td>Cost Center Name</td><td>Official cost center name</td><td>Exact spelling used in Workday</td><td>Southern Colorado</td></tr><tr><td>Cost Center Abbreviation</td><td>Short code used in class IDs and reports</td><td>Capital letters; must match class form codes</td><td>SCO, WIN, AGOOH</td></tr><tr><td>District Full</td><td>Name plus abbreviation as used across systems</td><td>Name (ABBR)</td><td>Southern Colorado (SCO)</td></tr><tr><td>State</td><td>State the district sits in</td><td>2-letter code; the main state if it spans two</td><td>CO</td></tr><tr><td>L&amp;D Manager</td><td>L&amp;D Manager for the district</td><td>Full name</td><td></td></tr><tr><td>Area Manager</td><td>Current Area Manager</td><td>Last, First</td><td></td></tr><tr><td>Assistant Area Manager</td><td><b>Every</b> Assistant Area Manager for the district</td><td>Last, First; separate several with semicolons</td><td>Required; 55 rows are blank today</td></tr><tr><td>Human Resource Contact</td><td>HR Business Partner or Generalist</td><td>Last, First</td><td>Used for automated HR messages</td></tr></tbody></table></div><h3>Instructors and sharing</h3><div class="tbl-wrap"><table class="ref"><thead><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr></thead><tbody><tr><td>District Based Instructors</td><td>Instructors whose home is this district</td><td>Whole number; 0 if none</td><td>1&ndash;2</td></tr><tr><td>District Shared Instructors</td><td>Other districts that share instructors with this one</td><td>Pick each district code; blank if no sharing</td><td>NCO, SCO</td></tr><tr><td>Sharing Type</td><td>How shared districts run classes</td><td><b>Train Classes Together / Mixed Classes</b> or <b>Train Classes Separately</b>; blank only if no sharing</td><td>Required whenever Shared Instructors is filled</td></tr><tr><td>Trainers Supporting District</td><td>All instructors who teach this district&rsquo;s classes, including shared ones</td><td>Whole number; not the same as headcount</td><td>1&ndash;3</td></tr></tbody></table></div><h3>Program design</h3><div class="tbl-wrap"><table class="ref"><thead><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr></thead><tbody><tr><td>Start to Cert District</td><td><b>Yes</b> if the instructor <b>mostly</b> stays with the class from Foundations through OJT. <b>No</b> if the instructor hands off to field trainers after Utility Days</td><td>Yes / No</td><td>About 4 in 10 districts are Yes</td></tr><tr><td>Standard Weekly ULE Cadence</td><td>Weeks from one class start to the next</td><td>Whole number of weeks (2&ndash;9)</td><td>3, 4 or 5</td></tr><tr><td>Cadence Start Date</td><td>Monday the current cadence began</td><td>Date</td><td>1/5/2026</td></tr><tr><td>Utility Day Duration</td><td>Workdays of Utility Days (after the 5-day Foundations week)</td><td>Whole number; Reconn 3</td><td>8 or 10</td></tr><tr><td>OJT Length</td><td>Workdays of on-the-job training</td><td>Whole number</td><td>10; Reconn 15</td></tr><tr><td>Nesting Starting Workday</td><td>Workday nesting begins, counted from class day 1</td><td><b>Must equal 5 + Utility Day Duration + OJT Length + 1</b></td><td>26 (= 5 + 10 + 10 + 1)</td></tr></tbody></table></div>
-<div class="notice">Districts moving to Start to Cert in 2027 (SWI, MIN, STP, GVL, WIN, EMI) should mark <b>Yes</b>, so 2027 planning reflects the change.</div>
-<h3>Certification and qualification</h3><div class="tbl-wrap"><table class="ref"><thead><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr></thead><tbody><tr><td>HPC Eligibility Period</td><td>Workdays from the employee&rsquo;s first day (class day 1) until they can take HP &amp; Commercial</td><td>Whole number of workdays; must be later than Nesting Starting Workday</td><td>40</td></tr><tr><td>TCV Eligibility Period</td><td>Calendar days after hire when Telecom Vault training is allowed</td><td>Number of days; 0 if no TCV</td><td>180, 90</td></tr><tr><td>District Percent Needing TCV</td><td>Share of new hires who need Telecom Vault</td><td>0%&ndash;100%; 0% for Reconn and districts with no telecom</td><td>100%</td></tr><tr><td>Gas OQ Required</td><td>Does the district require Gas Operator Qualification?</td><td>Yes / No</td><td>Yes in most districts</td></tr><tr><td>OQ Length</td><td>Workdays of OQ delivery tied to Residential certification</td><td>Number (half days allowed); 0 if Gas OQ Required = No</td><td>0, 1 or 3</td></tr></tbody></table></div><h3>Utilities</h3><div class="tbl-wrap"><table class="ref"><thead><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr></thead><tbody><tr><td>Cable, Phone, Fiber, Power, Gas, Water, Sewer, Signal Light, Street Light, Wind Farm</td><td>Tick each utility learners must be trained on in Docebo</td><td>Checkbox</td><td>Gas ticked means Gas OQ Required is usually Yes</td></tr><tr><td>Utility Count</td><td>Number of utilities ticked</td><td>Calculated; do not type</td><td>7&ndash;9</td></tr></tbody></table></div><h3>Review</h3><div class="tbl-wrap"><table class="ref"><thead><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr></thead><tbody><tr><td>Last Updated Date (Last Reviewed)</td><td>Today&rsquo;s date after every review, even with no changes</td><td>Date</td><td>Set at every quarterly review</td></tr><tr><td>CurrentTDM</td><td>Your name, as the TDM supporting this district</td><td>Last, First; separate several TDMs with semicolons</td><td>Blank in every row today; fill this round</td></tr><tr><td>OrgDivision, OrgRegion</td><td>Leave as is</td><td>Maintained by Learning Analytics &amp; Technology</td><td>Blank today</td></tr></tbody></table></div></section><section id="rules" class="section"><h2>Rules that tie fields together</h2>
+<h3 class="sub">Identity and people</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Division</td><td>Division over the region</td><td>Pick from list</td><td>East Division, West Division</td></tr><tr><td>Region</td><td>Region the district reports to</td><td>Pick from list; must match org chart</td><td>NorthEast, Mid South, South</td></tr><tr><td>Cost Center ID</td><td>4-digit cost center number</td><td>4 digits, no spaces</td><td>1501</td></tr><tr><td>Cost Center Name</td><td>Official cost center name</td><td>Exact spelling used in Workday</td><td>Southern Colorado</td></tr><tr><td>Cost Center Abbreviation</td><td>Short code used in class IDs and reports</td><td>Capital letters; must match class form codes</td><td>SCO, WIN, AGOOH</td></tr><tr><td>District Full</td><td>Name plus abbreviation as used across systems</td><td>Name (ABBR)</td><td>Southern Colorado (SCO)</td></tr><tr><td>State</td><td>State the district sits in</td><td>2-letter code; the main state if it spans two</td><td>CO</td></tr><tr><td>L&amp;D Manager</td><td>L&amp;D Manager for the district</td><td>Full name</td><td></td></tr><tr><td>Area Manager</td><td>Current Area Manager</td><td>Last, First</td><td></td></tr><tr><td>Assistant Area Manager</td><td><b>Every</b> Assistant Area Manager for the district</td><td>Last, First; separate several with semicolons</td><td>Required; 55 rows are blank today</td></tr><tr><td>Human Resource Contact</td><td>HR Business Partner or Generalist</td><td>Last, First</td><td>Used for automated HR messages</td></tr></table><h3 class="sub">Instructors and sharing</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>District Based Instructors</td><td>Instructors whose home is this district</td><td>Whole number; 0 if none</td><td>1&ndash;2</td></tr><tr><td>District Shared Instructors</td><td>Other districts that share instructors with this one</td><td>Pick each district code; blank if no sharing</td><td>NCO, SCO</td></tr><tr><td>Sharing Type</td><td>How shared districts run classes</td><td><b>Train Classes Together / Mixed Classes</b> or <b>Train Classes Separately</b>; blank only if no sharing</td><td>Required whenever Shared Instructors is filled</td></tr><tr><td>Trainers Supporting District</td><td>All instructors who teach this district&rsquo;s classes, including shared ones</td><td>Whole number; not the same as headcount</td><td>1&ndash;3</td></tr></table><h3 class="sub">Program design</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Start to Cert District</td><td><b>Yes</b> if the instructor <b>mostly</b> stays with the class from Foundations through OJT. <b>No</b> if the instructor hands off to field trainers after Utility Days</td><td>Yes / No</td><td>About 4 in 10 districts are Yes</td></tr><tr><td>Standard Weekly ULE Cadence</td><td>Weeks from one class start to the next</td><td>Whole number of weeks (2&ndash;9)</td><td>3, 4 or 5</td></tr><tr><td>Cadence Start Date</td><td>Monday the current cadence began</td><td>Date</td><td>1/5/2026</td></tr><tr><td>Utility Day Duration</td><td>Workdays of Utility Days (after the 5-day Foundations week)</td><td>Whole number; Reconn 3</td><td>8 or 10</td></tr><tr><td>OJT Length</td><td>Workdays of on-the-job training</td><td>Whole number</td><td>10; Reconn 15</td></tr><tr><td>Nesting Starting Workday</td><td>Workday nesting begins, counted from class day 1</td><td><b>Must equal 5 + Utility Day Duration + OJT Length + 1</b></td><td>26 (= 5 + 10 + 10 + 1)</td></tr></table>
+<div class="callout warn">Districts moving to Start to Cert in 2027 (SWI, MIN, STP, GVL, WIN, EMI) should mark <b>Yes</b>, so 2027 planning reflects the change.</div>
+<h3 class="sub">Certification and qualification</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>HPC Eligibility Period</td><td>Workdays from the employee&rsquo;s first day (class day 1) until they can take HP &amp; Commercial</td><td>Whole number of workdays; must be later than Nesting Starting Workday</td><td>40</td></tr><tr><td>TCV Eligibility Period</td><td>Calendar days after hire when Telecom Vault training is allowed</td><td>Number of days; 0 if no TCV</td><td>180, 90</td></tr><tr><td>District Percent Needing TCV</td><td>Share of new hires who need Telecom Vault</td><td>0%&ndash;100%; 0% for Reconn and districts with no telecom</td><td>100%</td></tr><tr><td>Gas OQ Required</td><td>Does the district require Gas Operator Qualification?</td><td>Yes / No</td><td>Yes in most districts</td></tr><tr><td>OQ Length</td><td>Workdays of OQ delivery tied to Residential certification</td><td>Number (half days allowed); 0 if Gas OQ Required = No</td><td>0, 1 or 3</td></tr></table><h3 class="sub">Utilities</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Cable, Phone, Fiber, Power, Gas, Water, Sewer, Signal Light, Street Light, Wind Farm</td><td>Tick each utility learners must be trained on in Docebo</td><td>Checkbox</td><td>Gas ticked means Gas OQ Required is usually Yes</td></tr><tr><td>Utility Count</td><td>Number of utilities ticked</td><td>Calculated; do not type</td><td>7&ndash;9</td></tr></table><h3 class="sub">Review</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Last Updated Date (Last Reviewed)</td><td>Today&rsquo;s date after every review, even with no changes</td><td>Date</td><td>Set at every quarterly review</td></tr><tr><td>CurrentTDM</td><td>Your name, as the TDM supporting this district</td><td>Last, First; separate several TDMs with semicolons</td><td>Blank in every row today; fill this round</td></tr><tr><td>OrgDivision, OrgRegion</td><td>Leave as is</td><td>Maintained by Learning Analytics &amp; Technology</td><td>Blank today</td></tr></table>
+</section>
+
+<section class="section" id="rules">
+  <div class="section-header"><span class="section-num">06</span><h2>Rules that Tie Fields Together</h2></div>
+
 <p>The program fields must add up; if one changes, check the others in the same row.</p>
-<h3>1. The workday timeline</h3><p>Every district follows the same order, so the numbers chain together.</p><div class="tbl-wrap"><table class="ref"><thead><tr><th>Stage</th><th>Workdays (example: 10 Utility Days, 10 OJT)</th><th>Formula</th></tr></thead><tbody><tr><td>Foundations</td><td>1&ndash;5</td><td>Always 5 days</td></tr><tr><td>Utility Days</td><td>6&ndash;15</td><td>5 + Utility Day Duration</td></tr><tr><td>OJT</td><td>16&ndash;25</td><td>5 + Utility Day Duration + OJT Length</td></tr><tr><td>Nesting starts</td><td>26</td><td>5 + Utility Day Duration + OJT Length + 1</td></tr><tr><td>HP &amp; Commercial (811 only)</td><td>40 (most districts)</td><td>HPC Eligibility Period, in workdays from the first day; TCV right after HP</td></tr></tbody></table></div>
+<h3 class="sub">1. The workday timeline</h3><p>Every district follows the same order, so the numbers chain together.</p><table class="rt lbl"><tr><th>Stage</th><th>Workdays (example: 10 Utility Days, 10 OJT)</th><th>Formula</th></tr><tr><td>Foundations</td><td>1&ndash;5</td><td>Always 5 days</td></tr><tr><td>Utility Days</td><td>6&ndash;15</td><td>5 + Utility Day Duration</td></tr><tr><td>OJT</td><td>16&ndash;25</td><td>5 + Utility Day Duration + OJT Length</td></tr><tr><td>Nesting starts</td><td>26</td><td>5 + Utility Day Duration + OJT Length + 1</td></tr><tr><td>HP &amp; Commercial (811 only)</td><td>40 (most districts)</td><td>HPC Eligibility Period, in workdays from the first day; TCV right after HP</td></tr></table>
 <p>Reconn (AGO) learners finish after OJT; they do not go on to nesting or HP &amp; Commercial.</p>
-<h3>2. Start to Cert decides how long an instructor is tied to a class</h3>
-<ul class="plain"><li><b>No:</b> the instructor is tied up for Foundations + Utility Days, then free for other classes or certification sessions.</li>
+<h3 class="sub">2. Start to Cert decides how long an instructor is tied to a class</h3>
+<ul class="bp"><li><b>No:</b> the instructor is tied up for Foundations + Utility Days, then free for other classes or certification sessions.</li>
 <li><b>Yes:</b> the instructor is tied up through OJT, or for the full cadence if the cadence is longer (a class every 6 weeks ties the instructor up for 6 weeks).</li>
 <li>So a wrong Start to Cert answer, or a wrong cadence in a Start to Cert district, changes instructor forecasts the most.</li></ul>
-<h3>3. Cadence and instructors must fit</h3><p>In a Start to Cert district, if OJT ends after the next class starts, the classes overlap and need two instructors. Example: a 3-week cadence with 25 workdays of instruction needs at least 2 on Trainers Supporting District.</p>
-<h3>4. Sharing must match on both sides</h3><p>If SCO lists NCO as a shared district, NCO must list SCO, with the same Sharing Type on both rows.</p>
-<h3>5. Utilities and OQ must agree</h3><p>If Gas is ticked, Gas OQ Required is normally Yes and OQ Length is above 0. If Gas OQ Required is No, OQ Length is 0.</p>
-<h3>6. HP &amp; Commercial comes after nesting starts</h3><p>HPC Eligibility Period counts workdays from the employee&rsquo;s first day, so it must be larger than Nesting Starting Workday. Most districts use 40, about 15 workdays (3 weeks) into nesting.</p></section><section id="checklist" class="section"><h2>Quality checklist</h2><p>Run these checks on each row before you click Save. Ticking the boxes here is only for your own tracking; nothing is saved.</p><ul class="checklist"><li><label><input type="checkbox"> <span>No number field is blank: Utility Day Duration, OJT Length, Nesting Starting Workday, cadence, HPC and TCV eligibility, percent needing TCV, OQ Length (use 0 when it does not apply).</span></label></li><li><label><input type="checkbox"> <span>Nesting Starting Workday = 5 + Utility Day Duration + OJT Length + 1.</span></label></li><li><label><input type="checkbox"> <span>Start to Cert reflects how the district <b>mostly</b> runs today (Yes for the districts moving to Start to Cert in 2027).</span></label></li><li><label><input type="checkbox"> <span>Cadence is the actual weeks between class starts, as one whole number.</span></label></li><li><label><input type="checkbox"> <span>HPC Eligibility Period (workdays from the first day) is larger than Nesting Starting Workday.</span></label></li><li><label><input type="checkbox"> <span>Trainers Supporting District is 2 or more if a Start to Cert class runs longer than the cadence.</span></label></li><li><label><input type="checkbox"> <span>If shared districts are listed, Sharing Type is filled, and each shared district lists this one back.</span></label></li><li><label><input type="checkbox"> <span>Gas ticked means Gas OQ Required = Yes and OQ Length above 0.</span></label></li><li><label><input type="checkbox"> <span>Percent needing TCV is 0% for Reconn and for districts with no telecom utilities.</span></label></li><li><label><input type="checkbox"> <span>Every Assistant Area Manager, the HR contact and CurrentTDM are named.</span></label></li><li><label><input type="checkbox"> <span>Last Reviewed is today&rsquo;s date.</span></label></li></ul></section><section id="mistakes" class="section"><h2>Common mistakes in the current table</h2><p>As of the September 2026 extract, these are the most common errors across 96 district rows (CTE and Digital Locating excluded).</p><div class="tbl-wrap"><table class="ref"><thead><tr><th>Problem</th><th>Rows</th><th>Fix</th></tr></thead><tbody><tr><td>Not reviewed since July 1, 2026 (or never)</td><td>92</td><td>Review and set Last Reviewed this quarter</td></tr><tr><td>Assistant Area Manager blank</td><td>55</td><td>Name every Assistant Area Manager</td></tr><tr><td>Shared districts don&rsquo;t list each other back</td><td>22 pairs (e.g., NE lists WIA, WIA doesn&rsquo;t list NE)</td><td>Make both rows match</td></tr><tr><td>Gas OQ Required = Yes but OQ Length is 0 or blank</td><td>19</td><td>Enter OQ days, or set Gas OQ Required to No</td></tr><tr><td>TCV eligibility, percent needing TCV, or HPC eligibility blank</td><td>17&ndash;20 each</td><td>Enter a value; 0 / 0% if it does not apply</td></tr><tr><td>Trainers Supporting District blank</td><td>16</td><td>Enter the number of instructors who teach the district</td></tr><tr><td>Gas OQ Required = Yes but Gas not ticked</td><td>13</td><td>Tick Gas, or correct the OQ field</td></tr><tr><td>Shared districts listed but Sharing Type blank</td><td>6</td><td>Pick a Sharing Type</td></tr><tr><td>Gas OQ Required = No but OQ Length above 0</td><td>3</td><td>Set OQ Length to 0, or Gas OQ Required to Yes</td></tr><tr><td>Standard Weekly ULE Cadence blank</td><td>3</td><td>Enter weeks between classes</td></tr><tr><td>HPC eligibility earlier than nesting (BKN 16 vs. 25; CT 19 vs. 24)</td><td>2</td><td>Correct to a workday after nesting</td></tr><tr><td>Utility Day Duration blank (AGOWDAL)</td><td>1</td><td>Enter the value; nesting day 21 implies 0</td></tr></tbody></table></div><p class="muted">Reconn rows should show 0 for HPC eligibility, since Reconn learners don&rsquo;t take HP &amp; Commercial.</p></section><section id="help" class="section"><h2>Questions and escalation</h2><div class="tbl-wrap"><table class="ref"><thead><tr><th>Need</th><th>Contact</th></tr></thead><tbody><tr><td>Can&rsquo;t edit the list, or a district is missing or assigned to the wrong manager</td><td>Learning Analytics &amp; Technology</td></tr><tr><td>Utility mix changed and Docebo enrollments need updating</td><td>L&amp;D Operations</td></tr><tr><td>Unsure about program design (Start to Cert, cadence, Utility Days, OJT)</td><td>Your Senior L&amp;D Manager</td></tr><tr><td>HPC / TCV eligibility rules or Gas OQ requirements</td><td>L&amp;D Operations</td></tr></tbody></table></div><p><a class="btn" href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener">Submit a Help Ticket</a></p><div class="tbl-wrap"><table class="ref"><thead><tr><th>Version</th><th>Date</th><th>Change</th></tr></thead><tbody><tr><td>1.0</td><td>October 2, 2026</td><td>First SOP for the TDM review round</td></tr></tbody></table></div></section></main></div>
-<footer>USIC Academy &middot; Learning Analytics &amp; Technology &middot; SOP v1.0</footer>
-<script>
-(function(){var links=[].slice.call(document.querySelectorAll('.nav-link'));var secs=links.map(function(l){return document.querySelector(l.getAttribute('href'))});
-function onScroll(){var y=window.scrollY+120,cur=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});links.forEach(function(l,i){l.classList.toggle('active',i===cur)})}
-window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
-</script></body></html>
+<h3 class="sub">3. Cadence and instructors must fit</h3><p>In a Start to Cert district, if OJT ends after the next class starts, the classes overlap and need two instructors. Example: a 3-week cadence with 25 workdays of instruction needs at least 2 on Trainers Supporting District.</p>
+<h3 class="sub">4. Sharing must match on both sides</h3><p>If SCO lists NCO as a shared district, NCO must list SCO, with the same Sharing Type on both rows.</p>
+<h3 class="sub">5. Utilities and OQ must agree</h3><p>If Gas is ticked, Gas OQ Required is normally Yes and OQ Length is above 0. If Gas OQ Required is No, OQ Length is 0.</p>
+<h3 class="sub">6. HP &amp; Commercial comes after nesting starts</h3><p>HPC Eligibility Period counts workdays from the employee&rsquo;s first day, so it must be larger than Nesting Starting Workday. Most districts use 40, about 15 workdays (3 weeks) into nesting.</p>
+</section>
+
+<section class="section" id="checklist">
+  <div class="section-header"><span class="section-num">07</span><h2>Quality Checklist</h2></div>
+<p>Run these checks on each row before you click Save. Ticking the boxes here is only for your own tracking; nothing is saved.</p><ul class="check"><li><label><input type="checkbox"> <span>No number field is blank: Utility Day Duration, OJT Length, Nesting Starting Workday, cadence, HPC and TCV eligibility, percent needing TCV, OQ Length (use 0 when it does not apply).</span></label></li><li><label><input type="checkbox"> <span>Nesting Starting Workday = 5 + Utility Day Duration + OJT Length + 1.</span></label></li><li><label><input type="checkbox"> <span>Start to Cert reflects how the district <b>mostly</b> runs today (Yes for the districts moving to Start to Cert in 2027).</span></label></li><li><label><input type="checkbox"> <span>Cadence is the actual weeks between class starts, as one whole number.</span></label></li><li><label><input type="checkbox"> <span>HPC Eligibility Period (workdays from the first day) is larger than Nesting Starting Workday.</span></label></li><li><label><input type="checkbox"> <span>Trainers Supporting District is 2 or more if a Start to Cert class runs longer than the cadence.</span></label></li><li><label><input type="checkbox"> <span>If shared districts are listed, Sharing Type is filled, and each shared district lists this one back.</span></label></li><li><label><input type="checkbox"> <span>Gas ticked means Gas OQ Required = Yes and OQ Length above 0.</span></label></li><li><label><input type="checkbox"> <span>Percent needing TCV is 0% for Reconn and for districts with no telecom utilities.</span></label></li><li><label><input type="checkbox"> <span>Every Assistant Area Manager, the HR contact and CurrentTDM are named.</span></label></li><li><label><input type="checkbox"> <span>Last Reviewed is today&rsquo;s date.</span></label></li></ul>
+</section>
+
+<section class="section" id="mistakes">
+  <div class="section-header"><span class="section-num">08</span><h2>Common Mistakes in the Current Table</h2></div>
+<p>As of the September 2026 extract, these are the most common errors across 96 district rows (CTE and Digital Locating excluded).</p><table class="rt lbl"><tr><th>Problem</th><th>Rows</th><th>Fix</th></tr><tr><td>Not reviewed since July 1, 2026 (or never)</td><td>92</td><td>Review and set Last Reviewed this quarter</td></tr><tr><td>Assistant Area Manager blank</td><td>55</td><td>Name every Assistant Area Manager</td></tr><tr><td>Shared districts don&rsquo;t list each other back</td><td>22 pairs (e.g., NE lists WIA, WIA doesn&rsquo;t list NE)</td><td>Make both rows match</td></tr><tr><td>Gas OQ Required = Yes but OQ Length is 0 or blank</td><td>19</td><td>Enter OQ days, or set Gas OQ Required to No</td></tr><tr><td>TCV eligibility, percent needing TCV, or HPC eligibility blank</td><td>17&ndash;20 each</td><td>Enter a value; 0 / 0% if it does not apply</td></tr><tr><td>Trainers Supporting District blank</td><td>16</td><td>Enter the number of instructors who teach the district</td></tr><tr><td>Gas OQ Required = Yes but Gas not ticked</td><td>13</td><td>Tick Gas, or correct the OQ field</td></tr><tr><td>Shared districts listed but Sharing Type blank</td><td>6</td><td>Pick a Sharing Type</td></tr><tr><td>Gas OQ Required = No but OQ Length above 0</td><td>3</td><td>Set OQ Length to 0, or Gas OQ Required to Yes</td></tr><tr><td>Standard Weekly ULE Cadence blank</td><td>3</td><td>Enter weeks between classes</td></tr><tr><td>HPC eligibility earlier than nesting (BKN 16 vs. 25; CT 19 vs. 24)</td><td>2</td><td>Correct to a workday after nesting</td></tr><tr><td>Utility Day Duration blank (AGOWDAL)</td><td>1</td><td>Enter the value; nesting day 21 implies 0</td></tr></table><p class="muted">Reconn rows should show 0 for HPC eligibility, since Reconn learners don&rsquo;t take HP &amp; Commercial.</p>
+</section>
+
+<section class="section" id="help">
+  <div class="section-header"><span class="section-num">09</span><h2>Questions and Escalation</h2></div>
+<table class="rt lbl"><tr><th>Need</th><th>Contact</th></tr><tr><td>Can&rsquo;t edit the list, or a district is missing or assigned to the wrong manager</td><td>Learning Analytics &amp; Technology</td></tr><tr><td>Utility mix changed and Docebo enrollments need updating</td><td>L&amp;D Operations</td></tr><tr><td>Unsure about program design (Start to Cert, cadence, Utility Days, OJT)</td><td>Your Senior L&amp;D Manager</td></tr><tr><td>HPC / TCV eligibility rules or Gas OQ requirements</td><td>L&amp;D Operations</td></tr></table><p><a class="btn" href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener">Submit a Help Ticket</a></p><table class="rt lbl"><tr><th>Version</th><th>Date</th><th>Change</th></tr><tr><td>1.0</td><td>October 2, 2026</td><td>First SOP for the TDM review round</td></tr></table>
+</section>
+
+</div>
+
+<footer class="page-footer">
+  <div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div>
+  <div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div>
+</footer>
+
+</body></html>
