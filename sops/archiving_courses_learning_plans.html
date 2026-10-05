@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.0 -->
+<title>Archiving a Course or Learning Plan &mdash; USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#00305B; --navy-deep:#001F3D; --green:#94C83D; --green-dk:#5E8A1E;
+    --orange:#F16621; --gray:#7F7C7F; --ink:#191616;
+    --navy-tint:#E7EEF5; --green-tint:#EEF6E0; --orange-tint:#FDEBE0;
+    --gray-50:#F7F8FA; --gray-100:#EFF1F4; --gray-200:#E2E6EB; --gray-400:#9AA1AB;
+    --gray-600:#5B626C; --gray-800:#2A2F36; --white:#fff;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,.08);
+    --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+    --body:Arial,Helvetica,sans-serif;
+  }
+  body{font-family:var(--body);background:var(--gray-50);color:var(--gray-800);line-height:1.6;font-size:15px}
+
+  /* Logo bar (light) */
+  .logo-bar{background:var(--white);border-bottom:1px solid var(--gray-200);padding:12px 40px;display:flex;align-items:center;gap:14px}
+  .logo-bar img{height:40px;width:auto;display:block}
+  .logo-bar .logo-text{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.02em;color:var(--navy);text-transform:uppercase}
+  .logo-bar .logo-sub{font-size:13px;color:var(--gray);margin-left:2px;font-weight:400;font-family:var(--body)}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);padding:48px 40px 44px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-70px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(148,200,61,.10)}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:90px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.04)}
+  .hero-inner{max-width:860px;position:relative;z-index:1}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(148,200,61,.18);border:1px solid rgba(148,200,61,.4);color:#D7EBAE;font-size:12px;font-weight:600;padding:4px 13px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--display)}
+  .hero h1{font-family:var(--display);font-size:46px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.05;text-transform:uppercase}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:620px;line-height:1.6}
+  .hero-meta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.9);white-space:nowrap}
+
+  /* Sticky nav */
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px}
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+  .sticky-nav ul::-webkit-scrollbar{display:none}
+  .sticky-nav a{display:block;padding:13px 16px;font-size:13px;font-weight:600;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+  .sticky-nav a:hover{color:var(--navy)}
+
+  /* AI banner */
+  .ai-banner{background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .ai-banner .pill{background:#8E44AD;color:#fff;font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 9px;border-radius:3px}
+
+  /* Layout */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px}
+  .section{margin-bottom:46px;scroll-margin-top:64px}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid var(--gray-200)}
+  .section-num{font-family:var(--display);font-size:13px;font-weight:700;color:var(--green-dk);background:var(--green-tint);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
+  .section-header h2{font-family:var(--display);font-size:27px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+  p{margin-bottom:14px}p:last-child{margin-bottom:0}
+  .lead{font-size:15px;color:var(--gray-600);line-height:1.7}
+  h3.sub{font-family:var(--display);font-size:19px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.02em;margin:24px 0 12px;padding-left:11px;border-left:3px solid var(--green)}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:13px 16px;font-size:14px;line-height:1.6;margin:14px 0;border-left:3px solid}
+  .callout strong{font-weight:700}
+  .callout.info{background:var(--navy-tint);color:#103A60;border-left-color:var(--navy)}
+  .callout.tip{background:var(--green-tint);color:#3F5E16;border-left-color:var(--green)}
+  .callout.warn{background:var(--orange-tint);color:#9A3A0E;border-left-color:var(--orange)}
+  .callout.key{background:var(--navy);color:#fff;border-left-color:var(--green);box-shadow:var(--shadow-md)}
+  .callout.key strong{color:var(--green)}
+
+  /* Steps */
+  .steps{list-style:none}
+  .steps li{display:grid;grid-template-columns:34px 1fr;gap:14px;margin-bottom:12px;align-items:start}
+  .step-num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--white);font-family:var(--display);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .step-body{padding-top:3px}
+  .step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--ink)}   /* direct-child: keeps inline <strong> inline */
+  .step-body span{font-size:13.5px;color:var(--gray-600);line-height:1.6;display:block}
+  .step-body span strong{color:var(--navy)}
+
+  /* Tables */
+  table.rt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}
+  table.rt th{background:var(--navy);color:rgba(255,255,255,.92);text-align:left;padding:9px 13px;font-family:var(--display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  table.rt td{padding:10px 13px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top}
+  table.rt tr:last-child td{border-bottom:none}
+  table.rt tr:hover td{background:var(--gray-50)}
+  table.rt td .rtname{font-weight:700;color:var(--ink);white-space:nowrap}
+  .grp{background:var(--green-tint)!important;color:var(--green-dk);font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:12px}
+
+  /* Visibility option cards */
+  .vis-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+  .vis-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:13px 16px;box-shadow:var(--shadow);border-left:3px solid var(--gray-400)}
+  .vis-card.pick{border-left-color:var(--green);background:var(--green-tint)}
+  .vis-card .vt{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:3px}
+  .vis-card.pick .vt::after{content:" \2190 use this";font-family:var(--display);font-size:12px;font-weight:700;color:var(--green-dk);letter-spacing:.03em;text-transform:uppercase}
+  .vis-card .vd{font-size:13px;color:var(--gray-600);line-height:1.55}
+
+  /* Tip list */
+  ul.bp{list-style:none;margin:8px 0}
+  ul.bp li{position:relative;padding:7px 0 7px 24px;font-size:14px;color:var(--gray-700);border-bottom:1px solid var(--gray-100);line-height:1.55}
+  ul.bp li:last-child{border-bottom:none}
+  ul.bp li::before{content:'';position:absolute;left:5px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--green)}
+  ul.bp li strong{color:var(--ink)}
+
+  code{font-family:'Courier New',monospace;font-size:12.5px;background:var(--gray-100);padding:1px 5px;border-radius:3px;color:var(--navy)}
+
+  /* Footer */
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.7);padding:22px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;line-height:1.6}
+  .page-footer strong{color:#fff}
+  .page-footer a{color:var(--green);text-decoration:none}
+  .page-footer a:hover{text-decoration:underline}
+
+  @media(max-width:700px){
+    .logo-bar,.hero,.page-content,.sticky-nav,.page-footer{padding-left:20px;padding-right:20px}
+    .hero h1{font-size:34px}
+    .page-footer>div:last-child{text-align:left!important}
+  }
+
+  /* Additions for this page (house tokens only) */
+  table.rt.lbl td:first-child{font-weight:700;color:var(--ink)}
+  ul.check{list-style:none;margin:8px 0}
+  ul.check li{border-bottom:1px solid var(--gray-100);font-size:14px;color:var(--gray-700)}
+  ul.check li:last-child{border-bottom:none}
+  ul.check label{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:8px 0;cursor:pointer;line-height:1.55}
+  ul.check input{width:16px;height:16px;margin-top:3px;accent-color:var(--green-dk)}
+  .tbv{display:inline-block;font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.06em;color:#9A3A0E;background:var(--orange-tint);border:1px solid var(--orange);border-radius:3px;padding:0 5px;margin-left:4px;vertical-align:1px}
+  .btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;padding:10px 16px;border-radius:6px;font-family:var(--display);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .btn:hover{background:var(--navy-deep)}
+  .muted{color:var(--gray-600);font-size:13px}
+  a{color:var(--navy)}
+
+  /* Archiving-page components (house tokens) */
+  .choose{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0}
+  .choose>div{background:var(--white);border:1px solid var(--gray-200);border-top:3px solid var(--navy);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow)}
+  .choose>div.lp{border-top-color:var(--green)}
+  .choose h4{font-family:var(--display);font-size:17px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
+  .choose p{font-size:13.5px;color:var(--gray-600);margin:0}
+  .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .do-col,.dont-col{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-200);overflow:hidden;box-shadow:var(--shadow)}
+  .do-header,.dont-header{padding:10px 16px;font-family:var(--display);font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--white)}
+  .do-header{background:var(--green-dk)}
+  .dont-header{background:var(--orange)}
+  .do-col ul,.dont-col ul{list-style:none;padding:12px 16px}
+  .do-col li,.dont-col li{font-size:13.5px;padding:6px 0;border-bottom:1px solid var(--gray-100);color:var(--gray-600)}
+  .do-col li:last-child,.dont-col li:last-child{border-bottom:none}
+  @media(max-width:700px){.do-dont{grid-template-columns:1fr}}
+</style></head><body>
+
+<div class="logo-bar"><img src="../usic_academy_logo.png" alt="USIC Academy"/><span class="logo-text">USIC Academy</span><span class="logo-sub">/ LMS &middot; Superadmin SOP</span></div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">Superadmin SOP</div>
+  <h1>Archiving a Course or Learning Plan</h1>
+  <p>How USIC Academy retires outdated training in Docebo without losing completion history, certification records, or reporting access.</p>
+  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Performed by: Superadmins only</span><span class="meta-pill">Requested by: Course Owners, Content Creators, Learning Managers</span><span class="meta-pill">Last Updated: October 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Learning Analytics &amp; Technology (LAT)</span></div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#purpose">Purpose</a></li>
+  <li><a href="#choose">Choose the Action</a></li>
+  <li><a href="#roles">Roles</a></li>
+  <li><a href="#impact">What Archiving Does</a></li>
+  <li><a href="#prep">Pre-Archive Checklist</a></li>
+  <li><a href="#course">Archive a Course</a></li>
+  <li><a href="#lp">Retire a Learning Plan</a></li>
+  <li><a href="#bulk">Bulk Archiving</a></li>
+  <li><a href="#after">After Archiving</a></li>
+  <li><a href="#trouble">Troubleshooting</a></li>
+  <li><a href="#dodont">Do&rsquo;s &amp; Don&rsquo;ts</a></li>
+  <li><a href="#refs">Escalation &amp; References</a></li>
+</ul></nav>
+
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div class="ai-banner">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span class="pill">AI-Assisted</span>
+    <span>This guide was created with the help of generative AI under documented validation practices.</span>
+  </div>
+</div>
+
+<div class="page-content">
+
+<section class="section" id="purpose">
+  <div class="section-header"><span class="section-num">01</span><h2>Purpose and Scope</h2></div>
+  <p>Docebo's course archive removes a course from every learner-facing page while keeping its enrollments, completion records, and transactions. It is a one-way action: an archived course cannot be restored to active. This SOP standardizes when we archive, who approves it, what we export first, and the order of operations when learning plans are involved.</p>
+    <p>It covers four related actions: archiving a course, archiving course enrollments, retiring a learning plan, and archiving learning plan enrollments. Docebo has no native "archive" for a learning plan itself, so section 7 defines the USIC retirement procedure.</p>
+    <div class="callout info"><strong>Key note:</strong> Only Superadmins can archive a course. Power Users, including Content Creators (profile 146912) and Learning Managers (146911), cannot. Power Users submit a request; LAT executes.</div>
+</section>
+
+<section class="section" id="choose">
+  <div class="section-header"><span class="section-num">02</span><h2>Choose the Right Action</h2></div>
+  <p>Most requests to "archive" something are really one of these four. Confirm which one the requester means before you touch anything.</p>
+    <div class="choose">
+      <div><h4>Archive a course</h4><p>The course is obsolete or replaced. Nobody should take it again. Permanent.</p></div>
+      <div><h4>Archive course enrollments</h4><p>The course stays live, but learners need a fresh attempt (annual retraining, monthly assessments). Course is not archived.</p></div>
+      <div class="lp"><h4>Retire a learning plan</h4><p>The program is obsolete. The plan is unpublished and hidden; its courses may then be archived.</p></div>
+      <div class="lp"><h4>Archive LP enrollments</h4><p>The plan stays live, but learners' plan progress is reset or closed out. Plan and courses remain.</p></div>
+    </div>
+    <div class="callout tip"><strong>Recommendation:</strong> If the course is being revised rather than retired, build the new version first, publish it, then archive the old one. Learners should never land in a gap where neither version is available.</div>
+</section>
+
+<section class="section" id="roles">
+  <div class="section-header"><span class="section-num">03</span><h2>Roles and Approvals</h2></div>
+  <table class="rt lbl"><tr><th>Role</th><th>Responsibility</th></tr>
+        <tr><td>Requester</td><td>Course Owner, Content Creator, or Learning Manager. Submits the request through the LAT Zendesk intake with the course or plan name, ID, reason, and replacement (if any).</td></tr>
+        <tr><td>Course Owner</td><td>Confirms the course is no longer needed. Named in the Course Owner additional field.</td></tr>
+        <tr><td>L&amp;D Operations</td><td>Approval required when the Course Type is <em>Mandatory</em> or the course grants a certification.</td></tr>
+        <tr><td>LAT (Superadmin)</td><td>Runs dependency checks, exports records, performs the archive, verifies the result, and logs it.</td></tr>
+        <tr><td>Reporting stakeholders</td><td>Informed before archiving when the course feeds ULE, compliance, or Insights dashboards (for example, ULE Program Manager and L&amp;D Operations).</td></tr>
+    </table>
+</section>
+
+<section class="section" id="impact">
+  <div class="section-header"><span class="section-num">04</span><h2>What Course Archiving Does</h2></div>
+  <p>Per Docebo's <a href="https://help.docebo.com/hc/en-us/articles/33822223877394-Archiving-courses" target="_blank" rel="noopener">Archiving courses</a> article (updated August 2026), once a course is archived:</p>
+    <ul class="bp">
+      <li>It cannot be restored as an active course.</li>
+      <li>All active enrollments are archived in their current status and frozen at that moment.</li>
+      <li>Learners lose access to the course but can still see their progress and certificates on <strong>My activities</strong>.</li>
+      <li>It is removed from catalogs, enrollment rules, groups, and course equivalencies, and can't be added to new configurations.</li>
+      <li>For ILT courses, all past, present, and future sessions and events are canceled.</li>
+      <li>It is removed from every Power User's assigned resources, so Power Users can no longer see, track, or report on it.</li>
+      <li>It moves to the <strong>Archived</strong> tab of the Courses page.</li>
+    </ul>
+    <div class="callout warn"><strong>Warning: certification records are deleted.</strong> Archiving permanently removes every certification record tied to the course. If the course awards a certification, export the certification report before archiving. There is no way to recover these records afterward.</div>
+    <div class="callout warn"><strong>Warning: blocked by dependencies.</strong> A course can't be archived while it is in any learning plan or linked to an automatic group. Check dependencies first (section 6, step 3).</div>
+    <div class="callout warn"><strong>Warning: Outlook cancellations for past ILT sessions.</strong> If the Docebo Connect Outlook Calendar RSVP integration is enabled on an ILT course, archiving sends cancellation notices for past sessions too, and they can't be suppressed. Confirm whether the integration is active on the course <span class="tbv" title="To be verified in the USIC tenant">TBV</span> and warn instructors if so.</div>
+</section>
+
+<section class="section" id="prep">
+  <div class="section-header"><span class="section-num">05</span><h2>Pre-archive Checklist</h2></div>
+  <p>Complete every item before archiving. Record the results in the Zendesk ticket.</p>
+    <ul class="check">
+    <li><label><input type="checkbox"> <span>Request is approved by the Course Owner, plus L&amp;D Operations if the course is Mandatory or certification-bearing.</span></label></li>
+    <li><label><input type="checkbox"> <span>Replacement course or plan (if any) is published and enrollment rules point to it.</span></label></li>
+    <li><label><input type="checkbox"> <span>Enrollment report exported (all statuses, including completion dates and scores) and saved to the LAT SharePoint archive folder.</span></label></li>
+    <li><label><input type="checkbox"> <span>Certification report exported if the course awards a certification.</span></label></li>
+    <li><label><input type="checkbox"> <span>Question-level assessment responses downloaded if the course has a test that anyone reports on.</span></label></li>
+    <li><label><input type="checkbox"> <span>Course is removed from all learning plans and automatic groups (or the plan is being retired per section 7).</span></label></li>
+    <li><label><input type="checkbox"> <span>Observation checklists inventoried. They are not copied to the Training material page and will be lost.</span></label></li>
+    <li><label><input type="checkbox"> <span>Reporting stakeholders notified if the course appears in dashboards or scheduled reports.</span></label></li>
+    <li><label><input type="checkbox"> <span>For ILT: no sessions are scheduled that learners still need to attend.</span></label></li>
+  </ul>
+    <div class="callout info"><strong>Key note:</strong> Exports matter because Power Users lose all visibility after archiving. Compliance and regional reporting users will rely on the saved export, not on Docebo, for this course's history.</div>
+</section>
+
+<section class="section" id="course">
+  <div class="section-header"><span class="section-num">06</span><h2>Archive a Course</h2></div>
+  <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><span>Sign in as a Superadmin and go to <strong>Content and delivery (folder icon) &gt; Courses</strong>.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><span>Find the course, then select the <strong>ellipsis menu</strong> at the end of its row and choose <strong>Archive</strong>. The Archive course pop-up opens.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><span>Select <strong>Check dependencies</strong>. If any learning plan or automatic group is listed, open it from the right panel and remove the course, then return to this step. If the plan itself is obsolete, stop and follow section 7 first.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><span>Leave <strong>Upload the training material to the Training material page</strong> selected. This copies the course materials into a dedicated folder. Turning it off permanently deletes the materials.</span></div></li>
+    <li><div class="step-num">5</div><div class="step-body"><span>Select <strong>Archive now</strong>. The archive runs as a background job.</span></div></li>
+    <li><div class="step-num">6</div><div class="step-body"><span>Open the <strong>Archived</strong> tab, find the course, and confirm it appears. Open <strong>Enrollments</strong> to check that the frozen enrollment count matches your export.</span></div></li>
+  </ol>
+    <div class="callout tip"><strong>Recommendation:</strong> Before archiving, prefix the course name with <strong>ARCHIVED –</strong> and the year (for example, <em>ARCHIVED 2026 – Locate Basics v2</em>). The archived snapshot keeps the name, which makes historical reports easier to read.</div>
+</section>
+
+<section class="section" id="lp">
+  <div class="section-header"><span class="section-num">07</span><h2>Retire a Learning Plan</h2></div>
+  <p>Docebo does not archive learning plans themselves. Retiring a plan means closing out enrollments, hiding the plan, and then archiving its courses. Order matters: learning plan enrollments can't be archived once the plan has no courses left in it.</p>
+    <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><span>Export the learning plan enrollment report and save it with the course exports.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><span>For each course in the plan, check whether it also belongs to another active plan. Shared courses stay live; only courses unique to this plan get archived.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><span>If learners' plan progress should be closed out, go to <strong>Content and delivery &gt; Learning plans</strong>, open the plan, select the <strong>Enrollments</strong> tab, select the users, then <strong>Choose action &gt; Archive enrollments</strong>. Do this while the courses are still in the plan.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><span>Remove the plan from all catalogs and enrollment rules so no one new is enrolled.</span></div></li>
+    <li><div class="step-num">5</div><div class="step-body"><span>Rename the plan with the <strong>ARCHIVED</strong> prefix and year, and set it to unpublished (or <strong>Under maintenance</strong> if your view offers it) <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</span></div></li>
+    <li><div class="step-num">6</div><div class="step-body"><span>Remove the courses that are unique to this plan, then archive each one using section 6.</span></div></li>
+  </ol>
+    <div class="callout warn"><strong>Warning: adding or removing courses on a live plan.</strong> Adding a course to a published plan auto-enrolls all current members immediately. Confirm the plan is unpublished before editing its course list. The effect of removing a course from a plan on existing course enrollments should be confirmed in a test plan first <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</div>
+    <div class="callout info"><strong>Key note:</strong> Docebo's new certifications and learning plan model (released late summer 2026) may change these options. Re-check this section against the tenant before each plan retirement <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</div>
+</section>
+
+<section class="section" id="bulk">
+  <div class="section-header"><span class="section-num">08</span><h2>Bulk Archiving</h2></div>
+  <p>Use bulk archiving for catalog cleanups. Every course in the batch must pass the pre-archive checklist individually.</p>
+    <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><span>On the Courses page, select the checkboxes for up to 20 courses.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><span>Select <strong>Choose action</strong> in the bottom-right corner, then <strong>Archive</strong>.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><span>Complete the pop-up as in section 6, steps 3 through 5. Any course with dependencies will block; remove it from the batch or clear the dependency.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><span>Check the background job result, then confirm each course on the Archived tab.</span></div></li>
+  </ol>
+    <div class="callout info"><strong>Key note:</strong> Archiving enrollments alone (without archiving the course) can also be scripted through the API using the existing dry-run, typed-confirmation, and audit CSV conventions. Course-level archive through the API is not yet confirmed <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</div>
+</section>
+
+<section class="section" id="after">
+  <div class="section-header"><span class="section-num">09</span><h2>After Archiving</h2></div>
+  <ul class="bp">
+      <li>Close the Zendesk ticket with the archive date, export file locations, and anything not preserved (such as observation checklists).</li>
+      <li>Update the course governance lifecycle record in Confluence and any SOP, job aid, or QR code that linked to the course.</li>
+      <li>Notify the requester and reporting stakeholders that the course is archived and where the exported history lives.</li>
+      <li>Leave archived courses in place. The archived course's ellipsis menu offers <strong>View details</strong>, <strong>Check usage</strong> (catalogs, channels, and certificate templates at the time of archiving), and <strong>Delete</strong>.</li>
+    </ul>
+    <div class="callout warn"><strong>Warning: don't delete archived courses.</strong> Delete on an archived course permanently erases all its data everywhere in the platform. Deletion requires a separate approval from L&amp;D leadership.</div>
+</section>
+
+<section class="section" id="trouble">
+  <div class="section-header"><span class="section-num">10</span><h2>Troubleshooting</h2></div>
+  <table class="rt lbl"><tr><th>Problem</th><th>Cause and fix</th></tr>
+        <tr><td>Archive is blocked</td><td>The course is in a learning plan or an automatic group. Use Check dependencies, remove the course, and try again.</td></tr>
+        <tr><td>Can't archive a course's enrollments</td><td>Users completed it through a learning plan. Archive the learning plan enrollments instead, or retire the plan per section 7.</td></tr>
+        <tr><td>LP enrollment archive fails for some users</td><td>The user is inactive. Reactivate, archive, then deactivate again (the standard inactive-user cycle).</td></tr>
+        <tr><td>"Archive and unenroll" does nothing</td><td>A course in the plan also belongs to another plan. Docebo won't proceed in that case; resolve the overlap first.</td></tr>
+        <tr><td>LP enrollment archive is unavailable</td><td>The plan has no courses left. Archive LP enrollments before removing courses.</td></tr>
+        <tr><td>Power User can't find history</td><td>Expected: archived courses leave all Power User resources. Send them the saved export.</td></tr>
+    </table>
+</section>
+
+<section class="section" id="dodont">
+  <div class="section-header"><span class="section-num">11</span><h2>Do's and Don'ts</h2></div>
+  <div class="do-dont">
+    <div class="do-col"><div class="do-header">Do</div><ul class="bp">
+          <li>Export enrollments and certifications before every archive.</li>
+          <li>Publish the replacement first.</li>
+          <li>Keep training material upload selected.</li>
+          <li>Archive LP enrollments before removing courses from the plan.</li>
+          <li>Log every archive in the ticket.</li>
+        </ul></div>
+    <div class="dont-col"><div class="dont-header">Don&rsquo;t</div><ul class="bp">
+          <li>Archive a Mandatory course without L&amp;D Operations approval.</li>
+          <li>Archive to "reset" learners. Archive their enrollments instead.</li>
+          <li>Edit a published plan's course list.</li>
+          <li>Delete an archived course.</li>
+          <li>Archive an ILT course with sessions learners still need.</li>
+        </ul></div>
+  </div>
+</section>
+
+<section class="section" id="refs">
+  <div class="section-header"><span class="section-num">12</span><h2>Escalation and References</h2></div>
+  <ul class="bp">
+      <li><strong>Questions or requests:</strong> LAT Zendesk intake. Escalate to the LMS administrator (LAT) for blocked archives or unexpected data loss.</li>
+      <li><strong>Docebo Help:</strong> <a href="https://help.docebo.com/hc/en-us/articles/33822223877394-Archiving-courses" target="_blank" rel="noopener">Archiving courses</a>, <a href="https://help.docebo.com/hc/en-us/articles/11521889929490" target="_blank" rel="noopener">Archiving course enrollments</a>, <a href="https://help.docebo.com/hc/en-us/articles/31154260443666" target="_blank" rel="noopener">Archiving learning plan enrollments</a>.</li>
+      <li><strong>Internal:</strong> Course Governance (Confluence page 2518581249), Power User Permissions Matrix (2541060097), Content Creator SOP.</li>
+    </ul>
+    <div class="callout info"><strong>Items marked TBV:</strong> These behaviors come from Docebo documentation or community reports and still need confirmation in the USIC tenant before this SOP is final.</div>
+</section>
+
+</div>
+
+<footer class="page-footer">
+  <div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div>
+  <div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div>
+</footer>
+
+</body></html>
