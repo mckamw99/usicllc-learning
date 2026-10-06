@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<!-- SOP-VERSION: 1.0 -->
+<!-- SOP-VERSION: 1.1 -->
 <title>How to Fill Out the Learning Reference Table &mdash; USIC Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 
@@ -126,6 +126,12 @@
   .btn:hover{background:var(--navy-deep)}
   .muted{color:var(--gray-600);font-size:13px}
   a{color:var(--navy)}
+
+  .step-body ol.steps{margin:6px 0 0 18px;list-style:decimal}
+  .step-body ol.steps li{display:list-item;margin:2px 0}
+  .step-body ol.steps .step-num{display:none}
+  .step-body ol.steps .step-body{padding:0}
+  .step-body ol.steps .step-body span{display:inline}
 </style></head><body>
 
 <div class="logo-bar"><img src="../usic_academy_logo.png" alt="USIC Academy"/><span class="logo-text">USIC Academy</span><span class="logo-sub">/ Learning Analytics &amp; Technology</span></div>
@@ -134,7 +140,7 @@
   <div class="hero-badge">TDM SOP</div>
   <h1>How to Fill Out the Learning Reference Table</h1>
   <p>Step-by-step instructions and field definitions for TDMs updating their districts&rsquo; rows in the Learning Reference Table.</p>
-  <div class="hero-meta"><span class="meta-pill">Audience: TDMs &amp; L&amp;D Managers</span><span class="meta-pill">System: SharePoint list</span><span class="meta-pill">Last Updated: October 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+  <div class="hero-meta"><span class="meta-pill">Audience: TDMs &amp; L&amp;D Managers</span><span class="meta-pill">System: SharePoint list</span><span class="meta-pill">Last Updated: October 2026</span><span class="meta-pill">Version: 1.1</span><span class="meta-pill">Owner: Matthew McKay</span></div>
 </div></div>
 
 <nav class="sticky-nav"><ul>
@@ -143,10 +149,9 @@
   <li><a href="#before">Before You Start</a></li>
   <li><a href="#procedure">Procedure</a></li>
   <li><a href="#fields">Field Guide</a></li>
-  <li><a href="#rules">Rules that Tie Fields Together</a></li>
+  <li><a href="#rules">Field Rules</a></li>
   <li><a href="#checklist">Quality Checklist</a></li>
-  <li><a href="#mistakes">Common Mistakes</a></li>
-  <li><a href="#help">Escalation</a></li>
+  <li><a href="#help">Escalation &amp; History</a></li>
 </ul></nav>
 
 <!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
@@ -161,78 +166,206 @@
 
 <section class="section" id="overview">
   <div class="section-header"><span class="section-num">01</span><h2>Overview</h2></div>
-
-<p class="lead">TDMs review and update every row for the districts they support, so that enrollment, reporting and 2027 instructor planning use correct values. Each row takes about 5 minutes.</p>
-<div class="callout tip"><strong>This review round:</strong> Open the list, update every field for each of your districts using the Field guide, run the Quality checklist, set Last Reviewed to today, and save. Complete it by the date in the request from L&amp;D Operations.</div>
-<table class="rt lbl"><tr><th>Item</th><th>Detail</th></tr><tr><td>Who updates</td><td>The district&rsquo;s Training Delivery Manager (TDM), with the L&amp;D Manager</td></tr><tr><td>Who supports</td><td>L&amp;D Operations (Docebo changes); Learning Analytics &amp; Technology (list and reporting)</td></tr><tr><td>When</td><td>Every quarter when asked, and within 5 business days of any program change</td></tr><tr><td>System of record</td><td>SharePoint list <b>Learning Reference Table</b>, Learning Analytics and Technology site (<a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener">open the list</a>)</td></tr><tr><td>Also called</td><td>LRT; formerly the ULE Reference Table</td></tr></table>
+  <p class="lead">TDMs review and update every row for the districts they support, so that enrollment, reporting and 2027 instructor planning use correct values. Each row takes about 5 minutes.</p>
+  <div class="callout tip"><strong>This review round:</strong> open the list, update every field for each of your districts using the Field guide, run the Quality checklist, set Last Reviewed to today, and save. Complete it by the date in the request from L&amp;D Operations.</div>
+  <table class="rt lbl">
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Purpose</td><td>Keep each district's ULE program details correct in one place</td></tr>
+    <tr><td>Who updates</td><td>The district's TDM, with the L&amp;D Manager</td></tr>
+    <tr><td>Who supports</td><td>L&amp;D Operations (Docebo changes); Learning Analytics &amp; Technology (list and reporting)</td></tr>
+    <tr><td>When</td><td>Every quarter when asked, and within 5 business days of any program change</td></tr>
+    <tr><td>System of record</td><td>SharePoint list <strong>Learning</strong><strong> Reference Table</strong>, Learning Analytics and Technology site (<a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener">open the list</a>)</td></tr>
+    <tr><td>Also called</td><td>LRT; formerly the ULE Reference Table</td></tr>
+    <tr><td>Related</td><td><a href="https://usicapps.sharepoint.com/sites/USICLDHub2/SitePages/Updating-your-ULE-Reference-Table.aspx" target="_blank" rel="noopener">Updating your Learning Reference Table</a> (L&amp;D Hub page)</td></tr>
+  </table>
 </section>
 
 <section class="section" id="why">
   <div class="section-header"><span class="section-num">02</span><h2>Why It Matters</h2></div>
-
-<p>One wrong number in a row flows into enrollment, dashboards and headcount planning without anyone noticing.</p>
-<table class="rt lbl"><tr><th>What reads the table</th><th>Fields it uses</th><th>What goes wrong if a value is off</th></tr><tr><td>ULE enrollment automation and communications</td><td>Utilities, district names, managers, HR contact</td><td>Learners get the wrong utility courses; messages go to the wrong people</td></tr><tr><td>ULE completion dashboard</td><td>District, region, Utility Day Duration, OJT Length, Nesting Starting Workday</td><td>Learners show late or early on completion and certification</td></tr><tr><td>Instructor capacity and headcount forecasts</td><td>Start to Cert, Standard Weekly ULE Cadence, Utility Day Duration, OJT Length, instructors and sharing</td><td>Instructor need is over- or under-stated; a 1-day error in a busy district changes the forecast by hundreds of instructor-days a year</td></tr><tr><td>HP &amp; Commercial and Telecom Vault (TCV) scheduling</td><td>Nesting Starting Workday, HPC and TCV Eligibility Periods, District Percent Needing TCV</td><td>Sessions are planned too early, too late, or for the wrong number of learners</td></tr><tr><td>Gas OQ planning</td><td>Gas OQ Required, OQ Length</td><td>OQ is missed or over-planned</td></tr></table>
-<div class="callout warn"><strong>The table is not connected to Docebo.</strong> Changing a district&rsquo;s utilities here does not change Docebo enrollments. L&amp;D Operations makes that change by hand, and it does not undo past enrollments.</div>
+  <p>One wrong number in a row flows into enrollment, dashboards and headcount planning without anyone noticing.</p>
+  <table class="rt lbl">
+    <tr><th>What reads the table</th><th>Fields it uses</th><th>What goes wrong if a value is off</th></tr>
+    <tr><td>ULE enrollment automation and communications</td><td>Utilities, district names, managers, HR contact</td><td>Learners get the wrong utility courses; messages go to the wrong people</td></tr>
+    <tr><td>ULE completion dashboard</td><td>District, region, Utility Day Duration, OJT Length, Nesting Starting Workday</td><td>Learners show late or early on completion and certification</td></tr>
+    <tr><td>Instructor capacity and headcount forecasts</td><td>Start to Cert, Standard Weekly ULE Cadence, Utility Day Duration, OJT Length, instructors and sharing</td><td>Instructor need is over- or under-stated; a 1-day error in a busy district changes the forecast by hundreds of instructor-days a year</td></tr>
+    <tr><td>HP &amp; Commercial and Telecom Vault (TCV) scheduling</td><td>Nesting Starting Workday, HPC and TCV Eligibility Periods, District Percent Needing TCV</td><td>Sessions are planned too early, too late, or for the wrong number of learners</td></tr>
+    <tr><td>Gas OQ planning</td><td>Gas OQ Required, OQ Length</td><td>OQ is missed or over-planned</td></tr>
+  </table>
+  <div class="callout warn">The table is <strong>not</strong> connected to Docebo. Changing a district's utilities here does not change Docebo enrollments; L&amp;D Operations makes that change by hand, and it does not undo past enrollments.</div>
 </section>
 
 <section class="section" id="before">
   <div class="section-header"><span class="section-num">03</span><h2>Before You Start</h2></div>
-
-<p>Have these on hand so every row is filled from facts, not memory.</p>
-<ul class="bp">
-<li><b>Access:</b> edit rights to the Learning Reference Table list. If the row opens read-only, ask Learning Analytics &amp; Technology.</li>
-<li><b>Your district list:</b> every cost center you support, including districts you share instructors with.</li>
-<li><b>Current class plan:</b> your district&rsquo;s cadence (weeks between class starts) and the date the current cadence started.</li>
-<li><b>Program design:</b> how many Utility Days, how many OJT days, and whether the instructor stays through OJT.</li>
-<li><b>Utility mix:</b> which utilities your learners locate (confirm with the Area Manager if unsure).</li>
-<li><b>People:</b> current Area Manager, Assistant Area Managers, HR partner, and TDM.</li>
-<li><b>Certification rules:</b> when learners become eligible for HP &amp; Commercial and Telecom Vault, the share who need TCV, and whether Gas OQ applies.</li>
-</ul>
+  <p>Have these on hand so every row is filled from facts, not memory.</p>
+  <ul class="bp">
+    <li><strong>Access:</strong> edit rights to the Learning Reference Table list. If the row opens read-only, ask Learning Analytics &amp; Technology.</li>
+    <li><strong>Your district list:</strong> every cost center you own, including districts you share instructors with.</li>
+    <li><strong>Current class plan:</strong> your district's cadence (how many weeks between class starts) and the date the current cadence started.</li>
+    <li><strong>Program design for each district:</strong> how many Utility Days, how many OJT days, and whether the instructor stays through OJT.</li>
+    <li><strong>Utility mix:</strong> which utilities your learners locate (confirm with the Area Manager if unsure).</li>
+    <li><strong>People:</strong> current Area Manager, Assistant Area Managers, HR partner, and the TDM.</li>
+    <li><strong>Certification rules:</strong> when learners become eligible for HP &amp; Commercial and Telecom Vault, the share of learners who need TCV, and whether Gas OQ applies.</li>
+  </ul>
 </section>
 
 <section class="section" id="procedure">
   <div class="section-header"><span class="section-num">04</span><h2>Procedure</h2></div>
-<ol class="steps"><li><div class="step-num">1</div><div class="step-body"><strong>Open the list.</strong><span>Go to the Learning Analytics and Technology site and open <a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener"><b>Learning Reference Table</b></a>.</span></div></li><li><div class="step-num">2</div><div class="step-body"><strong>Filter to your rows.</strong><span>Use the filter on <b>Region</b>, <b>Division</b> or <b>L&amp;D Manager</b>, or search for your district abbreviation. Confirm every district you support appears; tell Learning Analytics &amp; Technology if one is missing or listed under the wrong region or manager.</span></div></li><li><div class="step-num">3</div><div class="step-body"><strong>Open a row.</strong><span>Double-click the row. A panel opens with every field for that district.</span></div></li><li><div class="step-num">4</div><div class="step-body"><strong>Work top to bottom through the panel.</strong><span>Use the Field guide below. Identity and people fields: confirm or correct. Program fields: enter numbers only, in workdays. Certification fields: fill every one, entering 0 rather than leaving a number blank. Utilities: tick each utility learners must be trained on.</span></div></li><li><div class="step-num">5</div><div class="step-body"><strong>Run the quality checklist</strong><span>(below) on the row before saving.</span></div></li><li><div class="step-num">6</div><div class="step-body"><strong>Set Last Reviewed</strong><span>to today&rsquo;s date, even if nothing changed.</span></div></li><li><div class="step-num">7</div><div class="step-body"><strong>Click Save</strong><span>at the bottom of the panel.</span></div></li><li><div class="step-num">8</div><div class="step-body"><strong>Check the list view.</strong><span>Confirm the new values show in the row.</span></div></li><li><div class="step-num">9</div><div class="step-body"><strong>Repeat</strong><span>for each district you support.</span></div></li><li><div class="step-num">10</div><div class="step-body"><strong>Tell L&amp;D Operations</strong><span>if you changed utilities, so Docebo can be updated by hand.</span></div></li></ol>
+  <p>Updating a district takes about 5 minutes once you have the facts above.</p>
+  <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><strong>Open the list.</strong><span>Go to the Learning Analytics and Technology site and open <a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener"><strong>Learning</strong></a><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology/Lists/ULE%20Reference%20Table/AllItems.aspx?viewid=99640188%2D344d%2D4417%2Dafce%2Dcede74ba6116" target="_blank" rel="noopener"><strong> Reference Table</strong></a>.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><strong>Filter to your rows.</strong><span>Use the filter on <strong>Region</strong>, <strong>Division</strong> or <strong>L&amp;D Manager</strong>, or search for your district abbreviation. Confirm every district you support appears; tell Learning Analytics &amp; Technology if one is missing or listed under the wrong region or manager.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><strong>Open a row.</strong><span>Double-click the row. A panel opens with every field for that district.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><strong>Work top to bottom through the panel,</strong><span>using the Field guide below for what to enter in each field.</span>  <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><span>Identity and people fields: confirm or correct.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><span>Program fields (Start to Cert, cadence, Utility Days, OJT, nesting): enter numbers only, in workdays.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><span>Certification fields (HPC, TCV, Gas OQ): fill every one; enter 0 rather than leaving a number blank when it does not apply.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><span>Utilities: tick each utility learners must be trained on.</span></div></li>
+  </ol></div></li>
+    <li><div class="step-num">5</div><div class="step-body"><strong>Run the quality checklist</strong><span>(below) on the row before saving.</span></div></li>
+    <li><div class="step-num">6</div><div class="step-body"><strong>Set Last Reviewed</strong><span>to today's date, even if nothing changed.</span></div></li>
+    <li><div class="step-num">7</div><div class="step-body"><strong>Click Save</strong><span>at the bottom of the panel.</span></div></li>
+    <li><div class="step-num">8</div><div class="step-body"><strong>Check the list view.</strong><span>Confirm the new values show in the row.</span></div></li>
+    <li><div class="step-num">9</div><div class="step-body"><strong>Repeat</strong><span>for each district you own.</span></div></li>
+    <li><div class="step-num">10</div><div class="step-body"><strong>Tell L&amp;D Operations</strong><span>if you changed utilities, so Docebo can be updated by hand.</span></div></li>
+  </ol>
 </section>
 
 <section class="section" id="fields">
   <div class="section-header"><span class="section-num">05</span><h2>Field Guide</h2></div>
-
-<p>Enter every count in <b>workdays</b> (Monday&ndash;Friday, holidays excluded) unless the field says calendar days. &ldquo;Common values&rdquo; are what most districts use today.</p>
-<h3 class="sub">Identity and people</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Division</td><td>Division over the region</td><td>Pick from list</td><td>East Division, West Division</td></tr><tr><td>Region</td><td>Region the district reports to</td><td>Pick from list; must match org chart</td><td>NorthEast, Mid South, South</td></tr><tr><td>Cost Center ID</td><td>4-digit cost center number</td><td>4 digits, no spaces</td><td>1501</td></tr><tr><td>Cost Center Name</td><td>Official cost center name</td><td>Exact spelling used in Workday</td><td>Southern Colorado</td></tr><tr><td>Cost Center Abbreviation</td><td>Short code used in class IDs and reports</td><td>Capital letters; must match class form codes</td><td>SCO, WIN, AGOOH</td></tr><tr><td>District Full</td><td>Name plus abbreviation as used across systems</td><td>Name (ABBR)</td><td>Southern Colorado (SCO)</td></tr><tr><td>State</td><td>State the district sits in</td><td>2-letter code; the main state if it spans two</td><td>CO</td></tr><tr><td>L&amp;D Manager</td><td>L&amp;D Manager for the district</td><td>Full name</td><td></td></tr><tr><td>Area Manager</td><td>Current Area Manager</td><td>Last, First</td><td></td></tr><tr><td>Assistant Area Manager</td><td><b>Every</b> Assistant Area Manager for the district</td><td>Last, First; separate several with semicolons</td><td>Required; 55 rows are blank today</td></tr><tr><td>Human Resource Contact</td><td>HR Business Partner or Generalist</td><td>Last, First</td><td>Used for automated HR messages</td></tr></table><h3 class="sub">Instructors and sharing</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>District Based Instructors</td><td>Instructors whose home is this district</td><td>Whole number; 0 if none</td><td>1&ndash;2</td></tr><tr><td>District Shared Instructors</td><td>Other districts that share instructors with this one</td><td>Pick each district code; blank if no sharing</td><td>NCO, SCO</td></tr><tr><td>Sharing Type</td><td>How shared districts run classes</td><td><b>Train Classes Together / Mixed Classes</b> or <b>Train Classes Separately</b>; blank only if no sharing</td><td>Required whenever Shared Instructors is filled</td></tr><tr><td>Trainers Supporting District</td><td>All instructors who teach this district&rsquo;s classes, including shared ones</td><td>Whole number; not the same as headcount</td><td>1&ndash;3</td></tr></table><h3 class="sub">Program design</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Start to Cert District</td><td><b>Yes</b> if the instructor <b>mostly</b> stays with the class from Foundations through OJT. <b>No</b> if the instructor hands off to field trainers after Utility Days</td><td>Yes / No</td><td>About 4 in 10 districts are Yes</td></tr><tr><td>Standard Weekly ULE Cadence</td><td>Weeks from one class start to the next</td><td>Whole number of weeks (2&ndash;9)</td><td>3, 4 or 5</td></tr><tr><td>Cadence Start Date</td><td>Monday the current cadence began</td><td>Date</td><td>1/5/2026</td></tr><tr><td>Utility Day Duration</td><td>Workdays of Utility Days (after the 5-day Foundations week)</td><td>Whole number; Reconn 3</td><td>8 or 10</td></tr><tr><td>OJT Length</td><td>Workdays of on-the-job training</td><td>Whole number</td><td>10; Reconn 15</td></tr><tr><td>Nesting Starting Workday</td><td>Workday nesting begins, counted from class day 1</td><td><b>Must equal 5 + Utility Day Duration + OJT Length + 1</b></td><td>26 (= 5 + 10 + 10 + 1)</td></tr></table>
-<div class="callout warn">Districts moving to Start to Cert in 2027 (SWI, MIN, STP, GVL, WIN, EMI) should mark <b>Yes</b>, so 2027 planning reflects the change.</div>
-<h3 class="sub">Certification and qualification</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>HPC Eligibility Period</td><td>Workdays from the employee&rsquo;s first day (class day 1) until they can take HP &amp; Commercial</td><td>Whole number of workdays; must be later than Nesting Starting Workday</td><td>40</td></tr><tr><td>TCV Eligibility Period</td><td>Calendar days after hire when Telecom Vault training is allowed</td><td>Number of days; 0 if no TCV</td><td>180, 90</td></tr><tr><td>District Percent Needing TCV</td><td>Share of new hires who need Telecom Vault</td><td>0%&ndash;100%; 0% for Reconn and districts with no telecom</td><td>100%</td></tr><tr><td>Gas OQ Required</td><td>Does the district require Gas Operator Qualification?</td><td>Yes / No</td><td>Yes in most districts</td></tr><tr><td>OQ Length</td><td>Workdays of OQ delivery tied to Residential certification</td><td>Number (half days allowed); 0 if Gas OQ Required = No</td><td>0, 1 or 3</td></tr></table><h3 class="sub">Utilities</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Cable, Phone, Fiber, Power, Gas, Water, Sewer, Signal Light, Street Light, Wind Farm</td><td>Tick each utility learners must be trained on in Docebo</td><td>Checkbox</td><td>Gas ticked means Gas OQ Required is usually Yes</td></tr><tr><td>Utility Count</td><td>Number of utilities ticked</td><td>Calculated; do not type</td><td>7&ndash;9</td></tr></table><h3 class="sub">Review</h3><table class="rt lbl"><tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr><tr><td>Last Updated Date (Last Reviewed)</td><td>Today&rsquo;s date after every review, even with no changes</td><td>Date</td><td>Set at every quarterly review</td></tr><tr><td>CurrentTDM</td><td>Your name, as the TDM supporting this district</td><td>Last, First; separate several TDMs with semicolons</td><td>Blank in every row today; fill this round</td></tr><tr><td>OrgDivision, OrgRegion</td><td>Leave as is</td><td>Maintained by Learning Analytics &amp; Technology</td><td>Blank today</td></tr></table>
+  <p>Enter every count in <strong>work</strong><strong>days</strong> (Monday–Friday, holidays excluded). No field uses calendar days. "Common values" are what most districts use today.</p>
+  <h3 class="sub">Identity and people</h3>
+  <table class="rt lbl">
+    <tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr>
+    <tr><td>Division</td><td>Division over the region</td><td>Pick from list</td><td>East Division, West Division</td></tr>
+    <tr><td>Region</td><td>Region the district reports to</td><td>Pick from list; must match org chart</td><td>NorthEast, Mid South, South</td></tr>
+    <tr><td>Cost Center ID</td><td>4-digit cost center number</td><td>4 digits, no spaces</td><td>1501</td></tr>
+    <tr><td>Cost Center Name</td><td>Official cost center name</td><td>Exact spelling used in Workday</td><td>Southern Colorado</td></tr>
+    <tr><td>Cost Center Abbreviation</td><td>Short code used in class IDs and reports</td><td>Capital letters; must match class form codes</td><td>SCO, WIN, AGOOH</td></tr>
+    <tr><td>District Full</td><td>Name plus abbreviation as used across systems</td><td>Name (ABBR)</td><td>Southern Colorado (SCO)</td></tr>
+    <tr><td>State</td><td>State the district sits in</td><td>2-letter code; the main state if it spans two</td><td>CO</td></tr>
+    <tr><td>L&amp;D Manager</td><td>Owner of this row</td><td>Full name</td><td></td></tr>
+    <tr><td>Area Manager</td><td>Current Area Manager</td><td>Last, First</td><td></td></tr>
+    <tr><td>Assistant Area Manager</td><td><strong>Every</strong> Assistant Area Manager for the district</td><td>Last, First; separate several with semicolons</td><td>Required; 55 rows are blank today</td></tr>
+    <tr><td>Human Resource Contact</td><td>HR Business Partner or Generalist</td><td>Last, First</td><td>Used for automated HR messages</td></tr>
+  </table>
+  <h3 class="sub">Instructors and sharing</h3>
+  <table class="rt lbl">
+    <tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr>
+    <tr><td>District Based Instructors</td><td>Instructors whose home is this district</td><td>Whole number; 0 if none</td><td>1–2</td></tr>
+    <tr><td>District Shared Instructors</td><td>Other districts that share instructors with this one</td><td>Pick each district code; blank if no sharing</td><td>NCO, SCO</td></tr>
+    <tr><td>Sharing Type</td><td>How shared districts run classes</td><td><strong>Train Classes Together / Mixed Classes</strong> or <strong>Train Classes Separately</strong>; blank only if no sharing</td><td>Required whenever Shared Instructors is filled</td></tr>
+    <tr><td>Trainers Supporting District</td><td>All instructors who teach this district's classes, including shared ones</td><td>Whole number; not the same as headcount</td><td>1–3</td></tr>
+  </table>
+  <h3 class="sub">Program design</h3>
+  <table class="rt lbl">
+    <tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr>
+    <tr><td>Start to Cert District</td><td><strong>Yes</strong> if the instructor <strong>mostly</strong> stays with the class from Foundations through OJT. <strong>No</strong> if the instructor hands off to field trainers after Utility Days</td><td>Yes / No</td><td>37 Yes, 61 No</td></tr>
+    <tr><td>Standard Weekly ULE Cadence</td><td>Weeks from one class start to the next</td><td>Whole number of weeks (2–9)</td><td>3, 4 or 5</td></tr>
+    <tr><td>Cadence Start Date</td><td>Monday the current cadence began</td><td>Date</td><td>1/5/2026</td></tr>
+    <tr><td>Utility Day Duration</td><td>Workdays of Utility Days (after the 5-day Foundations week)</td><td>Whole number; Reconn 3</td><td>8 or 10</td></tr>
+    <tr><td>OJT Length</td><td>Workdays of on-the-job training</td><td>Whole number</td><td>10; Reconn 15</td></tr>
+    <tr><td>Nesting Starting Workday</td><td>Workday nesting begins, counted from the first day of employment (class day 1)</td><td><strong>Must equal 5 + Utility Day Duration + OJT Length + 1</strong></td><td>26 (= 5 + 10 + 10 + 1)</td></tr>
+  </table>
+  <div class="callout warn">Districts moving to Start to Cert in 2027 (SWI, MIN, STP, GVL, WIN, EMI) should mark <strong>Yes</strong>, so 2027 planning reflects the change.</div>
+  <h3 class="sub">Certification and qualification</h3>
+  <table class="rt lbl">
+    <tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr>
+    <tr><td>HPC Eligibility Period</td><td>Workdays from the employee's first day of employment until they can take HP &amp; Commercial</td><td>Whole number of workdays; must be later than Nesting Starting Workday</td><td>40</td></tr>
+    <tr><td>TCV Eligibility Period</td><td>Workdays after the first day of employment when Telecom Vault training is allowed</td><td>Number of workdays; 0 if no TCV</td><td>180, 90</td></tr>
+    <tr><td>District Percent Needing TCV</td><td>Share of new hires who need Telecom Vault</td><td>0%–100%; 0% for Reconn and districts with no telecom</td><td>100%</td></tr>
+    <tr><td>Gas OQ Required</td><td>Does the district require Gas Operator Qualification?</td><td>Yes / No</td><td>Yes in 74 rows</td></tr>
+    <tr><td>OQ Length</td><td>Workdays of OQ delivery tied to Residential certification</td><td>Number (half days allowed); 0 if Gas OQ Required = No</td><td>0, 1 or 3</td></tr>
+  </table>
+  <h3 class="sub">Utilities</h3>
+  <table class="rt lbl">
+    <tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr>
+    <tr><td>Cable, Phone, Fiber, Power, Gas, Water, Sewer, Signal Light, Street Light, Wind Farm</td><td>Tick each utility learners must be trained on in Docebo</td><td>Checkbox</td><td>Gas ticked means Gas OQ Required is usually Yes</td></tr>
+    <tr><td>Utility Count</td><td>Number of utilities ticked</td><td>Calculated; do not type</td><td>7–9</td></tr>
+  </table>
+  <h3 class="sub">Review</h3>
+  <table class="rt lbl">
+    <tr><th>Field</th><th>What to enter</th><th>Format / valid values</th><th>Common values or example</th></tr>
+    <tr><td>Last Updated Date (Last Reviewed)</td><td>Today's date after every review, even with no changes</td><td>Date</td><td>Set at every quarterly review</td></tr>
+    <tr><td>OrgDivision, OrgRegion</td><td>Leave as is</td><td>Maintained by Learning Analytics &amp; Technology</td><td>Blank today</td></tr>
+    <tr><td>CurrentTDM</td><td>Your name, as the TDM supporting this district</td><td>Last, First; separate several TDMs with semicolons</td><td>Blank in every row today; fill this round</td></tr>
+  </table>
 </section>
 
 <section class="section" id="rules">
   <div class="section-header"><span class="section-num">06</span><h2>Rules that Tie Fields Together</h2></div>
-
-<p>The program fields must add up; if one changes, check the others in the same row.</p>
-<h3 class="sub">1. The workday timeline</h3><p>Every district follows the same order, so the numbers chain together.</p><table class="rt lbl"><tr><th>Stage</th><th>Workdays (example: 10 Utility Days, 10 OJT)</th><th>Formula</th></tr><tr><td>Foundations</td><td>1&ndash;5</td><td>Always 5 days</td></tr><tr><td>Utility Days</td><td>6&ndash;15</td><td>5 + Utility Day Duration</td></tr><tr><td>OJT</td><td>16&ndash;25</td><td>5 + Utility Day Duration + OJT Length</td></tr><tr><td>Nesting starts</td><td>26</td><td>5 + Utility Day Duration + OJT Length + 1</td></tr><tr><td>HP &amp; Commercial (811 only)</td><td>40 (most districts)</td><td>HPC Eligibility Period, in workdays from the first day; TCV right after HP</td></tr></table>
-<p>Reconn (AGO) learners finish after OJT; they do not go on to nesting or HP &amp; Commercial.</p>
-<h3 class="sub">2. Start to Cert decides how long an instructor is tied to a class</h3>
-<ul class="bp"><li><b>No:</b> the instructor is tied up for Foundations + Utility Days, then free for other classes or certification sessions.</li>
-<li><b>Yes:</b> the instructor is tied up through OJT, or for the full cadence if the cadence is longer (a class every 6 weeks ties the instructor up for 6 weeks).</li>
-<li>So a wrong Start to Cert answer, or a wrong cadence in a Start to Cert district, changes instructor forecasts the most.</li></ul>
-<h3 class="sub">3. Cadence and instructors must fit</h3><p>In a Start to Cert district, if OJT ends after the next class starts, the classes overlap and need two instructors. Example: a 3-week cadence with 25 workdays of instruction needs at least 2 on Trainers Supporting District.</p>
-<h3 class="sub">4. Sharing must match on both sides</h3><p>If SCO lists NCO as a shared district, NCO must list SCO, with the same Sharing Type on both rows.</p>
-<h3 class="sub">5. Utilities and OQ must agree</h3><p>If Gas is ticked, Gas OQ Required is normally Yes and OQ Length is above 0. If Gas OQ Required is No, OQ Length is 0.</p>
-<h3 class="sub">6. HP &amp; Commercial comes after nesting starts</h3><p>HPC Eligibility Period counts workdays from the employee&rsquo;s first day, so it must be larger than Nesting Starting Workday. Most districts use 40, about 15 workdays (3 weeks) into nesting.</p>
+  <p>The program fields must add up; if one changes, check the others in the same row.</p>
+  <p><strong>1. The </strong><strong>work</strong><strong>day timeline.</strong> Every district follows the same order, so the numbers chain together:</p>
+  <table class="rt lbl">
+    <tr><th>Stage</th><th>Workdays (example: 10 Utility Days, 10 OJT)</th><th>Formula</th></tr>
+    <tr><td>Foundations</td><td>1–5</td><td>Always 5 days</td></tr>
+    <tr><td>Utility Days</td><td>6–15</td><td>5 + Utility Day Duration</td></tr>
+    <tr><td>OJT</td><td>16–25</td><td>5 + Utility Day Duration + OJT Length</td></tr>
+    <tr><td>Nesting starts</td><td>26</td><td>5 + Utility Day Duration + OJT Length + 1</td></tr>
+    <tr><td>HP &amp; Commercial (811 only)</td><td>40 (most districts)</td><td>HPC Eligibility Period, in workdays from the first day of employment; TCV right after HP</td></tr>
+  </table>
+  <p>Reconn (AGO) learners finish after OJT; they do not go on to nesting or HP &amp; Commercial.</p>
+  <p><strong>2. Start to Cert decides how long an instructor is tied to a class.</strong></p>
+  <ul class="bp">
+    <li><strong>No:</strong> the instructor is tied up for Foundations + Utility Days, then free for other classes or certification sessions.</li>
+    <li><strong>Yes:</strong> the instructor is tied up through OJT, or for the full cadence if the cadence is longer (a class every 6 weeks ties the instructor up for 6 weeks).</li>
+    <li>So a wrong Start to Cert answer, or a wrong cadence in a Start to Cert district, changes instructor forecasts the most.</li>
+  </ul>
+  <p><strong>3. Cadence and instructors must fit.</strong> In a Start to Cert district, if OJT ends after the next class starts, the classes overlap and need two instructors. Example: a 3-week cadence with 25 workdays of instruction needs at least 2 instructors on Trainers Supporting District.</p>
+  <p><strong>4. Sharing must match on both sides.</strong> If SCO lists NCO as a shared district, NCO must list SCO, with the same Sharing Type on both rows.</p>
+  <p><strong>5. Utilities and OQ must agree.</strong> If Gas is ticked, Gas OQ Required is normally Yes and OQ Length is above 0. If Gas OQ Required is No, OQ Length is 0.</p>
+  <p><strong>6. HP &amp; Commercial comes after nesting starts.</strong> HPC Eligibility Period counts workdays from the employee's first day of employment, so it must be larger than Nesting Starting Workday. Most districts use 40, about 15 workdays (3 weeks) into nesting.</p>
 </section>
 
 <section class="section" id="checklist">
   <div class="section-header"><span class="section-num">07</span><h2>Quality Checklist</h2></div>
-<p>Run these checks on each row before you click Save. Ticking the boxes here is only for your own tracking; nothing is saved.</p><ul class="check"><li><label><input type="checkbox"> <span>No number field is blank: Utility Day Duration, OJT Length, Nesting Starting Workday, cadence, HPC and TCV eligibility, percent needing TCV, OQ Length (use 0 when it does not apply).</span></label></li><li><label><input type="checkbox"> <span>Nesting Starting Workday = 5 + Utility Day Duration + OJT Length + 1.</span></label></li><li><label><input type="checkbox"> <span>Start to Cert reflects how the district <b>mostly</b> runs today (Yes for the districts moving to Start to Cert in 2027).</span></label></li><li><label><input type="checkbox"> <span>Cadence is the actual weeks between class starts, as one whole number.</span></label></li><li><label><input type="checkbox"> <span>HPC Eligibility Period (workdays from the first day) is larger than Nesting Starting Workday.</span></label></li><li><label><input type="checkbox"> <span>Trainers Supporting District is 2 or more if a Start to Cert class runs longer than the cadence.</span></label></li><li><label><input type="checkbox"> <span>If shared districts are listed, Sharing Type is filled, and each shared district lists this one back.</span></label></li><li><label><input type="checkbox"> <span>Gas ticked means Gas OQ Required = Yes and OQ Length above 0.</span></label></li><li><label><input type="checkbox"> <span>Percent needing TCV is 0% for Reconn and for districts with no telecom utilities.</span></label></li><li><label><input type="checkbox"> <span>Every Assistant Area Manager, the HR contact and CurrentTDM are named.</span></label></li><li><label><input type="checkbox"> <span>Last Reviewed is today&rsquo;s date.</span></label></li></ul>
-</section>
-
-<section class="section" id="mistakes">
-  <div class="section-header"><span class="section-num">08</span><h2>Common Mistakes in the Current Table</h2></div>
-<p>As of the September 2026 extract, these are the most common errors across 96 district rows (CTE and Digital Locating excluded).</p><table class="rt lbl"><tr><th>Problem</th><th>Rows</th><th>Fix</th></tr><tr><td>Not reviewed since July 1, 2026 (or never)</td><td>92</td><td>Review and set Last Reviewed this quarter</td></tr><tr><td>Assistant Area Manager blank</td><td>55</td><td>Name every Assistant Area Manager</td></tr><tr><td>Shared districts don&rsquo;t list each other back</td><td>22 pairs (e.g., NE lists WIA, WIA doesn&rsquo;t list NE)</td><td>Make both rows match</td></tr><tr><td>Gas OQ Required = Yes but OQ Length is 0 or blank</td><td>19</td><td>Enter OQ days, or set Gas OQ Required to No</td></tr><tr><td>TCV eligibility, percent needing TCV, or HPC eligibility blank</td><td>17&ndash;20 each</td><td>Enter a value; 0 / 0% if it does not apply</td></tr><tr><td>Trainers Supporting District blank</td><td>16</td><td>Enter the number of instructors who teach the district</td></tr><tr><td>Gas OQ Required = Yes but Gas not ticked</td><td>13</td><td>Tick Gas, or correct the OQ field</td></tr><tr><td>Shared districts listed but Sharing Type blank</td><td>6</td><td>Pick a Sharing Type</td></tr><tr><td>Gas OQ Required = No but OQ Length above 0</td><td>3</td><td>Set OQ Length to 0, or Gas OQ Required to Yes</td></tr><tr><td>Standard Weekly ULE Cadence blank</td><td>3</td><td>Enter weeks between classes</td></tr><tr><td>HPC eligibility earlier than nesting (BKN 16 vs. 25; CT 19 vs. 24)</td><td>2</td><td>Correct to a workday after nesting</td></tr><tr><td>Utility Day Duration blank (AGOWDAL)</td><td>1</td><td>Enter the value; nesting day 21 implies 0</td></tr></table><p class="muted">Reconn rows should show 0 for HPC eligibility, since Reconn learners don&rsquo;t take HP &amp; Commercial.</p>
+  <p>Run these checks on each row before you click Save.</p>
+  <ul class="check">
+    <li><label><input type="checkbox"> <span>No number field is blank: Utility Day Duration, OJT Length, Nesting Starting Workday, cadence, HPC and TCV eligibility, percent needing TCV, OQ Length (use 0 when it does not apply).</span></label></li>
+    <li><label><input type="checkbox"> <span>Nesting Starting Workday = 5 + Utility Day Duration + OJT Length + 1.</span></label></li>
+    <li><label><input type="checkbox"> <span>Start to Cert reflects how the district <strong>mostly</strong> runs today (Yes for the districts moving to Start to Cert in 2027).</span></label></li>
+    <li><label><input type="checkbox"> <span>Cadence is the actual weeks between class starts, as one whole number.</span></label></li>
+    <li><label><input type="checkbox"> <span>HPC Eligibility Period (workdays from the first day of employment) is larger than Nesting Starting Workday.</span></label></li>
+    <li><label><input type="checkbox"> <span>Trainers Supporting District is 2 or more if a Start to Cert class runs longer than the cadence.</span></label></li>
+    <li><label><input type="checkbox"> <span>If shared districts are listed, Sharing Type is filled, and each shared district lists this one back.</span></label></li>
+    <li><label><input type="checkbox"> <span>Gas ticked ⇔ Gas OQ Required = Yes and OQ Length above 0.</span></label></li>
+    <li><label><input type="checkbox"> <span>Percent needing TCV is 0% for Reconn and for districts with no telecom utilities.</span></label></li>
+    <li><label><input type="checkbox"> <span>Every Assistant Area Manager and the HR contact are named.</span></label></li>
+    <li><label><input type="checkbox"> <span>Last Reviewed is today's date.</span></label></li>
+  </ul>
+  <h3 class="sub">Problems in the current table</h3>
+  <p>As of the September 2026 extract, these are the most common errors across 96 district rows (CTE and Digital Locating excluded).</p>
+  <table class="rt lbl">
+    <tr><th>Problem</th><th>Rows</th><th>Fix</th></tr>
+    <tr><td>Not reviewed since July 1, 2026 (or never)</td><td>92</td><td>Review and set Last Reviewed this quarter</td></tr>
+    <tr><td>Assistant Area Manager blank</td><td>55</td><td>Name every Assistant Area Manager</td></tr>
+    <tr><td>Shared districts don't list each other back</td><td>22 pairs (e.g., NE lists WIA, WIA doesn't list NE)</td><td>Make both rows match</td></tr>
+    <tr><td>Gas OQ Required = Yes but OQ Length is 0 or blank</td><td>19</td><td>Enter OQ days, or set Gas OQ Required to No</td></tr>
+    <tr><td>TCV eligibility, percent needing TCV, or HPC eligibility blank</td><td>17–20 each</td><td>Enter a value; 0 / 0% if it does not apply</td></tr>
+    <tr><td>Trainers Supporting District blank</td><td>16</td><td>Enter the number of instructors who teach the district</td></tr>
+    <tr><td>Gas OQ Required = Yes but Gas not ticked</td><td>13</td><td>Tick Gas, or correct the OQ field</td></tr>
+    <tr><td>Shared districts listed but Sharing Type blank</td><td>6</td><td>Pick a Sharing Type</td></tr>
+    <tr><td>Gas OQ Required = No but OQ Length above 0</td><td>3</td><td>Set OQ Length to 0, or Gas OQ Required to Yes</td></tr>
+    <tr><td>Standard Weekly ULE Cadence blank</td><td>3</td><td>Enter weeks between classes</td></tr>
+    <tr><td>Utility Day Duration blank (AGOWDAL)</td><td>1</td><td>Enter the value; nesting day 21 implies 0</td></tr>
+  </table>
+  <p>Two districts list HP &amp; Commercial eligibility before nesting starts: BKN (16 vs. nesting day 25) and CT (19 vs. 24). Correct these to a workday after nesting. Reconn rows should show 0, since Reconn learners don't take HP &amp; Commercial.</p>
 </section>
 
 <section class="section" id="help">
-  <div class="section-header"><span class="section-num">09</span><h2>Questions and Escalation</h2></div>
-<table class="rt lbl"><tr><th>Need</th><th>Contact</th></tr><tr><td>Can&rsquo;t edit the list, or a district is missing or assigned to the wrong manager</td><td>Learning Analytics &amp; Technology</td></tr><tr><td>Utility mix changed and Docebo enrollments need updating</td><td>L&amp;D Operations</td></tr><tr><td>Unsure about program design (Start to Cert, cadence, Utility Days, OJT)</td><td>Your Senior L&amp;D Manager</td></tr><tr><td>HPC / TCV eligibility rules or Gas OQ requirements</td><td>L&amp;D Operations</td></tr></table><p><a class="btn" href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener">Submit a Help Ticket</a></p><table class="rt lbl"><tr><th>Version</th><th>Date</th><th>Change</th></tr><tr><td>1.0</td><td>October 2, 2026</td><td>First SOP for the TDM review round</td></tr></table>
+  <div class="section-header"><span class="section-num">08</span><h2>Questions, Escalation and History</h2></div>
+  <table class="rt lbl">
+    <tr><th>Need</th><th>Contact</th></tr>
+    <tr><td>Can't edit the list, or a district is missing or assigned to the wrong manager</td><td>Learning Analytics &amp; Technology</td></tr>
+    <tr><td>Utility mix changed and Docebo enrollments need updating</td><td>L&amp;D Operations</td></tr>
+    <tr><td>Unsure about program design (Start to Cert, cadence, Utility Days, OJT)</td><td>Your Senior L&amp;D Manager</td></tr>
+    <tr><td>HPC / TCV eligibility rules or Gas OQ requirements</td><td>L&amp;D Operations</td></tr>
+  </table>
+  <table class="rt lbl">
+    <tr><th>Version</th><th>Date</th><th>Change</th><th>Author</th></tr>
+    <tr><td>1.0</td><td>October 2, 2026</td><td>First SOP for the TDM review round, built from the L&amp;D Hub page, the L&amp;D Manager Playbook draft, and a review of the current table</td><td>Learning Analytics &amp; Technology</td></tr>
+    <tr><td>1.1</td><td>October 6, 2026</td><td>Confirmed with L&amp;D: every count field is in workdays (Monday–Friday, holidays excluded); HPC and TCV eligibility count from the first day of employment. Removed calendar-day wording.</td><td>Learning Analytics &amp; Technology</td></tr>
+  </table>
+  <p><strong>Sources:</strong> <a href="https://usicapps.sharepoint.com/sites/USICLDHub2/SitePages/Updating-your-ULE-Reference-Table.aspx" target="_blank" rel="noopener">Updating your Learning Reference Table</a> (L&amp;D Hub, Pace Myrick); "Updating Learning Reference Table" (L&amp;D Manager Playbook draft, October 2025); Learning Reference Table values as of the September 2026 extract; ULE 3.0 / 3.1 enrollment flow.</p>
 </section>
 
 </div>
