@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<!-- SOP-VERSION: 1.0 -->
+<!-- SOP-VERSION: 1.2 -->
 <title>Archiving a Course or Learning Plan &mdash; USIC Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 
@@ -75,6 +75,7 @@
   .step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--ink)}   /* direct-child: keeps inline <strong> inline */
   .step-body span{font-size:13.5px;color:var(--gray-600);line-height:1.6;display:block}
   .step-body span strong{color:var(--navy)}
+  .step-body span.tbv{display:inline-block;font-size:11px;color:#9A3A0E;line-height:1.5}
 
   /* Tables */
   table.rt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}
@@ -150,7 +151,7 @@
   <div class="hero-badge">Superadmin SOP</div>
   <h1>Archiving a Course or Learning Plan</h1>
   <p>How USIC Academy retires outdated training in Docebo without losing completion history, certification records, or reporting access.</p>
-  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Performed by: Superadmins only</span><span class="meta-pill">Requested by: Course Owners, Content Creators, Learning Managers</span><span class="meta-pill">Last Updated: October 2026</span><span class="meta-pill">Version: 1.0</span><span class="meta-pill">Owner: Learning Analytics &amp; Technology (LAT)</span></div>
+  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Performed by: Superadmins only</span><span class="meta-pill">Requested by: Course Owners, Content Creators, Learning Managers</span><span class="meta-pill">Last Updated: October 2026</span><span class="meta-pill">Version: 1.2</span><span class="meta-pill">Owner: Learning Analytics &amp; Technology (LAT)</span></div>
 </div></div>
 
 <nav class="sticky-nav"><ul>
@@ -182,7 +183,7 @@
   <div class="section-header"><span class="section-num">01</span><h2>Purpose and Scope</h2></div>
   <p>Docebo's course archive removes a course from every learner-facing page while keeping its enrollments, completion records, and transactions. It is a one-way action: an archived course cannot be restored to active. This SOP standardizes when we archive, who approves it, what we export first, and the order of operations when learning plans are involved.</p>
     <p>It covers four related actions: archiving a course, archiving course enrollments, retiring a learning plan, and archiving learning plan enrollments. Docebo has no native "archive" for a learning plan itself, so section 7 defines the USIC retirement procedure.</p>
-    <div class="callout info"><strong>Key note:</strong> Only Superadmins can archive a course. Power Users, including Content Creators (profile 146912) and Learning Managers (146911), cannot. Power Users submit a request; LAT executes.</div>
+    <div class="callout info"><strong>Key note:</strong> Only Superadmins can archive a course. Power Users, including Content Creators (profile 146912) and Learning Managers (146911), cannot. Power Users submit a request; LAT executes. Before submitting a course archive request, the Content Creator updates the course code to the <strong>ARC-</strong> format and unpublishes the course (section 6A).</div>
 </section>
 
 <section class="section" id="choose">
@@ -200,7 +201,8 @@
 <section class="section" id="roles">
   <div class="section-header"><span class="section-num">03</span><h2>Roles and Approvals</h2></div>
   <table class="rt lbl"><tr><th>Role</th><th>Responsibility</th></tr>
-        <tr><td>Requester</td><td>Course Owner, Content Creator, or Learning Manager. Submits the request through the LAT Zendesk intake with the course or plan name, ID, reason, and replacement (if any).</td></tr>
+        <tr><td>Requester</td><td>Course Owner, Content Creator, or Learning Manager. Submits the request through the LAT Zendesk intake with the course or plan name, ID, new ARC- course code, reason, and replacement (if any).</td></tr>
+        <tr><td>Content Creator</td><td>Updates the course code to <strong>ARC-</strong> followed by the existing code and unpublishes the course (section 6A) <em>before</em> the request is submitted. This must happen first: once the course is archived, it leaves the Content Creator's resources and can no longer be edited.</td></tr>
         <tr><td>Course Owner</td><td>Confirms the course is no longer needed. Named in the Course Owner additional field.</td></tr>
         <tr><td>L&amp;D Operations</td><td>Approval required when the Course Type is <em>Mandatory</em> or the course grants a certification.</td></tr>
         <tr><td>LAT (Superadmin)</td><td>Runs dependency checks, exports records, performs the archive, verifies the result, and logs it.</td></tr>
@@ -221,7 +223,7 @@
       <li>It moves to the <strong>Archived</strong> tab of the Courses page.</li>
     </ul>
     <div class="callout warn"><strong>Warning: certification records are deleted.</strong> Archiving permanently removes every certification record tied to the course. If the course awards a certification, export the certification report before archiving. There is no way to recover these records afterward.</div>
-    <div class="callout warn"><strong>Warning: blocked by dependencies.</strong> A course can't be archived while it is in any learning plan or linked to an automatic group. Check dependencies first (section 6, step 3).</div>
+    <div class="callout warn"><strong>Warning: blocked by dependencies.</strong> A course can't be archived while it is in any learning plan or linked to an automatic group. Check dependencies first (section 6B, step 4).</div>
     <div class="callout warn"><strong>Warning: Outlook cancellations for past ILT sessions.</strong> If the Docebo Connect Outlook Calendar RSVP integration is enabled on an ILT course, archiving sends cancellation notices for past sessions too, and they can't be suppressed. Confirm whether the integration is active on the course <span class="tbv" title="To be verified in the USIC tenant">TBV</span> and warn instructors if so.</div>
 </section>
 
@@ -230,6 +232,8 @@
   <p>Complete every item before archiving. Record the results in the Zendesk ticket.</p>
     <ul class="check">
     <li><label><input type="checkbox"> <span>Request is approved by the Course Owner, plus L&amp;D Operations if the course is Mandatory or certification-bearing.</span></label></li>
+    <li><label><input type="checkbox"> <span>Course code has been updated to the <strong>ARC-</strong> format by the Content Creator (section 6A).</span></label></li>
+    <li><label><input type="checkbox"> <span>Course has been unpublished by the Content Creator (section 6A).</span></label></li>
     <li><label><input type="checkbox"> <span>Replacement course or plan (if any) is published and enrollment rules point to it.</span></label></li>
     <li><label><input type="checkbox"> <span>Enrollment report exported (all statuses, including completion dates and scores) and saved to the LAT SharePoint archive folder.</span></label></li>
     <li><label><input type="checkbox"> <span>Certification report exported if the course awards a certification.</span></label></li>
@@ -244,15 +248,34 @@
 
 <section class="section" id="course">
   <div class="section-header"><span class="section-num">06</span><h2>Archive a Course</h2></div>
+  <h3 class="sub">6A. Prepare the Course (Content Creator)</h3>
+  <p>Before submitting the archive request, the Content Creator makes two changes. The <strong>ARC-</strong> course code makes archived courses easy to spot in reports, exports, and the Archived tab. Unpublishing stops learners from starting the course while the request waits for LAT.</p>
+  <table class="rt lbl"><tr><th>Format</th><th>Rule</th><th>Example</th></tr>
+        <tr><td>Course has a code</td><td><strong>ARC-</strong> + existing course code</td><td>ULE-104 &rarr; <strong>ARC-ULE-104</strong></td></tr>
+        <tr><td>Course has no code</td><td><strong>ARC-</strong> + Docebo course ID</td><td>Course ID 1801 &rarr; <strong>ARC-1801</strong></td></tr>
+    </table>
+  <ol class="steps">
+    <li><div class="step-num">1</div><div class="step-body"><span>Go to <strong>Content and delivery (folder icon) &gt; Courses</strong> and open the course.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><span>Open the <strong>Properties</strong> tab and find the <strong>Course code</strong> field.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><span>Add <strong>ARC-</strong> to the front of the existing code. If the field is blank, enter <strong>ARC-</strong> followed by the course ID. Use uppercase, with no spaces.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><span>Select <strong>Save changes</strong>, then confirm the new code shows on the Courses list.</span></div></li>
+    <li><div class="step-num">5</div><div class="step-body"><span>Unpublish the course: on the Courses list, select the <strong>ellipsis menu</strong> at the end of its row and choose <strong>Unpublish</strong> <span class="tbv" title="To be verified in the USIC tenant: menu label and whether the Content Creator profile (146912) holds the publish/unpublish permission">TBV</span>. Confirm the status shows as unpublished.</span></div></li>
+    <li><div class="step-num">6</div><div class="step-body"><span>Submit the archive request through the LAT Zendesk intake. Include the new ARC- code and note that the course is unpublished.</span></div></li>
+  </ol>
+    <div class="callout warn"><strong>Warning: unpublishing cuts off learners right away.</strong> Enrolled learners can no longer open an unpublished course. Before you unpublish, make sure the replacement course is published, no one still needs to finish this one, and, for a Mandatory or certification-bearing course, L&amp;D Operations has approved the archive. For ILT courses, don't unpublish while sessions are still scheduled.</div>
+    <div class="callout warn"><strong>Warning: do this before you submit the request.</strong> After LAT archives the course, it disappears from the Content Creator's resources and the code can't be changed. If the request has already gone in, ask LAT to hold the archive until the code is updated.</div>
+    <div class="callout info"><strong>Key note:</strong> Changing the code doesn't change the course ID, enrollments, or completion history. Check first whether any report, dashboard, or integration filters on this course's code, and tell the reporting stakeholders about the new code <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</div>
+  <h3 class="sub">6B. Archive the Course (LAT Superadmin)</h3>
   <ol class="steps">
     <li><div class="step-num">1</div><div class="step-body"><span>Sign in as a Superadmin and go to <strong>Content and delivery (folder icon) &gt; Courses</strong>.</span></div></li>
-    <li><div class="step-num">2</div><div class="step-body"><span>Find the course, then select the <strong>ellipsis menu</strong> at the end of its row and choose <strong>Archive</strong>. The Archive course pop-up opens.</span></div></li>
-    <li><div class="step-num">3</div><div class="step-body"><span>Select <strong>Check dependencies</strong>. If any learning plan or automatic group is listed, open it from the right panel and remove the course, then return to this step. If the plan itself is obsolete, stop and follow section 7 first.</span></div></li>
-    <li><div class="step-num">4</div><div class="step-body"><span>Leave <strong>Upload the training material to the Training material page</strong> selected. This copies the course materials into a dedicated folder. Turning it off permanently deletes the materials.</span></div></li>
-    <li><div class="step-num">5</div><div class="step-body"><span>Select <strong>Archive now</strong>. The archive runs as a background job.</span></div></li>
-    <li><div class="step-num">6</div><div class="step-body"><span>Open the <strong>Archived</strong> tab, find the course, and confirm it appears. Open <strong>Enrollments</strong> to check that the frozen enrollment count matches your export.</span></div></li>
+    <li><div class="step-num">2</div><div class="step-body"><span>Find the course and confirm its code starts with <strong>ARC-</strong> and that it is unpublished. If either is missing, return the ticket to the Content Creator, or make the change yourself using section 6A and note it in the ticket.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><span>Find the course, then select the <strong>ellipsis menu</strong> at the end of its row and choose <strong>Archive</strong>. The Archive course pop-up opens.</span></div></li>
+    <li><div class="step-num">4</div><div class="step-body"><span>Select <strong>Check dependencies</strong>. If any learning plan or automatic group is listed, open it from the right panel and remove the course, then return to this step. If the plan itself is obsolete, stop and follow section 7 first.</span></div></li>
+    <li><div class="step-num">5</div><div class="step-body"><span>Leave <strong>Upload the training material to the Training material page</strong> selected. This copies the course materials into a dedicated folder. Turning it off permanently deletes the materials.</span></div></li>
+    <li><div class="step-num">6</div><div class="step-body"><span>Select <strong>Archive now</strong>. The archive runs as a background job.</span></div></li>
+    <li><div class="step-num">7</div><div class="step-body"><span>Open the <strong>Archived</strong> tab, find the course, and confirm it appears. Open <strong>Enrollments</strong> to check that the frozen enrollment count matches your export.</span></div></li>
   </ol>
-    <div class="callout tip"><strong>Recommendation:</strong> Before archiving, prefix the course name with <strong>ARCHIVED –</strong> and the year (for example, <em>ARCHIVED 2026 – Locate Basics v2</em>). The archived snapshot keeps the name, which makes historical reports easier to read.</div>
+    <div class="callout tip"><strong>Recommendation:</strong> Along with the ARC- code, prefix the course name with <strong>ARCHIVED –</strong> and the year (for example, <em>ARCHIVED 2026 – Locate Basics v2</em>). The archived snapshot keeps the name, which makes historical reports easier to read.</div>
 </section>
 
 <section class="section" id="lp">
@@ -264,7 +287,7 @@
     <li><div class="step-num">3</div><div class="step-body"><span>If learners' plan progress should be closed out, go to <strong>Content and delivery &gt; Learning plans</strong>, open the plan, select the <strong>Enrollments</strong> tab, select the users, then <strong>Choose action &gt; Archive enrollments</strong>. Do this while the courses are still in the plan.</span></div></li>
     <li><div class="step-num">4</div><div class="step-body"><span>Remove the plan from all catalogs and enrollment rules so no one new is enrolled.</span></div></li>
     <li><div class="step-num">5</div><div class="step-body"><span>Rename the plan with the <strong>ARCHIVED</strong> prefix and year, and set it to unpublished (or <strong>Under maintenance</strong> if your view offers it) <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</span></div></li>
-    <li><div class="step-num">6</div><div class="step-body"><span>Remove the courses that are unique to this plan, then archive each one using section 6.</span></div></li>
+    <li><div class="step-num">6</div><div class="step-body"><span>Remove the courses that are unique to this plan, then update each code per section 6A, then archive it per section 6B.</span></div></li>
   </ol>
     <div class="callout warn"><strong>Warning: adding or removing courses on a live plan.</strong> Adding a course to a published plan auto-enrolls all current members immediately. Confirm the plan is unpublished before editing its course list. The effect of removing a course from a plan on existing course enrollments should be confirmed in a test plan first <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</div>
     <div class="callout info"><strong>Key note:</strong> Docebo's new certifications and learning plan model (released late summer 2026) may change these options. Re-check this section against the tenant before each plan retirement <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</div>
@@ -272,11 +295,11 @@
 
 <section class="section" id="bulk">
   <div class="section-header"><span class="section-num">08</span><h2>Bulk Archiving</h2></div>
-  <p>Use bulk archiving for catalog cleanups. Every course in the batch must pass the pre-archive checklist individually.</p>
+  <p>Use bulk archiving for catalog cleanups. Every course in the batch must pass the pre-archive checklist individually, including its ARC- course code and unpublished status.</p>
     <ol class="steps">
-    <li><div class="step-num">1</div><div class="step-body"><span>On the Courses page, select the checkboxes for up to 20 courses.</span></div></li>
+    <li><div class="step-num">1</div><div class="step-body"><span>On the Courses page, search for <strong>ARC-</strong> to list the courses waiting for archive, then select the checkboxes for up to 20 of them.</span></div></li>
     <li><div class="step-num">2</div><div class="step-body"><span>Select <strong>Choose action</strong> in the bottom-right corner, then <strong>Archive</strong>.</span></div></li>
-    <li><div class="step-num">3</div><div class="step-body"><span>Complete the pop-up as in section 6, steps 3 through 5. Any course with dependencies will block; remove it from the batch or clear the dependency.</span></div></li>
+    <li><div class="step-num">3</div><div class="step-body"><span>Complete the pop-up as in section 6B, steps 4 through 6. Any course with dependencies will block; remove it from the batch or clear the dependency.</span></div></li>
     <li><div class="step-num">4</div><div class="step-body"><span>Check the background job result, then confirm each course on the Archived tab.</span></div></li>
   </ol>
     <div class="callout info"><strong>Key note:</strong> Archiving enrollments alone (without archiving the course) can also be scripted through the API using the existing dry-run, typed-confirmation, and audit CSV conventions. Course-level archive through the API is not yet confirmed <span class="tbv" title="To be verified in the USIC tenant">TBV</span>.</div>
@@ -301,6 +324,8 @@
         <tr><td>LP enrollment archive fails for some users</td><td>The user is inactive. Reactivate, archive, then deactivate again (the standard inactive-user cycle).</td></tr>
         <tr><td>"Archive and unenroll" does nothing</td><td>A course in the plan also belongs to another plan. Docebo won't proceed in that case; resolve the overlap first.</td></tr>
         <tr><td>LP enrollment archive is unavailable</td><td>The plan has no courses left. Archive LP enrollments before removing courses.</td></tr>
+        <tr><td>Content Creator can't unpublish</td><td>The Content Creator profile may not hold the publish/unpublish permission. Note it in the ticket and LAT unpublishes the course as part of section 6B.</td></tr>
+        <tr><td>Content Creator can't change the code</td><td>The course is already archived and has left their resources. LAT updates the record in the ticket log; the archived snapshot keeps the old code.</td></tr>
         <tr><td>Power User can't find history</td><td>Expected: archived courses leave all Power User resources. Send them the saved export.</td></tr>
     </table>
 </section>
@@ -309,6 +334,7 @@
   <div class="section-header"><span class="section-num">11</span><h2>Do's and Don'ts</h2></div>
   <div class="do-dont">
     <div class="do-col"><div class="do-header">Do</div><ul class="bp">
+          <li>Update the course code to ARC- and unpublish the course before requesting an archive.</li>
           <li>Export enrollments and certifications before every archive.</li>
           <li>Publish the replacement first.</li>
           <li>Keep training material upload selected.</li>
@@ -316,6 +342,8 @@
           <li>Log every archive in the ticket.</li>
         </ul></div>
     <div class="dont-col"><div class="dont-header">Don&rsquo;t</div><ul class="bp">
+          <li>Archive a course whose code doesn't start with ARC- or that is still published.</li>
+          <li>Unpublish a course before its replacement is live.</li>
           <li>Archive a Mandatory course without L&amp;D Operations approval.</li>
           <li>Archive to "reset" learners. Archive their enrollments instead.</li>
           <li>Edit a published plan's course list.</li>
