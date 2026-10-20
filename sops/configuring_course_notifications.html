@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<!-- SOP-VERSION: 1.1 -->
+<!-- SOP-VERSION: 1.2 -->
 <title>Configuring Course Notifications — USIC Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -214,7 +214,7 @@ body{font-family:Arial,Helvetica,sans-serif}
   <div class="hero-meta">
     <span class="meta-pill">Platform: usic.training</span>
     <span class="meta-pill">Last Updated: October 2026</span>
-    <span class="meta-pill">Version: 1.1</span>
+    <span class="meta-pill">Version: 1.2</span>
     <span class="meta-pill">Owner: Matthew McKay</span>
   </div>
 </div></div>
@@ -449,6 +449,7 @@ body{font-family:Arial,Helvetica,sans-serif}
         <tr><td>A Power User can&rsquo;t see a notification</td><td>The trigger resources aren&rsquo;t all assigned to that Power User. Align resource assignments.</td></tr>
         <tr><td>Status shows Failed</td><td>Bad recipient address, or custom SMTP timeout / auth issue. Review the <em>More information</em> column.</td></tr>
         <tr><td>It fired for the wrong courses</td><td>Content filter too broad. Edit the Triggers and filters tab and narrow the selection.</td></tr>
+        <tr><td>Learners can&rsquo;t open the course from the enrollment email</td><td>The course was still Under Maintenance when they were enrolled. <em>User enrolled in a course</em> fires at the moment of enrollment, so publish the course first. To keep it out of search, leave it out of catalogs instead.</td></tr>
       </tbody>
     </table>
     <div class="callout info">
