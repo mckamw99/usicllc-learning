@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.0 -->
+<title>KPI Dashboard FAQ — USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --navy:#00305B; --navy-deep:#00264a; --navy-mid:#1a4775;
+    --green:#94C83D; --green-deep:#6f9e26; --green-lt:#eef6dd;
+    --orange:#F16621; --orange-lt:#fde7da;
+    --gray-900:#191616; --gray-700:#3f4448; --gray-600:#5b6066;
+    --gray-400:#9aa0a6; --gray-300:#c7cbd0; --gray-200:#e3e6e9;
+    --gray-100:#eef1f4; --gray-50:#f6f8fa; --white:#ffffff; --navy-tint:#e9eff5;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,48,91,.08),0 1px 2px rgba(0,48,91,.05);
+    --shadow-md:0 6px 18px rgba(0,48,91,.10);
+  }
+  body{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;font-size:15px;}
+
+  /* Logo bar */
+  .logo-bar{background:var(--navy);padding:10px 40px;display:flex;align-items:center;gap:12px;}
+  .logo-bar img{height:30px;width:auto;display:block;}
+  .logo-bar .logo-text{color:var(--white);font-size:15px;font-weight:700;letter-spacing:.01em;}
+  .logo-bar .logo-sub{color:rgba(255,255,255,.55);font-size:13px;margin-left:2px;font-weight:400;}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:52px 40px 46px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-70px;right:-50px;width:280px;height:280px;border-radius:50%;background:rgba(148,200,61,.08);}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:120px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.04);}
+  .hero-inner{max-width:840px;position:relative;z-index:1;}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(241,102,33,.20);border:1px solid rgba(241,102,33,.5);color:#ffd2bb;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;}
+  .hero h1{font-family:"Arial Narrow",Arial,sans-serif;font-size:38px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.18;}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:640px;line-height:1.6;}
+  .hero-meta{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap;}
+  .meta-pill{font-size:12px;color:rgba(255,255,255,.85);background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);padding:4px 11px;border-radius:20px;}
+
+  /* Sticky nav */
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px;}
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none;}
+  .sticky-nav ul::-webkit-scrollbar{display:none;}
+  .sticky-nav a{display:block;padding:14px 16px;font-size:13px;font-weight:700;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+  .sticky-nav a:hover{color:var(--navy);}
+  .sticky-nav a.active{color:var(--navy);border-bottom-color:var(--green);}
+
+  /* Layout */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px;}
+  .section{margin-bottom:48px;scroll-margin-top:64px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--gray-200);}
+  .section-icon{width:38px;height:38px;border-radius:var(--radius);background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-icon svg{width:19px;height:19px;color:var(--white);}
+  .section-header h2{font-family:"Arial Narrow",Arial,sans-serif;font-size:23px;font-weight:700;color:var(--navy);letter-spacing:.01em;}
+  .section-header .section-num{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.08em;margin-left:auto;}
+  p.lead{color:var(--gray-700);margin-bottom:16px;}
+  .section p{margin-bottom:12px;color:var(--gray-700);}
+  .section p:last-child{margin-bottom:0;}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:14px 16px;font-size:14px;line-height:1.6;margin:16px 0;display:flex;gap:11px;align-items:flex-start;}
+  .callout-icon{flex-shrink:0;margin-top:1px;}
+  .callout-icon svg{width:17px;height:17px;}
+  .callout strong{font-weight:700;}
+  .callout.info{background:var(--navy-tint);color:#143a5e;border-left:3px solid var(--navy);}
+  .callout.tip{background:var(--green-lt);color:#3d5314;border-left:3px solid var(--green-deep);}
+  .callout.warning{background:var(--orange-lt);color:#8a3309;border-left:3px solid var(--orange);}
+
+  /* Tables */
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;}
+  .tbl th{text-align:left;padding:10px 14px;background:var(--navy);color:rgba(255,255,255,.92);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .tbl td{padding:11px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl tr:hover td{background:var(--gray-50);}
+  .tbl td strong{color:var(--navy);}
+  code{font-family:"Courier New",monospace;font-size:12.5px;background:var(--gray-100);padding:1px 6px;border-radius:4px;color:var(--navy);}
+  .tbl code{background:var(--gray-100);}
+
+  /* Cause cards */
+  .cause{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--orange);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;}
+  .cause h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+  .cause p{font-size:13.5px;color:var(--gray-600);line-height:1.55;margin:0;}
+
+  /* FAQ accordion */
+  .faq-item{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s;}
+  .faq-item.open{border-color:var(--navy);box-shadow:var(--shadow-md);}
+  .faq-q{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;user-select:none;}
+  .faq-q .qmark{width:26px;height:26px;border-radius:6px;background:var(--green-lt);color:var(--green-deep);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .faq-item.open .qmark{background:var(--navy);color:var(--white);}
+  .faq-q h3{font-size:14.5px;font-weight:700;color:var(--gray-900);flex:1;line-height:1.4;}
+  .faq-chevron{transition:transform .2s;flex-shrink:0;color:var(--gray-400);}
+  .faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--navy);}
+  .faq-a{display:none;padding:0 18px 16px 56px;}
+  .faq-item.open .faq-a{display:block;}
+  .faq-a p{font-size:13.5px;color:var(--gray-700);line-height:1.65;margin-bottom:8px;}
+  .faq-a p:last-child{margin-bottom:0;}
+  .faq-a ol,.faq-a ul{margin:6px 0 8px 4px;padding-left:18px;}
+  .faq-a li{font-size:13.5px;color:var(--gray-700);line-height:1.55;margin-bottom:4px;}
+  .faq-a strong{color:var(--navy);}
+  .faq-a a{color:var(--navy);font-weight:700;}
+
+  /* Steps */
+  .steps{list-style:none;}
+  .steps>li{display:grid;grid-template-columns:38px 1fr;gap:14px;margin-bottom:14px;align-items:start;}
+  .step-num{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--white);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .step-body strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gray-900);}
+  .step-body span{font-size:13.5px;color:var(--gray-700);line-height:1.62;}
+  .step-body em{color:var(--navy);font-style:normal;font-weight:700;}
+
+  /* Pills */
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+  .pill.navy{background:var(--navy-tint);color:var(--navy);}
+  .pill.green{background:var(--green-lt);color:var(--green-deep);}
+  .pill.orange{background:var(--orange-lt);color:#a83e0e;}
+
+  /* Footer */
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.6);padding:24px 40px;display:flex;align-items:center;justify-content:space-between;font-size:12px;gap:16px;flex-wrap:wrap;}
+  .page-footer strong{color:rgba(255,255,255,.9);}
+  .page-footer .foot-star{color:var(--green);font-weight:700;}
+  .page-footer a{color:rgba(255,255,255,.6);text-decoration:none;}
+  .page-footer a:hover{color:var(--white);}
+
+/* ===== USIC brand re-skin — shared formatting (matches Generating Reports How-To) ===== */
+:root{
+  --navy:#00305B; --navy-mid:#001F3D;
+  --blue:#00305B; --blue-light:#E7EEF5; --blue-mid:#C4D5E6;
+  --accent:#F16621; --accent-lt:#FDEBE0;
+  --green:#94C83D; --green-dk:#5E8A1E; --green-lt:#EEF6E0;
+}
+body{font-family:Arial,Helvetica,sans-serif}
+.hero h1,.section-header h2,.logo-text,.logo-bar .logo-text,h3.sub-heading,.accordion summary{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+.hero h1{text-transform:uppercase;letter-spacing:.01em;font-weight:700}
+.section-header h2{color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+.logo-bar{background:#fff;border-bottom:1px solid var(--gray-200)}
+.logo-bar img{height:40px;width:auto;object-fit:contain;flex-shrink:0}
+.logo-bar .logo-text{color:var(--navy);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.logo-bar .logo-sub{color:var(--gray-400)}
+.can-header,.do-header{background:var(--green-dk)}
+.step-body strong{display:inline}
+.step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--navy)}
+
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <img src="../usic_academy_logo.png" alt="USIC Academy"/>
+  <span class="logo-text">USIC Academy</span>
+  <span class="logo-sub">/ Analytics &middot; Dashboard FAQ</span>
+</div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">Dashboard FAQ</div>
+  <h1>KPI Dashboard FAQ</h1>
+  <p>Short answers to the questions people ask most about the KPI Dashboard.</p>
+  <div class="hero-meta">
+    <span class="meta-pill">Platform: Power BI</span>
+    <span class="meta-pill">Last Updated: October 2026</span>
+    <span class="meta-pill">Version: 1.0</span>
+    <span class="meta-pill">Owner: Matthew McKay</span>
+  </div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#about" class="nav-link">About the Dashboard</a></li>
+  <li><a href="#using" class="nav-link">Using It</a></li>
+  <li><a href="#numbers" class="nav-link">The Numbers</a></li>
+  <li><a href="#odd" class="nav-link">Things That Might Look Odd</a></li>
+  <li><a href="#help" class="nav-link">Getting Help</a></li>
+</ul></nav>
+
+<div class="page-content">
+
+  <!-- ABOUT THE DASHBOARD -->
+  <section class="section" id="about">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+      <h2>About the dashboard</h2>
+      <span class="section-num">01</span>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What is this dashboard?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>It shows how new techs do in their first two years. It shows the good things they do, like closing locates. It also shows the costs, like damages and people who leave.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Who is it for?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>It is for leaders and trainers. You can use it to see which training helps new techs the most.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Where do I find it?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Open it in Power BI with <a href="https://app.powerbi.com/groups/49f66e69-8fde-4c5a-898e-d85765139e1a/reports/a71ef53e-fa70-4a29-ba43-81bff0891a9c/Welcome?ctid=aa15c974-eb1d-47c1-ac80-f59753234519&amp;experience=power-bi" target="_blank" rel="noopener noreferrer">this link</a>. Start on the first page. It tells you how to use it.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>How new is the data?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>The data gets new numbers one time each day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- USING IT -->
+  <section class="section" id="using">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div>
+      <h2>Using it</h2>
+      <span class="section-num">02</span>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What is on each page?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <table class="tbl">
+          <thead><tr><th style="width:32%">Page</th><th>What it shows</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Start Here</strong></td><td>How to use the dashboard</td></tr>
+            <tr><td><strong>Modified Revenue</strong></td><td>The main chart. How much value techs make each hour, by month on the job</td></tr>
+            <tr><td><strong>Inputs</strong></td><td>The parts that add up to the main chart</td></tr>
+            <tr><td><strong>Compare</strong></td><td>Two groups side by side, A and B</td></tr>
+            <tr><td><strong>Weekly Trend</strong></td><td>How things change week by week</td></tr>
+            <tr><td><strong>Monthly Trend</strong></td><td>How things change month by month</td></tr>
+            <tr><td><strong>District Map</strong></td><td>The numbers on a map</td></tr>
+            <tr><td><strong>Detail Tables</strong></td><td>The numbers for each tech and each district</td></tr>
+            <tr><td><strong>Definitions</strong></td><td>How each number is worked out</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>How do I pick what I see?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Use the boxes at the top of the page. They are called filters. Click a name to pick it. Click it again to take it off.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What filters are there?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>You can pick a division, region or district. You can pick a training class. You can also pick the hire type, like a brand new hire or someone who came back.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why did my Hire Type pick follow me to the next page?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>That filter stays the same on all the pages. This way you do not have to pick it again. The Compare page is the one that does not follow. It has its own filters for A and B.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What happens when I put my mouse on a bar?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>A small box pops up with more facts. On the Inputs page, it shows LPH and TPH.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>How do I clear all my picks?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Click the eraser in the top corner of a filter. You can also use &ldquo;Reset to default&rdquo; at the top of Power BI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE NUMBERS -->
+  <section class="section" id="numbers">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <h2>The numbers</h2>
+      <span class="section-num">03</span>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What is Modified Revenue?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>It is the money techs make, minus the money we lose. Here is how it works:</p>
+        <ul>
+          <li>We add money for each locate a tech closes.</li>
+          <li>We take away money when a tech leaves the company.</li>
+          <li>We take away money when a tech gets hurt at work.</li>
+          <li>We take away money for some truck crashes.</li>
+          <li>We take away money for damages that were the tech&rsquo;s fault.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why is it &ldquo;per hour&rdquo;?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Some groups work more hours than others. Per hour makes it fair. A small group and a big group can be compared the same way.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What does tenure mean?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Tenure is how many months a tech has been on the job. We start counting on the day they were hired or the day their training class started. We use whichever day is later.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why does one tech show up in many bars?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>A tech&rsquo;s work goes in the month they were in when they did it. A tech in month 5 adds to the month 5 bar. Later, they add to the month 6 bar too.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What are LPH and TPH?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>LPH means locates per hour. TPH means tickets per hour. They show how fast a tech gets work done.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What does HP ILT mean?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>HP ILT means the tech finished a High Profile class with a teacher in USIC Academy.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>What does Nested mean?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Nested means the new tech spent time working next to a skilled tech before working alone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THINGS THAT MIGHT LOOK ODD -->
+  <section class="section" id="odd">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg></div>
+      <h2>Things that might look odd</h2>
+      <span class="section-num">04</span>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why are the first bars below zero?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>In the first months, new techs are still learning. They do not close many locates yet. Some new techs also leave. Leaving costs a lot, so the bars go below zero. This is normal.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Does a bar below zero mean the tech is bad?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>No. It means they are new. Most techs get better as the months go on.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why is the last bar (13&ndash;24 months) different?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Most bars are 2 months long. The last bar is 12 months long. Be careful when you compare it to the others.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why is a chart blank?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Your filters may be too tight. There may be no techs that match all your picks. Take off one filter at a time until you see data.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why did a number change from yesterday?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>New data comes in each day. Old records can get fixed too. So numbers can move a little.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Why does a tech say &ldquo;No class form&rdquo;?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>That tech does not have a training class form on file. They still count in the totals.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Is this the official record?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>No. It is a tool to help you see trends. For official numbers, ask the team that owns that data.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GETTING HELP -->
+  <section class="section" id="help">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h2>Getting help</h2>
+      <span class="section-num">05</span>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>I have a question or want a change. What do I do?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Leave a comment on the page in Power BI. Put it on the page your question is about. Then we know just where to look.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>How do I leave a comment?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Click Comment at the top of the page. Type your note. Click Post.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Who runs this dashboard?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>The Learning Analytics &amp; Technology team. Reach out to Matt McKay at <a href="mailto:218462@usicllc.com">218462@usicllc.com</a>.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="qmark">Q</span><h3>Where can I learn more about how the numbers are made?</h3><span class="faq-chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="faq-a">
+        <p>Go to the Definitions page at the end of the dashboard. It tells how each number is worked out.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="page-footer"><div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div><div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div></footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){ q.parentElement.classList.toggle('open'); });
+  });
+
+  // Smooth scroll + active nav
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sticky-nav a'));
+    var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); });
+    links.forEach(function(l){
+      l.addEventListener('click', function(e){
+        var t = document.querySelector(l.getAttribute('href'));
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+    function onScroll(){
+      var pos = window.scrollY + 90, current = sections[0];
+      for(var i=0;i<sections.length;i++){ if(sections[i] && sections[i].offsetTop <= pos){ current = sections[i]; } }
+      links.forEach(function(l){ l.classList.toggle('active', current && l.getAttribute('href') === '#'+current.id); });
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
