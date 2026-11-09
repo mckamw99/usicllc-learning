@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- SOP-VERSION: 1.0 -->
+<title>Helpdesk Triage Suite — USIC Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --navy:#00305B; --navy-deep:#00264a; --navy-mid:#1a4775;
+    --green:#94C83D; --green-deep:#6f9e26; --green-lt:#eef6dd;
+    --orange:#F16621; --orange-lt:#fde7da;
+    --gray-900:#191616; --gray-700:#3f4448; --gray-600:#5b6066;
+    --gray-400:#9aa0a6; --gray-300:#c7cbd0; --gray-200:#e3e6e9;
+    --gray-100:#eef1f4; --gray-50:#f6f8fa; --white:#ffffff; --navy-tint:#e9eff5;
+    --radius:8px; --radius-lg:12px;
+    --shadow:0 1px 3px rgba(0,48,91,.08),0 1px 2px rgba(0,48,91,.05);
+    --shadow-md:0 6px 18px rgba(0,48,91,.10);
+  }
+  body{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;font-size:15px;}
+
+  /* Logo bar */
+  .logo-bar{background:var(--navy);padding:10px 40px;display:flex;align-items:center;gap:12px;}
+  .logo-bar img{height:30px;width:auto;display:block;}
+  .logo-bar .logo-text{color:var(--white);font-size:15px;font-weight:700;letter-spacing:.01em;}
+  .logo-bar .logo-sub{color:rgba(255,255,255,.55);font-size:13px;margin-left:2px;font-weight:400;}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:52px 40px 46px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-70px;right:-50px;width:280px;height:280px;border-radius:50%;background:rgba(148,200,61,.08);}
+  .hero::after{content:'';position:absolute;bottom:-50px;right:120px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.04);}
+  .hero-inner{max-width:840px;position:relative;z-index:1;}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(241,102,33,.20);border:1px solid rgba(241,102,33,.5);color:#ffd2bb;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase;}
+  .hero h1{font-family:"Arial Narrow",Arial,sans-serif;font-size:38px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:.005em;line-height:1.18;}
+  .hero p{font-size:16px;color:rgba(255,255,255,.78);max-width:640px;line-height:1.6;}
+  .hero-meta{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap;}
+  .meta-pill{font-size:12px;color:rgba(255,255,255,.85);background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);padding:4px 11px;border-radius:20px;}
+
+  /* Sticky nav */
+  .sticky-nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;padding:0 40px;}
+  .sticky-nav ul{display:flex;gap:0;list-style:none;overflow-x:auto;scrollbar-width:none;}
+  .sticky-nav ul::-webkit-scrollbar{display:none;}
+  .sticky-nav a{display:block;padding:14px 16px;font-size:13px;font-weight:700;color:var(--gray-600);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+  .sticky-nav a:hover{color:var(--navy);}
+  .sticky-nav a.active{color:var(--navy);border-bottom-color:var(--green);}
+
+  /* Layout */
+  .page-content{max-width:920px;margin:0 auto;padding:40px 40px 80px;}
+  .section{margin-bottom:48px;scroll-margin-top:64px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--gray-200);}
+  .section-icon{width:38px;height:38px;border-radius:var(--radius);background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-icon svg{width:19px;height:19px;color:var(--white);}
+  .section-header h2{font-family:"Arial Narrow",Arial,sans-serif;font-size:23px;font-weight:700;color:var(--navy);letter-spacing:.01em;}
+  .section-header .section-num{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.08em;margin-left:auto;}
+  p.lead{color:var(--gray-700);margin-bottom:16px;}
+  .section p{margin-bottom:12px;color:var(--gray-700);}
+  .section p:last-child{margin-bottom:0;}
+
+  /* Callouts */
+  .callout{border-radius:var(--radius);padding:14px 16px;font-size:14px;line-height:1.6;margin:16px 0;display:flex;gap:11px;align-items:flex-start;}
+  .callout-icon{flex-shrink:0;margin-top:1px;}
+  .callout-icon svg{width:17px;height:17px;}
+  .callout strong{font-weight:700;}
+  .callout.info{background:var(--navy-tint);color:#143a5e;border-left:3px solid var(--navy);}
+  .callout.tip{background:var(--green-lt);color:#3d5314;border-left:3px solid var(--green-deep);}
+  .callout.warning{background:var(--orange-lt);color:#8a3309;border-left:3px solid var(--orange);}
+
+  /* Tables */
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;}
+  .tbl th{text-align:left;padding:10px 14px;background:var(--navy);color:rgba(255,255,255,.92);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .tbl td{padding:11px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:top;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl tr:hover td{background:var(--gray-50);}
+  .tbl td strong{color:var(--navy);}
+  code{font-family:"Courier New",monospace;font-size:12.5px;background:var(--gray-100);padding:1px 6px;border-radius:4px;color:var(--navy);}
+  .tbl code{background:var(--gray-100);}
+
+  /* Cause cards */
+  .cause{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--orange);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;}
+  .cause h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+  .cause p{font-size:13.5px;color:var(--gray-600);line-height:1.55;margin:0;}
+
+  /* FAQ accordion */
+  .faq-item{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s;}
+  .faq-item.open{border-color:var(--navy);box-shadow:var(--shadow-md);}
+  .faq-q{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;user-select:none;}
+  .faq-q .qmark{width:26px;height:26px;border-radius:6px;background:var(--green-lt);color:var(--green-deep);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .faq-item.open .qmark{background:var(--navy);color:var(--white);}
+  .faq-q h3{font-size:14.5px;font-weight:700;color:var(--gray-900);flex:1;line-height:1.4;}
+  .faq-chevron{transition:transform .2s;flex-shrink:0;color:var(--gray-400);}
+  .faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--navy);}
+  .faq-a{display:none;padding:0 18px 16px 56px;}
+  .faq-item.open .faq-a{display:block;}
+  .faq-a p{font-size:13.5px;color:var(--gray-700);line-height:1.65;margin-bottom:8px;}
+  .faq-a p:last-child{margin-bottom:0;}
+  .faq-a ol,.faq-a ul{margin:6px 0 8px 4px;padding-left:18px;}
+  .faq-a li{font-size:13.5px;color:var(--gray-700);line-height:1.55;margin-bottom:4px;}
+  .faq-a strong{color:var(--navy);}
+
+  /* Steps */
+  .steps{list-style:none;}
+  .steps>li{display:grid;grid-template-columns:38px 1fr;gap:14px;margin-bottom:14px;align-items:start;}
+  .step-num{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--white);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .step-body strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gray-900);}
+  .step-body span{font-size:13.5px;color:var(--gray-700);line-height:1.62;}
+  .step-body em{color:var(--navy);font-style:normal;font-weight:700;}
+
+  /* Pills */
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+  .pill.navy{background:var(--navy-tint);color:var(--navy);}
+  .pill.green{background:var(--green-lt);color:var(--green-deep);}
+  .pill.orange{background:var(--orange-lt);color:#a83e0e;}
+
+  /* Footer */
+  .page-footer{background:var(--navy);color:rgba(255,255,255,.6);padding:24px 40px;display:flex;align-items:center;justify-content:space-between;font-size:12px;gap:16px;flex-wrap:wrap;}
+  .page-footer strong{color:rgba(255,255,255,.9);}
+  .page-footer .foot-star{color:var(--green);font-weight:700;}
+  .page-footer a{color:rgba(255,255,255,.6);text-decoration:none;}
+  .page-footer a:hover{color:var(--white);}
+
+/* ===== USIC brand re-skin — shared formatting (matches Generating Reports How-To) ===== */
+:root{
+  --navy:#00305B; --navy-mid:#001F3D;
+  --blue:#00305B; --blue-light:#E7EEF5; --blue-mid:#C4D5E6;
+  --accent:#F16621; --accent-lt:#FDEBE0;
+  --green:#94C83D; --green-dk:#5E8A1E; --green-lt:#EEF6E0;
+}
+body{font-family:Arial,Helvetica,sans-serif}
+.hero h1,.section-header h2,.logo-text,.logo-bar .logo-text,h3.sub-heading,.accordion summary{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+.hero h1{text-transform:uppercase;letter-spacing:.01em;font-weight:700}
+.section-header h2{color:var(--navy);text-transform:uppercase;letter-spacing:.01em}
+.logo-bar{background:#fff;border-bottom:1px solid var(--gray-200)}
+.logo-bar img{height:40px;width:auto;object-fit:contain;flex-shrink:0}
+.logo-bar .logo-text{color:var(--navy);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.logo-bar .logo-sub{color:var(--gray-400)}
+.can-header,.do-header{background:var(--green-dk)}
+.step-body strong{display:inline}
+.step-body > strong{display:block;font-size:14px;margin-bottom:2px;color:var(--navy)}
+
+
+/* Helpdesk guide additions */
+.step-body ul{margin:6px 0 2px 18px}
+.step-body li{font-size:13.5px;color:var(--gray-700);line-height:1.55;margin-bottom:3px}
+.step-body .q{display:block;font-size:13.5px;color:var(--navy);font-style:italic;margin:2px 0 4px}
+.flow{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:18px;margin:18px 0;box-shadow:var(--shadow)}
+.flow svg{width:100%;height:auto;display:block}
+.howto-tag{display:inline-block;background:var(--green);color:var(--navy);font-weight:800;font-size:12px;padding:2px 9px;border-radius:4px;margin-right:6px;letter-spacing:.04em}
+.resolves{background:var(--green-lt);border-left:3px solid var(--green-dk);border-radius:var(--radius);padding:10px 14px;font-size:13.5px;color:#3d5314;margin-top:14px}
+.subhead{font-size:14px;font-weight:700;color:var(--navy);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.04em}
+ul.plain{margin:4px 0 12px 20px}
+ul.plain li{font-size:14px;color:var(--gray-700);margin-bottom:4px}
+pre.template{background:var(--navy);color:#e9eff5;border-radius:var(--radius);padding:16px 18px;font-family:"Courier New",monospace;font-size:12.5px;line-height:1.55;white-space:pre-wrap;position:relative}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadein .15s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.sticky-nav a{cursor:pointer}
+.wiz{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:20px 22px;margin:4px 0 22px}
+.wiz h3{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;text-transform:uppercase;color:var(--navy);font-size:20px;margin-bottom:4px}
+.wiz .wiz-sub{font-size:13px;color:var(--gray-600);margin-bottom:14px}
+.wq{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--gray-100)}
+.wq .n{width:30px;height:30px;border-radius:50%;background:var(--gray-200);color:var(--gray-600);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px}
+.wq.ok .n{background:var(--green);color:var(--navy)}
+.wq.bad .n{background:var(--orange);color:#fff}
+.wq.locked{opacity:.4;pointer-events:none}
+.wq .t{font-size:14px;color:var(--gray-900);font-weight:700}
+.wq .t small{display:block;font-weight:400;color:var(--gray-600);font-size:12.5px}
+.wbtns button{border:1px solid var(--gray-300);background:var(--white);border-radius:6px;padding:6px 14px;font-weight:700;font-size:13px;cursor:pointer;margin-left:6px;color:var(--navy)}
+.wbtns button.sel-yes{background:var(--green);border-color:var(--green-dk)}
+.wbtns button.sel-no{background:var(--orange);border-color:var(--orange);color:#fff}
+.wout{display:none;margin-top:14px;border-radius:var(--radius);padding:14px 16px;font-size:14px}
+.wout.stop{display:block;background:var(--orange-lt);border-left:3px solid var(--orange);color:#8a3309}
+.wout.go{display:block;background:var(--green-lt);border-left:3px solid var(--green-dk);color:#3d5314}
+.wpick{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.wpick button{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer}
+.wpick button:hover{background:var(--navy-mid)}
+.wreset{background:none;border:none;color:var(--navy);text-decoration:underline;cursor:pointer;font-size:12.5px;margin-top:10px}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--green);color:var(--navy);border:none;border-radius:4px;font-weight:700;font-size:12px;padding:4px 10px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <img src="../usic_academy_logo.png" alt="USIC Academy"/>
+  <span class="logo-text">USIC Academy</span>
+  <span class="logo-sub">/ LMS &middot; Helpdesk Triage Suite</span>
+</div>
+
+<div class="hero"><div class="hero-inner">
+  <div class="hero-badge">Helpdesk Triage Suite</div>
+  <h1>USIC Academy Helpdesk Triage Suite</h1>
+  <p>How Tier 1 Helpdesk triages USIC Academy tickets, fixes the four most common issues, and escalates to the Learning Team only when every step is done.</p>
+  <div class="hero-meta">
+    <span class="meta-pill">Audience: Tier 1 Helpdesk</span>
+    <span class="meta-pill">Platform: usic.training</span>
+    <span class="meta-pill">Last Updated: November 2026</span>
+    <span class="meta-pill">Version: 1.0</span>
+    <span class="meta-pill">Owner: Matthew McKay</span>
+  </div>
+</div></div>
+
+<nav class="sticky-nav"><ul>
+  <li><a href="#triage" class="nav-link" data-tab="triage">Triage</a></li>
+  <li><a href="#login" class="nav-link" data-tab="login">A · Login</a></li>
+  <li><a href="#stuck" class="nav-link" data-tab="stuck">B · Won’t Load / Stuck</a></li>
+  <li><a href="#access" class="nav-link" data-tab="access">C · 403</a></li>
+  <li><a href="#complete" class="nav-link" data-tab="complete">D · Not Complete</a></li>
+  <li><a href="#escalation" class="nav-link" data-tab="escalation">Escalation</a></li>
+  <li><a href="#reference" class="nav-link" data-tab="reference">Quick Reference</a></li>
+  <li><a href="#scope" class="nav-link" data-tab="scope">About</a></li>
+</ul></nav>
+<!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
+<div style="background:#F4ECF7;border-bottom:1px solid #D5B8E0;padding:8px 24px;font-size:12px;color:#6C3483;line-height:1.4;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span style="background:#8E44AD;color:white;font-family:'Barlow Condensed',Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;">AI-Assisted</span>
+    <span>This guide was created with the help of generative AI under documented validation practices.</span>
+  </div>
+</div>
+
+<div class="page-content">
+
+  <section class="section tab-panel" id="triage">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+      <h2>SOP: Intake &amp; Triage</h2>
+      <span class="section-num">01</span>
+    </div>
+    <p class="lead">Run the four universal checks on <strong>every</strong> USIC Academy ticket before opening a How-To. Most tickets close at one of these checks, and none of them needs an escalation.</p>
+    <div class="wiz" id="wiz">
+      <h3>Triage assistant</h3>
+      <div class="wiz-sub">Ask each question in order. A “No” ends the ticket at Tier 1; four “Yes” answers open the right How-To.</div>
+      <div class="wq" data-i="0"><div class="n">1</div><div class="t">Is USIC Academy operational?<small>status.docebo.com → Enterprise Plan Platforms – US (Virginia)</small></div><div class="wbtns"><button data-a="y">Yes</button><button data-a="n">No</button></div></div>
+      <div class="wq locked" data-i="1"><div class="n">2</div><div class="t">Can the user log into The Spot?<small>Or any other app that uses their normal company login</small></div><div class="wbtns"><button data-a="y">Yes</button><button data-a="n">No</button></div></div>
+      <div class="wq locked" data-i="2"><div class="n">3</div><div class="t">Is the user active in Workday?<small>Look up by EEID</small></div><div class="wbtns"><button data-a="y">Yes</button><button data-a="n">No</button></div></div>
+      <div class="wq locked" data-i="3"><div class="n">4</div><div class="t">Is the connection good (and SOTI Hub logged in on field devices)?<small>Other apps and sites load; hotspot phone has strong signal</small></div><div class="wbtns"><button data-a="y">Yes</button><button data-a="n">No</button></div></div>
+      <div class="wout" id="wout"></div>
+      <button class="wreset" type="button" id="wreset">Start over</button>
+    </div>
+    <h3 class="subhead">Triage flow</h3>
+    <div class="flow"><svg viewBox="0 0 800 540" role="img" aria-label="Tier 1 triage flow: four checks, then the matching How-To, then escalation" font-family="Arial,Helvetica,sans-serif"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7F7C7F"/></marker></defs><text x="40" y="30" font-size="17" font-weight="700" fill="#00305B">Four checks clear most tickets before any escalation</text><text x="40" y="50" font-size="12" fill="#5b6066">Orange outcomes stay with Tier 1 and never go to the Learning Team</text><line x1="200.0" y1="118" x2="200.0" y2="148" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="210.0" y="138" font-size="12" fill="#5b6066">yes</text><line x1="200.0" y1="198" x2="200.0" y2="228" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="210.0" y="218" font-size="12" fill="#5b6066">yes</text><line x1="200.0" y1="278" x2="200.0" y2="308" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="210.0" y="298" font-size="12" fill="#5b6066">yes</text><line x1="200.0" y1="358" x2="200.0" y2="388" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="210.0" y="378" font-size="12" fill="#5b6066">yes</text><line x1="200.0" y1="438" x2="200.0" y2="468" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="210.0" y="458" font-size="12" fill="#5b6066">still failing</text><line x1="360" y1="94" x2="448" y2="94" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="405.0" y="86" text-anchor="middle" font-size="12" fill="#5b6066">no</text><line x1="360" y1="174" x2="448" y2="174" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="405.0" y="166" text-anchor="middle" font-size="12" fill="#5b6066">no</text><line x1="360" y1="254" x2="448" y2="254" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="405.0" y="246" text-anchor="middle" font-size="12" fill="#5b6066">no</text><line x1="360" y1="334" x2="448" y2="334" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="405.0" y="326" text-anchor="middle" font-size="12" fill="#5b6066">no</text><line x1="360" y1="414" x2="448" y2="414" stroke="#7F7C7F" stroke-width="1.5" marker-end="url(#ar)"/><text x="405.0" y="406" text-anchor="middle" font-size="12" fill="#5b6066">fixed</text><rect x="40" y="70" width="320" height="48" rx="8" fill="#ffffff" stroke="#00305B" stroke-width="1.5"/><text x="200.0" y="99" text-anchor="middle" font-size="14" font-weight="700" fill="#00305B">1. Platform status operational?</text><rect x="450" y="70" width="310" height="48" rx="8" fill="#fde7da" stroke="#F16621" stroke-width="2"/><text x="605.0" y="99" text-anchor="middle" font-size="14" font-weight="700" fill="#8a3309">Outage: tell user to retry later</text><rect x="40" y="150" width="320" height="48" rx="8" fill="#ffffff" stroke="#00305B" stroke-width="1.5"/><text x="200.0" y="179" text-anchor="middle" font-size="14" font-weight="700" fill="#00305B">2. Can log into The Spot?</text><rect x="450" y="150" width="310" height="48" rx="8" fill="#fde7da" stroke="#F16621" stroke-width="2"/><text x="605.0" y="179" text-anchor="middle" font-size="14" font-weight="700" fill="#8a3309">Handle as a The Spot / SSO issue</text><rect x="40" y="230" width="320" height="48" rx="8" fill="#ffffff" stroke="#00305B" stroke-width="1.5"/><text x="200.0" y="259" text-anchor="middle" font-size="14" font-weight="700" fill="#00305B">3. Active in Workday?</text><rect x="450" y="230" width="310" height="48" rx="8" fill="#fde7da" stroke="#F16621" stroke-width="2"/><text x="605.0" y="259" text-anchor="middle" font-size="14" font-weight="700" fill="#8a3309">Refer to HR or Workday support</text><rect x="40" y="310" width="320" height="48" rx="8" fill="#ffffff" stroke="#00305B" stroke-width="1.5"/><text x="200.0" y="339" text-anchor="middle" font-size="14" font-weight="700" fill="#00305B">4. Connection &amp; SOTI Hub OK?</text><rect x="450" y="310" width="310" height="48" rx="8" fill="#fde7da" stroke="#F16621" stroke-width="2"/><text x="605.0" y="339" text-anchor="middle" font-size="14" font-weight="700" fill="#8a3309">Move to better connection, retry</text><rect x="40" y="390" width="320" height="48" rx="8" fill="#ffffff" stroke="#00305B" stroke-width="1.5"/><text x="200.0" y="419" text-anchor="middle" font-size="14" font-weight="700" fill="#00305B">Run the matching How-To (A–D)</text><rect x="450" y="390" width="310" height="48" rx="8" fill="#eef6e0" stroke="#5E8A1E" stroke-width="2"/><text x="605.0" y="419" text-anchor="middle" font-size="14" font-weight="700" fill="#00305B">Resolved at Tier 1: close ticket</text><rect x="40" y="470" width="320" height="48" rx="8" fill="#00305B" stroke="#00305B" stroke-width="2"/><text x="200.0" y="493" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Escalate to the Learning Team</text><text x="200.0" y="510" text-anchor="middle" font-size="11.5" fill="#C4D5E6">with every field on the Escalation tab</text></svg></div>
+    <h3 class="subhead">Universal checks (in order)</h3>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Platform status</strong><span>Go to <a href="https://status.docebo.com" target="_blank" rel="noopener">status.docebo.com</a> and find <em>Enterprise Plan Platforms – US (Virginia)</em>.</span><ul><li><strong>Not Operational:</strong> tell the user there is a platform outage, a communication will go out once it is fixed, and to try again then. Close or pend the ticket. Do not escalate.</li></ul></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>The Spot</strong><span class="q">“Can you log into The Spot, or any other app that uses your normal company login?”</span><ul><li><strong>No:</strong> the problem is The Spot, not USIC Academy. Handle it as a The Spot / SSO issue. Do not escalate to the Learning Team.</li></ul></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Employment status</strong><span>Look the user up in Workday by EEID.</span><ul><li><strong>Not found or inactive:</strong> refer the user to HR or Workday support. Do not escalate to the Learning Team.</li></ul></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Connection &amp; device</strong><span>Confirm other apps or websites load. On a hotspot, check the source phone has a strong signal. On a company field device, confirm it is logged into the SOTI Hub.</span><ul><li><strong>Weak or no connection:</strong> have the user move to better Wi-Fi or signal and retry.</li></ul></div></li>
+    </ol>
+    <h3 class="subhead">Route to the right How-To</h3>
+    <table class="tbl">
+      <thead><tr><th style="width:58%">The user says…</th><th>Go to</th></tr></thead>
+      <tbody>
+        <tr><td>“I can’t log in” / login loop / error at sign-in</td><td><a href="#login"><span class="howto-tag">A</span>Can’t log in</a></td></tr>
+        <tr><td>“The course won’t open” / black or blank screen / spinning / “no training material”</td><td><a href="#stuck"><span class="howto-tag">B</span>Won’t load / stuck</a></td></tr>
+        <tr><td>“I’m stuck in the course and can’t finish”</td><td><a href="#stuck"><span class="howto-tag">B</span>Won’t load / stuck</a></td></tr>
+        <tr><td>“403 Forbidden” / “You do not have access” / link doesn’t work</td><td><a href="#access"><span class="howto-tag">C</span>403 / access denied</a></td></tr>
+        <tr><td>“I finished it but it still shows incomplete”</td><td><a href="#complete"><span class="howto-tag">D</span>Not marked complete</a></td></tr>
+      </tbody>
+    </table>
+    <h3 class="subhead">Who owns what</h3>
+    <table class="tbl">
+      <thead><tr><th style="width:34%">Role</th><th>Owns</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tier 1 Helpdesk</strong></td><td>Universal checks, How-To steps, gathering escalation details, user communication</td></tr>
+        <tr><td><strong>Manager, Learning &amp; Development</strong></td><td>Whether a course is assigned, and which version the user should have</td></tr>
+        <tr><td><strong>HR / Workday support</strong></td><td>Inactive or missing employee records, name and job data</td></tr>
+        <tr><td><strong>IT (mobile / SOTI)</strong></td><td>USIC Academy app updates pushed to field devices, SOTI Hub, device problems</td></tr>
+        <tr><td><strong>Learning Team (LAT)</strong></td><td>Platform-side problems that remain after every Tier 1 step is done</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section tab-panel" id="login">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h2><span class="howto-tag">A</span>How-To: Can’t Log In</h2>
+      <span class="section-num">02</span>
+    </div>
+    <p class="lead">Most login tickets are a platform outage, The Spot being down, an inactive Workday record, or a stale app session.</p>
+    <div class="callout info"><span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><span><strong>Before you start:</strong> universal checks 1–4 passed (platform up, The Spot works, user active in Workday, connection good).</span></div>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Ask how they are logging in</strong><span class="q">“Are you using the phone app, a tablet, or a computer?”</span><span>Phone app → step 2. Tablet or computer → step 3.</span></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Phone (USIC Academy app)</strong><ul><li>Force-quit the app and reopen it.</li><li>Confirm other apps or websites work on the same connection; if not, move to better Wi-Fi or signal.</li><li>On a company field device, confirm it is logged into the SOTI Hub and the app is up to date (IT pushes app updates).</li><li>Still failing → step 4.</li></ul></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Tablet or computer (browser)</strong><ul><li>Confirm other websites load. On a hotspot, check the source phone’s signal.</li><li>Send the user to <a href="https://usic.docebosaas.com" target="_blank" rel="noopener">usic.docebosaas.com</a> and have them sign in with their normal The Spot credentials.</li><li>Can log into The Spot elsewhere but not here → step 4.</li></ul></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Escalate</strong><span>Use the universal fields (Escalation tab) plus confirmation that The Spot works elsewhere.</span></div></li>
+    </ol>
+    <div class="resolves"><strong>Resolves at Tier 1:</strong> platform outage, The Spot down, inactive in Workday, bad connection, stale app session (force-quit fixes it).</div>
+  </section>
+
+  <section class="section tab-panel" id="stuck">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 15V9M14 15V9"/></svg></div>
+      <h2><span class="howto-tag">B</span>How-To: Course Won’t Load or User Is Stuck</h2>
+      <span class="section-num">03</span>
+    </div>
+    <p class="lead">Most “stuck” courses have a missed interaction: an unwatched video, an unticked box, or a hotspot nobody tapped.</p>
+    <div class="callout info"><span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><span><strong>Before you start:</strong> universal checks 1–4 passed (platform up, The Spot works, user active in Workday, connection good).</span></div>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Identify the issue type</strong><span class="q">“Are you stuck inside the course and can’t finish it, or does the course show incomplete after you already finished it?”</span><span>Already finished, shows incomplete → <a href="#complete">How-To D</a>. Stuck or can’t open it → continue.</span></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Does the course load?</strong><span class="q">“Does the course open and load at all?”</span><ul><li><strong>Yes:</strong> go to step 3.</li><li><strong>No</strong> (black or blank screen, spinning, “no training material”): with platform status clear and a good connection confirmed, escalate with the universal fields plus the exact course name.</li></ul></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>In-course interaction checks</strong><span>Have the user try each of these while you stay on the call:</span><ul><li>Scroll to the top of the current section — any checkboxes, prompts or videos missed? Click them again.</li><li>Tap every logical area, not only text and buttons: icons, arrows, images. On a picture of equipment or a device, tap the equipment itself — it may hold a hidden prompt.</li><li>Open the three-line (hamburger) menu, if there is one, and note the section title they’re stuck in. No menu: note that.</li><li>If there is a menu: can they skip ahead to another section? Are they stuck there too?</li><li>On a company field device: confirm it is logged into the SOTI Hub.</li></ul></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Still stuck? Escalate</strong><span>Universal fields plus course name, section name, confirmation all checks were tried, and a screenshot of where they are stuck.</span></div></li>
+    </ol>
+    <div class="resolves"><strong>Resolves at Tier 1:</strong> a missed interaction (unwatched video, unticked box, untapped hotspot), SOTI Hub logged out, poor connection.</div>
+  </section>
+
+  <section class="section tab-panel" id="access">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+      <h2><span class="howto-tag">C</span>How-To: 403 Forbidden / “You Do Not Have Access”</h2>
+      <span class="section-num">04</span>
+    </div>
+    <p class="lead">A 403 almost always means the user opened a link that wasn’t meant for them. <strong>The fix is to find the user’s own copy of the course, not to grant access to the link.</strong></p>
+    <p>Usual causes: a direct link built for another user, a link forwarded from someone in a different district or role, or a different course version assigned by role or region.</p>
+    <div class="callout info"><span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><span><strong>Before you start:</strong> universal checks 1–4 passed (platform up, The Spot works, user active in Workday, connection good).</span></div>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Identify the course</strong><span class="q">“What’s the name of the course or learning plan you were trying to open?”</span><ul><li><strong>Don’t know:</strong> ask where the link came from and who sent it. The name is usually in that email or message; an automatic USIC Academy assignment email includes it.</li><li><strong>Need to see the link:</strong> have the user <em>copy</em> it, not tap it (tapping on Android opens it and triggers the 403 again).<ul><li>Desktop: right-click → Copy Link → paste into Teams or email.</li><li>Outlook app (Android): press and hold the link → Copy link → paste into Teams or email.</li><li>Android Mail app: press and hold the link → Copy URL / Copy address → send by chat or email.</li></ul></li></ul></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Find the user’s own copy</strong><ul><li><strong>Mobile app:</strong> check the homepage sections <em>Assigned Courses – Not Started</em> and <em>Assigned Courses – In Progress</em>. Not there: user menu (top left) → <em>My Courses and Learning Plans</em> → search by course name.</li><li><strong>Browser:</strong> sign in at <a href="https://usic.docebosaas.com" target="_blank" rel="noopener">usic.docebosaas.com</a> with The Spot credentials, then check the same homepage sections or search My Courses and Learning Plans.</li><li><strong>Found:</strong> have the user open it from there. Close the ticket.</li></ul></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Not found? Send to the Manager, L&amp;D</strong><span>The user’s Manager, Learning &amp; Development confirms whether the course is assigned and assigns the correct version if needed. Find the manager for the user’s district in the <a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology" target="_blank" rel="noopener">Learning Reference Table</a> on the LAT SharePoint site.</span></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Escalate only if all are true</strong><span>Course name confirmed; user searched the app and the browser; the manager confirmed the right version is assigned; the 403 still appears. Include the universal fields plus the exact course name, the link, and the manager’s name.</span></div></li>
+    </ol>
+    <div class="resolves"><strong>Resolves at Tier 1:</strong> forwarded or someone else’s link, course found under My Courses and Learning Plans, assignment fixed by the Manager, Learning &amp; Development.</div>
+  </section>
+
+  <section class="section tab-panel" id="complete">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div>
+      <h2><span class="howto-tag">D</span>How-To: Finished but Not Marked Complete</h2>
+      <span class="section-num">05</span>
+    </div>
+    <p class="lead">A course only shows Completed when every required item inside it is complete. The usual cause is a failed test, a skipped item, or a course closed before its progress saved.</p>
+    <div class="callout warning"><span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><span><strong>New How-To — pending Learning Team review.</strong> No helpdesk article covered this issue before; these steps fill that gap.</span></div>
+    <div class="callout info"><span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><span><strong>Before you start:</strong> universal checks 1–4 passed (platform up, The Spot works, user active in Workday, connection good).</span></div>
+    <ol class="steps">
+      <li><div class="step-num">1</div><div class="step-body"><strong>Confirm what the user sees</strong><span>Have them open <em>My Courses and Learning Plans</em>, search the course, and read its status (Not started, In progress, Completed) and any score.</span><ul><li><strong>Shows Completed:</strong> the record is fine. If they’re looking at a learning plan, check whether another course in the plan is still open.</li></ul></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><strong>Check for an unfinished requirement</strong><span>Ask whether the course had a test or quiz and what score they got, and whether every section, video or interaction was finished (see <a href="#stuck">How-To B</a>, step 3). A failed test or a skipped item leaves the course In progress.</span></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><strong>Relaunch and exit properly</strong><span>Have the user reopen the course on a good connection, go to the last page or section, and leave using the course’s own <em>Exit / Close</em> button — not by closing the app or browser tab. Then refresh My Courses and Learning Plans and recheck the status.</span></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><strong>Still incomplete? Escalate</strong><span>Universal fields plus the exact course name, the date they finished, what the course shows now, and a screenshot of the status.</span></div></li>
+    </ol>
+    <div class="resolves"><strong>Resolves at Tier 1:</strong> learner looking at the wrong item, unfinished test or interaction, course closed before progress saved.</div>
+    <div class="callout info"><span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><span><strong>Learning Team reference:</strong> the admin-side fixes for stuck completions are in the <a href="course_stuck_in_progress_faq.html">Course Stuck “In Progress” FAQ</a>.</span></div>
+  </section>
+
+  <section class="section tab-panel" id="escalation">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 11 12 6 7 11"/><line x1="12" y1="18" x2="12" y2="6"/></svg></div>
+      <h2>SOP: Escalation to the Learning Team</h2>
+      <span class="section-num">06</span>
+    </div>
+    <p class="lead">Escalate only when <strong>all four universal checks pass</strong> and <strong>every step of the matching How-To</strong> has been tried and noted in the ticket.</p>
+    <div class="callout info"><span class="callout-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span><span><strong>Why detail matters.</strong> The Learning Team sees only that a course was attempted, not where the user got stuck. A ticket without the details below comes back to Tier 1.</span></div>
+    <h3 class="subhead">Do not escalate when</h3>
+    <ul class="plain"><li>status.docebo.com shows an outage</li><li>The Spot is down, or the user cannot log into The Spot anywhere</li><li>The user is inactive or missing in Workday</li><li>The user’s connection is poor and they haven’t retried on a better one</li><li>(403 tickets) the user’s Manager, Learning &amp; Development has not yet confirmed the assignment</li></ul>
+    <h3 class="subhead">Every escalation includes</h3>
+    <ul class="plain"><li>Full name and Employee ID (EEID)</li><li>Device (iPhone, Android phone, tablet, PC) and access method (USIC Academy app or browser — which browser)</li><li>App version, if known</li><li>Date and time of the last attempt</li><li>Short description of what happens (login loop, error text, blank screen, where they are stuck)</li><li>Screenshot(s) of the problem</li><li>The steps already completed, by How-To step number</li></ul>
+    <h3 class="subhead">Add for each issue type</h3>
+    <table class="tbl">
+      <thead><tr><th style="width:30%">Issue</th><th>Also include</th></tr></thead>
+      <tbody>
+        <tr><td><span class="howto-tag">A</span>Can’t log in</td><td>Confirmation the user can log into The Spot elsewhere</td></tr>
+        <tr><td><span class="howto-tag">B</span>Won’t load / stuck</td><td>Exact course name; section name from the course menu (if any); confirmation every in-course check was tried; screenshot of where they are stuck (required if possible)</td></tr>
+        <tr><td><span class="howto-tag">C</span>403 / access denied</td><td>Exact course or learning plan name; the link they used; name of the Manager, Learning &amp; Development who confirmed or made the assignment</td></tr>
+        <tr><td><span class="howto-tag">D</span>Not marked complete</td><td>Exact course name; date they finished; what the course shows now (In progress, Not started, score)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section tab-panel" id="reference">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <h2>Quick Reference</h2>
+      <span class="section-num">07</span>
+    </div>
+    <table class="tbl">
+      <thead><tr><th style="width:34%">What</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Platform status</td><td><a href="https://status.docebo.com" target="_blank" rel="noopener">status.docebo.com</a> — Enterprise Plan Platforms – US (Virginia)</td></tr>
+        <tr><td>USIC Academy (browser)</td><td><a href="https://usic.docebosaas.com" target="_blank" rel="noopener">usic.docebosaas.com</a>, signed in with The Spot credentials</td></tr>
+        <tr><td>Assigned courses (app or web)</td><td>Homepage: Assigned Courses – Not Started / In Progress</td></tr>
+        <tr><td>Search all of a user’s courses</td><td>User menu → My Courses and Learning Plans → search</td></tr>
+        <tr><td>Employment status</td><td>Workday, by EEID</td></tr>
+        <tr><td>Manager, Learning &amp; Development</td><td><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology" target="_blank" rel="noopener">Learning Reference Table</a> (LAT SharePoint site), by the user’s district</td></tr>
+      </tbody>
+    </table>
+    <h3 class="subhead">Escalation ticket template</h3>
+    <p>Copy into the Zendesk ticket and fill in every line that applies.</p>
+    <pre class="template" id="tpl"><button class="copy-btn" type="button" onclick="copyTpl()">Copy</button>USIC Academy escalation – How-To [A / B / C / D]
+
+Name:
+EEID:
+Device: [iPhone / Android / tablet / PC]
+Access method: [USIC Academy app / browser – which]
+App version (if known):
+Last attempt (date, time):
+Course or learning plan (exact name):
+Section name (How-To B):
+Link used (How-To C):
+Manager, L&amp;D who confirmed assignment (How-To C):
+Date finished / current status (How-To D):
+
+What happens:
+
+Universal checks passed: [ ] Platform status  [ ] The Spot  [ ] Workday active  [ ] Connection / SOTI Hub
+How-To steps completed:
+Screenshots attached: [ ] Yes  [ ] No – reason:</pre>
+  </section>
+
+  <section class="section tab-panel" id="scope">
+    <div class="section-header">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+      <h2>Purpose &amp; Scope</h2>
+      <span class="section-num">08</span>
+    </div>
+    <p class="lead">Tier 1 Helpdesk resolves most USIC Academy tickets by running <strong>four standard checks</strong> and <strong>one issue-specific How-To</strong>. A ticket goes to the Learning Team only when every step has been done and documented.</p>
+    <p>This guide combines the three USIC Academy helpdesk articles (Login, Unable to Complete a Course, 403 Forbidden) into one SOP with a matching How-To for each common issue. It is for Tier 1 Helpdesk agents taking USIC Academy tickets through Zendesk.</p>
+    <table class="tbl">
+      <thead><tr><th style="width:30%">Term</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td><strong>USIC Academy</strong></td><td>The company learning platform (built on Docebo). Web: <a href="https://usic.docebosaas.com" target="_blank" rel="noopener">usic.docebosaas.com</a>, plus the USIC Academy mobile app.</td></tr>
+        <tr><td><strong>The Spot</strong></td><td>Company single sign-on (MangoApps). USIC Academy uses The Spot credentials to log in.</td></tr>
+        <tr><td><strong>Learning Team</strong></td><td>Learning Analytics &amp; Technology (LAT) — the USIC Academy platform team and Tier 2 for platform issues.</td></tr>
+        <tr><td><strong>Manager, Learning &amp; Development</strong></td><td>The regional L&amp;D manager who assigns and confirms course enrollments. Listed by district in the <a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology" target="_blank" rel="noopener">Learning Reference Table</a>.</td></tr>
+        <tr><td><strong>SOTI Hub</strong></td><td>Device-management app on company field devices. The device must be logged into it for content to work.</td></tr>
+        <tr><td><strong>EEID</strong></td><td>Employee ID — used to look the user up in Workday and USIC Academy.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<footer class="page-footer"><div><strong>USIC Academy</strong> &mdash; Learning Analytics &amp; Technology (LAT)<br>LMS Administrator: Matthew McKay &middot; <a href="mailto:218462@usicllc.com">218462@usicllc.com</a> &middot; usic.training</div><div style="text-align:right"><a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">&larr; Back to LAT</a><br><a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" rel="noopener noreferrer">Submit a support request</a></div></footer>
+
+<script>
+  var TABS = Array.prototype.slice.call(document.querySelectorAll('.tab-panel')).map(function(p){return p.id;});
+  function showTab(id, push){
+    if(TABS.indexOf(id) < 0) id = TABS[0];
+    document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    document.querySelectorAll('.sticky-nav a').forEach(function(a){ a.classList.toggle('active', a.dataset.tab === id); });
+    if(push !== false && location.hash !== '#'+id) history.replaceState(null, '', '#'+id);
+    var nav = document.querySelector('.sticky-nav');
+    if(window.scrollY > nav.offsetTop) window.scrollTo({top: nav.offsetTop, behavior:'smooth'});
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(a){ var id = a.getAttribute('href').slice(1); if(TABS.indexOf(id) >= 0){ e.preventDefault(); showTab(id); } }
+  });
+  window.addEventListener('hashchange', function(){ showTab(location.hash.slice(1), false); });
+  showTab(location.hash.slice(1), false);
+
+  // Triage assistant
+  (function(){
+    var qs = Array.prototype.slice.call(document.querySelectorAll('.wq')), out = document.getElementById('wout');
+    var STOP = [
+      '<strong>Platform outage.</strong> Tell the user there is an outage, a communication will go out when it is fixed, and to try again then. Close or pend the ticket. <strong>Do not escalate.</strong>',
+      '<strong>The Spot / SSO issue.</strong> The problem is The Spot, not USIC Academy. Handle it as a The Spot issue. <strong>Do not escalate to the Learning Team.</strong>',
+      '<strong>Inactive or missing in Workday.</strong> Refer the user to HR or Workday support. <strong>Do not escalate to the Learning Team.</strong>',
+      '<strong>Connection problem.</strong> Have the user move to better Wi-Fi or signal (and log into the SOTI Hub on a field device), then retry.'
+    ];
+    function reset(){
+      qs.forEach(function(q,i){ q.className = 'wq' + (i ? ' locked' : ''); q.querySelectorAll('button').forEach(function(b){ b.className=''; }); });
+      out.className = 'wout'; out.innerHTML = '';
+    }
+    qs.forEach(function(q,i){
+      q.querySelectorAll('button').forEach(function(b){
+        b.addEventListener('click', function(){
+          for(var j=i+1;j<qs.length;j++){ qs[j].className='wq locked'; qs[j].querySelectorAll('button').forEach(function(x){x.className='';}); }
+          q.querySelectorAll('button').forEach(function(x){ x.className=''; });
+          if(b.dataset.a === 'y'){
+            b.className='sel-yes'; q.className='wq ok';
+            if(i+1 < qs.length){ qs[i+1].className='wq'; out.className='wout'; out.innerHTML=''; }
+            else {
+              out.className='wout go';
+              out.innerHTML='<strong>All checks passed.</strong> What does the user report?<div class="wpick">'+
+                '<button data-go="login">A · Can’t log in</button>'+
+                '<button data-go="stuck">B · Won’t load / stuck in course</button>'+
+                '<button data-go="access">C · 403 / no access</button>'+
+                '<button data-go="complete">D · Finished, not complete</button></div>';
+              out.querySelectorAll('[data-go]').forEach(function(g){ g.addEventListener('click', function(){ showTab(g.dataset.go); }); });
+            }
+          } else {
+            b.className='sel-no'; q.className='wq bad'; out.className='wout stop'; out.innerHTML=STOP[i];
+          }
+        });
+      });
+    });
+    document.getElementById('wreset').addEventListener('click', reset);
+  })();
+
+  function copyTpl(){
+    var t=document.getElementById('tpl').innerText.replace(/^Copy\s*/,'');
+    if(navigator.clipboard){navigator.clipboard.writeText(t);}
+    var b=document.querySelector('.copy-btn'); b.textContent='Copied'; setTimeout(function(){b.textContent='Copy';},1500);
+  }
+</script>
+
+</body>
+</html>
