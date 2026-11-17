@@ -257,81 +257,6 @@
     .script-card code { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; color: var(--gray-800); }
     .script-card p { font-size: 13px; color: var(--gray-600); margin-top: 4px; line-height: 1.5; }
 
-    /* ── AI Assistant ── */
-    .ai-panel {
-      background: var(--white); border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow);
-    }
-    .ai-panel-header {
-      background: var(--navy); padding: 14px 20px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .ai-panel-header svg { width: 20px; height: 20px; color: var(--accent); }
-    .ai-panel-header h3 { font-size: 14px; font-weight: 600; color: var(--white); }
-    .ai-panel-header span { font-size: 12px; color: rgba(255,255,255,.5); margin-left: auto; }
-    .ai-panel-header .ai-dot {
-      width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
-      margin-right: -4px; flex-shrink: 0;
-    }
-
-    .ai-chips { padding: 14px 20px; display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--gray-100); }
-    .ai-chip {
-      font-size: 12px; background: var(--blue-light); color: var(--blue);
-      border: 1px solid var(--blue-mid); padding: 5px 12px; border-radius: 20px;
-      cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500;
-      transition: background .12s;
-    }
-    .ai-chip:hover { background: var(--blue-mid); }
-
-    .ai-messages {
-      min-height: 80px; max-height: 320px; overflow-y: auto;
-      padding: 16px 20px; display: flex; flex-direction: column; gap: 12px;
-    }
-    .ai-messages:empty::after {
-      content: 'Ask a question to get started.';
-      font-size: 13px; color: var(--gray-400); text-align: center;
-      display: block; margin-top: 20px;
-    }
-    .msg { display: flex; flex-direction: column; }
-    .msg.user { align-items: flex-end; }
-    .msg.assistant { align-items: flex-start; }
-    .msg-bubble {
-      max-width: 82%; padding: 9px 14px; border-radius: 10px;
-      font-size: 13px; line-height: 1.65; white-space: pre-wrap; word-break: break-word;
-    }
-    .msg.user .msg-bubble      { background: var(--blue); color: var(--white); border-bottom-right-radius: 3px; }
-    .msg.assistant .msg-bubble { background: var(--gray-100); color: var(--gray-800); border-bottom-left-radius: 3px; }
-    .msg-label { font-size: 11px; color: var(--gray-400); margin-bottom: 4px; }
-
-    .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
-    .typing-indicator span {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--gray-400);
-      animation: bounce 1.2s infinite;
-    }
-    .typing-indicator span:nth-child(2) { animation-delay: .2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: .4s; }
-    @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
-
-    .ai-input-row {
-      display: flex; gap: 0; border-top: 1px solid var(--gray-200);
-    }
-    .ai-input-row input {
-      flex: 1; border: none; padding: 13px 18px;
-      font-family: 'Inter', sans-serif; font-size: 13px;
-      color: var(--gray-800); background: var(--white); outline: none;
-    }
-    .ai-input-row input::placeholder { color: var(--gray-400); }
-    .ai-send-btn {
-      padding: 0 20px; background: var(--blue); color: var(--white);
-      border: none; font-size: 13px; font-weight: 600;
-      font-family: 'Inter', sans-serif; cursor: pointer;
-      display: flex; align-items: center; gap: 6px;
-      transition: background .15s;
-    }
-    .ai-send-btn:hover   { background: var(--navy-mid); }
-    .ai-send-btn:disabled { background: var(--gray-400); cursor: not-allowed; }
-    .ai-send-btn svg { width: 14px; height: 14px; }
-
     /* ── Quick Reference ── */
     .ref-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .ref-table th { text-align: left; padding: 9px 14px; background: var(--navy); color: rgba(255,255,255,.85); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
@@ -438,7 +363,6 @@ body{font-family:Arial,Helvetica,sans-serif}
     <li><a href="#targeting"  class="nav-link">Enrolling</a></li>
     <li><a href="#reports"    class="nav-link">Reports</a></li>
     <li><a href="#reference"  class="nav-link">Quick Reference</a></li>
-    <li><a href="#assistant"  class="nav-link">AI Assistant</a></li>
   </ul>
 </nav>
 <!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
@@ -766,51 +690,6 @@ body{font-family:Arial,Helvetica,sans-serif}
     </div>
   </section>
 
-  <!-- ── Section 8: AI Assistant ── -->
-  <section class="section" id="assistant">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      </div>
-      <h2>AI Assistant</h2>
-      <span class="section-num">08</span>
-    </div>
-
-    <p>Have a branch-related question not covered above? The assistant below is pre-loaded with the USIC Academy branch structure and the rules for enrolling and reporting by branch.</p>
-
-    <div class="ai-panel">
-      <div class="ai-panel-header">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <h3>Branch Structure Assistant</h3>
-        <div class="ai-dot"></div>
-        <span>Powered by Claude</span>
-      </div>
-
-      <div class="ai-chips" id="chip-row">
-        <button class="ai-chip" onclick="prefill('How are people placed in branches?')">How are people placed in branches?</button>
-        <button class="ai-chip" onclick="prefill('Which branch do I pick to enroll a region?')">Which branch do I pick to enroll a region?</button>
-        <button class="ai-chip" onclick="prefill('What is Retired Cost Centers?')">What is Retired Cost Centers?</button>
-        <button class="ai-chip" onclick="prefill('Why should I include sub-branches?')">Why should I include sub-branches?</button>
-      </div>
-
-      <div class="ai-messages" id="ai-messages"></div>
-
-      <div id="typing-row" style="display:none; padding:4px 20px 8px;">
-        <div class="typing-indicator">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
-
-      <div class="ai-input-row">
-        <input id="ai-input" type="text" placeholder="Ask about branches, scope, enrolling, reports…" onkeydown="if(event.key==='Enter') sendMessage();" />
-        <button class="ai-send-btn" id="ai-send" onclick="sendMessage()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Send
-        </button>
-      </div>
-    </div>
-  </section>
-
 </div><!-- /page-content -->
 
 <!-- ────────── Footer ────────── -->
@@ -845,99 +724,6 @@ body{font-family:Arial,Helvetica,sans-serif}
   /* ── Hierarchy toggle ── */
   function toggleLevel(card) {
     card.classList.toggle('open');
-  }
-
-  /* ── AI Assistant ── */
-  const SYSTEM_PROMPT = `You are a helpful knowledge assistant for USIC Academy's Docebo LMS branch structure, for Power Users.
-Answer clearly and concisely (2-4 sentences unless more is truly needed). Use plain language.
-
-Branch hierarchy (4 levels, top to bottom):
-1. Company — USIC, Reconn, Blood Hound, On Target. CTE sits under USIC; Advanced Gas Operations (AGO) sits under Reconn.
-2. Division — only where the Learning Reference Table has one (e.g., East, West). South Division no longer exists; its regions moved to East and West.
-3. Region — only where the Learning Reference Table has one (e.g., South Atlantic, Southeast).
-4. District — the branch people sit on. Title = district name from the Learning Reference Table. Branch code = 4-digit cost center number (e.g., Central Indiana = 2401). Search by name or number.
-
-Special branches:
-- Retired Cost Centers — unused cost centers that still have people who left; use only for past training history.
-- 4-digit number branches under a district — temporary, being emptied; never pick them.
-- Employee — legacy, being emptied; never pick it.
-- Admin — service and test accounts.
-
-Rules:
-- When enrolling, reporting, or picking an audience: pick the district (or region/division) and include sub-branches.
-- Power User access flows down from assigned branches, which are based on the Power User's cost center.
-- Profiles: Instructor (district), TDM (district or region), Content Creator (division or company; cannot delete courses).
-- Adding a course to a published learning plan enrolls all current plan members right away.
-- People who leave stay on their district as inactive users.
-- Report naming: Place – What – How often; one-time reports end with "One-time". Look in Admin menu > Reports before building a new one. LAT reviews report use quarterly.
-- Power Users do not change branches; report wrong names or placements through a Zendesk request with name, Employee ID and expected district.
-- Docebo instance: usic.training`;
-
-  let chatHistory = [];
-
-  function prefill(text) {
-    document.getElementById('ai-input').value = text;
-    document.getElementById('ai-input').focus();
-  }
-
-  function appendMessage(role, text) {
-    const container = document.getElementById('ai-messages');
-    const chipRow = document.getElementById('chip-row');
-    if (chipRow) chipRow.style.display = 'none';
-
-    const msg = document.createElement('div');
-    msg.className = 'msg ' + role;
-
-    const label = document.createElement('div');
-    label.className = 'msg-label';
-    label.textContent = role === 'user' ? 'You' : 'Assistant';
-
-    const bubble = document.createElement('div');
-    bubble.className = 'msg-bubble';
-    bubble.textContent = text;
-
-    msg.appendChild(label);
-    msg.appendChild(bubble);
-    container.appendChild(msg);
-    container.scrollTop = container.scrollHeight;
-  }
-
-  async function sendMessage() {
-    const input = document.getElementById('ai-input');
-    const sendBtn = document.getElementById('ai-send');
-    const typingRow = document.getElementById('typing-row');
-    const text = input.value.trim();
-    if (!text) return;
-
-    input.value = '';
-    sendBtn.disabled = true;
-    appendMessage('user', text);
-    chatHistory.push({ role: 'user', content: text });
-    typingRow.style.display = 'block';
-    document.getElementById('ai-messages').scrollTop = document.getElementById('ai-messages').scrollHeight;
-
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
-          messages: chatHistory
-        })
-      });
-      const data = await res.json();
-      const reply = data.content?.[0]?.text || 'No response received.';
-      chatHistory.push({ role: 'assistant', content: reply });
-      appendMessage('assistant', reply);
-    } catch (err) {
-      appendMessage('assistant', 'Unable to reach the API. Please check your connection and try again.');
-    }
-
-    typingRow.style.display = 'none';
-    sendBtn.disabled = false;
-    input.focus();
   }
 </script>
 
