@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<!-- SOP-VERSION: 1.3 -->
+<!-- SOP-VERSION: 1.4 -->
 <title>Power User Permissions &mdash; USIC Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 
@@ -150,8 +150,8 @@
 <div class="hero"><div class="hero-inner">
   <div class="hero-badge">Tenant-Verified Reference</div>
   <h1>Power User Permissions</h1>
-  <p>What Superadmins and each of the six active Power User profiles in usic.training can do, module by module &mdash; profiles verified against the live tenant on August 13, 2026; permission catalog checked against Docebo&rsquo;s documentation on November 16, 2026.</p>
-  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Companion: RACI Matrix v1.4</span><span class="meta-pill">Last Updated: November 2026</span><span class="meta-pill">Version: 1.3</span><span class="meta-pill">Owner: Matthew McKay</span></div>
+  <p>What Superadmins and each of the seven active Power User profiles in usic.training can do, module by module &mdash; profiles and permission catalog verified against the live tenant on November 17, 2026.</p>
+  <div class="hero-meta"><span class="meta-pill">Platform: usic.training</span><span class="meta-pill">Companion: RACI Matrix v1.4</span><span class="meta-pill">Last Updated: November 2026</span><span class="meta-pill">Version: 1.4</span><span class="meta-pill">Owner: Matthew McKay</span></div>
 </div></div>
 
 <nav class="sticky-nav"><ul>
@@ -175,20 +175,20 @@
 <section class="section" id="about">
   <div class="section-header"><span class="section-num">01</span><h2>About This Reference</h2></div>
 
-  <div class="callout tip"><strong>Tenant- and documentation-verified — August 13, 2026.</strong> This reference was regenerated from the live permission screens of all six active Power User profiles in usic.training, then cross-checked against the official Docebo article <i>Power User permissions</i> (article 6463399445394, updated Aug 12, 2026). It supersedes the previous documentation-derived matrix, which diverged from tenant state for four of six profiles.</div>
+  <div class="callout tip"><strong>Tenant-verified &mdash; November 17, 2026.</strong> Every profile&rsquo;s permission screen in usic.training was read and compared line by line with this page, and the tenant&rsquo;s own &ldquo;Add permission&rdquo; list was used as the permission catalog. All six profiles verified in August 2026 still match; LOB Customized &ndash; Handbook has been added.</div>
   <p>Grid cells show the permissions granted as displayed on each profile's summary screen. Nested sub-permissions not visible on summary screens are marked <strong>[TBV]</strong> (to be verified). Companion documents: <i>USIC Academy Power User RACI Matrix v1.4</i> (includes the Docebo documentation cross-reference and action register A1&ndash;A13) and the <i>SOP Amendment Specification</i>. Action IDs referenced below (A1&ndash;A13) refer to the Action Register in RACI Matrix v1.4.</p>
-  <div class="callout info"><strong>What changed in v1.3 (November 2026)</strong>
+  <div class="callout info"><strong>What changed in v1.4 (November 17, 2026)</strong>
     <ul class="changes">
-      <li>Superadmin added to the profile summaries and permission grid.</li>
-      <li>New section <a href="#superadmin">Superadmin-Only Permissions</a>: the 49 Docebo permissions no USIC profile holds, plus platform functions Docebo never exposes to Power Users.</li>
-      <li>Permission catalog checked against Docebo&rsquo;s current article: 106 Power User permissions across 30 areas. Module descriptions now cover every area, including Webinar, E-commerce, Subscriptions, Communities, Harmony copilot and Power User management.</li>
-      <li>November 13, 2026 governance decisions noted in the grid and profile section: ILT management moves to Superadmin-only at TMS launch; Learning Managers to get manual-group creation; Power User resources assigned by cost center.</li>
-      <li>Key Findings &amp; Open Items section removed; open governance items are tracked in the RACI Matrix v1.4 Action Register.</li>
-      <li>Corrected the Groups description: Docebo does offer automatic-group permissions to Power Users; USIC simply grants none.</li>
+      <li>LOB Customized &ndash; Handbook (150025) added. It is active, assigned to 2 Power Users, and was missing from the August verification.</li>
+      <li>Permission catalog now taken from the tenant itself: 87 permissions across 24 areas. Webinar sessions, Power User management, E-commerce, Subscriptions, Communities and Catalogs / Buy and assign seats are not offered in usic.training and have been removed.</li>
+      <li>Superadmin-only permissions corrected from 49 to 25. The AI assistant permission (Docebo&rsquo;s Harmony copilot) is included.</li>
+      <li>Action A8 resolved: no profile holds Courses / Waiting subscription or the issued-certificates-only restriction.</li>
+      <li>Groups description corrected: Program Manager and LOB Customized &ndash; Handbook both hold manual-group rights.</li>
     </ul>
+    <p style="margin-top:8px"><strong>v1.3 (November 2026)</strong> added Superadmin, the Superadmin-Only section and the November 13 decisions, and removed Key Findings (open items are tracked in the RACI Matrix v1.4 Action Register).</p>
   </div>
   <p><a class="btn" href="USIC_Power_User_Permission_Review.xlsx">Download the permission review workbook (.xlsx)</a></p>
-  <p class="muted">The workbook lists all 106 Docebo permissions (plus 5 legacy Webinar rows) with a Y/N column for Superadmin and each profile, Docebo&rsquo;s notes, USIC decisions, and a Superadmin Only tab. Use it for profile reviews and change requests.</p>
+  <p class="muted">The workbook lists all 87 permissions offered in usic.training with a Y/N column for Superadmin and each of the seven profiles, Docebo&rsquo;s notes, USIC decisions, and a Superadmin Only tab. Use it for profile reviews and change requests.</p>
 </section>
 
 <section class="section" id="profiles">
@@ -202,8 +202,8 @@
     <div class="card"><h3>Compliance / Auditing</h3><div class="pid">Profile ID 127639</div><p>Read-only oversight across catalogs, certificates, sessions, courses, enrollments, Insights, and learning plans, plus Reports edit and invisible-field access for audit purposes. No create, edit, or activate rights anywhere else. Cannot assign users to learning plans (LP View grants no enrollment management per Docebo docs).</p></div>
     <div class="card"><h3>Instructor</h3><div class="pid">Profile ID 146178</div><p>Own-session ILT delivery — create/edit sessions, enroll learners, edit session enrollments. Enrollment create/archive/activate (learner-only), no enrollment edit. Course Edit on assigned courses (see Open Items). Sole holder of Admin Dashboard view. Sees invisible user fields.</p></div>
     <div class="card"><h3>Insights Viewer</h3><div class="pid">Profile ID 136239</div><p>Analytics-only — three permissions total: Courses View, Insights View, Users View.</p></div>
+    <div class="card"><h3>LOB Customized &ndash; Handbook</h3><div class="pid">Profile ID 150025 &middot; 2 Power Users</div><p>Documented and approved custom access for LOB needs. Learner-only enrollment (create, activate), edit manual groups, view-only courses, learning plans and reports. Sees invisible user fields. Ten permissions total.</p></div>
   </div>
-  <p class="note">LOB Customized &ndash; Handbook (profile 150025) was not among the active profiles in the August 13, 2026 tenant verification. Confirm whether it is still in use; if so, verify it and add it here, otherwise retire it.</p>
   <div class="callout warn"><strong>Remember: permissions only act on assigned resources.</strong> Every Power User permission applies only to the branches, courses, learning plans, catalogs and locations assigned to that Power User. A profile says <em>what</em> they can do; resources say <em>where</em>. Instructors and Learning Managers get their reach from branch resources, assigned by cost center.</div>
 </section>
 
@@ -212,42 +212,42 @@
 
   <div class="tablewrap">
   <table class="rt">
-    <tr><th>Module</th><th>Superadmin</th><th>Learning Manager</th><th>Program Manager</th><th>Content Creator</th><th>Compliance</th><th>Instructor</th><th>Insights Viewer</th></tr>
+    <tr><th>Module</th><th>Superadmin</th><th>Learning Manager</th><th>Program Manager</th><th>Content Creator</th><th>Compliance</th><th>Instructor</th><th>Insights Viewer</th><th>LOB Handbook</th></tr>
     
-      <tr><td>Course catalogs</td><td class="sa">All</td><td>View</td><td>View</td><td>Create, Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>Certificates</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>Channels</td><td class="sa">All</td><td class="dash">—</td><td>View</td><td>Create and manage, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Courses</td><td class="sa">All</td><td>View</td><td>Edit, View, Evaluation</td><td>Create, Edit, View, Evaluation</td><td>View</td><td>Edit, View</td><td>View</td></tr>
-      <tr><td>Dashboard</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>Enrollment</td><td class="sa">All</td><td>Create, Edit, Archive, Can activate enrollments, Can only enroll learners, Manage LP enrollments, View</td><td>Create, Edit, Can activate enrollments, Manage LP enrollments, View</td><td>Create, Manage LP enrollments, View</td><td>View</td><td>Create, Archive, Can activate enrollments, Can only enroll learners, Manage LP enrollments, View</td><td class="dash">—</td></tr>
-      <tr><td>External training</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>Edit, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Gamification</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td>Manage badges assigned to users</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Groups</td><td class="sa">All</td><td>View<sup class="fn">&Dagger;</sup></td><td>Create manual groups, Edit manual groups, View</td><td class="dash">—</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>ILT sessions<sup class="fn">&dagger;</sup></td><td class="sa">All</td><td>Enroll users, Create, Edit, View, Edit enrollments</td><td>Enroll users, Create, Edit, View</td><td>Create, Edit, View</td><td>View</td><td>Enroll users, Create, Edit, View, Edit enrollments</td><td class="dash">—</td></tr>
-      <tr><td>Image management</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td>Manage images, View and select images</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Insights</td><td class="sa">All</td><td>Create, View</td><td>View</td><td>View</td><td>View</td><td>View</td><td>View</td></tr>
-      <tr><td>Learning impact</td><td class="sa">All</td><td class="dash">—</td><td>Consolidated report</td><td>Consolidated report</td><td class="dash">—</td><td>Consolidated report</td><td class="dash">—</td></tr>
-      <tr><td>Learning plans</td><td class="sa">All</td><td>View</td><td>Create, Edit, View</td><td>Create, Edit, View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>Locations</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>View</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>Menus</td><td class="sa">All</td><td class="dash">—</td><td>View</td><td>Create and manage, Edit, Manage published menus, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Newsletter</td><td class="sa">All</td><td class="dash">—</td><td>View (= can send)</td><td>View (= can send)</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Notifications</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>Create, Edit, View</td><td class="dash">—</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>Checklists</td><td class="sa">All</td><td class="dash">—</td><td>Manage checklists</td><td>Manage checklists</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Pages</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td>Create and manage, Edit, Manage published pages, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Reports</td><td class="sa">All</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>Edit, View</td><td>View</td><td class="dash">—</td></tr>
-      <tr><td>Training material library</td><td class="sa">All</td><td class="dash">—</td><td>Edit, View</td><td>Manage folders, Create, Edit, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-      <tr><td>Users</td><td class="sa">All</td><td>Can see fields invisible to the user, View</td><td>View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>View</td></tr>
+      <tr><td>Course catalogs</td><td class="sa">All</td><td>View</td><td>View</td><td>Create, Edit, View</td><td>View</td><td>View</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Certificates</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>View</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Channels</td><td class="sa">All</td><td class="dash">—</td><td>View</td><td>Create and manage, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Courses</td><td class="sa">All</td><td>View</td><td>Edit, View, Evaluation</td><td>Create, Edit, View, Evaluation</td><td>View</td><td>Edit, View</td><td>View</td><td>View</td></tr>
+      <tr><td>Dashboard</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>View</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Enrollment</td><td class="sa">All</td><td>Create, Edit, Archive, Can activate enrollments, Can only enroll learners, Manage LP enrollments, View</td><td>Create, Edit, Can activate enrollments, Manage LP enrollments, View</td><td>Create, Manage LP enrollments, View</td><td>View</td><td>Create, Archive, Can activate enrollments, Can only enroll learners, Manage LP enrollments, View</td><td class="dash">—</td><td>Create, Can activate enrollments, Can only enroll learners, View</td></tr>
+      <tr><td>External training</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>Edit, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Gamification</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td>Manage badges assigned to users</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Groups</td><td class="sa">All</td><td>View<sup class="fn">&Dagger;</sup></td><td>Create manual groups, Edit manual groups, View</td><td class="dash">—</td><td class="dash">—</td><td>View</td><td class="dash">—</td><td>Edit manual groups</td></tr>
+      <tr><td>ILT sessions<sup class="fn">&dagger;</sup></td><td class="sa">All</td><td>Enroll users, Create, Edit, View, Edit enrollments</td><td>Enroll users, Create, Edit, View</td><td>Create, Edit, View</td><td>View</td><td>Enroll users, Create, Edit, View, Edit enrollments</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Image management</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td>Manage images, View and select images</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Insights</td><td class="sa">All</td><td>Create, View</td><td>View</td><td>View</td><td>View</td><td>View</td><td>View</td><td class="dash">—</td></tr>
+      <tr><td>Learning impact</td><td class="sa">All</td><td class="dash">—</td><td>Consolidated report</td><td>Consolidated report</td><td class="dash">—</td><td>Consolidated report</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Learning plans</td><td class="sa">All</td><td>View</td><td>Create, Edit, View</td><td>Create, Edit, View</td><td>View</td><td>View</td><td class="dash">—</td><td>View</td></tr>
+      <tr><td>Locations</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>View</td><td class="dash">—</td><td>View</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Menus</td><td class="sa">All</td><td class="dash">—</td><td>View</td><td>Create and manage, Edit, Manage published menus, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Newsletter</td><td class="sa">All</td><td class="dash">—</td><td>View (= can send)</td><td>View (= can send)</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Notifications</td><td class="sa">All</td><td>View</td><td>Edit, View</td><td>Create, Edit, View</td><td class="dash">—</td><td>View</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Checklists</td><td class="sa">All</td><td class="dash">—</td><td>Manage checklists</td><td>Manage checklists</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Pages</td><td class="sa">All</td><td class="dash">—</td><td class="dash">—</td><td>Create and manage, Edit, Manage published pages, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Reports</td><td class="sa">All</td><td>Edit, View</td><td>Edit, View</td><td>View</td><td>Edit, View</td><td>View</td><td class="dash">—</td><td>View</td></tr>
+      <tr><td>Training material library</td><td class="sa">All</td><td class="dash">—</td><td>Edit, View</td><td>Manage folders, Create, Edit, View</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+      <tr><td>Users</td><td class="sa">All</td><td>Can see fields invisible to the user, View</td><td>View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>Can see fields invisible to the user, View</td><td>View</td><td>Can see fields invisible to the user, View</td></tr>
     
   </table>
   </div>
   <p class="note"><sup class="fn">&dagger;</sup> At TMS launch, ILT session management becomes Superadmin-only and is removed from every Power User profile (decided November 13, 2026). <sup class="fn">&Dagger;</sup> Learning Managers are to be granted Create manual groups for enrollment (decided November 13, 2026; not yet applied in tenant).</p>
-  <p class="note">Modules present on no tenant profile: Webinar Sessions, Power User Management (only exists when enabled in platform Advanced settings &mdash; the toggle is off), E-commerce Transactions, Subscription bundles/plans/records, Communities (not licensed), and Harmony copilot. No profile holds any Delete permission on any module. Per Docebo documentation, two narrow exceptions are bundled into Create permissions: ILT Create includes deleting one's own created sessions, and Pages/Menus "Create and manage" includes deleting self-created unpublished items — both self-created content only, both [TBV] in tenant (Actions A7, A11). All other deletion is Superadmin-only by design.</p>
+  <p class="note">Offered in the tenant but held by no profile: AI assistant (Use). Not offered in usic.training at all: Webinar sessions, Power User management (only exists when enabled in platform Advanced settings &mdash; the toggle is off), E-commerce transactions, Subscriptions, Communities. No profile holds any Delete permission on any module. Per Docebo documentation, two narrow exceptions are bundled into Create permissions: ILT Create includes deleting one&rsquo;s own created sessions, and Pages/Menus &ldquo;Create and manage&rdquo; includes deleting self-created unpublished items &mdash; both self-created content only, both [TBV] in tenant (Actions A7, A11). All other deletion is Superadmin-only by design.</p>
 </section>
 
 <section class="section" id="superadmin">
   <div class="section-header"><span class="section-num">04</span><h2>Superadmin-Only Permissions</h2></div>
 
-  <p class="lead">49 of Docebo&rsquo;s 106 Power User permissions are held by no USIC profile, so in practice only Superadmins can do them. A further set of platform functions has no Power User permission at all. Route any of these requests to LAT.</p>
+  <p class="lead">25 of the 87 Power User permissions offered in usic.training are held by no USIC profile, so in practice only Superadmins can do them. A further set of platform functions has no Power User permission at all. Route any of these requests to LAT.</p>
 
   <h3 class="sub">Power User permissions no USIC profile holds</h3>
   <div class="tablewrap">
@@ -255,47 +255,42 @@
     <tr><th style="width:220px;">Module</th><th>Permissions (Superadmin only)</th><th style="width:70px;">Count</th></tr>
       <tr><td>Users</td><td>Create, Edit, Delete, Skip mandatory fields when creating a user, Users waiting for subscription confirmation, Can activate users, Impersonate the assigned users</td><td>7</td></tr>
       <tr><td>Groups</td><td>Create automatic groups, Edit automatic groups, Delete</td><td>3</td></tr>
-      <tr><td>Courses</td><td>Delete, Waiting subscription <span class="tbv">TBV</span></td><td>2</td></tr>
+      <tr><td>Courses</td><td>Delete, Waiting subscription</td><td>2</td></tr>
       <tr><td>Learning plans</td><td>Delete</td><td>1</td></tr>
       <tr><td>Enrollment</td><td>Delete, Manage enrollment rules, Delete archived enrollments</td><td>3</td></tr>
-      <tr><td>Course catalogs</td><td>Delete, Buy courses and LPs on behalf of someone else, Buy and assign seats</td><td>3</td></tr>
+      <tr><td>Course catalogs</td><td>Delete, Buy courses and LPs on behalf of someone else</td><td>2</td></tr>
       <tr><td>Notifications</td><td>Delete</td><td>1</td></tr>
       <tr><td>ILT sessions</td><td>Delete (own-session delete bundled with Create <span class="tbv">TBV</span>)</td><td>1</td></tr>
-      <tr><td>Webinar sessions</td><td>View, Create, Edit, Delete, Enroll users &mdash; legacy permissions not in Docebo&rsquo;s current article <span class="tbv">TBV</span></td><td>5</td></tr>
       <tr><td>Training material library</td><td>Delete</td><td>1</td></tr>
       <tr><td>Channels / Pages / Menus</td><td>Delete (one each)</td><td>3</td></tr>
-      <tr><td>Power User management</td><td>Create and manage Power Users, Edit existing Power Users</td><td>2</td></tr>
-      <tr><td>E-commerce transactions</td><td>View, Edit</td><td>2</td></tr>
-      <tr><td>Subscriptions</td><td>Bundles (Create, Edit, View, Delete), Plans (Create, Edit, View, Delete), Records (Create, Edit, View, Delete, Manage seats)</td><td>13</td></tr>
-      <tr><td>Communities</td><td>Administration (not licensed at USIC)</td><td>1</td></tr>
-      <tr><td>Harmony copilot</td><td>Manage</td><td>1</td></tr>
+      <tr><td>AI assistant</td><td>Use (Docebo&rsquo;s Harmony copilot)</td><td>1</td></tr>
   </table>
   </div>
-  <p class="note">The two restriction toggles (Enrollment / Can only enroll learners; Certificates / View only issued certificates) narrow a Power User&rsquo;s access and do not apply to Superadmins, so they are not counted here.</p>
+  <p class="note">The two restriction toggles (Enrollment / Can only enroll learners; Certificates / View only issued certificates) narrow a Power User&rsquo;s access and do not apply to Superadmins, so they are not counted here. Permissions in Docebo&rsquo;s general catalog that usic.training does not offer (Webinar, Power User management, E-commerce, Subscriptions, Communities, Buy and assign seats) are not listed.</p>
 
   <h3 class="sub">Platform functions with no Power User permission</h3>
   <div class="tablewrap">
   <table class="rt">
     <tr><th style="width:200px;">Area</th><th>Capability</th><th style="width:170px;">Basis</th></tr>
-      <tr><td>Org chart</td><td>Create, rename, move, code and delete branches</td><td>Docebo platform</td></tr>
-      <tr><td>User levels</td><td>Promote users to Power User or Superadmin; change user level</td><td>Docebo platform</td></tr>
-      <tr><td>Power User profiles</td><td>Create and edit profiles; assign profiles and resources</td><td>USIC tenant (toggle off)</td></tr>
-      <tr><td>Additional fields</td><td>Configure user, course, session and enrollment additional fields</td><td>Docebo platform</td></tr>
-      <tr><td>Certificates</td><td>Create new certificate templates</td><td>Docebo platform</td></tr>
+      <tr><td>Org chart</td><td>Create, rename, move, code and delete branches</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>User levels</td><td>Promote users to Power User or Superadmin; change user level</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Power User profiles</td><td>Create and edit profiles; assign profiles and resources</td><td>USIC tenant (confirmed Nov 17, 2026)</td></tr>
+      <tr><td>Additional fields</td><td>Configure user, course, session and enrollment additional fields</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Certificates</td><td>Create new certificate templates</td><td>Docebo platform (not tenant-verified)</td></tr>
       <tr><td>Gamification</td><td>Create badges, automatic badge rules, contests and leaderboards</td><td>USIC tenant (confirmed)</td></tr>
       <tr><td>Question Bank</td><td>Create Question Bank categories</td><td>USIC tenant (confirmed)</td></tr>
-      <tr><td>Insights</td><td>Share dashboards with Power Users; manage featured dashboards</td><td>Docebo platform</td></tr>
-      <tr><td>Platform settings</td><td>Advanced settings, branding, domains, languages, terms and policies</td><td>Docebo platform</td></tr>
-      <tr><td>Authentication</td><td>SSO/SAML configuration and certificates</td><td>Docebo platform</td></tr>
-      <tr><td>Integrations</td><td>API credentials, Docebo Connect recipes, Workday connector, Teams integration</td><td>Docebo platform</td></tr>
-      <tr><td>Apps &amp; features</td><td>Activate or configure apps (e.g., Enrollment Rules, External Training settings)</td><td>Docebo platform</td></tr>
-      <tr><td>Audit trail</td><td>View and export the platform audit trail</td><td>Docebo platform</td></tr>
-      <tr><td>Mobile app</td><td>Branded mobile app configuration and universal links</td><td>Docebo platform</td></tr>
+      <tr><td>Insights</td><td>Share dashboards with Power Users; manage featured dashboards</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Platform settings</td><td>Advanced settings, branding, domains, languages, terms and policies</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Authentication</td><td>SSO/SAML configuration and certificates</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Integrations</td><td>API credentials, Docebo Connect recipes, Workday connector, Teams integration</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Apps &amp; features</td><td>Activate or configure apps (e.g., Enrollment Rules, External Training settings)</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Audit trail</td><td>View and export the platform audit trail</td><td>Docebo platform (not tenant-verified)</td></tr>
+      <tr><td>Mobile app</td><td>Branded mobile app configuration and universal links</td><td>Docebo platform (not tenant-verified)</td></tr>
       <tr><td>Bulk operations</td><td>Bulk enrollment archival and the inactive-user cycle via API</td><td>USIC process</td></tr>
       <tr><td>ILT after TMS launch</td><td>Create, edit and manage ILT sessions and enrollments</td><td>USIC decision (Nov 13, 2026)</td></tr>
   </table>
   </div>
-  <p class="note">&ldquo;Docebo platform&rdquo; = no such permission exists in Docebo&rsquo;s Power User catalog. &ldquo;USIC tenant&rdquo; = confirmed in usic.training. &ldquo;USIC decision / process&rdquo; = LAT governance.</p>
+  <p class="note">&ldquo;Docebo platform (not tenant-verified)&rdquo; = there is no Power User permission for it in the tenant catalog, but the Superadmin function itself was not checked in usic.training. &ldquo;USIC tenant&rdquo; = confirmed in usic.training. &ldquo;USIC decision / process&rdquo; = LAT governance.</p>
 </section>
 
 <section class="section" id="modules">
@@ -306,7 +301,7 @@
     <tr><th style="width:220px;">Module</th><th>Description</th></tr>
     
       <tr><td>Users</td><td>Manages user accounts: viewing, creating, editing, deleting users, user fields, activation, impersonation, and exporting user lists. Tenant profiles hold View only (plus invisible-field visibility on four profiles); Create, Edit, Delete, activation and impersonation are Superadmin-only. View includes CSV/XLS export and the User Personal Summary.</td></tr>
-      <tr><td>Groups</td><td>Organizes users into groups for management and assignment. Docebo offers separate Create and Edit permissions for manual and automatic groups, plus Delete. USIC grants manual-group create/edit to Program Manager only; automatic groups and deletion are Superadmin-only. Groups/View is required to select groups when enrolling.</td></tr>
+      <tr><td>Groups</td><td>Organizes users into groups for management and assignment. Docebo offers separate Create and Edit permissions for manual and automatic groups, plus Delete. Program Manager holds manual-group create and edit; LOB Customized &ndash; Handbook holds manual-group edit; automatic groups and deletion are Superadmin-only. Groups/View is required to select groups when enrolling.</td></tr>
       <tr><td>Courses</td><td>Course creation, viewing, editing, deletion, learner evaluation, waiting lists, training materials, and Question Bank access (via create/edit). Evaluation = set final course scores; assignment evaluation additionally requires Reports/Edit. Archiving a course removes it from every Power User&rsquo;s resources.</td></tr>
       <tr><td>Learning Plans</td><td>Structured learning paths grouping courses. View shows the course list only; enrollment management requires Enrollment/Manage LP enrollments. Note: adding a course to a published learning plan auto-enrolls all current members immediately.</td></tr>
       <tr><td>Enrollment</td><td>Enrolling users into courses and learning plans: view, create, edit, delete (unenroll), archive, activation, learner-only restriction, learning-plan enrollment management, enrollment rules, and deleting archived enrollments. Enrollment permissions also apply to the Power User's own account.</td></tr>
@@ -314,7 +309,6 @@
       <tr><td>Certificates</td><td>Certificates for course and learning plan completion: viewing, editing templates, and assignment, with optional issued-only scoping.</td></tr>
       <tr><td>Notifications</td><td>System notifications for assigned resources: view, create, edit, delete. Power Users see only notifications whose trigger filters match their resource assignments.</td></tr>
       <tr><td>ILT Sessions</td><td>Instructor-led training sessions: view, create, edit, session enrollment, and enrollment edits. Create bundles edit/enroll/delete for own-created sessions [TBV in tenant]; no profile holds the separate session Delete permission. Enroll users requires Enrollment View + Edit to work fully.</td></tr>
-      <tr><td>Webinar Sessions</td><td>Legacy webinar session permissions (view, create, edit, delete, enroll). Present in the tenant on no profile and absent from Docebo&rsquo;s current article [TBV].</td></tr>
       <tr><td>Locations</td><td>Physical and virtual training locations: viewing and editing assigned locations.</td></tr>
       <tr><td>Observation Checklists</td><td>Creation and management of checklists; requires Users/View to create. Does not include checklist notifications.</td></tr>
       <tr><td>Reports</td><td>Analytics and reporting: viewing and editing custom reports scoped to visibility rules. Edit + Courses/View also permits editing training-material progress and evaluating assignments from Training material statistics.</td></tr>
@@ -329,17 +323,14 @@
       <tr><td>Channels</td><td>Content channels (custom channels only can be assigned as resource): viewing and creating/managing channels; content management limited to courses and learning plans, not informal assets.</td></tr>
       <tr><td>Pages</td><td>Content pages: view, create, edit, publish/unpublish, and management of widgets and page assignments. Create and manage includes edit/delete of self-created unpublished pages.</td></tr>
       <tr><td>Menus</td><td>Navigation menus: view, create, edit, publish/unpublish, and management of menu assignments and visibility. Create and manage includes edit/delete of self-created unpublished menus.</td></tr>
-      <tr><td>Power User Management</td><td>Creating Power Users and managing their profiles and resources. Only available when enabled in platform Advanced settings; the toggle is off at USIC, so this is Superadmin-only.</td></tr>
-      <tr><td>E-commerce Transactions</td><td>Viewing and changing the status of transactions made by assigned users. E-commerce is not used at USIC.</td></tr>
-      <tr><td>Subscriptions</td><td>Subscription bundles, plans and records, including seat management. Not used at USIC.</td></tr>
-      <tr><td>Communities</td><td>Administration of the Community hub. Not licensed at USIC.</td></tr>
-      <tr><td>Harmony Copilot</td><td>Use of Docebo&rsquo;s Harmony copilot, limited to the Power User&rsquo;s own permissions and resources. Not granted on any USIC profile.</td></tr>
+      <tr><td>Power User Management</td><td>Creating Power Users and managing their profiles and resources. Not offered as a Power User permission in usic.training because the Advanced settings toggle is off, so it is Superadmin-only.</td></tr>
+      <tr><td>AI Assistant</td><td>Use of Docebo&rsquo;s AI assistant (Harmony copilot), limited to the Power User&rsquo;s own permissions and resources. Offered in the tenant; granted on no USIC profile.</td></tr>
     
   </table>
   </div>
 </section>
 
-<p class="muted" style="margin-top:8px"><strong>USIC Academy — Power User Permissions Reference</strong> &nbsp;|&nbsp; Companion to RACI Matrix v1.4 &nbsp;|&nbsp; Source: live tenant profile screens (usic.training, Aug 13, 2026); Docebo "Power User permissions" article 6463399445394 (permission catalog checked Nov 16, 2026); LAT governance decisions (Nov 13, 2026). Confluence source page v7. Maintained by Learning Analytics &amp; Technology.</p>
+<p class="muted" style="margin-top:8px"><strong>USIC Academy — Power User Permissions Reference</strong> &nbsp;|&nbsp; Companion to RACI Matrix v1.4 &nbsp;|&nbsp; Source: usic.training profile screens and Add permission catalog (verified Nov 17, 2026); Docebo &ldquo;Power User permissions&rdquo; article 6463399445394; LAT governance decisions (Nov 13, 2026). Maintained by Learning Analytics &amp; Technology.</p>
 
 </div>
 
