@@ -410,15 +410,15 @@ body{font-family:Arial,Helvetica,sans-serif}
       Knowledge Article
     </div>
     <h1>Branch Structure</h1>
-    <p>How USIC Academy organizes users, scopes access, and targets learning content through Docebo's 5-level branch hierarchy — and how that hierarchy is maintained.</p>
+    <p>How USIC Academy branches are organized, and which branch to pick when you enroll people, build reports, or look up a learner.</p>
     <div class="hero-meta">
       <div class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
-        <strong>Last updated:</strong>&nbsp;June 2026
+        <strong>Last updated:</strong>&nbsp;November 2026
       </div>
       <div class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/></svg>
-        <strong>Applies to:</strong>&nbsp;All Power Users · LAT Team
+        <strong>Applies to:</strong>&nbsp;All Power Users
       </div>
       <div class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
@@ -431,13 +431,14 @@ body{font-family:Arial,Helvetica,sans-serif}
 <!-- ────────── Sticky Nav ────────── -->
 <nav class="sticky-nav">
   <ul>
-    <li><a href="#overview"     class="nav-link active">Overview</a></li>
-    <li><a href="#hierarchy"    class="nav-link">The 5 Levels</a></li>
-    <li><a href="#access"       class="nav-link">Access &amp; Scope</a></li>
-    <li><a href="#targeting"    class="nav-link">Enrollment Targeting</a></li>
-    <li><a href="#maintenance"  class="nav-link">Branch Maintenance</a></li>
-    <li><a href="#reference"    class="nav-link">Quick Reference</a></li>
-    <li><a href="#assistant"    class="nav-link">AI Assistant</a></li>
+    <li><a href="#overview"   class="nav-link active">Overview</a></li>
+    <li><a href="#hierarchy"  class="nav-link">The 4 Levels</a></li>
+    <li><a href="#special"    class="nav-link">Special Branches</a></li>
+    <li><a href="#access"     class="nav-link">Access &amp; Scope</a></li>
+    <li><a href="#targeting"  class="nav-link">Enrolling</a></li>
+    <li><a href="#reports"    class="nav-link">Reports</a></li>
+    <li><a href="#reference"  class="nav-link">Quick Reference</a></li>
+    <li><a href="#assistant"  class="nav-link">AI Assistant</a></li>
   </ul>
 </nav>
 <!-- ══ AI ASSISTANCE DISCLOSURE ══ -->
@@ -451,7 +452,6 @@ body{font-family:Arial,Helvetica,sans-serif}
 <!-- ────────── Page Content ────────── -->
 <div class="page-content">
 
-  <!-- ── Section 1: Overview ── -->
   <section class="section" id="overview">
     <div class="section-header">
       <div class="section-icon">
@@ -461,52 +461,51 @@ body{font-family:Arial,Helvetica,sans-serif}
       <span class="section-num">01</span>
     </div>
 
-    <p>In Docebo, a <strong>branch</strong> is an organizational grouping that mirrors USIC's real-world operational structure. Every user belongs to exactly one branch. Branches determine how users are grouped, what content they see, and what Power Users can manage.</p>
+    <p>In Docebo, a <strong>branch</strong> is a group of users that mirrors how USIC is organized. Every district is one branch, named for the district and coded with its 4-digit cost center number. People sit on their district's branch.</p>
 
-    <div class="callout info">
-      <div class="callout-icon">
-        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
-      </div>
-      <div>
-        The branch hierarchy is sourced from the <strong>SharePoint Learning Reference Table</strong> maintained by the LAT team. Changes to the org structure originate there and flow into Docebo through automated sync scripts. Power Users do not create or delete branches — that is an LAT function.
-      </div>
+    <div class="callout tip">
+      <div class="callout-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+      <div><strong>The one rule to remember:</strong> when you enroll people, build a report, or pick an audience, choose the <strong>district</strong> (or the region or division above it) and <strong>include its sub-branches</strong>.</div>
     </div>
 
     <div class="card-grid">
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">5 levels deep</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Company → Division → Region → District Full → Cost Center ID. Every user sits at the Cost Center level (level 5).</div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">4 levels</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Company → Division → Region → District. Division and region appear only where the company uses them.</div>
       </div>
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Cascading access</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">When a Power User is scoped to a branch, they can see and manage all users and content at that branch <em>and every branch below it</em>.</div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">One district, one number</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Each district carries its cost center number as its branch code. Central Indiana is also <code>2401</code>. Search by either.</div>
       </div>
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Enrollment targeting</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Learning plans and courses can be targeted at any branch level. An assignment cascades down to all users within that branch's subtree.</div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Access flows down</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Your access covers the branches assigned to you and every branch below them, never above or beside.</div>
       </div>
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">SharePoint-driven</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Organizational changes (new cost centers, district restructures) are first made in SharePoint and then synced to Docebo using LAT scripts.</div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Driven by the Learning Reference Table</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">District names and placement come from the SharePoint Learning Reference Table. LAT reviews it every quarter and updates Docebo to match.</div>
       </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg></div>
+      <div>Power Users do not create, rename, or move branches. That is an LAT task. To report a wrong name or a person in the wrong district, submit a <a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" style="color:var(--blue); font-weight:500;">Zendesk request</a>.</div>
     </div>
   </section>
 
-  <!-- ── Section 2: Hierarchy ── -->
   <section class="section" id="hierarchy">
     <div class="section-header">
       <div class="section-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
       </div>
-      <h2>The 5-Level Hierarchy</h2>
+      <h2>The 4-Level Hierarchy</h2>
       <span class="section-num">02</span>
     </div>
 
-    <p>Click any level to expand its details, description, and governance notes.</p>
+    <p>Click any level to see what it is and when to pick it.</p>
 
     <div class="hierarchy-tree" id="tree">
 
-      <!-- Level 1 -->
       <div class="level-row">
         <div class="level-connector">
           <div class="line top"></div>
@@ -517,21 +516,19 @@ body{font-family:Arial,Helvetica,sans-serif}
           <div class="level-card-header">
             <span class="level-badge">Level 1</span>
             <span class="level-name">Company</span>
-            <span class="level-example">USIC (root)</span>
+            <span class="level-example">USIC, Reconn, Blood Hound, On Target</span>
             <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
           </div>
           <div class="level-card-body">
-            <p class="level-desc">The single root node that anchors the entire hierarchy. Every user, learning object, and branch path in USIC Academy ultimately traces back here. This node is never modified by Power Users.</p>
+            <p class="level-desc">The top of each company’s tree. Everything for that company sits below it.</p>
             <ul class="level-facts">
-              <li>Named <code>USIC</code> — there is only one Company-level node.</li>
-              <li>Managed exclusively by the LAT team; no Power User has write access at this level.</li>
-              <li>Assigning content or enrollment plans here would affect every single USIC employee.</li>
+              <li>Picking a company reaches every employee in it, current and inactive.</li>
+              <li>Use only for company-wide required training, and only with LAT.</li>
+              <li>Career Technical Education (CTE) now sits under USIC. Advanced Gas Operations (AGO) sits under Reconn.</li>
             </ul>
           </div>
         </div>
       </div>
-
-      <!-- Level 2 -->
       <div class="level-row">
         <div class="level-connector">
           <div class="line top"></div>
@@ -542,21 +539,19 @@ body{font-family:Arial,Helvetica,sans-serif}
           <div class="level-card-header">
             <span class="level-badge">Level 2</span>
             <span class="level-name">Division</span>
-            <span class="level-example">e.g., East, West, Central</span>
+            <span class="level-example">e.g., East Division, West Division</span>
             <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
           </div>
           <div class="level-card-body">
-            <p class="level-desc">Major operational divisions within USIC. Power Users scoped at Division level have visibility across every region, district, and cost center within that division — a very broad scope that is granted sparingly.</p>
+            <p class="level-desc">Large groups of regions inside a company. Not every company has divisions.</p>
             <ul class="level-facts">
-              <li>Division names are sourced directly from the SharePoint Learning Reference Table.</li>
-              <li>Division-scoped Power Users are uncommon; most managers are scoped lower.</li>
-              <li>Enrollment plans assigned at Division level cascade to all users below — use with care.</li>
+              <li>Shown only where the Learning Reference Table has one.</li>
+              <li>South Division no longer exists. Its regions moved to East and West.</li>
+              <li>Pick a division only when you truly mean every region in it.</li>
             </ul>
           </div>
         </div>
       </div>
-
-      <!-- Level 3 -->
       <div class="level-row">
         <div class="level-connector">
           <div class="line top"></div>
@@ -567,22 +562,19 @@ body{font-family:Arial,Helvetica,sans-serif}
           <div class="level-card-header">
             <span class="level-badge">Level 3</span>
             <span class="level-name">Region</span>
-            <span class="level-example">e.g., Southeast, Pacific Northwest</span>
+            <span class="level-example">e.g., South Atlantic, Southeast</span>
             <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
           </div>
           <div class="level-card-body">
-            <p class="level-desc">Geographic or operational groupings within a Division. Senior Training Delivery Managers (TDMs) may be scoped at the Region level when they need oversight across multiple districts.</p>
+            <p class="level-desc">Groups of districts inside a division or company.</p>
             <ul class="level-facts">
-              <li>Regions contain one or more District Full branches beneath them.</li>
-              <li>Region-level enrollment plan assignments cascade to all districts and cost centers.</li>
-              <li>Region names follow the naming convention established in the SharePoint Learning Reference Table.</li>
-              <li>Region-scoped Power Users can view — but not necessarily edit — all users within the region.</li>
+              <li>Shown only where the Learning Reference Table has one.</li>
+              <li>Pick a region to reach all of its districts at once.</li>
+              <li>A district with no region sits right under the level above it.</li>
             </ul>
           </div>
         </div>
       </div>
-
-      <!-- Level 4 -->
       <div class="level-row">
         <div class="level-connector">
           <div class="line top"></div>
@@ -592,44 +584,16 @@ body{font-family:Arial,Helvetica,sans-serif}
         <div class="level-card" onclick="toggleLevel(this)">
           <div class="level-card-header">
             <span class="level-badge">Level 4</span>
-            <span class="level-name">District Full</span>
-            <span class="level-example">e.g., FL-East District</span>
+            <span class="level-name">District</span>
+            <span class="level-example">e.g., Central Indiana · 2401</span>
             <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
           </div>
           <div class="level-card-body">
-            <p class="level-desc">Individual districts within a Region. This is the most common scope for Training Delivery Managers and Instructors, giving them management authority over all cost centers (crews) within their district.</p>
+            <p class="level-desc">The branch people sit on. Its name comes from the Learning Reference Table and its branch code is the 4-digit cost center number.</p>
             <ul class="level-facts">
-              <li>District names follow the format: <code>[State Abbr]-[Direction] District</code> (e.g., <code>FL-East District</code>).</li>
-              <li>The primary management unit for front-line supervisors and field TDMs.</li>
-              <li>Most TDMs and Instructors are scoped to one or more District Full branches.</li>
-              <li>The <code>bulk_move_branches.py</code> script can reassign users across districts in bulk.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Level 5 -->
-      <div class="level-row">
-        <div class="level-connector">
-          <div class="line top"></div>
-          <div class="dot">5</div>
-          <div class="line bottom"></div>
-        </div>
-        <div class="level-card" onclick="toggleLevel(this)">
-          <div class="level-card-header">
-            <span class="level-badge">Level 5</span>
-            <span class="level-name">Cost Center ID</span>
-            <span class="level-example">e.g., 12345</span>
-            <svg class="level-chevron" width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-          </div>
-          <div class="level-card-body">
-            <p class="level-desc">The leaf-level branch — the most granular unit available. All USIC employees are assigned here, with the cost center ID matching USIC's payroll and HR system codes. This is where individual crews live in Docebo.</p>
-            <ul class="level-facts">
-              <li>All employees are placed at this level — never at a parent level.</li>
-              <li>Cost Center IDs match USIC HR/payroll system codes exactly.</li>
-              <li><code>sharepoint_to_branch_moves.py</code> tracks moves at this level when the SharePoint table changes.</li>
-              <li>Terminated users remain at their last Cost Center until processed by <code>archive_terminated.py</code> and <code>cleanup_terminated.py</code>.</li>
-              <li>A Power User scoped here can only see users within that single cost center.</li>
+              <li>The most common choice for enrolling and reporting.</li>
+              <li>Search by the district name or its 4-digit number.</li>
+              <li>People who leave stay here as inactive users, so their training history stays with the district.</li>
             </ul>
           </div>
         </div>
@@ -638,203 +602,181 @@ body{font-family:Arial,Helvetica,sans-serif}
     </div><!-- /hierarchy-tree -->
   </section>
 
-  <!-- ── Section 3: Access & Scope ── -->
+  <section class="section" id="special">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+      </div>
+      <h2>Special Branches</h2>
+      <span class="section-num">03</span>
+    </div>
+
+    <p>A few other branches show up in the tree. Know what they hold before you pick one.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Retired Cost Centers</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Holds cost centers that are no longer used but still have people who left. Pick it only to look up past training.</div><div style="margin-top:10px;"><span class="pill blue">History only</span></div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">4-digit number branch under a district</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Temporary. It empties when people move up to the district, and anything pointed at it stops picking up new people.</div><div style="margin-top:10px;"><span class="pill amber">Do not pick</span></div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Employee</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">An old branch being emptied. Nothing should point here.</div><div style="margin-top:10px;"><span class="pill amber">Do not pick</span></div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Admin</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Service and test accounts. Not real learners.</div><div style="margin-top:10px;"><span class="pill amber">Do not pick</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="access">
     <div class="section-header">
       <div class="section-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
       <h2>Access &amp; Scope</h2>
-      <span class="section-num">03</span>
+      <span class="section-num">04</span>
     </div>
 
-    <p>USIC Academy has three Power User profiles. Each Power User is assigned a <strong>branch scope</strong> that determines which users and content they can manage. Access always cascades <em>downward</em> — a user scoped to a Region can see all Districts and Cost Centers below it, but nothing above or beside it.</p>
+    <p>Each Power User is given a set of branches to manage, based on their cost center. Access always flows <em>down</em>: if you have a region, you see every district in it, but nothing above or beside it.</p>
 
     <div class="callout tip">
-      <div class="callout-icon">
-        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-      </div>
-      <div>
-        <strong>Principle of least privilege:</strong> When setting up a Power User, assign the lowest branch level that still lets them do their job. A district-level TDM does not need Region-level scope.
-      </div>
+      <div class="callout-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+      <div><strong>Missing someone you manage?</strong> They may sit in a district you were not given. Submit a Zendesk request instead of working around it.</div>
     </div>
-
-    <div class="card" style="padding:0; overflow:hidden;">
+    <div class="card" style="padding:0; overflow:hidden; margin-bottom:14px;">
       <table class="access-table">
-        <thead>
-          <tr>
-            <th>Power User Profile</th>
-            <th>Typical Scope</th>
-            <th>Can manage users in…</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Power User profile</th><th>Typical branches</th><th>Can manage users in…</th></tr></thead>
         <tbody>
-          <tr>
-            <td><strong>Instructor</strong><br><span style="font-size:12px; color:var(--gray-400);">Profile ID 146178</span></td>
-            <td><span class="scope-tag district">District Full</span></td>
-            <td>The assigned district and all cost centers within it. Can create and manage ILT sessions for those users.</td>
-          </tr>
-          <tr>
-            <td><strong>Training Delivery Manager (TDM)</strong><br><span style="font-size:12px; color:var(--gray-400);">Profile ID 146911</span></td>
-            <td><span class="scope-tag district">District Full</span> or <span class="scope-tag region">Region</span></td>
-            <td>All branches at or below the assigned level. Manages enrollments, learning plans, and user data for their scope.</td>
-          </tr>
-          <tr>
-            <td><strong>Content Creator</strong><br><span style="font-size:12px; color:var(--gray-400);">Profile ID 146912</span></td>
-            <td><span class="scope-tag division">Division</span> or Company</td>
-            <td>Content Creators typically have broad scope since they publish content for wide audiences. They do not have course delete permission.</td>
-          </tr>
+          <tr><td><strong>Instructor</strong></td><td><span class="scope-tag district">District</span></td><td>The assigned districts. Can manage ILT sessions for those users.</td></tr>
+          <tr><td><strong>Training Delivery Manager (TDM)</strong></td><td><span class="scope-tag district">District</span> or <span class="scope-tag region">Region</span></td><td>All branches at or below the assigned level. Manages enrollments and learner records.</td></tr>
+          <tr><td><strong>Content Creator</strong></td><td><span class="scope-tag division">Division</span> or Company</td><td>Wide scope for publishing content. Cannot delete courses.</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- ── Section 4: Enrollment Targeting ── -->
   <section class="section" id="targeting">
     <div class="section-header">
       <div class="section-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
       </div>
-      <h2>Enrollment Targeting</h2>
-      <span class="section-num">04</span>
+      <h2>Enrolling by Branch</h2>
+      <span class="section-num">05</span>
     </div>
 
-    <p>Learning plans and courses in USIC Academy can be targeted to any branch in the hierarchy. The assignment cascades automatically to all users within that branch's subtree — you do not need to assign users individually.</p>
+    <p>When you enroll by branch, the enrollment reaches everyone in that branch <em>and</em> every branch below it, as long as sub-branches are included.</p>
 
     <div class="callout warning">
-      <div class="callout-icon">
-        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-      </div>
-      <div>
-        <strong>Important:</strong> Adding a course to an already-published learning plan auto-enrolls all current members of that plan immediately. Test in a draft plan first when rolling out new content to a large branch.
-      </div>
+      <div class="callout-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg></div>
+      <div><strong>Important:</strong> adding a course to a learning plan that is already published enrolls every current member of that plan right away. Test with a draft plan first.</div>
     </div>
 
     <div class="card-grid">
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Company (Level 1)</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">Every USIC employee is enrolled. Reserved for mandatory compliance content that applies to the full workforce.</div>
-        <div style="margin-top:10px;"><span class="pill amber">Use with caution</span></div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Company</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Every employee in the company. Company-wide required training only, with LAT.</div><div style="margin-top:10px;"><span class="pill amber">Use with caution</span></div>
       </div>
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Division (Level 2)</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">Targets an entire division. Good for division-specific policy or role-based content that applies broadly.</div>
-        <div style="margin-top:10px;"><span class="pill amber">Broad reach</span></div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Division</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Every region in the division. Good for division-wide policy or role training.</div><div style="margin-top:10px;"><span class="pill amber">Broad reach</span></div>
       </div>
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Region / District (Levels 3–4)</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">The most common use case — targets a specific operational area. TDMs manage enrollments at this level most frequently.</div>
-        <div style="margin-top:10px;"><span class="pill green">Recommended scope</span></div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">Region or District</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">The most common choice. Reaches one area and everyone in it.</div><div style="margin-top:10px;"><span class="pill green">Recommended</span></div>
       </div>
       <div class="card">
-        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:8px;">Assigning at Cost Center (Level 5)</div>
-        <div style="font-size:13px; color:var(--gray-600); line-height:1.65;">Targets a single crew. Useful for crew-specific remediation or onboarding content for a new cost center.</div>
-        <div style="margin-top:10px;"><span class="pill blue">Granular control</span></div>
+        <div style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:6px;">4-digit number branch</div>
+        <div style="font-size:13px; color:var(--gray-600); line-height:1.6;">Temporary and emptying. Pick the district above it instead.</div><div style="margin-top:10px;"><span class="pill amber">Do not pick</span></div>
       </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg></div>
+      <div><strong>Several districts?</strong> Pick each district, or pick their region if it covers all of them and no extra districts.</div>
     </div>
   </section>
 
-  <!-- ── Section 5: Branch Maintenance ── -->
-  <section class="section" id="maintenance">
+  <section class="section" id="reports">
     <div class="section-header">
       <div class="section-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17v-2m3 2v-4m3 4v-6M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
       </div>
-      <h2>Branch Maintenance</h2>
-      <span class="section-num">05</span>
+      <h2>Reports by Branch</h2>
+      <span class="section-num">06</span>
     </div>
 
-    <p>Branch maintenance is an LAT function. The scripts below automate the most common maintenance tasks. Power Users do not run these directly — they submit requests to the LAT team who execute them.</p>
+    <p>Report filters work the same way as enrollments: pick the district, region, or division and include its sub-branches.</p>
 
-    <div class="script-grid">
-      <div class="script-card">
-        <code>sync_branches.py</code>
-        <p>Reads the SharePoint Learning Reference Table and creates or updates branches in Docebo to match the current org structure.</p>
-      </div>
-      <div class="script-card">
-        <code>sharepoint_to_branch_moves.py</code>
-        <p>Detects when users have changed cost centers in SharePoint and moves those users to their correct Docebo branch.</p>
-      </div>
-      <div class="script-card">
-        <code>bulk_move_branches.py</code>
-        <p>Batch-moves a list of users from one branch to another. Used for district restructures or large group transfers.</p>
-      </div>
-      <div class="script-card">
-        <code>pull_branches.py</code>
-        <p>Exports the current Docebo branch tree to a local file for auditing, comparison, or troubleshooting.</p>
-      </div>
-      <div class="script-card">
-        <code>archive_terminated.py</code>
-        <p>Identifies terminated users (via <code>field_17</code> Termination Date and <code>field_20</code> Status) and moves them to the archive branch. Runs on a scheduled task.</p>
-      </div>
-      <div class="script-card">
-        <code>cleanup_terminated.py</code>
-        <p>Follows up on archived terminated users — deactivates accounts and removes enrollments as appropriate per retention policy.</p>
-      </div>
+    <div class="card" style="padding:0; overflow:hidden; margin-bottom:14px;">
+      <table class="ref-table">
+        <thead><tr><th>I need…</th><th>Filter on</th><th>Tip</th></tr></thead>
+        <tbody>
+          <tr><td>My team, every week</td><td>My district or region, with sub-branches</td><td>Name it <strong>Place – What – How often</strong>, e.g. <em>Northeast – ULE Completions – Weekly</em></td></tr>
+          <tr><td>A one-time answer</td><td>Same as above</td><td>Look in <strong>Admin menu › Reports</strong> first. If you build one, end the name with <strong>One-time</strong></td></tr>
+          <tr><td>Training for people who have left</td><td>Their district, plus Retired Cost Centers if their cost center was retired</td><td>Include inactive users in the report</td></tr>
+          <tr><td>Several districts</td><td>Each district, or their region</td><td>Use the region name in the report title</td></tr>
+        </tbody>
+      </table>
     </div>
-
-    <div class="callout info" style="margin-top:16px;">
-      <div class="callout-icon">
-        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
-      </div>
-      <div>
-        To request a branch move for a user or crew, contact the LAT team via <a href="https://usicllc.zendesk.com/hc/en-us/requests/new?ticket_form_id=37602338527507" target="_blank" style="color:var(--blue); font-weight:500;">Zendesk</a>. Include the employee's name, current branch, and destination branch.
-      </div>
+    <div class="callout warning">
+      <div class="callout-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg></div>
+      <div><strong>Old report filters:</strong> a report that filters on a 4-digit number branch will soon show no one. Change the filter to the district. LAT reviews report use every quarter and removes reports nobody uses.</div>
     </div>
   </section>
 
-  <!-- ── Section 6: Quick Reference ── -->
   <section class="section" id="reference">
     <div class="section-header">
       <div class="section-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
       </div>
       <h2>Quick Reference</h2>
-      <span class="section-num">06</span>
+      <span class="section-num">07</span>
     </div>
 
     <div class="card" style="padding:0; overflow:hidden; margin-bottom:14px;">
       <table class="ref-table">
-        <thead>
-          <tr><th>Term / Field</th><th>What it means</th></tr>
-        </thead>
+        <thead><tr><th>I want to…</th><th>Pick this branch</th><th>Also</th></tr></thead>
         <tbody>
-          <tr><td><code>field_2</code></td><td>Employee ID — the primary key linking a Docebo user to USIC HR records.</td></tr>
-          <tr><td><code>field_17</code></td><td>Termination Date — used by <code>archive_terminated.py</code> to identify leavers.</td></tr>
-          <tr><td><code>field_20</code></td><td>Status — Active / Terminated / Leave of Absence etc. Drives archival logic.</td></tr>
-          <tr><td><code>field_40</code></td><td>ULE Version — tracks which version of the Utility Locator Evaluation a user is on.</td></tr>
-          <tr><td>Learning Reference Table</td><td>SharePoint spreadsheet maintained by LAT that is the source of truth for all branch names and the org hierarchy.</td></tr>
-          <tr><td>Power User scope</td><td>The branch (and all branches below it) a Power User is authorized to manage in Docebo.</td></tr>
-          <tr><td>Cost Center ID</td><td>The leaf-level branch, corresponding to an individual USIC crew. Matches payroll system codes.</td></tr>
+          <tr><td>Enroll one district</td><td>The district (e.g. Central Indiana)</td><td>Include sub-branches</td></tr>
+          <tr><td>Enroll several districts</td><td>Each district, or their region</td><td>Include sub-branches</td></tr>
+          <tr><td>Enroll a whole region or division</td><td>The region or division</td><td>Include sub-branches</td></tr>
+          <tr><td>Build a team report</td><td>Your district or region</td><td>Name it Place – What – How often</td></tr>
+          <tr><td>See past training for people who left</td><td>Their district (+ Retired Cost Centers)</td><td>Include inactive users</td></tr>
+          <tr><td>Report a wrong name or placement</td><td>Nothing: submit a Zendesk request</td><td>Include name, Employee ID, expected district</td></tr>
         </tbody>
       </table>
     </div>
-
-    <div class="card" style="padding:0; overflow:hidden;">
+    <div class="card" style="padding:0; overflow:hidden; margin-bottom:14px;">
       <table class="ref-table">
-        <thead>
-          <tr><th>Power User Profile</th><th>Profile ID</th><th>Typical Branch Level</th></tr>
-        </thead>
+        <thead><tr><th>Term</th><th>What it means</th></tr></thead>
         <tbody>
-          <tr><td>Instructor</td><td><code>146178</code></td><td>District Full (Level 4)</td></tr>
-          <tr><td>Training Delivery Manager (TDM)</td><td><code>146911</code></td><td>District Full or Region (Levels 3–4)</td></tr>
-          <tr><td>Content Creator</td><td><code>146912</code></td><td>Division or Company (Levels 1–2)</td></tr>
+          <tr><td>Branch</td><td>A group of users in Docebo. Every user belongs to one.</td></tr>
+          <tr><td>District</td><td>The branch people sit on, named for the district.</td></tr>
+          <tr><td>Branch code</td><td>The 4-digit cost center number on each district.</td></tr>
+          <tr><td>Sub-branches</td><td>The branches below the one you pick. Include them so no one is missed.</td></tr>
+          <tr><td>Learning Reference Table</td><td>The SharePoint list LAT uses as the source for district names and placement.</td></tr>
+          <tr><td>Retired Cost Centers</td><td>Where unused cost centers go so past training stays findable.</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- ── Section 7: AI Assistant ── -->
+  <!-- ── Section 8: AI Assistant ── -->
   <section class="section" id="assistant">
     <div class="section-header">
       <div class="section-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       </div>
       <h2>AI Assistant</h2>
-      <span class="section-num">07</span>
+      <span class="section-num">08</span>
     </div>
 
-    <p>Have a branch-related question not covered above? The assistant below is pre-loaded with full knowledge of the USIC Academy branch structure, Power User profiles, and maintenance scripts.</p>
+    <p>Have a branch-related question not covered above? The assistant below is pre-loaded with the USIC Academy branch structure and the rules for enrolling and reporting by branch.</p>
 
     <div class="ai-panel">
       <div class="ai-panel-header">
@@ -845,10 +787,10 @@ body{font-family:Arial,Helvetica,sans-serif}
       </div>
 
       <div class="ai-chips" id="chip-row">
-        <button class="ai-chip" onclick="prefill('How are users assigned to branches?')">How are users assigned to branches?</button>
-        <button class="ai-chip" onclick="prefill('What does scoping a TDM to a Region mean?')">What does scoping a TDM to a Region mean?</button>
-        <button class="ai-chip" onclick="prefill('Which script handles terminated users?')">Which script handles terminated users?</button>
-        <button class="ai-chip" onclick="prefill('Can a Content Creator delete courses?')">Can a Content Creator delete courses?</button>
+        <button class="ai-chip" onclick="prefill('How are people placed in branches?')">How are people placed in branches?</button>
+        <button class="ai-chip" onclick="prefill('Which branch do I pick to enroll a region?')">Which branch do I pick to enroll a region?</button>
+        <button class="ai-chip" onclick="prefill('What is Retired Cost Centers?')">What is Retired Cost Centers?</button>
+        <button class="ai-chip" onclick="prefill('Why should I include sub-branches?')">Why should I include sub-branches?</button>
       </div>
 
       <div class="ai-messages" id="ai-messages"></div>
@@ -860,7 +802,7 @@ body{font-family:Arial,Helvetica,sans-serif}
       </div>
 
       <div class="ai-input-row">
-        <input id="ai-input" type="text" placeholder="Ask about branches, scope, scripts, enrollment targeting…" onkeydown="if(event.key==='Enter') sendMessage();" />
+        <input id="ai-input" type="text" placeholder="Ask about branches, scope, enrolling, reports…" onkeydown="if(event.key==='Enter') sendMessage();" />
         <button class="ai-send-btn" id="ai-send" onclick="sendMessage()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Send
@@ -875,7 +817,7 @@ body{font-family:Arial,Helvetica,sans-serif}
 <footer class="page-footer">
   <div>
     <strong>USIC Academy</strong> — Branch Structure Knowledge Article<br>
-    Learning Analytics &amp; Technology (LAT) · Last updated June 2026
+    Learning Analytics &amp; Technology (LAT) · Last updated November 2026
   </div>
   <div style="text-align:right;">
     <a href="https://usicapps.sharepoint.com/sites/LearningAnalyticsandTechnology">← Back to LAT</a><br>
@@ -906,34 +848,30 @@ body{font-family:Arial,Helvetica,sans-serif}
   }
 
   /* ── AI Assistant ── */
-  const SYSTEM_PROMPT = `You are a helpful knowledge assistant for USIC Academy's Docebo LMS branch structure.
-Answer questions clearly and concisely (2-4 sentences unless more is truly needed).
+  const SYSTEM_PROMPT = `You are a helpful knowledge assistant for USIC Academy's Docebo LMS branch structure, for Power Users.
+Answer clearly and concisely (2-4 sentences unless more is truly needed). Use plain language.
 
-Branch hierarchy (5 levels, top to bottom):
-1. Company — Root node "USIC". LAT team only.
-2. Division — Major operational divisions (East, West, etc.)
-3. Region — Geographic/operational groupings within a Division
-4. District Full — Individual districts (format: [State]-[Direction] District, e.g., FL-East District)
-5. Cost Center ID — Leaf level; individual employees assigned here matching payroll cost center codes.
+Branch hierarchy (4 levels, top to bottom):
+1. Company — USIC, Reconn, Blood Hound, On Target. CTE sits under USIC; Advanced Gas Operations (AGO) sits under Reconn.
+2. Division — only where the Learning Reference Table has one (e.g., East, West). South Division no longer exists; its regions moved to East and West.
+3. Region — only where the Learning Reference Table has one (e.g., South Atlantic, Southeast).
+4. District — the branch people sit on. Title = district name from the Learning Reference Table. Branch code = 4-digit cost center number (e.g., Central Indiana = 2401). Search by name or number.
 
-Key facts:
-- Sourced from SharePoint "Learning Reference Table" (LAT team maintains it)
-- Scripts (LAT-run, not Power User-run):
-  * sync_branches.py — syncs branch structure from SharePoint to Docebo
-  * sharepoint_to_branch_moves.py — moves users when their cost center changes in SharePoint
-  * bulk_move_branches.py — bulk user branch reassignment
-  * pull_branches.py — exports current Docebo branch tree for auditing
-  * archive_terminated.py — identifies and archives terminated users (uses field_17, field_20)
-  * cleanup_terminated.py — deactivates and cleans up archived terminated users
-- Three Power User profiles:
-  * Instructor (ID 146178) — typically scoped to District Full
-  * Training Delivery Manager/TDM (ID 146911) — typically District Full or Region
-  * Content Creator (ID 146912) — typically Division or Company; cannot delete courses
-- Power User access cascades DOWN from assigned branch — they see all branches below theirs
-- Enrollment plans assigned to a branch cascade to ALL users in that branch and below
-- Adding a course to a published learning plan auto-enrolls all current plan members immediately
-- User fields: field_2 = Employee ID, field_17 = Termination Date, field_20 = Status, field_40 = ULE Version
-- Docebo instance: usic.training / usic.docebosaas.com`;
+Special branches:
+- Retired Cost Centers — unused cost centers that still have people who left; use only for past training history.
+- 4-digit number branches under a district — temporary, being emptied; never pick them.
+- Employee — legacy, being emptied; never pick it.
+- Admin — service and test accounts.
+
+Rules:
+- When enrolling, reporting, or picking an audience: pick the district (or region/division) and include sub-branches.
+- Power User access flows down from assigned branches, which are based on the Power User's cost center.
+- Profiles: Instructor (district), TDM (district or region), Content Creator (division or company; cannot delete courses).
+- Adding a course to a published learning plan enrolls all current plan members right away.
+- People who leave stay on their district as inactive users.
+- Report naming: Place – What – How often; one-time reports end with "One-time". Look in Admin menu > Reports before building a new one. LAT reviews report use quarterly.
+- Power Users do not change branches; report wrong names or placements through a Zendesk request with name, Employee ID and expected district.
+- Docebo instance: usic.training`;
 
   let chatHistory = [];
 
